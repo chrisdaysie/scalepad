@@ -21,27 +21,6 @@ export default function Home() {
       tech: ["Next.js", "TypeScript", "Tailwind CSS"],
       link: "https://scalepad.chris.day",
       gradient: "from-purple-500 to-pink-500"
-    },
-    {
-      title: "AI Chat Interface",
-      description: "Interactive AI-powered chat system with natural language processing capabilities.",
-      tech: ["React", "OpenAI API", "WebSocket"],
-      link: "#",
-      gradient: "from-blue-500 to-cyan-500"
-    },
-    {
-      title: "Data Visualization Hub",
-      description: "Comprehensive data visualization platform with interactive charts and real-time updates.",
-      tech: ["D3.js", "Vue.js", "Node.js"],
-      link: "#",
-      gradient: "from-green-500 to-emerald-500"
-    },
-    {
-      title: "Mobile App Prototype",
-      description: "Cross-platform mobile application with native performance and modern UI/UX.",
-      tech: ["React Native", "Expo", "Firebase"],
-      link: "#",
-      gradient: "from-orange-500 to-red-500"
     }
   ];
 
@@ -100,47 +79,49 @@ export default function Home() {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {projects.map((project, index) => (
-            <div
-              key={project.title}
-              className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-500 transform hover:scale-105 animate-slide-up"
-              style={{ animationDelay: `${400 + index * 100}ms` }}
-            >
-              <div className={`absolute inset-0 bg-gradient-to-r ${project.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500`} />
-              
-              <div className="relative z-10">
-                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 group-hover:bg-clip-text transition-all duration-300">
-                  {project.title}
-                </h3>
+        <div className="flex justify-center max-w-6xl mx-auto">
+          <div className="w-full max-w-2xl">
+                      {projects.map((project, index) => (
+              <div
+                key={project.title}
+                className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-500 transform hover:scale-105 animate-slide-up"
+                style={{ animationDelay: `${400 + index * 100}ms` }}
+              >
+                <div className={`absolute inset-0 bg-gradient-to-r ${project.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500`} />
                 
-                <p className="text-white/70 mb-6 leading-relaxed">
-                  {project.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-xs text-white/80"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 group-hover:bg-clip-text transition-all duration-300">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="text-white/70 mb-6 leading-relaxed">
+                    {project.description}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tech.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-xs text-white/80"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <a
+                    href={project.link}
+                    className="inline-flex items-center text-purple-400 hover:text-purple-300 font-semibold transition-colors duration-300 group/link"
+                  >
+                    View Project
+                    <svg className="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
                 </div>
-                
-                <a
-                  href={project.link}
-                  className="inline-flex items-center text-purple-400 hover:text-purple-300 font-semibold transition-colors duration-300 group/link"
-                >
-                  View Project
-                  <svg className="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Footer */}

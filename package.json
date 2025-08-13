@@ -2,6 +2,8 @@
   "name": "scalepad-poc-dashboard",
   "version": "0.1.0",
   "private": true,
+  "description": "A proof-of-concept dashboard for Scalepad",
+  "homepage": "https://scalepad.chris.day",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

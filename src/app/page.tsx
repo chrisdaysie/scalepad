@@ -57,7 +57,7 @@ export default function Home() {
           </div>
           
           <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 animate-slide-up">
-            Chris Day's
+            Chris Day&apos;s
             <span className="block bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Playground
             </span>

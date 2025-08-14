@@ -439,35 +439,42 @@
   },
   "contracts": {
     "monthly": [
-      { "vendor": "Managed Services - 25 Users", "description": "Comprehensive IT management and support", "cost": "$5,000.00", "nextDue": "2025-08-31" },
-      { "vendor": "Microsoft 365 Business Premium", "description": "Email, Office apps, Teams, SharePoint (25 users)", "cost": "$1,250.00", "nextDue": "2025-08-31" },
-      { "vendor": "Internet Service Provider", "description": "Business fiber internet (500Mbps primary)", "cost": "$450.00", "nextDue": "2025-08-31" },
-      { "vendor": "RingCentral VoIP", "description": "Business phone system with 25 extensions", "cost": "$750.00", "nextDue": "2025-08-31" },
-      { "vendor": "Slack Pro", "description": "Team collaboration platform (25 users)", "cost": "$375.00", "nextDue": "2025-08-31" },
-      { "vendor": "Salesforce Sales Cloud", "description": "CRM platform (10 sales users)", "cost": "$1,000.00", "nextDue": "2025-08-31" },
-      { "vendor": "QuickBooks Online", "description": "Accounting software (5 finance users)", "cost": "$200.00", "nextDue": "2025-08-31" },
-      { "vendor": "Adobe Creative Cloud", "description": "Design software (3 creative users)", "cost": "$180.00", "nextDue": "2025-08-31" },
-      { "vendor": "Zoom Pro", "description": "Video conferencing (25 users)", "cost": "$500.00", "nextDue": "2025-08-31" },
-      { "vendor": "Box Business", "description": "Cloud file storage and sharing (5TB)", "cost": "$300.00", "nextDue": "2025-08-31" },
-      { "vendor": "Okta Identity", "description": "Single sign-on and identity management", "cost": "$400.00", "nextDue": "2025-08-31" },
-      { "vendor": "Backup Internet", "description": "Secondary internet connection (100Mbps)", "cost": "$200.00", "nextDue": "2025-08-31" }
+      { "vendor": "Managed Services - 25 Users", "description": "Comprehensive IT management and support", "cost": "$5,000.00", "nextDue": "2025-08-31", "category": "MSP-Invoiced", "subcategory": "Managed Services" },
+      { "vendor": "Microsoft 365 Business Premium", "description": "Email, Office apps, Teams, SharePoint (25 users)", "cost": "$1,250.00", "nextDue": "2025-08-31", "category": "MSP-Invoiced", "subcategory": "Software & Licensing" },
+      { "vendor": "Security Suite Licensing", "description": "EDR, AV, anti-malware (25 endpoints)", "cost": "$750.00", "nextDue": "2025-08-31", "category": "MSP-Invoiced", "subcategory": "Software & Licensing" },
+      { "vendor": "Backup & DR Software", "description": "Local and cloud backup licensing", "cost": "$400.00", "nextDue": "2025-08-31", "category": "MSP-Invoiced", "subcategory": "Software & Licensing" },
+      { "vendor": "Email Security & Spam Filtering", "description": "Advanced email protection (25 users)", "cost": "$300.00", "nextDue": "2025-08-31", "category": "MSP-Invoiced", "subcategory": "Software & Licensing" },
+      { "vendor": "Remote Access/VPN", "description": "Secure remote access licensing", "cost": "$200.00", "nextDue": "2025-08-31", "category": "MSP-Invoiced", "subcategory": "Software & Licensing" },
+      { "vendor": "Internet Service Provider", "description": "Business fiber internet (500Mbps primary)", "cost": "$450.00", "nextDue": "2025-08-31", "category": "Vendor-Direct", "subcategory": "Telecom & Internet" },
+      { "vendor": "Backup Internet", "description": "Secondary internet connection (100Mbps)", "cost": "$200.00", "nextDue": "2025-08-31", "category": "Vendor-Direct", "subcategory": "Telecom & Internet" },
+      { "vendor": "RingCentral VoIP", "description": "Business phone system with 25 extensions", "cost": "$750.00", "nextDue": "2025-08-31", "category": "Vendor-Direct", "subcategory": "Telecom & Internet" },
+      { "vendor": "Salesforce Sales Cloud", "description": "CRM platform (10 sales users)", "cost": "$1,000.00", "nextDue": "2025-08-31", "category": "Vendor-Direct", "subcategory": "Cloud & SaaS Applications" },
+      { "vendor": "QuickBooks Online", "description": "Accounting software (5 finance users)", "cost": "$200.00", "nextDue": "2025-08-31", "category": "Vendor-Direct", "subcategory": "Cloud & SaaS Applications" },
+      { "vendor": "Slack Pro", "description": "Team collaboration platform (25 users)", "cost": "$375.00", "nextDue": "2025-08-31", "category": "Vendor-Direct", "subcategory": "Cloud & SaaS Applications" },
+      { "vendor": "Adobe Creative Cloud", "description": "Design software (3 creative users)", "cost": "$180.00", "nextDue": "2025-08-31", "category": "Vendor-Direct", "subcategory": "Cloud & SaaS Applications" },
+      { "vendor": "Zoom Pro", "description": "Video conferencing (25 users)", "cost": "$500.00", "nextDue": "2025-08-31", "category": "Vendor-Direct", "subcategory": "Other IT-Related Costs" },
+      { "vendor": "Box Business", "description": "Cloud file storage and sharing (5TB)", "cost": "$300.00", "nextDue": "2025-08-31", "category": "Vendor-Direct", "subcategory": "Other IT-Related Costs" },
+      { "vendor": "Okta Identity", "description": "Single sign-on and identity management", "cost": "$400.00", "nextDue": "2025-08-31", "category": "Vendor-Direct", "subcategory": "Specialty Security & Compliance" }
     ],
     "quarterly": [
-      { "vendor": "Cloudflare Pro", "description": "CDN, DNS, and web security services", "cost": "$600.00", "nextDue": "2025-09-30" },
-      { "vendor": "Network Security", "description": "Firewall and security appliance licensing", "cost": "$900.00", "nextDue": "2025-09-30" },
-      { "vendor": "Copier/Printer Lease", "description": "Managed print services (Xerox)", "cost": "$450.00", "nextDue": "2025-09-30" },
-      { "vendor": "Tableau Creator", "description": "Business intelligence and analytics (3 users)", "cost": "$1,050.00", "nextDue": "2025-09-30" }
+      { "vendor": "Hardware Maintenance", "description": "Server and network equipment support", "cost": "$1,500.00", "nextDue": "2025-09-30", "category": "MSP-Invoiced", "subcategory": "Hardware & Infrastructure" },
+      { "vendor": "Network Security", "description": "Firewall and security appliance licensing", "cost": "$900.00", "nextDue": "2025-09-30", "category": "MSP-Invoiced", "subcategory": "Hardware & Infrastructure" },
+      { "vendor": "UPS/Battery Systems", "description": "Uninterruptible power supply maintenance", "cost": "$300.00", "nextDue": "2025-09-30", "category": "MSP-Invoiced", "subcategory": "Hardware & Infrastructure" },
+      { "vendor": "Cloudflare Pro", "description": "CDN, DNS, and web security services", "cost": "$600.00", "nextDue": "2025-09-30", "category": "Vendor-Direct", "subcategory": "Hosting & Web" },
+      { "vendor": "Copier/Printer Lease", "description": "Managed print services (Xerox)", "cost": "$450.00", "nextDue": "2025-09-30", "category": "Vendor-Direct", "subcategory": "Other IT-Related Costs" },
+      { "vendor": "Tableau Creator", "description": "Business intelligence and analytics (3 users)", "cost": "$1,050.00", "nextDue": "2025-09-30", "category": "Vendor-Direct", "subcategory": "Cloud & SaaS Applications" }
     ],
     "annual": [
-      { "vendor": "Cyber Insurance", "description": "Cyber liability and data breach coverage", "cost": "$8,500.00", "nextDue": "2025-12-31" },
-      { "vendor": "Hardware Maintenance", "description": "Server and network equipment support", "cost": "$6,000.00", "nextDue": "2025-12-31" },
-      { "vendor": "Software Licensing", "description": "Annual software license renewals", "cost": "$4,500.00", "nextDue": "2025-06-30" },
-      { "vendor": "Security Training", "description": "Annual security awareness training program", "cost": "$3,000.00", "nextDue": "2025-12-31" },
-      { "vendor": "Compliance Audit", "description": "Annual SOC 2 compliance assessment", "cost": "$7,500.00", "nextDue": "2025-11-30" },
-      { "vendor": "Domain & SSL", "description": "Domain registration and SSL certificates", "cost": "$1,200.00", "nextDue": "2025-06-30" },
-      { "vendor": "HubSpot Marketing", "description": "Marketing automation platform", "cost": "$3,600.00", "nextDue": "2025-12-31" },
-      { "vendor": "AWS Cloud Services", "description": "Cloud infrastructure and hosting", "cost": "$2,400.00", "nextDue": "2025-12-31" },
-      { "vendor": "Mobile Device Management", "description": "Business mobile plans and device management", "cost": "$4,800.00", "nextDue": "2025-12-31" }
+      { "vendor": "Server OS Licensing", "description": "Windows Server, CALs, RDS licensing", "cost": "$3,500.00", "nextDue": "2025-12-31", "category": "MSP-Invoiced", "subcategory": "Software & Licensing" },
+      { "vendor": "vCIO/QBR Services", "description": "Strategic IT consulting and planning", "cost": "$6,000.00", "nextDue": "2025-12-31", "category": "MSP-Invoiced", "subcategory": "Managed Services" },
+      { "vendor": "Security Assessment", "description": "Annual security and penetration testing", "cost": "$4,500.00", "nextDue": "2025-11-30", "category": "MSP-Invoiced", "subcategory": "Project & Professional Services" },
+      { "vendor": "Compliance Audit", "description": "SOC 2 compliance assessment and consulting", "cost": "$7,500.00", "nextDue": "2025-11-30", "category": "MSP-Invoiced", "subcategory": "Project & Professional Services" },
+      { "vendor": "Cyber Insurance", "description": "Cyber liability and data breach coverage", "cost": "$8,500.00", "nextDue": "2025-12-31", "category": "Vendor-Direct", "subcategory": "Specialty Security & Compliance" },
+      { "vendor": "Domain & SSL", "description": "Domain registration and SSL certificates", "cost": "$1,200.00", "nextDue": "2025-06-30", "category": "Vendor-Direct", "subcategory": "Hosting & Web" },
+      { "vendor": "HubSpot Marketing", "description": "Marketing automation platform", "cost": "$3,600.00", "nextDue": "2025-12-31", "category": "Vendor-Direct", "subcategory": "Cloud & SaaS Applications" },
+      { "vendor": "AWS Cloud Services", "description": "Cloud infrastructure and hosting", "cost": "$2,400.00", "nextDue": "2025-12-31", "category": "Vendor-Direct", "subcategory": "Cloud & SaaS Applications" },
+      { "vendor": "Mobile Device Management", "description": "Business mobile plans and device management", "cost": "$4,800.00", "nextDue": "2025-12-31", "category": "Vendor-Direct", "subcategory": "Telecom & Internet" },
+      { "vendor": "Security Training Platform", "description": "Security awareness training platform", "cost": "$3,000.00", "nextDue": "2025-12-31", "category": "Vendor-Direct", "subcategory": "Specialty Security & Compliance" }
     ]
   },
   "roadmap": {

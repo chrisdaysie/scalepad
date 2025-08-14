@@ -833,22 +833,36 @@ export default function QBRReportPage() {
                 
                 {/* Summary Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                  <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-6 text-white text-center">
-                    <div className="text-2xl font-bold mb-2">$10,605</div>
-                    <div className="text-sm opacity-90">Monthly Spend</div>
-                  </div>
-                  <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-xl p-6 text-white text-center">
-                    <div className="text-2xl font-bold mb-2">$3,000</div>
-                    <div className="text-sm opacity-90">Quarterly Spend</div>
-                  </div>
-                  <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-6 text-white text-center">
-                    <div className="text-2xl font-bold mb-2">$41,500</div>
-                    <div className="text-sm opacity-90">Annual Spend</div>
-                  </div>
-                  <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl p-6 text-white text-center">
-                    <div className="text-2xl font-bold mb-2">$180,760</div>
-                    <div className="text-sm opacity-90">Total Annual</div>
-                  </div>
+                  {(() => {
+                    const monthlyTotal = report.contracts?.monthly?.reduce((sum, contract) => 
+                      sum + parseFloat(contract.cost.replace(/[$,]/g, '')), 0) || 0;
+                    const quarterlyTotal = report.contracts?.quarterly?.reduce((sum, contract) => 
+                      sum + parseFloat(contract.cost.replace(/[$,]/g, '')), 0) || 0;
+                    const annualTotal = report.contracts?.annual?.reduce((sum, contract) => 
+                      sum + parseFloat(contract.cost.replace(/[$,]/g, '')), 0) || 0;
+                    const totalAnnual = (monthlyTotal * 12) + (quarterlyTotal * 4) + annualTotal;
+                    
+                    return (
+                      <>
+                        <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-6 text-white text-center">
+                          <div className="text-2xl font-bold mb-2">${monthlyTotal.toLocaleString()}</div>
+                          <div className="text-sm opacity-90">Monthly Spend</div>
+                        </div>
+                        <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-xl p-6 text-white text-center">
+                          <div className="text-2xl font-bold mb-2">${quarterlyTotal.toLocaleString()}</div>
+                          <div className="text-sm opacity-90">Quarterly Spend</div>
+                        </div>
+                        <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-6 text-white text-center">
+                          <div className="text-2xl font-bold mb-2">${annualTotal.toLocaleString()}</div>
+                          <div className="text-sm opacity-90">Annual Spend</div>
+                        </div>
+                        <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl p-6 text-white text-center">
+                          <div className="text-2xl font-bold mb-2">${totalAnnual.toLocaleString()}</div>
+                          <div className="text-sm opacity-90">Total Annual</div>
+                        </div>
+                      </>
+                    );
+                  })()}
                 </div>
                 
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">

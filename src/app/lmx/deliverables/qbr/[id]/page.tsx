@@ -1459,6 +1459,17 @@ export default function QBRReportPage() {
             {report.liveData?.enabled && (
               <LiveDataControls report={report} />
             )}
+            
+            {/* Debug info */}
+            <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded mb-4">
+              <strong>Debug Info:</strong> 
+              <br />
+              Report ID: {report.id}
+              <br />
+              Live Data Enabled: {report.liveData?.enabled ? 'Yes' : 'No'}
+              <br />
+              Report Type: {report.type}
+            </div>
 
             {/* Key Results */}
             <div>
@@ -1617,6 +1628,7 @@ function LiveDataControls({ report }: { report: QBRData }) {
     name: string;
     status: string;
     created_at: string;
+    deviceCount: number;
   }>>([]);
   const [selectedClientUuid, setSelectedClientUuid] = useState<string>(
     report.liveData?.selectedClientUuid || ''
@@ -1715,7 +1727,7 @@ function LiveDataControls({ report }: { report: QBRData }) {
             <option value="">Choose a client...</option>
             {availableClients.map((client) => (
               <option key={client.uuid} value={client.uuid}>
-                {client.name} ({client.status})
+                {client.name} ({client.status}) - {client.deviceCount} devices
               </option>
             ))}
           </select>
@@ -1750,7 +1762,8 @@ function LiveDataControls({ report }: { report: QBRData }) {
           <div className="w-full text-center">
             {selectedClientUuid && (
               <p className="text-sm text-gray-600">
-                Selected: {availableClients.find(c => c.uuid === selectedClientUuid)?.name}
+                Selected: {availableClients.find(c => c.uuid === selectedClientUuid)?.name} 
+                ({availableClients.find(c => c.uuid === selectedClientUuid)?.deviceCount} devices)
               </p>
             )}
           </div>

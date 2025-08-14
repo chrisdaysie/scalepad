@@ -5,6 +5,7 @@ interface CorkClient {
   name: string;
   status: string;
   created_at: string;
+  deviceCount: number;
 }
 
 interface CorkClientsResponse {
@@ -41,16 +42,49 @@ export async function GET(request: NextRequest) {
 
     const data: CorkClientsResponse = await response.json();
 
-    // Transform the data for our frontend
-    const clients = data.items.map(client => ({
-      uuid: client.uuid,
-      name: client.name,
-      status: client.status,
-      created_at: client.created_at,
-    }));
+    // Fetch device counts for each client
+    const clientsWithDeviceCounts = await Promise.all(
+      data.items.map(async (client) => {
+        try {
+          // Fetch devices for this client
+          const devicesResponse = await fetch(
+            `${baseUrl}/api/v1/clients/${client.uuid}/devices`,
+            {
+              headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json',
+              },
+            }
+          );
+
+          let deviceCount = 0;
+          if (devicesResponse.ok) {
+            const devicesData = await devicesResponse.json();
+            deviceCount = devicesData.items?.length || 0;
+          }
+
+          return {
+            uuid: client.uuid,
+            name: client.name,
+            status: client.status,
+            created_at: client.created_at,
+            deviceCount,
+          };
+        } catch (error) {
+          console.error(`Error fetching devices for client ${client.uuid}:`, error);
+          return {
+            uuid: client.uuid,
+            name: client.name,
+            status: client.status,
+            created_at: client.created_at,
+            deviceCount: 0,
+          };
+        }
+      })
+    );
 
     return NextResponse.json({
-      clients,
+      clients: clientsWithDeviceCounts,
       total: data.total,
       lastUpdated: new Date().toISOString(),
     });

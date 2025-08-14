@@ -28,7 +28,6 @@
             padding: 2rem;
         }
         
-        /* Enhanced header section */
         .header-section {
             text-align: center;
             padding: 4rem 2rem 6rem;
@@ -46,22 +45,6 @@
             bottom: 0;
             background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #8b5cf6 100%);
             z-index: -2;
-        }
-        
-        .header-section::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            z-index: -1;
-        }
-        
-        .header-content {
-            position: relative;
-            z-index: 1;
         }
         
         .header-title {
@@ -84,447 +67,251 @@
             margin-right: auto;
             line-height: 1.6;
         }
-        
-        .floating-shapes {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        .floating-shape {
-            position: absolute;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .floating-shape:nth-child(1) {
-            width: 60px;
-            height: 60px;
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-        
-        .floating-shape:nth-child(2) {
-            width: 40px;
-            height: 40px;
-            top: 60%;
-            right: 15%;
-            animation-delay: 2s;
-        }
-        
-        .floating-shape:nth-child(3) {
-            width: 30px;
-            height: 30px;
-            top: 30%;
-            right: 25%;
-            animation-delay: 4s;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-        
+
         .doc-section {
-            margin-bottom: 3rem;
             background: rgba(30, 41, 59, 0.8);
-            backdrop-filter: blur(10px);
             border-radius: 16px;
-            padding: 2.5rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            padding: 2rem;
+            margin-bottom: 2rem;
             border: 1px solid rgba(148, 163, 184, 0.1);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            backdrop-filter: blur(10px);
         }
 
-        .doc-section:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-        }
-        
         .doc-section h2 {
             color: #60a5fa;
-            border-bottom: 3px solid #475569;
-            padding-bottom: 0.75rem;
-            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
             font-weight: 700;
-            font-size: 1.875rem;
-            letter-spacing: -0.025em;
         }
-        
+
         .doc-section h3 {
-            color: #e2e8f0;
-            margin-top: 2.5rem;
-            margin-bottom: 1.25rem;
+            color: #93c5fd;
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem;
             font-weight: 600;
-            font-size: 1.25rem;
-            letter-spacing: -0.025em;
         }
 
-        .doc-section h4 {
-            color: #cbd5e1;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-            font-size: 1.125rem;
-        }
-        
-        .doc-section p {
-            color: #cbd5e1;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .doc-section ul, .doc-section ol {
-            color: #cbd5e1;
-            margin-bottom: 1.5rem;
-            padding-left: 1.5rem;
-        }
-
-        .doc-section li {
-            margin-bottom: 0.5rem;
-        }
-        
         .code-block {
-            background: #0f172a;
-            color: #e2e8f0;
-            padding: 2rem;
-            border-radius: 12px;
-            font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
-            font-size: 0.875rem;
-            line-height: 1.6;
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
             overflow-x: auto;
-            border: 1px solid #334155;
-            margin: 1.5rem 0;
-            position: relative;
             white-space: pre;
         }
 
-        .code-block::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
-            border-radius: 12px 12px 0 0;
-        }
-        
-        .string { color: #10b981; }
-        .key { color: #60a5fa; font-weight: 500; }
-        .number { color: #f59e0b; }
-        .boolean { color: #8b5cf6; }
-        .null { color: #ef4444; }
+        .key { color: #93c5fd; }
+        .string { color: #86efac; }
+        .number { color: #fbbf24; }
+        .boolean { color: #f87171; }
+        .null { color: #a78bfa; }
         .bracket { color: #e2e8f0; }
-        .colon { color: #94a3b8; }
-        .comma { color: #94a3b8; }
+        .colon { color: #e2e8f0; }
+        .comma { color: #64748b; }
 
-        .structure-diagram {
-            background: #1e293b;
-            border: 1px solid #475569;
-            border-radius: 8px;
-            padding: 1.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            line-height: 1.8;
-            color: #cbd5e1;
-            margin: 1.5rem 0;
-            overflow-x: auto;
-        }
-
-        .example-box {
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .example-box h4 {
-            color: #60a5fa;
-            margin-top: 0;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .field-table {
+        table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1.5rem 0;
-            background: rgba(30, 41, 59, 0.5);
+            margin: 1rem 0;
+            background: rgba(30, 41, 59, 0.6);
             border-radius: 8px;
             overflow: hidden;
         }
 
-        .field-table th {
-            background: #475569;
-            color: #f1f5f9;
-            padding: 1rem;
+        th, td {
+            padding: 0.75rem 1rem;
             text-align: left;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        th {
+            background: rgba(59, 130, 246, 0.2);
+            color: #93c5fd;
             font-weight: 600;
-            border-bottom: 1px solid #64748b;
-        }
-
-        .field-table td {
-            padding: 1rem;
-            border-bottom: 1px solid #334155;
-            color: #cbd5e1;
-        }
-
-        .field-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .field-table tr:hover {
-            background: rgba(59, 130, 246, 0.1);
         }
 
         .required {
-            background: rgba(239, 68, 68, 0.2);
-            color: #fca5a5;
+            background: #dc2626;
+            color: white;
             padding: 0.25rem 0.5rem;
             border-radius: 4px;
             font-size: 0.75rem;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .optional {
-            background: rgba(34, 197, 94, 0.2);
-            color: #86efac;
+            background: #059669;
+            color: white;
             padding: 0.25rem 0.5rem;
             border-radius: 4px;
             font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            color: #60a5fa;
-            text-decoration: none;
-            font-weight: 500;
-            margin-bottom: 2rem;
-            transition: color 0.2s ease;
-        }
-
-        .back-link:hover {
-            color: #93c5fd;
-        }
-
-        .back-link::before {
-            content: '←';
-            margin-right: 0.5rem;
-            font-weight: bold;
+            font-weight: 600;
         }
 
         .highlight-box {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 12px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 8px;
             padding: 1.5rem;
-            margin: 1.5rem 0;
+            margin: 1rem 0;
         }
 
-        .highlight-box h4 {
-            color: #60a5fa;
-            margin-top: 0;
-            margin-bottom: 1rem;
+        .example-box {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
         }
 
-        .highlight-box p {
-            margin-bottom: 0;
+        ul {
+            padding-left: 1.5rem;
         }
 
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .documentation-container {
-                padding: 1rem;
-            }
-            
-            .header-title {
-                font-size: 2.5rem;
-            }
-            
-            .header-subtitle {
-                font-size: 1.125rem;
-            }
-            
-            .doc-section {
-                padding: 1.5rem;
-            }
-            
-            .code-block {
-                padding: 1.5rem;
-                font-size: 0.8rem;
-            }
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        code {
+            background: rgba(148, 163, 184, 0.2);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
     <div class="documentation-container">
-        <a href="/lmx/deliverables" class="back-link">Back to Deliverables</a>
-        
         <div class="header-section">
-            <div class="header-content">
-                <h1 class="header-title">QBR Report JSON Template Documentation</h1>
-                <p class="header-subtitle">This guide explains the JSON format used for creating Quarterly Business Review (QBR) reports in the ScalePad deliverables system. Use this structure to create new QBR reports or modify existing ones.</p>
-            </div>
-            <div class="floating-shapes">
-                <div class="floating-shape"></div>
-                <div class="floating-shape"></div>
-                <div class="floating-shape"></div>
-            </div>
+            <h1 class="header-title">QBR Report JSON Template</h1>
+            <p class="header-subtitle">Complete documentation for creating and updating Quarterly Business Review (QBR) reports with the latest schema including Account Team, User Directory, and timestamp management.</p>
         </div>
 
         <div class="doc-section">
-            <h2>📋 Overview</h2>
-            <p>QBR reports are JSON files that define the structure and content for Quarterly Business Review presentations. Each report contains metadata, performance categories, and enhanced sections with risks, insights, and recommendations.</p>
+            <h2>📋 Core Structure</h2>
+            <p>QBR reports come in two types with different structures:</p>
             
-            <div class="structure-diagram">
-qbr-report.json
-├── id
-├── title
-├── company
-├── dateRange
-├── monthlyInvestment
-├── managedEndpoints
-├── type
-├── description
-├── executiveSummary
-├── categories[]
-│   ├── name
-│   ├── score
-│   └── items[]
-│       ├── name
-│       └── status
-└── enhancedSections
-    ├── risks[]
-    │   ├── title
-    │   ├── description
-    │   ├── severity
-    │   └── impact
-    ├── insights[]
-    │   ├── title
-    │   ├── description
-    │   ├── metric
-    │   └── trend
-    └── recommendations[]
-        ├── title
-        ├── description
-        ├── priority
-        ├── effort
-        └── impact
-            </div>
-        </div>
-
-        <div class="doc-section">
-            <h2>🚀 Quick Start Example</h2>
-            <p>Here's a minimal working QBR report template to get you started:</p>
-            
-            <div class="example-box">
-                <h4>Basic QBR Report Template</h4>
-                <div class="code-block">
-<span class="bracket">{</span>
-  <span class="key">"id"</span><span class="colon">:</span> <span class="string">"qbr-report-example"</span><span class="comma">,</span>
-  <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Example Business Review Report"</span><span class="comma">,</span>
-  <span class="key">"company"</span><span class="colon">:</span> <span class="string">"EXAMPLE COMPANY"</span><span class="comma">,</span>
-  <span class="key">"dateRange"</span><span class="colon">:</span> <span class="string">"Q2 2025 • Business Intelligence"</span><span class="comma">,</span>
-  <span class="key">"monthlyInvestment"</span><span class="colon">:</span> <span class="string">"$2,500"</span><span class="comma">,</span>
-  <span class="key">"managedEndpoints"</span><span class="colon">:</span> <span class="string">"25 Managed Endpoints"</span><span class="comma">,</span>
-  <span class="key">"type"</span><span class="colon">:</span> <span class="string">"individual"</span><span class="comma">,</span>
-  <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Example business review and analysis report"</span><span class="comma">,</span>
-  <span class="key">"executiveSummary"</span><span class="colon">:</span> <span class="string">"Example company demonstrates strong business performance with excellent security posture and operational efficiency."</span><span class="comma">,</span>
-  <span class="key">"categories"</span><span class="colon">:</span> <span class="bracket">[</span>
-    <span class="bracket">{</span>
-      <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Security Posture"</span><span class="comma">,</span>
-      <span class="key">"score"</span><span class="colon">:</span> <span class="number">85</span><span class="comma">,</span>
-      <span class="key">"items"</span><span class="colon">:</span> <span class="bracket">[</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Endpoint Protection"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
-        <span class="bracket">}</span><span class="comma">,</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Email Security"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
-        <span class="bracket">}</span>
-      <span class="bracket">]</span>
-    <span class="bracket">}</span>
-  <span class="bracket">]</span><span class="comma">,</span>
-  <span class="key">"enhancedSections"</span><span class="colon">:</span> <span class="bracket">{</span>
-    <span class="key">"risks"</span><span class="colon">:</span> <span class="bracket">[</span>
-      <span class="bracket">{</span>
-        <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Data Security Risk"</span><span class="comma">,</span>
-        <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Potential vulnerabilities in data protection."</span><span class="comma">,</span>
-        <span class="key">"severity"</span><span class="colon">:</span> <span class="string">"medium"</span><span class="comma">,</span>
-        <span class="key">"impact"</span><span class="colon">:</span> <span class="string">"Data breaches and unauthorized access."</span>
-      <span class="bracket">}</span>
-    <span class="bracket">]</span><span class="comma">,</span>
-    <span class="key">"insights"</span><span class="colon">:</span> <span class="bracket">[</span>
-      <span class="bracket">{</span>
-        <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Security Improvements"</span><span class="comma">,</span>
-        <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Significant progress in security posture."</span><span class="comma">,</span>
-        <span class="key">"metric"</span><span class="colon">:</span> <span class="string">"85% Security Score"</span><span class="comma">,</span>
-        <span class="key">"trend"</span><span class="colon">:</span> <span class="string">"positive"</span>
-      <span class="bracket">}</span>
-    <span class="bracket">]</span><span class="comma">,</span>
-    <span class="key">"recommendations"</span><span class="colon">:</span> <span class="bracket">[</span>
-      <span class="bracket">{</span>
-        <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Enhance Security Awareness"</span><span class="comma">,</span>
-        <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Implement comprehensive security training."</span><span class="comma">,</span>
-        <span class="key">"priority"</span><span class="colon">:</span> <span class="string">"high"</span><span class="comma">,</span>
-        <span class="key">"effort"</span><span class="colon">:</span> <span class="string">"Medium"</span><span class="comma">,</span>
-        <span class="key">"impact"</span><span class="colon">:</span> <span class="string">"Improved security culture"</span>
-      <span class="bracket">}</span>
-    <span class="bracket">]</span>
-  <span class="bracket">}</span>
-<span class="bracket">}</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="doc-section">
-            <h2>📋 Before You Start</h2>
-            <div class="highlight-box">
-                <h4>Planning Checklist</h4>
-                <ul>
-                    <li>✓ Define the report's business purpose and scope</li>
-                    <li>✓ Identify 3-4 main performance categories to evaluate</li>
-                    <li>✓ Plan 3-5 items per category with realistic scores</li>
-                    <li>✓ Consider key risks, insights, and recommendations</li>
-                    <li>✓ Think about the report type (individual vs aggregate)</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="doc-section">
-            <h2>🏗️ JSON Structure</h2>
-            
-            <h3>Root Object</h3>
-            <p>The JSON file contains a single root object with the QBR report data:</p>
+            <h3>Individual Reports (Platform-Specific)</h3>
+            <p>Focused reports for single platforms or services (e.g., backup monitoring, security tools):</p>
             
             <div class="code-block">
 <span class="bracket">{</span>
-  <span class="key">"id"</span><span class="colon">:</span> <span class="string">"qbr-report-example"</span><span class="comma">,</span>
-  <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Example Report"</span><span class="comma">,</span>
-  ... <span class="comment">// other fields</span>
+  <span class="key">"id"</span><span class="colon">:</span> <span class="string">"qbr-report-[platform-name]"</span><span class="comma">,</span>
+  <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Report Title"</span><span class="comma">,</span>
+  <span class="key">"company"</span><span class="colon">:</span> <span class="string">"Company Name"</span><span class="comma">,</span>
+  <span class="key">"lastUpdated"</span><span class="colon">:</span> <span class="number">1755105701</span><span class="comma">,</span>
+  <span class="key">"dateRange"</span><span class="colon">:</span> <span class="string">"Q2 2025 • Platform Analysis"</span><span class="comma">,</span>
+  <span class="key">"type"</span><span class="colon">:</span> <span class="string">"individual"</span><span class="comma">,</span>
+  <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Report description"</span><span class="comma">,</span>
+  <span class="key">"executiveSummary"</span><span class="colon">:</span> <span class="string">"Executive summary text"</span><span class="comma">,</span>
+  <span class="key">"heroMetric"</span><span class="colon">:</span> <span class="bracket">{</span>
+    <span class="comment">/* Hero metric object */</span>
+  <span class="bracket">}</span><span class="comma">,</span>
+  <span class="key">"categories"</span><span class="colon">:</span> <span class="bracket">[</span>
+    <span class="comment">/* Categories array */</span>
+  <span class="bracket">]</span><span class="comma">,</span>
+  <span class="key">"risks"</span><span class="colon">:</span> <span class="bracket">[</span>
+    <span class="comment">/* Risks array */</span>
+  <span class="bracket">]</span><span class="comma">,</span>
+  <span class="key">"insights"</span><span class="colon">:</span> <span class="bracket">[</span>
+    <span class="comment">/* Insights array */</span>
+  <span class="bracket">]</span><span class="comma">,</span>
+  <span class="key">"recommendations"</span><span class="colon">:</span> <span class="bracket">[</span>
+    <span class="comment">/* Recommendations array */</span>
+  <span class="bracket">]</span>
 <span class="bracket">}</span>
             </div>
 
-            <h3>Required Fields</h3>
-            <p>These fields are required for all QBR reports:</p>
+            <h3>Aggregate Reports (Comprehensive Multi-Platform)</h3>
+            <p>Comprehensive reports covering multiple platforms and services with additional sections:</p>
             
-            <table class="field-table">
+            <div class="code-block">
+<span class="bracket">{</span>
+  <span class="key">"id"</span><span class="colon">:</span> <span class="string">"qbr-report-full"</span><span class="comma">,</span>
+  <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Comprehensive Business Review Report"</span><span class="comma">,</span>
+  <span class="key">"company"</span><span class="colon">:</span> <span class="string">"Company Name"</span><span class="comma">,</span>
+  <span class="key">"lastUpdated"</span><span class="colon">:</span> <span class="number">1755105701</span><span class="comma">,</span>
+  <span class="key">"dateRange"</span><span class="colon">:</span> <span class="string">"Q2 2025 • Multi-Platform Business Intelligence"</span><span class="comma">,</span>
+  <span class="key">"type"</span><span class="colon">:</span> <span class="string">"aggregate"</span><span class="comma">,</span>
+  <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Report description"</span><span class="comma">,</span>
+  <span class="key">"executiveSummary"</span><span class="colon">:</span> <span class="string">"Executive summary text"</span><span class="comma">,</span>
+  <span class="key">"heroMetric"</span><span class="colon">:</span> <span class="bracket">{</span>
+    <span class="comment">/* Hero metric object */</span>
+  <span class="bracket">}</span><span class="comma">,</span>
+  <span class="key">"categories"</span><span class="colon">:</span> <span class="bracket">[</span>
+    <span class="comment">/* Categories array */</span>
+  <span class="bracket">]</span><span class="comma">,</span>
+  <span class="key">"risks"</span><span class="colon">:</span> <span class="bracket">[</span>
+    <span class="comment">/* Risks array */</span>
+  <span class="bracket">]</span><span class="comma">,</span>
+  <span class="key">"insights"</span><span class="colon">:</span> <span class="bracket">[</span>
+    <span class="comment">/* Insights array */</span>
+  <span class="bracket">]</span><span class="comma">,</span>
+  <span class="key">"recommendations"</span><span class="colon">:</span> <span class="bracket">[</span>
+    <span class="comment">/* Recommendations array */</span>
+  <span class="bracket">]</span><span class="comma">,</span>
+  <span class="key">"businessOverview"</span><span class="colon">:</span> <span class="bracket">{</span>
+    <span class="comment">/* Business overview object */</span>
+  <span class="bracket">}</span><span class="comma">,</span>
+  <span class="key">"accountTeam"</span><span class="colon">:</span> <span class="bracket">{</span>
+    <span class="comment">/* Account team object */</span>
+  <span class="bracket">}</span><span class="comma">,</span>
+  <span class="key">"userDirectory"</span><span class="colon">:</span> <span class="bracket">{</span>
+    <span class="comment">/* User directory object */</span>
+  <span class="bracket">}</span><span class="comma">,</span>
+  <span class="key">"assessments"</span><span class="colon">:</span> <span class="bracket">{</span>
+    <span class="comment">/* Assessments object */</span>
+  <span class="bracket">}</span><span class="comma">,</span>
+  <span class="key">"analytics"</span><span class="colon">:</span> <span class="bracket">{</span>
+    <span class="comment">/* Analytics object */</span>
+  <span class="bracket">}</span><span class="comma">,</span>
+  <span class="key">"assets"</span><span class="colon">:</span> <span class="bracket">{</span>
+    <span class="comment">/* Assets object */</span>
+  <span class="bracket">}</span><span class="comma">,</span>
+  <span class="key">"roadmap"</span><span class="colon">:</span> <span class="bracket">{</span>
+    <span class="comment">/* Roadmap object */</span>
+  <span class="bracket">}</span>
+<span class="bracket">}</span>
+            </div>
+            
+            <div class="code-block">
+<span class="bracket">{</span>
+  <span class="key">"id"</span><span class="colon">:</span> <span class="string">"qbr-report-[platform-name]"</span><span class="comma">,</span>
+  <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Report Title"</span><span class="comma">,</span>
+  <span class="key">"company"</span><span class="colon">:</span> <span class="string">"Company Name"</span><span class="comma">,</span>
+  <span class="key">"lastUpdated"</span><span class="colon">:</span> <span class="number">1755105701</span><span class="comma">,</span>
+  <span class="key">"dateRange"</span><span class="colon">:</span> <span class="string">"Q2 2025 • Multi-Platform Business Intelligence"</span><span class="comma">,</span>
+  <span class="key">"type"</span><span class="colon">:</span> <span class="string">"individual"</span><span class="comma">,</span>
+  <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Report description"</span><span class="comma">,</span>
+  <span class="key">"executiveSummary"</span><span class="colon">:</span> <span class="string">"Executive summary text"</span><span class="comma">,</span>
+  <span class="key">"heroMetric"</span><span class="colon">:</span> <span class="bracket">{</span> <span class="comment">/* Hero metric object */</span> <span class="bracket">}</span><span class="comma">,</span>
+  <span class="key">"categories"</span><span class="colon">:</span> <span class="bracket">[</span> <span class="comment">/* Categories array */</span> <span class="bracket">]</span><span class="comma">,</span>
+  <span class="key">"risks"</span><span class="colon">:</span> <span class="bracket">[</span> <span class="comment">/* Risks array */</span> <span class="bracket">]</span><span class="comma">,</span>
+  <span class="key">"insights"</span><span class="colon">:</span> <span class="bracket">[</span> <span class="comment">/* Insights array */</span> <span class="bracket">]</span><span class="comma">,</span>
+  <span class="key">"recommendations"</span><span class="colon">:</span> <span class="bracket">[</span> <span class="comment">/* Recommendations array */</span> <span class="bracket">]</span><span class="comma">,</span>
+  <span class="key">"accountTeam"</span><span class="colon">:</span> <span class="bracket">{</span> <span class="comment">/* Account team object (aggregate reports only) */</span> <span class="bracket">}</span><span class="comma">,</span>
+  <span class="key">"userDirectory"</span><span class="colon">:</span> <span class="bracket">{</span> <span class="comment">/* User directory object (aggregate reports only) */</span> <span class="bracket">}</span><span class="comma">,</span>
+  <span class="key">"assessments"</span><span class="colon">:</span> <span class="bracket">{</span> <span class="comment">/* Assessments object (aggregate reports only) */</span> <span class="bracket">}</span><span class="comma">,</span>
+  <span class="key">"analytics"</span><span class="colon">:</span> <span class="bracket">{</span> <span class="comment">/* Analytics object (aggregate reports only) */</span> <span class="bracket">}</span><span class="comma">,</span>
+  <span class="key">"assets"</span><span class="colon">:</span> <span class="bracket">{</span> <span class="comment">/* Assets object (aggregate reports only) */</span> <span class="bracket">}</span><span class="comma">,</span>
+  <span class="key">"roadmap"</span><span class="colon">:</span> <span class="bracket">{</span> <span class="comment">/* Roadmap object (aggregate reports only) */</span> <span class="bracket">}</span>
+<span class="bracket">}</span>
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2>🔧 Required Fields</h2>
+            <table>
                 <thead>
                     <tr>
                         <th>Field</th>
                         <th>Type</th>
-                        <th>Required</th>
+                        <th>Status</th>
                         <th>Description</th>
                     </tr>
                 </thead>
@@ -533,37 +320,31 @@ qbr-report.json
                         <td>id</td>
                         <td>string</td>
                         <td><span class="required">Required</span></td>
-                        <td>Unique identifier for the report (e.g., "qbr-report-backup-radar")</td>
+                        <td>Unique identifier in format: qbr-report-[platform-name]</td>
                     </tr>
                     <tr>
                         <td>title</td>
                         <td>string</td>
                         <td><span class="required">Required</span></td>
-                        <td>Display title of the QBR report</td>
+                        <td>Display title for the report</td>
                     </tr>
                     <tr>
                         <td>company</td>
                         <td>string</td>
                         <td><span class="required">Required</span></td>
-                        <td>Company name in uppercase (e.g., "EXAMPLE COMPANY")</td>
+                        <td>Company name for the report</td>
+                    </tr>
+                    <tr>
+                        <td>lastUpdated</td>
+                        <td>number</td>
+                        <td><span class="required">Required</span></td>
+                        <td>Unix timestamp (seconds) for last update time</td>
                     </tr>
                     <tr>
                         <td>dateRange</td>
                         <td>string</td>
                         <td><span class="required">Required</span></td>
-                        <td>Report period and type (e.g., "Q2 2025 • Business Intelligence")</td>
-                    </tr>
-                    <tr>
-                        <td>monthlyInvestment</td>
-                        <td>string</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Monthly investment amount (e.g., "$2,500")</td>
-                    </tr>
-                    <tr>
-                        <td>managedEndpoints</td>
-                        <td>string</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Number of managed endpoints (e.g., "25 Managed Endpoints")</td>
+                        <td>Time period covered by the report</td>
                     </tr>
                     <tr>
                         <td>type</td>
@@ -575,13 +356,19 @@ qbr-report.json
                         <td>description</td>
                         <td>string</td>
                         <td><span class="required">Required</span></td>
-                        <td>Brief description of the report purpose</td>
+                        <td>Brief description of the report</td>
                     </tr>
                     <tr>
                         <td>executiveSummary</td>
                         <td>string</td>
                         <td><span class="required">Required</span></td>
-                        <td>2-3 sentence executive summary of performance</td>
+                        <td>2-3 sentence executive summary</td>
+                    </tr>
+                    <tr>
+                        <td>heroMetric</td>
+                        <td>object</td>
+                        <td><span class="required">Required</span></td>
+                        <td>Primary metric display object</td>
                     </tr>
                     <tr>
                         <td>categories</td>
@@ -590,244 +377,207 @@ qbr-report.json
                         <td>Array of performance categories</td>
                     </tr>
                     <tr>
-                        <td>enhancedSections</td>
-                        <td>object</td>
+                        <td>risks</td>
+                        <td>array</td>
                         <td><span class="required">Required</span></td>
-                        <td>Object containing risks, insights, and recommendations</td>
+                        <td>Array of identified risks</td>
+                    </tr>
+                    <tr>
+                        <td>insights</td>
+                        <td>array</td>
+                        <td><span class="required">Required</span></td>
+                        <td>Array of data insights</td>
+                    </tr>
+                    <tr>
+                        <td>recommendations</td>
+                        <td>array</td>
+                        <td><span class="required">Required</span></td>
+                        <td>Array of improvement recommendations</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="doc-section">
-            <h2>📂 Performance Categories</h2>
-            <p>Categories group related performance metrics together. Each category has a score and multiple items.</p>
+            <h2>👥 Account Team Section (Aggregate Reports Only)</h2>
+            <p>The account team section displays your dedicated support team:</p>
             
-            <table class="field-table">
-                <thead>
-                    <tr>
-                        <th>Field</th>
-                        <th>Type</th>
-                        <th>Required</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>name</td>
-                        <td>string</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Category name (e.g., "Security Posture", "Backup Success")</td>
-                    </tr>
-                    <tr>
-                        <td>score</td>
-                        <td>number</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Category score (0-100)</td>
-                    </tr>
-                    <tr>
-                        <td>items</td>
-                        <td>array</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Array of category items</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="example-box">
-                <h4>Example Category</h4>
-                <div class="code-block">
-<span class="bracket">{</span>
-  <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Security Posture"</span><span class="comma">,</span>
-  <span class="key">"score"</span><span class="colon">:</span> <span class="number">85</span><span class="comma">,</span>
-  <span class="key">"items"</span><span class="colon">:</span> <span class="bracket">[</span>
+            <div class="code-block">
+<span class="key">"accountTeam"</span><span class="colon">:</span> <span class="bracket">{</span>
+  <span class="key">"title"</span><span class="colon">:</span> <span class="string">"👥 Your Account Team"</span><span class="comma">,</span>
+  <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Dedicated professionals committed to your success"</span><span class="comma">,</span>
+  <span class="key">"members"</span><span class="colon">:</span> <span class="bracket">[</span>
     <span class="bracket">{</span>
-      <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Endpoint Protection"</span><span class="comma">,</span>
-      <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
+      <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Sarah Johnson"</span><span class="comma">,</span>
+      <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Account Manager"</span><span class="comma">,</span>
+      <span class="key">"email"</span><span class="colon">:</span> <span class="string">"sarah.johnson@scalepad.com"</span><span class="comma">,</span>
+      <span class="key">"phone"</span><span class="colon">:</span> <span class="string">"(555) 123-4567"</span><span class="comma">,</span>
+      <span class="key">"responsibilities"</span><span class="colon">:</span> <span class="string">"Strategic planning, QBR coordination, relationship management"</span><span class="comma">,</span>
+      <span class="key">"avatar"</span><span class="colon">:</span> <span class="string">"👩‍💼"</span>
     <span class="bracket">}</span><span class="comma">,</span>
     <span class="bracket">{</span>
-      <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Email Security"</span><span class="comma">,</span>
-      <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
+      <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Mike Chen"</span><span class="comma">,</span>
+      <span class="key">"title"</span><span class="colon">:</span> <span class="string">"vCIO"</span><span class="comma">,</span>
+      <span class="key">"email"</span><span class="colon">:</span> <span class="string">"mike.chen@scalepad.com"</span><span class="comma">,</span>
+      <span class="key">"phone"</span><span class="colon">:</span> <span class="string">"(555) 123-4568"</span><span class="comma">,</span>
+      <span class="key">"responsibilities"</span><span class="colon">:</span> <span class="string">"Strategic IT planning, technology roadmap, business alignment"</span><span class="comma">,</span>
+      <span class="key">"avatar"</span><span class="colon">:</span> <span class="string">"👨‍💻"</span>
+    <span class="bracket">}</span><span class="comma">,</span>
+    <span class="bracket">{</span>
+      <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Lisa Rodriguez"</span><span class="comma">,</span>
+      <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Client Success Manager"</span><span class="comma">,</span>
+      <span class="key">"email"</span><span class="colon">:</span> <span class="string">"lisa.rodriguez@scalepad.com"</span><span class="comma">,</span>
+      <span class="key">"phone"</span><span class="colon">:</span> <span class="string">"(555) 123-4569"</span><span class="comma">,</span>
+      <span class="key">"responsibilities"</span><span class="colon">:</span> <span class="string">"Client satisfaction, onboarding, ongoing support coordination"</span><span class="comma">,</span>
+      <span class="key">"avatar"</span><span class="colon">:</span> <span class="string">"👩‍🔒"</span>
     <span class="bracket">}</span>
   <span class="bracket">]</span>
 <span class="bracket">}</span>
-                </div>
             </div>
         </div>
 
         <div class="doc-section">
-            <h2>📝 Category Items</h2>
-            <p>Individual items within each category that represent specific metrics or assessments.</p>
-            
-            <table class="field-table">
-                <thead>
-                    <tr>
-                        <th>Field</th>
-                        <th>Type</th>
-                        <th>Required</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>name</td>
-                        <td>string</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Item name or metric description</td>
-                    </tr>
-                    <tr>
-                        <td>status</td>
-                        <td>string</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Status: "satisfactory", "needs-attention", or "at-risk"</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h2>📊 Additional Aggregate Report Sections</h2>
+            <p>Aggregate reports (like <code>qbr-report-full</code>) include these additional sections beyond the core structure:</p>
 
-            <div class="example-box">
-                <h4>Example Category Items</h4>
-                <div class="code-block">
-<span class="bracket">[</span>
-  <span class="bracket">{</span>
-    <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Endpoint Protection"</span><span class="comma">,</span>
-    <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
-  <span class="bracket">}</span><span class="comma">,</span>
-  <span class="bracket">{</span>
-    <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Email Security"</span><span class="comma">,</span>
-    <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
-  <span class="bracket">}</span><span class="comma">,</span>
-  <span class="bracket">{</span>
-    <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Access Controls"</span><span class="comma">,</span>
-    <span class="key">"status"</span><span class="colon">:</span> <span class="string">"needs-attention"</span>
-  <span class="bracket">}</span>
-<span class="bracket">]</span>
-                </div>
+            <h3>Business Overview Section</h3>
+            <div class="code-block">
+<span class="key">"businessOverview"</span><span class="colon">:</span> <span class="bracket">{</span>
+  <span class="key">"title"</span><span class="colon">:</span> <span class="string">"🎯 Business Performance Overview"</span><span class="comma">,</span>
+  <span class="key">"introText"</span><span class="colon">:</span> <span class="string">"demonstrates strong business performance with opportunities for IT optimization."</span><span class="comma">,</span>
+  <span class="key">"subtitle"</span><span class="colon">:</span> <span class="string">"Comprehensive multi-platform business intelligence and performance analysis"</span>
+<span class="bracket">}</span>
+            </div>
+
+            <h3>Assessments Section</h3>
+            <div class="code-block">
+<span class="key">"assessments"</span><span class="colon">:</span> <span class="bracket">{</span>
+  <span class="key">"title"</span><span class="colon">:</span> <span class="string">"📋 Security & Compliance Assessments"</span><span class="comma">,</span>
+  <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Comprehensive security and compliance evaluation"</span><span class="comma">,</span>
+  <span class="key">"assessments"</span><span class="colon">:</span> <span class="bracket">[</span>
+    <span class="bracket">{</span>
+      <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Cybersecurity Assessment"</span><span class="comma">,</span>
+      <span class="key">"score"</span><span class="colon">:</span> <span class="number">85</span><span class="comma">,</span>
+      <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span><span class="comma">,</span>
+      <span class="key">"lastUpdated"</span><span class="colon">:</span> <span class="string">"2025-08-01"</span>
+    <span class="bracket">}</span>
+  <span class="bracket">]</span>
+<span class="bracket">}</span>
+            </div>
+
+            <h3>Analytics Section</h3>
+            <div class="code-block">
+<span class="key">"analytics"</span><span class="colon">:</span> <span class="bracket">{</span>
+  <span class="key">"title"</span><span class="colon">:</span> <span class="string">"📈 Performance Analytics"</span><span class="comma">,</span>
+  <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Key performance indicators and trends"</span><span class="comma">,</span>
+  <span class="key">"metrics"</span><span class="colon">:</span> <span class="bracket">[</span>
+    <span class="bracket">{</span>
+      <span class="key">"name"</span><span class="colon">:</span> <span class="string">"System Uptime"</span><span class="comma">,</span>
+      <span class="key">"value"</span><span class="colon">:</span> <span class="string">"99.8%"</span><span class="comma">,</span>
+      <span class="key">"trend"</span><span class="colon">:</span> <span class="string">"positive"</span>
+    <span class="bracket">}</span>
+  <span class="bracket">]</span>
+<span class="bracket">}</span>
+            </div>
+
+            <h3>Assets Section</h3>
+            <div class="code-block">
+<span class="key">"assets"</span><span class="colon">:</span> <span class="bracket">{</span>
+  <span class="key">"title"</span><span class="colon">:</span> <span class="string">"💻 Asset Management"</span><span class="comma">,</span>
+  <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Hardware and software asset overview"</span><span class="comma">,</span>
+  <span class="key">"workstations"</span><span class="colon">:</span> <span class="bracket">[</span>
+    <span class="bracket">{</span>
+      <span class="key">"id"</span><span class="colon">:</span> <span class="string">"WS-001"</span><span class="comma">,</span>
+      <span class="key">"name"</span><span class="colon">:</span> <span class="string">"John Smith"</span><span class="comma">,</span>
+      <span class="key">"status"</span><span class="colon">:</span> <span class="string">"active"</span>
+    <span class="bracket">}</span>
+  <span class="bracket">]</span><span class="comma">,</span>
+  <span class="key">"servers"</span><span class="colon">:</span> <span class="bracket">[</span>
+    <span class="bracket">{</span>
+      <span class="key">"id"</span><span class="colon">:</span> <span class="string">"SRV-001"</span><span class="comma">,</span>
+      <span class="key">"name"</span><span class="colon">:</span> <span class="string">"File Server"</span><span class="comma">,</span>
+      <span class="key">"status"</span><span class="colon">:</span> <span class="string">"active"</span>
+    <span class="bracket">}</span>
+  <span class="bracket">]</span>
+<span class="bracket">}</span>
+            </div>
+
+            <h3>Roadmap Section</h3>
+            <div class="code-block">
+<span class="key">"roadmap"</span><span class="colon">:</span> <span class="bracket">{</span>
+  <span class="key">"title"</span><span class="colon">:</span> <span class="string">"🗺️ Technology Roadmap"</span><span class="comma">,</span>
+  <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Strategic technology initiatives and planning"</span><span class="comma">,</span>
+  <span class="key">"initiatives"</span><span class="colon">:</span> <span class="bracket">[</span>
+    <span class="bracket">{</span>
+      <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Hardware Refresh"</span><span class="comma">,</span>
+      <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Replace aging hardware infrastructure"</span><span class="comma">,</span>
+      <span class="key">"timeline"</span><span class="colon">:</span> <span class="string">"Q3-Q4 2025"</span><span class="comma">,</span>
+      <span class="key">"investment"</span><span class="colon">:</span> <span class="string">"$18,000"</span>
+    <span class="bracket">}</span>
+  <span class="bracket">]</span>
+<span class="bracket">}</span>
             </div>
         </div>
 
         <div class="doc-section">
-            <h2>🔍 Enhanced Sections</h2>
-            <p>Enhanced sections provide detailed analysis with risks, insights, and recommendations.</p>
+            <h2>👥 Account Team Section (Aggregate Reports Only)</h2>
+            <p>The user directory section displays your team members with their assigned assets (privacy-focused, no emails):</p>
             
-            <h3>Risks</h3>
-            <table class="field-table">
-                <thead>
-                    <tr>
-                        <th>Field</th>
-                        <th>Type</th>
-                        <th>Required</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>title</td>
-                        <td>string</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Risk title</td>
-                    </tr>
-                    <tr>
-                        <td>description</td>
-                        <td>string</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Detailed risk description</td>
-                    </tr>
-                    <tr>
-                        <td>severity</td>
-                        <td>string</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Risk level: "high", "medium", or "low"</td>
-                    </tr>
-                    <tr>
-                        <td>impact</td>
-                        <td>string</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Potential business impact</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="code-block">
+<span class="key">"userDirectory"</span><span class="colon">:</span> <span class="bracket">{</span>
+  <span class="key">"title"</span><span class="colon">:</span> <span class="string">"👥 Your Team"</span><span class="comma">,</span>
+  <span class="key">"description"</span><span class="colon">:</span> <span class="string">"12 users across your organization"</span><span class="comma">,</span>
+  <span class="key">"totalUsers"</span><span class="colon">:</span> <span class="number">12</span><span class="comma">,</span>
+  <span class="key">"departments"</span><span class="colon">:</span> <span class="bracket">[</span>
+    <span class="bracket">{</span>
+      <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Sales"</span><span class="comma">,</span>
+      <span class="key">"count"</span><span class="colon">:</span> <span class="number">3</span><span class="comma">,</span>
+      <span class="key">"users"</span><span class="colon">:</span> <span class="bracket">[</span>
+        <span class="bracket">{</span>
+          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"John Smith"</span><span class="comma">,</span>
+          <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Sales Director"</span><span class="comma">,</span>
+          <span class="key">"department"</span><span class="colon">:</span> <span class="string">"Sales"</span><span class="comma">,</span>
+          <span class="key">"assets"</span><span class="colon">:</span> <span class="bracket">[</span>
+            <span class="string">"WS-001"</span>
+          <span class="bracket">]</span>
+        <span class="bracket">}</span>
+      <span class="bracket">]</span>
+    <span class="bracket">}</span>
+  <span class="bracket">]</span>
+<span class="bracket">}</span>
+            </div>
 
-            <h3>Insights</h3>
-            <table class="field-table">
-                <thead>
-                    <tr>
-                        <th>Field</th>
-                        <th>Type</th>
-                        <th>Required</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>title</td>
-                        <td>string</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Insight title</td>
-                    </tr>
-                    <tr>
-                        <td>description</td>
-                        <td>string</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Detailed insight description</td>
-                    </tr>
-                    <tr>
-                        <td>metric</td>
-                        <td>string</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Key metric or measurement</td>
-                    </tr>
-                    <tr>
-                        <td>trend</td>
-                        <td>string</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Trend: "positive", "negative", or "neutral"</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h3>Key Changes from Previous Version:</h3>
+            <ul>
+                <li><strong>Privacy Focus:</strong> Removed email field, replaced with assets array</li>
+                <li><strong>Asset Assignment:</strong> Each user shows their assigned workstation/server IDs</li>
+                <li><strong>Title Update:</strong> Changed from "User Directory" to "Your Team"</li>
+                <li><strong>Department Organization:</strong> Users grouped by department with counts</li>
+            </ul>
+        </div>
 
-            <h3>Recommendations</h3>
-            <table class="field-table">
-                <thead>
-                    <tr>
-                        <th>Field</th>
-                        <th>Type</th>
-                        <th>Required</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>title</td>
-                        <td>string</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Recommendation title</td>
-                    </tr>
-                    <tr>
-                        <td>description</td>
-                        <td>string</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Detailed recommendation description</td>
-                    </tr>
-                    <tr>
-                        <td>priority</td>
-                        <td>string</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Priority: "critical", "high", "medium", or "low"</td>
-                    </tr>
-                    <tr>
-                        <td>effort</td>
-                        <td>string</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Implementation effort: "High", "Medium", or "Low"</td>
-                    </tr>
-                    <tr>
-                        <td>impact</td>
-                        <td>string</td>
-                        <td><span class="required">Required</span></td>
-                        <td>Expected business impact</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="doc-section">
+            <h2>⏰ Timestamp Management</h2>
+            <p>The <code>lastUpdated</code> field controls when the report appears to have been last updated:</p>
+            
+            <div class="code-block">
+<span class="key">"lastUpdated"</span><span class="colon">:</span> <span class="number">1755105701</span>
+            </div>
+
+            <h3>Timestamp Guidelines:</h3>
+            <ul>
+                <li><strong>Format:</strong> Unix timestamp in seconds (not milliseconds)</li>
+                <li><strong>Current Time:</strong> Use <code>Math.floor(Date.now() / 1000)</code> for current timestamp</li>
+                <li><strong>Past Dates:</strong> Subtract seconds for past dates (86400 = 1 day)</li>
+                <li><strong>Realistic Spread:</strong> Vary timestamps across reports to show recent activity</li>
+            </ul>
+
+            <h3>Example Timestamps:</h3>
+            <ul>
+                <li><strong>1 day ago:</strong> <code>1755105701</code></li>
+                <li><strong>2 days ago:</strong> <code>1755019301</code></li>
+                <li><strong>3 days ago:</strong> <code>1754932901</code></li>
+            </ul>
         </div>
 
         <div class="doc-section">
@@ -876,322 +626,21 @@ qbr-report.json
                     <li><strong>Invalid Trend Values:</strong> Use only "positive", "negative", or "neutral"</li>
                     <li><strong>Score Range:</strong> Category scores must be between 0-100</li>
                     <li><strong>String Values:</strong> All text must be properly quoted strings</li>
+                    <li><strong>Timestamp Format:</strong> Use seconds, not milliseconds for lastUpdated</li>
                 </ul>
             </div>
         </div>
 
         <div class="doc-section">
-            <h2>📚 Examples</h2>
-            <p>Here are complete examples of different types of QBR reports to help you get started:</p>
-            
-            <h3>Individual Report Example</h3>
+            <h2>📚 Recent Updates</h2>
             <div class="example-box">
-                <h4>Backup Monitoring Report</h4>
-                <div class="code-block">
-<span class="bracket">{</span>
-  <span class="key">"id"</span><span class="colon">:</span> <span class="string">"qbr-report-backup-radar"</span><span class="comma">,</span>
-  <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Business Data Protection Report"</span><span class="comma">,</span>
-  <span class="key">"company"</span><span class="colon">:</span> <span class="string">"BACKUP RADAR"</span><span class="comma">,</span>
-  <span class="key">"dateRange"</span><span class="colon">:</span> <span class="string">"August 1-7, 2025 • Weekly Summary"</span><span class="comma">,</span>
-  <span class="key">"monthlyInvestment"</span><span class="colon">:</span> <span class="string">"$2,450"</span><span class="comma">,</span>
-  <span class="key">"managedEndpoints"</span><span class="colon">:</span> <span class="string">"15 Business Systems"</span><span class="comma">,</span>
-  <span class="key">"type"</span><span class="colon">:</span> <span class="string">"individual"</span><span class="comma">,</span>
-  <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Weekly backup monitoring and data protection analysis"</span><span class="comma">,</span>
-  <span class="key">"executiveSummary"</span><span class="colon">:</span> <span class="string">"Your business data is well-protected with enterprise-grade backup systems actively monitoring your critical information. This week we successfully backed up 245 critical files across your servers and workstations. Your 15 business systems are covered by our comprehensive protection strategy, with 99% success rate ensuring your business can recover from any data loss scenario."</span><span class="comma">,</span>
-  <span class="key">"categories"</span><span class="colon">:</span> <span class="bracket">[</span>
-    <span class="bracket">{</span>
-      <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Backup Success"</span><span class="comma">,</span>
-      <span class="key">"score"</span><span class="colon">:</span> <span class="number">99</span><span class="comma">,</span>
-      <span class="key">"items"</span><span class="colon">:</span> <span class="bracket">[</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"File Backup Success"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
-        <span class="bracket">}</span><span class="comma">,</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"System Backup Success"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
-        <span class="bracket">}</span><span class="comma">,</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Database Backup Success"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
-        <span class="bracket">}</span><span class="comma">,</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Cloud Backup Success"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
-        <span class="bracket">}</span>
-      <span class="bracket">]</span>
-    <span class="bracket">}</span><span class="comma">,</span>
-    <span class="bracket">{</span>
-      <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Recovery Testing"</span><span class="comma">,</span>
-      <span class="key">"score"</span><span class="colon">:</span> <span class="number">85</span><span class="comma">,</span>
-      <span class="key">"items"</span><span class="colon">:</span> <span class="bracket">[</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Monthly Recovery Tests"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
-        <span class="bracket">}</span><span class="comma">,</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Quarterly DR Drills"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"needs-attention"</span>
-        <span class="bracket">}</span><span class="comma">,</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Backup Validation"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
-        <span class="bracket">}</span>
-      <span class="bracket">]</span>
-    <span class="bracket">}</span>
-  <span class="bracket">]</span><span class="comma">,</span>
-  <span class="key">"enhancedSections"</span><span class="colon">:</span> <span class="bracket">{</span>
-    <span class="key">"risks"</span><span class="colon">:</span> <span class="bracket">[</span>
-      <span class="bracket">{</span>
-        <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Data Loss Risk"</span><span class="comma">,</span>
-        <span class="key">"description"</span><span class="colon">:</span> <span class="string">"2 backup failures detected this week, representing a 1% failure rate that could lead to data loss in case of system failure."</span><span class="comma">,</span>
-        <span class="key">"severity"</span><span class="colon">:</span> <span class="string">"medium"</span><span class="comma">,</span>
-        <span class="key">"impact"</span><span class="colon">:</span> <span class="string">"Potential data loss and business disruption if primary systems fail."</span>
-      <span class="bracket">}</span>
-    <span class="bracket">]</span><span class="comma">,</span>
-    <span class="key">"insights"</span><span class="colon">:</span> <span class="bracket">[</span>
-      <span class="bracket">{</span>
-        <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Backup Success Rate"</span><span class="comma">,</span>
-        <span class="key">"description"</span><span class="colon">:</span> <span class="string">"99% backup success rate demonstrates excellent data protection coverage across all critical systems."</span><span class="comma">,</span>
-        <span class="key">"metric"</span><span class="colon">:</span> <span class="string">"99% Success Rate"</span><span class="comma">,</span>
-        <span class="key">"trend"</span><span class="colon">:</span> <span class="string">"positive"</span>
-      <span class="bracket">}</span>
-    <span class="bracket">]</span><span class="comma">,</span>
-    <span class="key">"recommendations"</span><span class="colon">:</span> <span class="bracket">[</span>
-      <span class="bracket">{</span>
-        <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Improve Recovery Testing"</span><span class="comma">,</span>
-        <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Increase recovery testing frequency and success rate to ensure faster disaster recovery."</span><span class="comma">,</span>
-        <span class="key">"priority"</span><span class="colon">:</span> <span class="string">"high"</span><span class="comma">,</span>
-        <span class="key">"effort"</span><span class="colon">:</span> <span class="string">"Medium"</span><span class="comma">,</span>
-        <span class="key">"impact"</span><span class="colon">:</span> <span class="string">"Faster disaster recovery and reduced downtime"</span>
-      <span class="bracket">}</span>
-    <span class="bracket">]</span>
-  <span class="bracket">}</span>
-<span class="bracket">}</span>
-                </div>
-            </div>
-
-            <h3>Aggregate Report Example</h3>
-            <div class="example-box">
-                <h4>Comprehensive Business Review</h4>
-                <div class="code-block">
-<span class="bracket">{</span>
-  <span class="key">"id"</span><span class="colon">:</span> <span class="string">"qbr-report-full"</span><span class="comma">,</span>
-  <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Comprehensive Business Review Report"</span><span class="comma">,</span>
-  <span class="key">"company"</span><span class="colon">:</span> <span class="string">"MONETA"</span><span class="comma">,</span>
-  <span class="key">"dateRange"</span><span class="colon">:</span> <span class="string">"Q2 2025 • Business Intelligence"</span><span class="comma">,</span>
-  <span class="key">"monthlyInvestment"</span><span class="colon">:</span> <span class="string">"$8,500"</span><span class="comma">,</span>
-  <span class="key">"managedEndpoints"</span><span class="colon">:</span> <span class="string">"156 Managed Endpoints"</span><span class="comma">,</span>
-  <span class="key">"type"</span><span class="colon">:</span> <span class="string">"aggregate"</span><span class="comma">,</span>
-  <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Comprehensive quarterly business review covering all technology platforms and services"</span><span class="comma">,</span>
-  <span class="key">"executiveSummary"</span><span class="colon">:</span> <span class="string">"Moneta demonstrates strong overall technology performance with excellent security posture and operational efficiency. The organization has made significant progress in modernizing infrastructure and implementing best practices across all technology platforms."</span><span class="comma">,</span>
-  <span class="key">"categories"</span><span class="colon">:</span> <span class="bracket">[</span>
-    <span class="bracket">{</span>
-      <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Security Posture"</span><span class="comma">,</span>
-      <span class="key">"score"</span><span class="colon">:</span> <span class="number">92</span><span class="comma">,</span>
-      <span class="key">"items"</span><span class="colon">:</span> <span class="bracket">[</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Endpoint Protection"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
-        <span class="bracket">}</span><span class="comma">,</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Email Security"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
-        <span class="bracket">}</span><span class="comma">,</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Network Security"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
-        <span class="bracket">}</span>
-      <span class="bracket">]</span>
-    <span class="bracket">}</span><span class="comma">,</span>
-    <span class="bracket">{</span>
-      <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Infrastructure Health"</span><span class="comma">,</span>
-      <span class="key">"score"</span><span class="colon">:</span> <span class="number">85</span><span class="comma">,</span>
-      <span class="key">"items"</span><span class="colon">:</span> <span class="bracket">[</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Hardware Performance"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
-        <span class="bracket">}</span><span class="comma">,</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Software Updates"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"needs-attention"</span>
-        <span class="bracket">}</span>
-      <span class="bracket">]</span>
-    <span class="bracket">}</span>
-  <span class="bracket">]</span><span class="comma">,</span>
-  <span class="key">"enhancedSections"</span><span class="colon">:</span> <span class="bracket">{</span>
-    <span class="key">"risks"</span><span class="colon">:</span> <span class="bracket">[</span>
-      <span class="bracket">{</span>
-        <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Hardware Aging Risk"</span><span class="comma">,</span>
-        <span class="key">"description"</span><span class="colon">:</span> <span class="string">"12 endpoints are overdue for replacement, potentially causing performance issues and security vulnerabilities."</span><span class="comma">,</span>
-        <span class="key">"severity"</span><span class="colon">:</span> <span class="string">"medium"</span><span class="comma">,</span>
-        <span class="key">"impact"</span><span class="colon">:</span> <span class="string">"Reduced productivity and potential security vulnerabilities"</span>
-      <span class="bracket">}</span>
-    <span class="bracket">]</span><span class="comma">,</span>
-    <span class="key">"insights"</span><span class="colon">:</span> <span class="bracket">[</span>
-      <span class="bracket">{</span>
-        <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Security Excellence"</span><span class="comma">,</span>
-        <span class="key">"description"</span><span class="colon">:</span> <span class="string">"92% security score demonstrates excellent protection across all security layers."</span><span class="comma">,</span>
-        <span class="key">"metric"</span><span class="colon">:</span> <span class="string">"92% Security Score"</span><span class="comma">,</span>
-        <span class="key">"trend"</span><span class="colon">:</span> <span class="string">"positive"</span>
-      <span class="bracket">}</span>
-    <span class="bracket">]</span><span class="comma">,</span>
-    <span class="key">"recommendations"</span><span class="colon">:</span> <span class="bracket">[</span>
-      <span class="bracket">{</span>
-        <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Hardware Refresh Program"</span><span class="comma">,</span>
-        <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Implement a structured hardware refresh program to replace aging equipment."</span><span class="comma">,</span>
-        <span class="key">"priority"</span><span class="colon">:</span> <span class="string">"high"</span><span class="comma">,</span>
-        <span class="key">"effort"</span><span class="colon">:</span> <span class="string">"High"</span><span class="comma">,</span>
-        <span class="key">"impact"</span><span class="colon">:</span> <span class="string">"Improved performance and security"</span>
-      <span class="bracket">}</span>
-    <span class="bracket">]</span>
-  <span class="bracket">}</span><span class="comma">,</span>
-  <span class="key">"hardwareStats"</span><span class="colon">:</span> <span class="bracket">{</span>
-    <span class="key">"totalAssets"</span><span class="colon">:</span> <span class="number">156</span><span class="comma">,</span>
-    <span class="key">"overdueReplacement"</span><span class="colon">:</span> <span class="number">12</span><span class="comma">,</span>
-    <span class="key">"unsupportedOS"</span><span class="colon">:</span> <span class="number">8</span><span class="comma">,</span>
-    <span class="key">"replacementBudget"</span><span class="colon">:</span> <span class="string">"$18,000"</span>
-  <span class="bracket">}</span><span class="comma">,</span>
-  <span class="key">"softwareStats"</span><span class="colon">:</span> <span class="bracket">{</span>
-    <span class="key">"totalAssets"</span><span class="colon">:</span> <span class="number">892</span><span class="comma">,</span>
-    <span class="key">"unsupported"</span><span class="colon">:</span> <span class="number">34</span><span class="comma">,</span>
-    <span class="key">"unsupportedSoon"</span><span class="colon">:</span> <span class="number">23</span><span class="comma">,</span>
-    <span class="key">"supported"</span><span class="colon">:</span> <span class="number">835</span>
-  <span class="bracket">}</span><span class="comma">,</span>
-  <span class="key">"contracts"</span><span class="colon">:</span> <span class="bracket">{</span>
-    <span class="key">"monthly"</span><span class="colon">:</span> <span class="bracket">[</span>
-      <span class="bracket">{</span>
-        <span class="key">"vendor"</span><span class="colon">:</span> <span class="string">"Microsoft 365"</span><span class="comma">,</span>
-        <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Email and productivity suite"</span><span class="comma">,</span>
-        <span class="key">"cost"</span><span class="colon">:</span> <span class="string">"$2,500.00"</span><span class="comma">,</span>
-        <span class="key">"nextDue"</span><span class="colon">:</span> <span class="string">"2025-08-31"</span>
-      <span class="bracket">}</span>
-    <span class="bracket">]</span><span class="comma">,</span>
-    <span class="key">"annual"</span><span class="colon">:</span> <span class="bracket">[</span>
-      <span class="bracket">{</span>
-        <span class="key">"vendor"</span><span class="colon">:</span> <span class="string">"Security Suite"</span><span class="comma">,</span>
-        <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Comprehensive security platform"</span><span class="comma">,</span>
-        <span class="key">"cost"</span><span class="colon">:</span> <span class="string">"$15,000.00"</span><span class="comma">,</span>
-        <span class="key">"nextDue"</span><span class="colon">:</span> <span class="string">"2025-12-31"</span>
-      <span class="bracket">}</span>
-    <span class="bracket">]</span>
-  <span class="bracket">}</span><span class="comma">,</span>
-  <span class="key">"roadmap"</span><span class="colon">:</span> <span class="bracket">{</span>
-    <span class="key">"totalInvestment"</span><span class="colon">:</span> <span class="string">"$24,750.00"</span><span class="comma">,</span>
-    <span class="key">"initiatives"</span><span class="colon">:</span> <span class="bracket">[</span>
-      <span class="bracket">{</span>
-        <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Hardware Refresh"</span><span class="comma">,</span>
-        <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Replace aging hardware infrastructure"</span><span class="comma">,</span>
-        <span class="key">"investment"</span><span class="colon">:</span> <span class="string">"$18,000"</span><span class="comma">,</span>
-        <span class="key">"timeline"</span><span class="colon">:</span> <span class="string">"Q3-Q4 2025"</span>
-      <span class="bracket">}</span><span class="comma">,</span>
-      <span class="bracket">{</span>
-        <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Security Enhancement"</span><span class="comma">,</span>
-        <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Advanced threat protection implementation"</span><span class="comma">,</span>
-        <span class="key">"investment"</span><span class="colon">:</span> <span class="string">"$6,750"</span><span class="comma">,</span>
-        <span class="key">"timeline"</span><span class="colon">:</span> <span class="string">"Q4 2025"</span>
-      <span class="bracket">}</span>
-    <span class="bracket">]</span>
-  <span class="bracket">}</span>
-<span class="bracket">}</span>
-                </div>
-            </div>
-
-            <h3>AI Security Report Example</h3>
-            <div class="example-box">
-                <h4>Cork Enhanced AI Security</h4>
-                <div class="code-block">
-<span class="bracket">{</span>
-  <span class="key">"id"</span><span class="colon">:</span> <span class="string">"qbr-report-cork-enhanced"</span><span class="comma">,</span>
-  <span class="key">"title"</span><span class="colon">:</span> <span class="string">"AI-Powered Security Intelligence Report"</span><span class="comma">,</span>
-  <span class="key">"company"</span><span class="colon">:</span> <span class="string">"CORK ENHANCED"</span><span class="comma">,</span>
-  <span class="key">"dateRange"</span><span class="colon">:</span> <span class="string">"July 2025 • AI Security Analysis"</span><span class="comma">,</span>
-  <span class="key">"monthlyInvestment"</span><span class="colon">:</span> <span class="string">"$3,200"</span><span class="comma">,</span>
-  <span class="key">"managedEndpoints"</span><span class="colon">:</span> <span class="string">"45 Protected Systems"</span><span class="comma">,</span>
-  <span class="key">"type"</span><span class="colon">:</span> <span class="string">"individual"</span><span class="comma">,</span>
-  <span class="key">"description"</span><span class="colon">:</span> <span class="string">"AI-powered threat detection and security intelligence analysis"</span><span class="comma">,</span>
-  <span class="key">"executiveSummary"</span><span class="colon">:</span> <span class="string">"Your organization benefits from advanced AI-powered security intelligence that continuously monitors and analyzes threats across your 45 protected systems. The AI system has successfully identified and prevented 23 potential security incidents this month, maintaining a 98% threat detection accuracy rate."</span><span class="comma">,</span>
-  <span class="key">"categories"</span><span class="colon">:</span> <span class="bracket">[</span>
-    <span class="bracket">{</span>
-      <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Threat Detection"</span><span class="comma">,</span>
-      <span class="key">"score"</span><span class="colon">:</span> <span class="number">98</span><span class="comma">,</span>
-      <span class="key">"items"</span><span class="colon">:</span> <span class="bracket">[</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"AI Detection Accuracy"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
-        <span class="bracket">}</span><span class="comma">,</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"False Positive Rate"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
-        <span class="bracket">}</span><span class="comma">,</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Response Time"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
-        <span class="bracket">}</span>
-      <span class="bracket">]</span>
-    <span class="bracket">}</span><span class="comma">,</span>
-    <span class="bracket">{</span>
-      <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Security Intelligence"</span><span class="comma">,</span>
-      <span class="key">"score"</span><span class="colon">:</span> <span class="number">95</span><span class="comma">,</span>
-      <span class="key">"items"</span><span class="colon">:</span> <span class="bracket">[</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Threat Intelligence"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
-        <span class="bracket">}</span><span class="comma">,</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Behavioral Analysis"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"satisfactory"</span>
-        <span class="bracket">}</span><span class="comma">,</span>
-        <span class="bracket">{</span>
-          <span class="key">"name"</span><span class="colon">:</span> <span class="string">"Predictive Analytics"</span><span class="comma">,</span>
-          <span class="key">"status"</span><span class="colon">:</span> <span class="string">"needs-attention"</span>
-        <span class="bracket">}</span>
-      <span class="bracket">]</span>
-    <span class="bracket">}</span>
-  <span class="bracket">]</span><span class="comma">,</span>
-  <span class="key">"enhancedSections"</span><span class="colon">:</span> <span class="bracket">{</span>
-    <span class="key">"risks"</span><span class="colon">:</span> <span class="bracket">[</span>
-      <span class="bracket">{</span>
-        <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Advanced Persistent Threats"</span><span class="comma">,</span>
-        <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Detection of sophisticated APT patterns requires enhanced AI training and threat intelligence updates."</span><span class="comma">,</span>
-        <span class="key">"severity"</span><span class="colon">:</span> <span class="string">"high"</span><span class="comma">,</span>
-        <span class="key">"impact"</span><span class="colon">:</span> <span class="string">"Potential data breaches and system compromise"</span>
-      <span class="bracket">}</span>
-    <span class="bracket">]</span><span class="comma">,</span>
-    <span class="key">"insights"</span><span class="colon">:</span> <span class="bracket">[</span>
-      <span class="bracket">{</span>
-        <span class="key">"title"</span><span class="colon">:</span> <span class="string">"AI Detection Excellence"</span><span class="comma">,</span>
-        <span class="key">"description"</span><span class="colon">:</span> <span class="string">"98% threat detection accuracy with only 2% false positive rate demonstrates exceptional AI performance."</span><span class="comma">,</span>
-        <span class="key">"metric"</span><span class="colon">:</span> <span class="string">"98% Detection Rate"</span><span class="comma">,</span>
-        <span class="key">"trend"</span><span class="colon">:</span> <span class="string">"positive"</span>
-      <span class="bracket">}</span>
-    <span class="bracket">]</span><span class="comma">,</span>
-    <span class="key">"recommendations"</span><span class="colon">:</span> <span class="bracket">[</span>
-      <span class="bracket">{</span>
-        <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Enhance Predictive Analytics"</span><span class="comma">,</span>
-        <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Implement advanced predictive analytics to improve threat anticipation and response."</span><span class="comma">,</span>
-        <span class="key">"priority"</span><span class="colon">:</span> <span class="string">"medium"</span><span class="comma">,</span>
-        <span class="key">"effort"</span><span class="colon">:</span> <span class="string">"Medium"</span><span class="comma">,</span>
-        <span class="key">"impact"</span><span class="colon">:</span> <span class="string">"Improved threat prevention and response"</span>
-      <span class="bracket">}</span>
-    <span class="bracket">]</span>
-  <span class="bracket">}</span>
-<span class="bracket">}</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="doc-section">
-            <h2>✅ Validation Checklist</h2>
-            <div class="highlight-box">
-                <h4>Before Loading into Your App</h4>
+                <h4>Latest Changes (December 2024)</h4>
                 <ul>
-                    <li>✓ Validate JSON syntax using an online JSON validator</li>
-                    <li>✓ Verify all required fields are present</li>
-                    <li>✓ Check that status values are valid</li>
-                    <li>✓ Ensure category scores are between 0-100</li>
-                    <li>✓ Confirm severity, priority, and trend values are valid</li>
-                    <li>✓ Test the report display in your application</li>
+                    <li><strong>Added lastUpdated field:</strong> All reports now include timestamp management</li>
+                    <li><strong>Updated User Directory:</strong> Removed email field, added assets array for privacy</li>
+                    <li><strong>Added Account Team section:</strong> Shows dedicated support team members</li>
+                    <li><strong>Improved UI:</strong> Better organization and visual hierarchy</li>
+                    <li><strong>Enhanced timestamps:</strong> Realistic spread of recent activity dates</li>
                 </ul>
             </div>
         </div>

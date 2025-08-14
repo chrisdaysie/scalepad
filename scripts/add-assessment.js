@@ -85,6 +85,7 @@ function addAssessment(assessmentName) {
     aliases: [id],
     json_file: `assessment-${id}-data.json`,
     recommendation_function: "generate_ai_recommendations",
+    lastUpdated: Math.floor(Date.now() / 1000),
     titles: [
       "Strategic Initiative",
       "Operational Excellence", 

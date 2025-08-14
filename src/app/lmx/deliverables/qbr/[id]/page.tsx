@@ -50,6 +50,18 @@ interface QBRData {
   type: 'aggregate' | 'individual';
   description: string;
   executiveSummary: string;
+  liveData?: {
+    enabled: boolean;
+    refreshInterval: number;
+    lastRefresh: string | null;
+    selectedClientUuid: string | null;
+    availableClients: Array<{
+      uuid: string;
+      name: string;
+      status: string;
+      created_at: string;
+    }>;
+  };
   goals?: Array<{
     title: string;
     description: string;
@@ -1443,6 +1455,11 @@ export default function QBRReportPage() {
               </div>
             </div>
 
+            {/* Live Data Controls - Only for Cork */}
+            {report.liveData?.enabled && (
+              <LiveDataControls report={report} />
+            )}
+
             {/* Key Results */}
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-6">{report.sectionHeaders?.keyResults}</h2>
@@ -1586,6 +1603,165 @@ export default function QBRReportPage() {
             <strong>{report.company} QBR Report</strong> | Report Generated: August 7th, 2025 | QBR by ScalePad
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+// Live Data Controls Component for Cork
+function LiveDataControls({ report }: { report: QBRData }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [availableClients, setAvailableClients] = useState<Array<{
+    uuid: string;
+    name: string;
+    status: string;
+    created_at: string;
+  }>>([]);
+  const [selectedClientUuid, setSelectedClientUuid] = useState<string>(
+    report.liveData?.selectedClientUuid || ''
+  );
+
+  // Fetch available clients on component mount
+  useEffect(() => {
+    if (report.liveData?.enabled) {
+      fetchAvailableClients();
+    }
+  }, [report.liveData?.enabled]);
+
+  const fetchAvailableClients = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch('/api/deliverables/cork/clients');
+      if (response.ok) {
+        const data = await response.json();
+        setAvailableClients(data.clients || []);
+      }
+    } catch (error) {
+      console.error('Failed to fetch clients:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleRefreshData = async () => {
+    if (!selectedClientUuid) {
+      alert('Please select a client first');
+      return;
+    }
+
+    setIsRefreshing(true);
+    try {
+      const response = await fetch('/api/deliverables/cork/refresh', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ clientUuid: selectedClientUuid }),
+      });
+
+      if (response.ok) {
+        // Reload the page to show updated data
+        window.location.reload();
+      } else {
+        const error = await response.json();
+        alert(`Failed to refresh data: ${error.error}`);
+      }
+    } catch (error) {
+      console.error('Failed to refresh data:', error);
+      alert('Failed to refresh data. Please try again.');
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
+
+  const formatLastRefresh = (timestamp: string | null) => {
+    if (!timestamp) return 'Never';
+    const date = new Date(timestamp);
+    return date.toLocaleString();
+  };
+
+  return (
+    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+      <div className="flex items-center justify-between mb-4">
+        <div>
+          <h3 className="text-lg font-semibold text-gray-900">🔄 Live Data Controls</h3>
+          <p className="text-sm text-gray-600">Refresh data from Cork API</p>
+        </div>
+        <div className="flex items-center space-x-2">
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+            Live
+          </span>
+          {report.liveData?.lastRefresh && (
+            <span className="text-xs text-gray-500">
+              Last updated: {formatLastRefresh(report.liveData.lastRefresh)}
+            </span>
+          )}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* Client Selector */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Select Client
+          </label>
+          <select
+            value={selectedClientUuid}
+            onChange={(e) => setSelectedClientUuid(e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            disabled={isLoading}
+          >
+            <option value="">Choose a client...</option>
+            {availableClients.map((client) => (
+              <option key={client.uuid} value={client.uuid}>
+                {client.name} ({client.status})
+              </option>
+            ))}
+          </select>
+          {isLoading && (
+            <p className="text-xs text-gray-500 mt-1">Loading clients...</p>
+          )}
+        </div>
+
+        {/* Refresh Button */}
+        <div className="flex items-end">
+          <button
+            onClick={handleRefreshData}
+            disabled={!selectedClientUuid || isRefreshing}
+            className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+          >
+            {isRefreshing ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                <span>Refreshing...</span>
+              </>
+            ) : (
+              <>
+                <span>🔄</span>
+                <span>Refresh Data</span>
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* Status */}
+        <div className="flex items-end">
+          <div className="w-full text-center">
+            {selectedClientUuid && (
+              <p className="text-sm text-gray-600">
+                Selected: {availableClients.find(c => c.uuid === selectedClientUuid)?.name}
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Info */}
+      <div className="mt-4 p-3 bg-blue-50 rounded-md">
+        <p className="text-sm text-blue-800">
+          <strong>Note:</strong> This will fetch the latest security metrics, device data, and compliance events from the Cork API for the selected client.
+        </p>
       </div>
     </div>
   );

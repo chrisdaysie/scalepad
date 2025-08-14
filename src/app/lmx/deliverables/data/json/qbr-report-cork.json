@@ -2,20 +2,29 @@
   "id": "qbr-report-cork",
   "title": "Cork",
   "company": "Cork",
-  "dateRange": "Q2 2025 • AI-Powered Security Intelligence",
+  "dateRange": "August 1-7, 2025 • Weekly Summary",
   "heroMetric": {
-    "value": "2.1 hrs",
-    "label": "Avg Resolution Time",
-    "description": "Average time to resolve support tickets"
+    "value": "100%",
+    "label": "Device Protection Coverage",
+    "description": "All endpoints protected with comprehensive security stack"
   },
   "type": "individual",
-  "description": "AI-powered security intelligence with automated threat detection and response",
-  "executiveSummary": "Cork Enhanced delivers advanced AI-powered security intelligence with exceptional threat detection and automated response capabilities. Our AI algorithms analyzed 2,847 security events this quarter, achieving 94% accuracy in threat identification with only 6% false positives. The system automatically contained 89% of detected threats within 15 minutes, significantly reducing manual intervention and improving overall security posture. Your organization now benefits from predictive threat modeling and automated compliance monitoring.",
+  "description": "Comprehensive security analytics and threat intelligence platform",
+  "executiveSummary": "Your organization demonstrates excellent security posture with comprehensive endpoint protection and active threat monitoring. The security stack provides 100% device coverage with 19 active integrations delivering multi-layered protection across 5 domains. Recent monitoring detected 17 security events with 11 successfully resolved, showing responsive security operations and strong incident response capabilities.",
+  "liveData": {
+    "enabled": true,
+    "refreshInterval": 3600,
+    "lastRefresh": null,
+    "selectedClientUuid": null,
+    "availableClients": []
+  },
   "categories": [
     {
-      "name": "AI Threat Detection",
-      "score": 94,
+      "name": "Device Protection",
+      "score": 100,
       "items": [
+        { "name": "Endpoint Detection", "status": "satisfactory" },
+        { "name": "Threat Prevention", "status": "satisfactory" },
         { "name": "Machine Learning Models", "status": "satisfactory" },
         { "name": "Behavioral Analysis", "status": "satisfactory" },
         { "name": "Anomaly Detection", "status": "satisfactory" },

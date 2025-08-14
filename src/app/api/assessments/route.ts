@@ -97,15 +97,24 @@ export async function GET() {
         console.warn(`Could not read JSON file for ${id}:`, error);
       }
 
-      // Get file stats for last updated time
+      // Get last updated time from JSON file or file stats
       let lastUpdated = Math.floor(Date.now() / 1000);
       try {
         if (fs.existsSync(jsonPath)) {
-          const stats = fs.statSync(jsonPath);
-          lastUpdated = Math.floor(stats.mtime.getTime() / 1000);
+          const jsonData = fs.readFileSync(jsonPath, 'utf8');
+          const assessmentData = JSON.parse(jsonData);
+          
+          // Check if JSON has a lastUpdated field
+          if (assessmentData.lastUpdated) {
+            lastUpdated = assessmentData.lastUpdated;
+          } else {
+            // Fall back to file modification time
+            const stats = fs.statSync(jsonPath);
+            lastUpdated = Math.floor(stats.mtime.getTime() / 1000);
+          }
         }
       } catch (error) {
-        console.warn(`Could not get file stats for ${id}:`, error);
+        console.warn(`Could not get last updated time for ${id}:`, error);
       }
 
       // Create proper mixed case titles

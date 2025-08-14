@@ -20,27 +20,12 @@ interface CorkDevice {
   }>;
 }
 
-interface CorkInbox {
-  protection_status?: string;
-  status?: string;
-  protected?: boolean;
-  security_status?: string;
-  is_protected?: boolean;
-}
-
 interface CorkIntegration {
   connection_status: string;
   vendor?: {
     name?: string;
   };
   display_name?: string;
-}
-
-interface CorkWarranty {
-  active: boolean;
-  client_name: string;
-  package: string;
-  start_date: string;
 }
 
 interface CorkClient {
@@ -538,7 +523,7 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
       total: totalIntegrations,
       active: activeIntegrations,
       vendors: integrationVendors,
-      connection_status: integrationsData.items?.map((i: any) => ({
+      connection_status: integrationsData.items?.map((i: CorkIntegration) => ({
         name: i.display_name,
         status: i.connection_status,
         vendor: i.vendor?.name
@@ -548,7 +533,7 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
       total: totalWarranties,
       active: activeWarranties,
       coverage_rate: `${warrantyCoverage}%`,
-      items: warrantiesData.items?.map((w: any) => ({
+      items: warrantiesData.items?.map((w: { active: boolean; client_name: string; package: string; start_date: string }) => ({
         client_name: w.client_name,
         package: w.package,
         active: w.active,
@@ -670,14 +655,14 @@ function processTemplate(template: any, liveData: CorkLiveData): any {
   const processedData = processObject(processed, dataContext) as Record<string, unknown>;
   
   // Add back the detailed live data sections
-  (processedData as any).warrantyCoverage = {
+  (processedData as Record<string, unknown>).warrantyCoverage = {
     rate: liveData.warranties.coverage_rate,
     active: liveData.warranties.active,
     total: liveData.warranties.total,
     items: liveData.warranties.items
   };
   
-  (processedData as any).securityMetrics = {
+  (processedData as Record<string, unknown>).securityMetrics = {
     totalEvents: liveData.securityMetrics.total_events,
     resolvedEvents: liveData.securityMetrics.resolved_events,
     unresolvedEvents: liveData.securityMetrics.unresolved_events,
@@ -688,7 +673,7 @@ function processTemplate(template: any, liveData: CorkLiveData): any {
     eventTypes: liveData.securityMetrics.event_types
   };
   
-  (processedData as any).deviceProtection = {
+  (processedData as Record<string, unknown>).deviceProtection = {
     totalDevices: liveData.endpointData.total_devices,
     protectedDevices: liveData.endpointData.protected_devices,
     unprotectedDevices: liveData.endpointData.unprotected_devices,
@@ -698,7 +683,7 @@ function processTemplate(template: any, liveData: CorkLiveData): any {
     integrationNames: liveData.endpointData.integration_names
   };
   
-  (processedData as any).integrationHealth = {
+  (processedData as Record<string, unknown>).integrationHealth = {
     totalIntegrations: liveData.integrations.total,
     activeIntegrations: liveData.integrations.active,
     inactiveIntegrations: liveData.integrations.total - liveData.integrations.active,
@@ -707,7 +692,7 @@ function processTemplate(template: any, liveData: CorkLiveData): any {
     connectionStatus: liveData.integrations.connection_status
   };
   
-  (processedData as any).emailSecurity = {
+  (processedData as Record<string, unknown>).emailSecurity = {
     totalDomains: liveData.emailData.total_domains,
     totalInboxes: liveData.emailData.total_inboxes,
     protectedInboxes: liveData.emailData.protected_inboxes,

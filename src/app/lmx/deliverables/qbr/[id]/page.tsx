@@ -205,24 +205,52 @@ interface QBRData {
     supported: number;
   };
   contracts?: {
-    monthly: Array<{
-      vendor: string;
-      description: string;
-      cost: string;
-      nextDue: string;
-    }>;
-    quarterly: Array<{
-      vendor: string;
-      description: string;
-      cost: string;
-      nextDue: string;
-    }>;
-    annual: Array<{
-      vendor: string;
-      description: string;
-      cost: string;
-      nextDue: string;
-    }>;
+    ourServices: {
+      monthly: Array<{
+        vendor: string;
+        description: string;
+        cost: string;
+        nextDue: string;
+        subcategory?: string;
+      }>;
+      quarterly: Array<{
+        vendor: string;
+        description: string;
+        cost: string;
+        nextDue: string;
+        subcategory?: string;
+      }>;
+      annual: Array<{
+        vendor: string;
+        description: string;
+        cost: string;
+        nextDue: string;
+        subcategory?: string;
+      }>;
+    };
+    thirdPartyVendors: {
+      monthly: Array<{
+        vendor: string;
+        description: string;
+        cost: string;
+        nextDue: string;
+        subcategory?: string;
+      }>;
+      quarterly: Array<{
+        vendor: string;
+        description: string;
+        cost: string;
+        nextDue: string;
+        subcategory?: string;
+      }>;
+      annual: Array<{
+        vendor: string;
+        description: string;
+        cost: string;
+        nextDue: string;
+        subcategory?: string;
+      }>;
+    };
   };
   roadmap?: {
     totalInvestment: string;
@@ -834,12 +862,24 @@ export default function QBRReportPage() {
                 {/* Summary Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                   {(() => {
-                    const monthlyTotal = report.contracts?.monthly?.reduce((sum, contract) => 
+                    // Calculate totals from both our services and third party vendors
+                    const ourServicesMonthly = report.contracts?.ourServices?.monthly?.reduce((sum: number, contract: any) => 
                       sum + parseFloat(contract.cost.replace(/[$,]/g, '')), 0) || 0;
-                    const quarterlyTotal = report.contracts?.quarterly?.reduce((sum, contract) => 
+                    const ourServicesQuarterly = report.contracts?.ourServices?.quarterly?.reduce((sum: number, contract: any) => 
                       sum + parseFloat(contract.cost.replace(/[$,]/g, '')), 0) || 0;
-                    const annualTotal = report.contracts?.annual?.reduce((sum, contract) => 
+                    const ourServicesAnnual = report.contracts?.ourServices?.annual?.reduce((sum: number, contract: any) => 
                       sum + parseFloat(contract.cost.replace(/[$,]/g, '')), 0) || 0;
+                    
+                    const thirdPartyMonthly = report.contracts?.thirdPartyVendors?.monthly?.reduce((sum: number, contract: any) => 
+                      sum + parseFloat(contract.cost.replace(/[$,]/g, '')), 0) || 0;
+                    const thirdPartyQuarterly = report.contracts?.thirdPartyVendors?.quarterly?.reduce((sum: number, contract: any) => 
+                      sum + parseFloat(contract.cost.replace(/[$,]/g, '')), 0) || 0;
+                    const thirdPartyAnnual = report.contracts?.thirdPartyVendors?.annual?.reduce((sum: number, contract: any) => 
+                      sum + parseFloat(contract.cost.replace(/[$,]/g, '')), 0) || 0;
+                    
+                    const monthlyTotal = ourServicesMonthly + thirdPartyMonthly;
+                    const quarterlyTotal = ourServicesQuarterly + thirdPartyQuarterly;
+                    const annualTotal = ourServicesAnnual + thirdPartyAnnual;
                     const totalAnnual = (monthlyTotal * 12) + (quarterlyTotal * 4) + annualTotal;
                     
                     return (
@@ -865,62 +905,149 @@ export default function QBRReportPage() {
                   })()}
                 </div>
                 
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-                  <div className="overflow-x-auto">
-                    <table className="w-full">
-                      <thead className="bg-gray-50">
-                        <tr>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vendor</th>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Billing Cycle</th>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cost</th>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Next Due</th>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Annual Spend</th>
-                        </tr>
-                      </thead>
-                      <tbody className="bg-white divide-y divide-gray-200">
-                        {report.contracts?.monthly.map((contract, index) => (
-                          <tr key={`monthly-${index}`} className="hover:bg-gray-50">
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{contract.vendor}</td>
-                            <td className="px-6 py-4 text-sm text-gray-500">{contract.description}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">Monthly</span>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">{contract.cost}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{contract.nextDue}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                              ${(parseFloat(contract.cost.replace(/[$,]/g, '')) * 12).toLocaleString()}
-                            </td>
+                {/* Our Services Table */}
+                <div className="space-y-4">
+                  <h3 className="text-xl font-semibold text-gray-900">Our Services</h3>
+                  <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div className="overflow-x-auto">
+                      <table className="w-full">
+                        <thead className="bg-blue-50">
+                          <tr>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Service</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Billing Cycle</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cost</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Next Due</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Annual Spend</th>
                           </tr>
-                        ))}
-                        {report.contracts?.quarterly.map((contract, index) => (
-                          <tr key={`quarterly-${index}`} className="hover:bg-gray-50">
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{contract.vendor}</td>
-                            <td className="px-6 py-4 text-sm text-gray-500">{contract.description}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <span className="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">Quarterly</span>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">{contract.cost}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{contract.nextDue}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                              ${(parseFloat(contract.cost.replace(/[$,]/g, '')) * 4).toLocaleString()}
-                            </td>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                          {report.contracts?.ourServices?.monthly?.map((contract, index) => (
+                            <tr key={`our-monthly-${index}`} className="hover:bg-gray-50">
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{contract.vendor}</td>
+                              <td className="px-6 py-4 text-sm text-gray-500">{contract.description}</td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">{contract.subcategory}</span>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">Monthly</span>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">{contract.cost}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{contract.nextDue}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                                ${(parseFloat(contract.cost.replace(/[$,]/g, '')) * 12).toLocaleString()}
+                              </td>
+                            </tr>
+                          ))}
+                          {report.contracts?.ourServices?.quarterly?.map((contract, index) => (
+                            <tr key={`our-quarterly-${index}`} className="hover:bg-gray-50">
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{contract.vendor}</td>
+                              <td className="px-6 py-4 text-sm text-gray-500">{contract.description}</td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">{contract.subcategory}</span>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <span className="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">Quarterly</span>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">{contract.cost}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{contract.nextDue}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                                ${(parseFloat(contract.cost.replace(/[$,]/g, '')) * 4).toLocaleString()}
+                              </td>
+                            </tr>
+                          ))}
+                          {report.contracts?.ourServices?.annual?.map((contract, index) => (
+                            <tr key={`our-annual-${index}`} className="hover:bg-gray-50">
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{contract.vendor}</td>
+                              <td className="px-6 py-4 text-sm text-gray-500">{contract.description}</td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">{contract.subcategory}</span>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <span className="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Annual</span>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">{contract.cost}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{contract.nextDue}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">{contract.cost}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Third Party Vendor Contracts Table */}
+                <div className="space-y-4">
+                  <h3 className="text-xl font-semibold text-gray-900">3rd Party Vendor Contracts</h3>
+                  <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div className="overflow-x-auto">
+                      <table className="w-full">
+                        <thead className="bg-gray-50">
+                          <tr>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Vendor</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Billing Cycle</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cost</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Next Due</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Annual Spend</th>
                           </tr>
-                        ))}
-                        {report.contracts?.annual.map((contract, index) => (
-                          <tr key={`annual-${index}`} className="hover:bg-gray-50">
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{contract.vendor}</td>
-                            <td className="px-6 py-4 text-sm text-gray-500">{contract.description}</td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <span className="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Annual</span>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">{contract.cost}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{contract.nextDue}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">{contract.cost}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                          {report.contracts?.thirdPartyVendors?.monthly?.map((contract, index) => (
+                            <tr key={`vendor-monthly-${index}`} className="hover:bg-gray-50">
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{contract.vendor}</td>
+                              <td className="px-6 py-4 text-sm text-gray-500">{contract.description}</td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <span className="px-2 py-1 text-xs font-medium bg-gray-100 text-gray-800 rounded-full">{contract.subcategory}</span>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">Monthly</span>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">{contract.cost}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{contract.nextDue}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                                ${(parseFloat(contract.cost.replace(/[$,]/g, '')) * 12).toLocaleString()}
+                              </td>
+                            </tr>
+                          ))}
+                          {report.contracts?.thirdPartyVendors?.quarterly?.map((contract, index) => (
+                            <tr key={`vendor-quarterly-${index}`} className="hover:bg-gray-50">
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{contract.vendor}</td>
+                              <td className="px-6 py-4 text-sm text-gray-500">{contract.description}</td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <span className="px-2 py-1 text-xs font-medium bg-gray-100 text-gray-800 rounded-full">{contract.subcategory}</span>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <span className="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">Quarterly</span>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">{contract.cost}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{contract.nextDue}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                                ${(parseFloat(contract.cost.replace(/[$,]/g, '')) * 4).toLocaleString()}
+                              </td>
+                            </tr>
+                          ))}
+                          {report.contracts?.thirdPartyVendors?.annual?.map((contract, index) => (
+                            <tr key={`vendor-annual-${index}`} className="hover:bg-gray-50">
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{contract.vendor}</td>
+                              <td className="px-6 py-4 text-sm text-gray-500">{contract.description}</td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <span className="px-2 py-1 text-xs font-medium bg-gray-100 text-gray-800 rounded-full">{contract.subcategory}</span>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap">
+                                <span className="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Annual</span>
+                              </td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">{contract.cost}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{contract.nextDue}</td>
+                              <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-900">{contract.cost}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>

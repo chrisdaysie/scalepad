@@ -6,7 +6,7 @@
   "heroMetric": {
     "value": "50%",
     "label": "Overall Security Coverage",
-    "description": "2 endpoints with 10 active integrations"
+    "description": "10 endpoints with 10 active integrations"
   },
   "type": "individual",
   "description": "Comprehensive security analytics and threat intelligence platform",
@@ -14,8 +14,8 @@
   "liveData": {
     "enabled": true,
     "refreshInterval": 3600,
-    "lastRefresh": "2025-08-14T03:33:42.404Z",
-    "selectedClientUuid": "4911c0c5-cb68-4ea3-b3e9-625ba6358478",
+    "lastRefresh": "2025-08-14T03:34:04.359Z",
+    "selectedClientUuid": "0c72184a-2201-4353-a5b7-2f9f371239db",
     "availableClients": []
   },
   "categories": [
@@ -117,7 +117,7 @@
     "risks": [
       {
         "title": "Outstanding Security Events",
-        "description": "6 unresolved security events requiring immediate attention and remediation.",
+        "description": "1 unresolved security events requiring immediate attention and remediation.",
         "severity": "medium",
         "impact": "Ongoing security risk exposure and potential compliance violations."
       }
@@ -125,7 +125,7 @@
     "insights": [
       {
         "title": "Overall Security Coverage",
-        "description": "50% overall security coverage with 2 devices and 10 active integrations.",
+        "description": "50% overall security coverage with 10 devices and 10 active integrations.",
         "metric": "50% Coverage",
         "trend": "neutral"
       },
@@ -137,14 +137,14 @@
       },
       {
         "title": "Event Response Rate",
-        "description": "0% of security events resolved, with 6 total events detected.",
+        "description": "0% of security events resolved, with 1 total events detected.",
         "metric": "0% Resolved",
         "trend": "neutral"
       },
       {
         "title": "Asset Coverage",
-        "description": "Managing 17 total assets including 2 devices, 5 domains, and 10 inboxes.",
-        "metric": "17 Assets",
+        "description": "Managing 12 total assets including 10 devices, 1 domains, and 1 inboxes.",
+        "metric": "12 Assets",
         "trend": "positive"
       },
       {

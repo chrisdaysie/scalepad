@@ -1792,7 +1792,6 @@ export default function QBRReportPage() {
                             if (!warrantyData) return null;
                             
                             const values = Object.values(warrantyData);
-                            const total = values.reduce((sum: number, val: number) => sum + val, 0);
                             const circumference = 251.2;
                             let currentOffset = 0;
                             

@@ -1791,7 +1791,7 @@ export default function QBRReportPage() {
                             const warrantyData = report.assetAnalytics?.warrantyCoverage;
                             if (!warrantyData) return null;
                             
-                            const values = Object.values(warrantyData);
+                            // const values = Object.values(warrantyData);
                             const circumference = 251.2;
                             let currentOffset = 0;
                             

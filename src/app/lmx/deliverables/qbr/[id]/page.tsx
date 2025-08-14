@@ -32,6 +32,33 @@ interface QBRData {
     introText: string;
     subtitle: string;
   };
+  accountTeam?: {
+    title: string;
+    description: string;
+    members: Array<{
+      name: string;
+      title: string;
+      email: string;
+      phone: string;
+      responsibilities: string;
+      avatar: string;
+    }>;
+  };
+  userDirectory?: {
+    title: string;
+    description: string;
+    totalUsers: number;
+    departments: Array<{
+      name: string;
+      count: number;
+      users: Array<{
+        name: string;
+        title: string;
+        email: string;
+        department: string;
+      }>;
+    }>;
+  };
   sectionHeaders?: {
     clientGoals: string;
     technologyRoadmap: string;
@@ -1196,6 +1223,78 @@ export default function QBRReportPage() {
                     </div>
                   </div>
                 </div>
+
+                {/* Account Team Section */}
+                {report.accountTeam && (
+                  <div className="mt-8">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">{report.accountTeam.title}</h2>
+                    <p className="text-gray-600 mb-6">{report.accountTeam.description}</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                      {report.accountTeam.members.map((member, index) => (
+                        <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 text-center">
+                          <div className="text-4xl mb-4">{member.avatar}</div>
+                          <h3 className="text-lg font-semibold text-gray-900 mb-1">{member.name}</h3>
+                          <p className="text-sm text-blue-600 mb-3">{member.title}</p>
+                          <div className="space-y-2 text-sm text-gray-600">
+                            <div>{member.email}</div>
+                            <div>{member.phone}</div>
+                          </div>
+                          <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                            <p className="text-xs text-gray-600">{member.responsibilities}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* User Directory Section */}
+                {report.userDirectory && (
+                  <div className="mt-8">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">{report.userDirectory.title}</h2>
+                    <p className="text-gray-600 mb-6">{report.userDirectory.description}</p>
+                    
+                    {/* Department Summary Cards */}
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+                      {report.userDirectory.departments.map((dept, index) => (
+                        <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 text-center">
+                          <div className="text-2xl font-bold text-blue-600 mb-1">{dept.count}</div>
+                          <div className="text-sm text-gray-600">{dept.name}</div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* User Directory Table */}
+                    <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                      <div className="overflow-x-auto">
+                        <table className="w-full">
+                          <thead className="bg-gray-50">
+                            <tr>
+                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
+                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                            </tr>
+                          </thead>
+                          <tbody className="bg-white divide-y divide-gray-200">
+                            {report.userDirectory.departments.flatMap(dept => 
+                              dept.users.map((user, index) => (
+                                <tr key={`${dept.name}-${index}`} className="hover:bg-gray-50">
+                                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{user.name}</td>
+                                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.title}</td>
+                                  <td className="px-6 py-4 whitespace-nowrap">
+                                    <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">{user.department}</span>
+                                  </td>
+                                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.email}</td>
+                                </tr>
+                              ))
+                            )}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 

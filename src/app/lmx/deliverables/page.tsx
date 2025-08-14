@@ -19,6 +19,11 @@ interface QBRReport {
 }
 
 export default function Deliverables() {
+  // Set title immediately
+  if (typeof document !== 'undefined') {
+    document.title = "ScalePad - Deliverables";
+  }
+  
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [qbrReports, setQbrReports] = useState<QBRReport[]>([]);
   const [loading, setLoading] = useState(true);
@@ -32,9 +37,7 @@ export default function Deliverables() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  useEffect(() => {
-    document.title = "ScalePad - Deliverables";
-  }, []);
+
 
   useEffect(() => {
     // Load QBR reports data

@@ -5,6 +5,11 @@ import Link from 'next/link';
 import ScalepadLogo from '@/components/ScalepadLogo';
 
 export default function LifecycleManagerX() {
+  // Set title immediately
+  if (typeof document !== 'undefined') {
+    document.title = "ScalePad - Lifecycle Manager X";
+  }
+  
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -16,9 +21,7 @@ export default function LifecycleManagerX() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  useEffect(() => {
-    document.title = "ScalePad - Lifecycle Manager X";
-  }, []);
+
 
   const modules = [
     {

@@ -160,6 +160,11 @@ const staticAssessments: Assessment[] = [
 ];
 
 export default function Assessments() {
+  // Set title immediately
+  if (typeof document !== 'undefined') {
+    document.title = "ScalePad - Assessments";
+  }
+  
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [assessments, setAssessments] = useState<Assessment[]>(staticAssessments);
   const [isLoading, setIsLoading] = useState(false);
@@ -223,9 +228,7 @@ export default function Assessments() {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    document.title = "ScalePad - Assessments";
-  }, []);
+
 
   const formatRelativeTime = (timestamp: number) => {
     if (currentTime === null) {

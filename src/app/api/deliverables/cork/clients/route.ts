@@ -15,7 +15,7 @@ interface CorkClientsResponse {
   page_size: number;
 }
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const apiKey = process.env.CORK_API_KEY;
     const baseUrl = process.env.CORK_BASE_URL || 'https://api.cork.dev';

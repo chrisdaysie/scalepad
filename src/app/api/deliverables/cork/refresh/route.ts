@@ -2,6 +2,52 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+// TypeScript interfaces for API responses
+interface CorkEvent {
+  event_type: string;
+  resolved_at?: string;
+  at_risk: boolean;
+}
+
+interface CorkDevice {
+  associated_endpoints?: Array<{
+    integration?: {
+      display_name?: string;
+      vendor?: {
+        type?: string;
+      };
+    };
+  }>;
+}
+
+interface CorkInbox {
+  protection_status?: string;
+  status?: string;
+  protected?: boolean;
+  security_status?: string;
+  is_protected?: boolean;
+}
+
+interface CorkIntegration {
+  connection_status: string;
+  vendor?: {
+    name?: string;
+  };
+  display_name?: string;
+}
+
+interface CorkWarranty {
+  active: boolean;
+  client_name: string;
+  package: string;
+  start_date: string;
+}
+
+interface CorkClient {
+  uuid: string;
+  name: string;
+}
+
 interface CorkSecurityMetrics {
   total_events: number;
   resolved_events: number;
@@ -182,17 +228,17 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
   console.log(`Found ${events.length} security events`);
 
   // Get event types for better categorization
-  const eventTypes = events.map((e: any) => e.event_type);
+  const eventTypes = events.map((e: CorkEvent) => e.event_type);
   const uniqueEventTypes = [...new Set(eventTypes)];
 
   const securityMetrics: CorkSecurityMetrics = {
     total_events: events.length,
-    resolved_events: events.filter((e: any) => e.resolved_at).length,
-    unresolved_events: events.filter((e: any) => !e.resolved_at).length,
+    resolved_events: events.filter((e: CorkEvent) => e.resolved_at).length,
+    unresolved_events: events.filter((e: CorkEvent) => !e.resolved_at).length,
     response_time_avg: 2.1, // Simplified calculation
-    critical_events: events.filter((e: any) => e.at_risk).length,
-    warning_events: events.filter((e: any) => !e.at_risk && !e.resolved_at).length,
-    info_events: events.filter((e: any) => e.resolved_at).length,
+    critical_events: events.filter((e: CorkEvent) => e.at_risk).length,
+    warning_events: events.filter((e: CorkEvent) => !e.at_risk && !e.resolved_at).length,
+    info_events: events.filter((e: CorkEvent) => e.resolved_at).length,
     event_types: uniqueEventTypes as string[],
     last_updated: new Date().toISOString(),
   };
@@ -224,13 +270,13 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
   console.log(`Found ${devices.length} devices`);
 
   // Calculate device protection based on associated endpoints
-  const protectedDevices = devices.filter((d: any) => d.associated_endpoints && d.associated_endpoints.length > 0).length;
+  const protectedDevices = devices.filter((d: CorkDevice) => d.associated_endpoints && d.associated_endpoints.length > 0).length;
   const unprotectedDevices = devices.length - protectedDevices;
   const protectionRate = devices.length > 0 ? Math.round((protectedDevices / devices.length) * 100) : 0;
 
   // Get unique integrations from associated endpoints
-  const allIntegrations = devices.flatMap((d: any) => d.associated_endpoints || []);
-  const uniqueIntegrations = [...new Set(allIntegrations.map((ep: any) => ep.integration?.display_name))].filter(Boolean);
+  const allIntegrations = devices.flatMap((d: CorkDevice) => d.associated_endpoints || []);
+  const uniqueIntegrations = [...new Set(allIntegrations.map((ep: { integration?: { display_name?: string } }) => ep.integration?.display_name))].filter(Boolean);
 
   // Debug: Log sample device data to understand structure
   if (devices.length > 0) {
@@ -241,8 +287,8 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
   }
 
   // Calculate device types based on integration names (more reliable than vendor type)
-  const edrDevices = devices.filter((d: any) => 
-    d.associated_endpoints?.some((ep: any) => 
+  const edrDevices = devices.filter((d: CorkDevice) => 
+    d.associated_endpoints?.some((ep: { integration?: { display_name?: string } }) => 
       ep.integration?.display_name?.toLowerCase().includes('edr') ||
       ep.integration?.display_name?.toLowerCase().includes('sophos') ||
       ep.integration?.display_name?.toLowerCase().includes('crowdstrike') ||
@@ -250,8 +296,8 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
     )
   ).length;
 
-  const bcdrDevices = devices.filter((d: any) => 
-    d.associated_endpoints?.some((ep: any) => 
+  const bcdrDevices = devices.filter((d: CorkDevice) => 
+    d.associated_endpoints?.some((ep: { integration?: { display_name?: string } }) => 
       ep.integration?.display_name?.toLowerCase().includes('bcdr') ||
       ep.integration?.display_name?.toLowerCase().includes('datto') ||
       ep.integration?.display_name?.toLowerCase().includes('acronis') ||
@@ -259,8 +305,8 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
     )
   ).length;
 
-  const rmmDevices = devices.filter((d: any) => 
-    d.associated_endpoints?.some((ep: any) => 
+  const rmmDevices = devices.filter((d: CorkDevice) => 
+    d.associated_endpoints?.some((ep: { integration?: { display_name?: string } }) => 
       ep.integration?.display_name?.toLowerCase().includes('rmm') ||
       ep.integration?.display_name?.toLowerCase().includes('ninja') ||
       ep.integration?.display_name?.toLowerCase().includes('connectwise') ||
@@ -385,15 +431,15 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
     throw new Error(`Invalid JSON response from clients API: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
   
-  const clientData = clientsData.items?.find((client: any) => client.uuid === clientUuid);
+  const clientData = clientsData.items?.find((client: CorkClient) => client.uuid === clientUuid);
   if (!clientData) {
     throw new Error(`Client with UUID ${clientUuid} not found in clients list`);
   }
 
   // Calculate comprehensive metrics
   const totalIntegrations = integrationsData.items?.length || 0;
-  const activeIntegrations = integrationsData.items?.filter((i: any) => i.connection_status === 'ok').length || 0;
-  const integrationVendors = integrationsData.items?.map((i: any) => i.vendor?.name).filter(Boolean) || [];
+  const activeIntegrations = integrationsData.items?.filter((i: CorkIntegration) => i.connection_status === 'ok').length || 0;
+  const integrationVendors = integrationsData.items?.map((i: CorkIntegration) => i.vendor?.name).filter(Boolean) || [];
   
   // Calculate device types based on integration vendors
   const vendorNames = integrationVendors.map((v: string) => v.toLowerCase());
@@ -621,17 +667,17 @@ function processTemplate(template: any, liveData: CorkLiveData): any {
     integrationCount: dataContext.integrationCount
   });
   
-  const processedData = processObject(processed, dataContext);
+  const processedData = processObject(processed, dataContext) as Record<string, unknown>;
   
   // Add back the detailed live data sections
-  processedData.warrantyCoverage = {
+  (processedData as any).warrantyCoverage = {
     rate: liveData.warranties.coverage_rate,
     active: liveData.warranties.active,
     total: liveData.warranties.total,
     items: liveData.warranties.items
   };
   
-  processedData.securityMetrics = {
+  (processedData as any).securityMetrics = {
     totalEvents: liveData.securityMetrics.total_events,
     resolvedEvents: liveData.securityMetrics.resolved_events,
     unresolvedEvents: liveData.securityMetrics.unresolved_events,
@@ -642,7 +688,7 @@ function processTemplate(template: any, liveData: CorkLiveData): any {
     eventTypes: liveData.securityMetrics.event_types
   };
   
-  processedData.deviceProtection = {
+  (processedData as any).deviceProtection = {
     totalDevices: liveData.endpointData.total_devices,
     protectedDevices: liveData.endpointData.protected_devices,
     unprotectedDevices: liveData.endpointData.unprotected_devices,
@@ -652,7 +698,7 @@ function processTemplate(template: any, liveData: CorkLiveData): any {
     integrationNames: liveData.endpointData.integration_names
   };
   
-  processedData.integrationHealth = {
+  (processedData as any).integrationHealth = {
     totalIntegrations: liveData.integrations.total,
     activeIntegrations: liveData.integrations.active,
     inactiveIntegrations: liveData.integrations.total - liveData.integrations.active,
@@ -661,7 +707,7 @@ function processTemplate(template: any, liveData: CorkLiveData): any {
     connectionStatus: liveData.integrations.connection_status
   };
   
-  processedData.emailSecurity = {
+  (processedData as any).emailSecurity = {
     totalDomains: liveData.emailData.total_domains,
     totalInboxes: liveData.emailData.total_inboxes,
     protectedInboxes: liveData.emailData.protected_inboxes,
@@ -726,7 +772,7 @@ function calculateDerivedValues(liveData: CorkLiveData) {
   };
 }
 
-function processObject(obj: any, dataContext: any): any {
+function processObject(obj: unknown, dataContext: Record<string, unknown>): unknown {
   if (typeof obj === 'string') {
     return replacePlaceholders(obj, dataContext);
   }
@@ -736,7 +782,7 @@ function processObject(obj: any, dataContext: any): any {
   }
   
   if (obj && typeof obj === 'object') {
-    const processed: any = {};
+    const processed: Record<string, unknown> = {};
     for (const [key, value] of Object.entries(obj)) {
       processed[key] = processObject(value, dataContext);
     }
@@ -746,16 +792,10 @@ function processObject(obj: any, dataContext: any): any {
   return obj;
 }
 
-function replacePlaceholders(template: string, dataContext: any): string {
+function replacePlaceholders(template: string, dataContext: Record<string, unknown>): string {
   return template.replace(/\{([^}]+)\}/g, (match, placeholder) => {
     const value = dataContext[placeholder];
     console.log(`Replacing ${match} with ${value} (placeholder: ${placeholder})`);
     return value !== undefined ? String(value) : match;
   });
-}
-
-function getNestedValue(obj: any, path: string): any {
-  return path.split('.').reduce((current, key) => {
-    return current && current[key] !== undefined ? current[key] : undefined;
-  }, obj);
 }

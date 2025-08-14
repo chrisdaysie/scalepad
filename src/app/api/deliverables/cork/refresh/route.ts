@@ -49,6 +49,29 @@ interface CorkLiveData {
       vendor: string;
     }>;
   };
+  warranties: {
+    total: number;
+    active: number;
+    coverage_rate: string;
+    items: Array<{
+      client_name: string;
+      package: string;
+      active: boolean;
+      start_date: string;
+    }>;
+  };
+  charts: {
+    warranty_coverage: Array<{
+      label: string;
+      value: number;
+      color: string;
+    }>;
+    integration_status: Array<{
+      label: string;
+      value: number;
+      color: string;
+    }>;
+  };
   overallMetrics: {
     device_protection_score: number;
     event_resolution_rate: number;
@@ -262,6 +285,23 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
       '0%',
   };
 
+  console.log('Fetching warranty information...');
+  
+  // Get warranty information
+  const warrantiesResponse = await fetch(`${baseUrl}/api/v1/warranties`, { headers });
+  
+  if (!warrantiesResponse.ok) {
+    console.warn(`Warranties API error: ${warrantiesResponse.status} - ${warrantiesResponse.statusText}`);
+  }
+  
+  let warrantiesData;
+  try {
+    warrantiesData = await warrantiesResponse.json();
+  } catch (error) {
+    console.warn('Failed to parse warranties JSON:', error);
+    warrantiesData = { items: [] };
+  }
+
   console.log('Fetching connected integrations...');
   
   // Get connected integrations
@@ -308,6 +348,23 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
   const activeIntegrations = integrationsData.items?.filter((i: any) => i.connection_status === 'ok').length || 0;
   const integrationVendors = integrationsData.items?.map((i: any) => i.vendor?.name).filter(Boolean) || [];
   
+  // Calculate warranty metrics
+  const totalWarranties = warrantiesData.items?.length || 0;
+  const activeWarranties = warrantiesData.items?.filter((w: any) => w.active).length || 0;
+  const warrantyCoverage = totalWarranties > 0 ? Math.round((activeWarranties / totalWarranties) * 100) : 0;
+  
+  // Create pie chart data for warranty coverage
+  const warrantyPieData = [
+    { label: 'Active Warranties', value: activeWarranties, color: '#10B981' },
+    { label: 'Inactive Warranties', value: totalWarranties - activeWarranties, color: '#EF4444' }
+  ];
+  
+  // Create pie chart data for integration status
+  const integrationPieData = [
+    { label: 'Active Integrations', value: activeIntegrations, color: '#3B82F6' },
+    { label: 'Inactive Integrations', value: totalIntegrations - activeIntegrations, color: '#F59E0B' }
+  ];
+  
   // Calculate overall protection score
   const deviceProtectionScore = endpointData.total_devices > 0 ? 
     Math.round((endpointData.protected_devices / endpointData.total_devices) * 100) : 0;
@@ -329,6 +386,21 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
         status: i.connection_status,
         vendor: i.vendor?.name
       })) || []
+    },
+    warranties: {
+      total: totalWarranties,
+      active: activeWarranties,
+      coverage_rate: `${warrantyCoverage}%`,
+      items: warrantiesData.items?.map((w: any) => ({
+        client_name: w.client_name,
+        package: w.package,
+        active: w.active,
+        start_date: w.start_date
+      })) || []
+    },
+    charts: {
+      warranty_coverage: warrantyPieData,
+      integration_status: integrationPieData
     },
     overallMetrics: {
       device_protection_score: deviceProtectionScore,
@@ -361,6 +433,13 @@ async function updateCorkReport(liveData: CorkLiveData) {
       value: `${liveData.overallMetrics.security_coverage}%`,
       label: "Overall Security Coverage",
       description: `${liveData.endpointData.total_devices} endpoints with ${liveData.integrations.active} active integrations`,
+    },
+    // Add warranty coverage information
+    warrantyCoverage: {
+      rate: liveData.warranties.coverage_rate,
+      active: liveData.warranties.active,
+      total: liveData.warranties.total,
+      items: liveData.warranties.items
     },
     // Update categories with live data
     categories: [
@@ -424,6 +503,12 @@ async function updateCorkReport(liveData: CorkLiveData) {
           description: `Managing ${liveData.overallMetrics.total_assets} total assets including ${liveData.endpointData.total_devices} devices, ${liveData.emailData.total_domains} domains, and ${liveData.emailData.total_inboxes} inboxes.`,
           metric: `${liveData.overallMetrics.total_assets} Assets`,
           trend: "positive"
+        },
+        {
+          title: "Warranty Coverage",
+          description: `${liveData.warranties.active} of ${liveData.warranties.total} warranties are active, providing ${liveData.warranties.coverage_rate} coverage rate.`,
+          metric: `${liveData.warranties.coverage_rate} Coverage`,
+          trend: liveData.warranties.active > 0 ? "positive" : "neutral"
         }
       ],
       risks: liveData.securityMetrics.unresolved_events > 0 ? [

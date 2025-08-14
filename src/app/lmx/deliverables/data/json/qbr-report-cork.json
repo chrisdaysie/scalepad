@@ -14,7 +14,7 @@
   "liveData": {
     "enabled": true,
     "refreshInterval": 3600,
-    "lastRefresh": "2025-08-14T03:29:56.371Z",
+    "lastRefresh": "2025-08-14T03:33:42.404Z",
     "selectedClientUuid": "4911c0c5-cb68-4ea3-b3e9-625ba6358478",
     "availableClients": []
   },
@@ -146,6 +146,12 @@
         "description": "Managing 17 total assets including 2 devices, 5 domains, and 10 inboxes.",
         "metric": "17 Assets",
         "trend": "positive"
+      },
+      {
+        "title": "Warranty Coverage",
+        "description": "3 of 6 warranties are active, providing 50% coverage rate.",
+        "metric": "50% Coverage",
+        "trend": "positive"
       }
     ],
     "recommendations": [
@@ -169,6 +175,49 @@
         "priority": "medium",
         "effort": "Low",
         "impact": "Reduce security risk and improve response metrics"
+      }
+    ]
+  },
+  "warrantyCoverage": {
+    "rate": "50%",
+    "active": 3,
+    "total": 6,
+    "items": [
+      {
+        "client_name": "Cork",
+        "package": "Protect 100",
+        "active": true,
+        "start_date": "2025-05-21T00:00:00Z"
+      },
+      {
+        "client_name": "Dunder Mifflin - Scranton",
+        "package": "Protect 500",
+        "active": false,
+        "start_date": "2025-05-21T00:00:00Z"
+      },
+      {
+        "client_name": "DVx Ventures",
+        "package": "Protect 100",
+        "active": false,
+        "start_date": "2025-05-27T00:00:00Z"
+      },
+      {
+        "client_name": "Bluth Company",
+        "package": "Protect 100",
+        "active": true,
+        "start_date": "2025-05-27T00:00:00Z"
+      },
+      {
+        "client_name": "Los Pollos Hermanos",
+        "package": "Protect 500",
+        "active": false,
+        "start_date": "2025-07-16T00:00:00Z"
+      },
+      {
+        "client_name": "Death Star",
+        "package": "Protect 500",
+        "active": true,
+        "start_date": "2025-07-18T00:00:00Z"
       }
     ]
   }

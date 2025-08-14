@@ -16,6 +16,17 @@ interface QBRData {
     trend: string;
     description: string;
   };
+  warrantyCoverage?: {
+    rate: string;
+    active: number;
+    total: number;
+    items: Array<{
+      client_name: string;
+      package: string;
+      active: boolean;
+      start_date: string;
+    }>;
+  };
   businessOverview?: {
     title: string;
     introText: string;
@@ -423,12 +434,108 @@ export default function QBRReportPage() {
                         <strong>{report.company} {report.businessOverview?.introText}</strong> {report.executiveSummary}
                       </p>
                     </div>
-                                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center">
-                    <div className="text-sm opacity-90 mb-2">{report.heroMetric?.label}</div>
-                    <div className="text-4xl font-bold text-green-300 mb-2">{report.heroMetric?.value}</div>
-                    <div className="text-sm opacity-80">{report.heroMetric?.trend}</div>
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center">
+                      <div className="text-sm opacity-90 mb-2">{report.heroMetric?.label}</div>
+                      <div className="text-4xl font-bold text-green-300 mb-2">{report.heroMetric?.value}</div>
+                      <div className="text-sm opacity-80">{report.heroMetric?.description}</div>
+                    </div>
                   </div>
-                  </div>
+
+                  {/* Warranty Coverage Section - Only for Cork reports */}
+                  {report.id === 'qbr-report-cork' && report.warrantyCoverage && (
+                    <div className="mt-8">
+                      <h2 className="text-2xl font-bold text-gray-900 mb-6">🛡️ Warranty Coverage</h2>
+                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        {/* Warranty Stats */}
+                        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                          <div className="text-center">
+                            <div className="text-3xl font-bold text-blue-600 mb-2">{report.warrantyCoverage.rate}</div>
+                            <div className="text-sm text-gray-600 mb-4">Warranty Coverage Rate</div>
+                            <div className="flex justify-between text-sm">
+                              <span className="text-green-600">{report.warrantyCoverage.active} Active</span>
+                              <span className="text-gray-500">{report.warrantyCoverage.total} Total</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Warranty Pie Chart */}
+                        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Warranty Status</h3>
+                          <div className="flex justify-center">
+                            <svg width="120" height="120" viewBox="0 0 120 120">
+                              {(() => {
+                                const total = report.warrantyCoverage.total;
+                                const active = report.warrantyCoverage.active;
+                                const inactive = total - active;
+                                
+                                if (total === 0) {
+                                  return (
+                                    <circle cx="60" cy="60" r="50" fill="#E5E7EB" />
+                                  );
+                                }
+
+                                const activeAngle = (active / total) * 360;
+                                const inactiveAngle = (inactive / total) * 360;
+                                
+                                let currentAngle = -90;
+                                
+                                return (
+                                  <>
+                                    {active > 0 && (
+                                      <path
+                                        d={`M 60 60 L ${60 + 50 * Math.cos(currentAngle * Math.PI / 180)} ${60 + 50 * Math.sin(currentAngle * Math.PI / 180)} A 50 50 0 ${activeAngle > 180 ? 1 : 0} 1 ${60 + 50 * Math.cos((currentAngle + activeAngle) * Math.PI / 180)} ${60 + 50 * Math.sin((currentAngle + activeAngle) * Math.PI / 180)} Z`}
+                                        fill="#10B981"
+                                      />
+                                    )}
+                                    {inactive > 0 && (
+                                      <path
+                                        d={`M 60 60 L ${60 + 50 * Math.cos((currentAngle + activeAngle) * Math.PI / 180)} ${60 + 50 * Math.sin((currentAngle + activeAngle) * Math.PI / 180)} A 50 50 0 ${inactiveAngle > 180 ? 1 : 0} 1 ${60 + 50 * Math.cos((currentAngle + activeAngle + inactiveAngle) * Math.PI / 180)} ${60 + 50 * Math.sin((currentAngle + activeAngle + inactiveAngle) * Math.PI / 180)} Z`}
+                                        fill="#EF4444"
+                                      />
+                                    )}
+                                    <circle cx="60" cy="60" r="20" fill="white" />
+                                    <text x="60" y="65" textAnchor="middle" className="text-sm font-semibold">
+                                      {report.warrantyCoverage.rate}
+                                    </text>
+                                  </>
+                                );
+                              })()}
+                            </svg>
+                          </div>
+                          <div className="flex justify-center space-x-4 mt-4">
+                            <div className="flex items-center">
+                              <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                              <span className="text-sm">Active</span>
+                            </div>
+                            <div className="flex items-center">
+                              <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                              <span className="text-sm">Inactive</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Warranty Details */}
+                        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-4">Warranty Details</h3>
+                          <div className="space-y-3">
+                            {report.warrantyCoverage.items?.slice(0, 3).map((warranty, index) => (
+                              <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                <div>
+                                  <div className="font-medium text-gray-900 text-sm">{warranty.client_name}</div>
+                                  <div className="text-xs text-gray-600">{warranty.package}</div>
+                                </div>
+                                <span className={`px-2 py-1 text-xs font-medium rounded-full ${
+                                  warranty.active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                                }`}>
+                                  {warranty.active ? 'Active' : 'Inactive'}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Client Goals & Roadmap Summary */}

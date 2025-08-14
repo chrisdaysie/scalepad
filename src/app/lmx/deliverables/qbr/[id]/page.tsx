@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import ScalepadLogo from '@/components/ScalepadLogo';
+// import ScalepadLogo from '@/components/ScalepadLogo';
 
 interface QBRData {
   id: string;
@@ -240,7 +240,7 @@ interface QBRData {
 
 export default function QBRReportPage() {
   const params = useParams();
-  const router = useRouter();
+  // const router = useRouter();
   const [activeTab, setActiveTab] = useState('overview');
   const [isLoading, setIsLoading] = useState(true);
   const [qbrReports, setQbrReports] = useState<Record<string, QBRData>>({});

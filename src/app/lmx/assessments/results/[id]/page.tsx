@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import ScalepadLogo from '@/components/ScalepadLogo';
+// import ScalepadLogo from '@/components/ScalepadLogo';
 
 export default function AssessmentResults() {
   const params = useParams();
@@ -73,7 +73,7 @@ export default function AssessmentResults() {
               Assessment Completed Successfully!
             </h2>
             <p className="text-white/70 text-lg mb-8">
-              You've completed the {assessmentId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} assessment.
+              You&apos;ve completed the {assessmentId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} assessment.
             </p>
             
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-6 mb-8">

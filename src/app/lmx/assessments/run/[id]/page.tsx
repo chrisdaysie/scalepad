@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import ScalepadLogo from '@/components/ScalepadLogo';
+// import ScalepadLogo from '@/components/ScalepadLogo';
 
 interface Question {
   title: string;

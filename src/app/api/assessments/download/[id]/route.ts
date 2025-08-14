@@ -42,7 +42,8 @@ export async function GET(
     }
 
     const jsonData = fs.readFileSync(jsonPath, 'utf8');
-    const assessmentData = JSON.parse(jsonData);
+    // Parse to validate JSON but don't store in unused variable
+    JSON.parse(jsonData);
 
     // Return the JSON file as a download
     return new NextResponse(jsonData, {

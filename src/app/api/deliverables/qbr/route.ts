@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
@@ -15,10 +15,10 @@ export async function GET() {
     const qbrConfigs = JSON.parse(configData);
 
     // Load each QBR report from its individual JSON file
-    const qbrReports: Record<string, any> = {};
+    const qbrReports: Record<string, unknown> = {};
     
     for (const [reportId, config] of Object.entries(qbrConfigs)) {
-      const jsonFilePath = path.join(jsonDir, (config as any).json_file);
+      const jsonFilePath = path.join(jsonDir, (config as { json_file: string }).json_file);
       
       if (fs.existsSync(jsonFilePath)) {
         const reportData = fs.readFileSync(jsonFilePath, 'utf8');

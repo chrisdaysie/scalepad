@@ -4,9 +4,23 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import ScalepadLogo from '@/components/ScalepadLogo';
 
+interface QBRReport {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  type: string;
+  lastUpdated: number;
+  status?: string;
+  product?: string;
+  dataQuality?: string;
+  gradient?: string;
+  qbrUrl: string;
+}
+
 export default function Deliverables() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [qbrReports, setQbrReports] = useState<any[]>([]);
+  const [qbrReports, setQbrReports] = useState<QBRReport[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -168,7 +182,7 @@ export default function Deliverables() {
           </h1>
           
           <p className="text-xl md:text-2xl text-white/70 max-w-4xl mx-auto mb-8 animate-slide-up delay-200">
-            Client communication tools for roadmap planning, prioritization, presentation, and professional "leave behind" materials.
+            Client communication tools for roadmap planning, prioritization, presentation, and professional &ldquo;leave behind&rdquo; materials.
           </p>
           
 

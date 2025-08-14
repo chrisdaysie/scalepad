@@ -2520,9 +2520,17 @@ function LiveDataControls({
 
       if (response.ok) {
         const result = await response.json();
-        // Update the report data with the processed template
+        // Update the report data with the processed template and live data
         if (result.data) {
-          onReportUpdate(result.data);
+          const updatedReport = {
+            ...result.data,
+            liveData: {
+              ...result.data.liveData,
+              lastRefresh: result.liveData?.lastRefresh || new Date().toISOString(),
+              selectedClientUuid: selectedClientUuid
+            }
+          };
+          onReportUpdate(updatedReport);
         }
         // Show success message
         alert('Data refreshed successfully!');

@@ -46,6 +46,24 @@ export default function ViewAssessmentReport() {
   const [report, setReport] = useState<AssessmentReport | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // Get proper title based on assessment ID
+  const getProperTitle = (id: string): string => {
+    const titleMap: { [key: string]: string } = {
+      'ai-readiness': 'AI Readiness Assessment',
+      'cs-readiness': 'Customer Success Readiness Assessment',
+      'cyber-insurance-readiness': 'Cyber Insurance Readiness Assessment',
+      'cyber-resilience': 'Cyber Resilience Assessment',
+      'digital-work-analytics': 'Digital Work Analytics Assessment',
+      'technology-alignment': 'Technology Alignment Assessment',
+      'new-client-comprehensive': 'New Client Assessment (Comprehensive)',
+      'new-client-quick': 'New Client Assessment (Quick)',
+      'base-policies': 'Base Policies & Procedures Assessment',
+      'compliance-readiness': 'Compliance Readiness Assessment'
+    };
+    
+    return titleMap[id] || `${id.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} Assessment`;
+  };
+
   useEffect(() => {
     // Set page title
     document.title = `ScalePad - ${getProperTitle(assessmentId)} Report`;
@@ -57,22 +75,21 @@ export default function ViewAssessmentReport() {
       setLoading(true);
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // Get proper title based on assessment ID
-      const getProperTitle = (id: string): string => {
-        const titleMap: { [key: string]: string } = {
-          'ai-readiness': 'AI Readiness Assessment',
-          'cs-readiness': 'Customer Success Readiness Assessment',
-          'cyber-insurance-readiness': 'Cyber Insurance Readiness Assessment',
-          'cyber-resilience': 'Cyber Resilience Assessment',
-          'digital-work-analytics': 'Digital Work Analytics Assessment',
-          'technology-alignment': 'Technology Alignment Assessment',
-          'new-client-comprehensive': 'New Client Assessment (Comprehensive)',
-          'new-client-quick': 'New Client Assessment (Quick)',
-          'base-policies': 'Base Policies & Procedures Assessment',
-          'compliance-readiness': 'Compliance Readiness Assessment'
+      const getDescription = (id: string): string => {
+        const descriptionMap: { [key: string]: string } = {
+          'ai-readiness': 'Comprehensive evaluation of AI readiness across strategic, operational, technical, and cultural dimensions.',
+          'cs-readiness': 'Evaluation of customer success readiness and maturity across key operational areas.',
+          'cyber-insurance-readiness': 'Assessment of cyber insurance readiness and risk management capabilities.',
+          'cyber-resilience': 'Comprehensive evaluation of cybersecurity resilience and incident response capabilities.',
+          'digital-work-analytics': 'Assessment of digital work analytics implementation and data-driven decision making.',
+          'technology-alignment': 'Evaluation of technology alignment with business objectives and strategic goals.',
+          'new-client-comprehensive': 'Comprehensive evaluation of new client infrastructure, security, and operational readiness.',
+          'new-client-quick': 'Quick assessment of critical new client infrastructure and security posture.',
+          'base-policies': 'Evaluation of organizational policy maturity and governance framework.',
+          'compliance-readiness': 'Comprehensive evaluation of organizational readiness for cybersecurity compliance across seven critical domains including organizational foundation, security policies, technical controls, risk management, data protection, business continuity, and vendor management. Ideal for vCISO services and Compliance-as-a-Service providers to assess client maturity, identify gaps, and establish baseline compliance frameworks. Results help organizations understand their compliance posture and prepare for implementing comprehensive governance, risk, and compliance (GRC) programs.'
         };
         
-        return titleMap[id] || `${id.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} Assessment`;
+        return descriptionMap[id] || 'Comprehensive assessment evaluation and analysis.';
       };
 
       const getDescription = (id: string): string => {

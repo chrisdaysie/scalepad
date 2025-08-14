@@ -9,15 +9,21 @@ QBR reports are stored in JSON configuration files and served through a Next.js 
 - **Individual Reports**: Single-platform reports (e.g., Backup Radar, Cork Enhanced)
 - **Aggregate Reports**: Multi-platform comprehensive reports (e.g., Moneta)
 
+**Live Data Integration**: Some reports (like Cork) support real-time data refresh from external APIs with interactive controls in the browser.
+
 ## File Structure
 
 ```
 src/app/lmx/deliverables/
 ├── data/
-│   └── qbr-configs.json          # Main QBR configuration file
+│   ├── qbr-configs.json          # Main QBR configuration file
+│   └── json/
+│       └── qbr-report-cork.json  # Cork report with live data
 ├── qbr/
 │   └── [id]/
-│       └── page.tsx              # Dynamic QBR viewer
+│       └── page.tsx              # Dynamic QBR viewer with live controls
+├── documentation/
+│   └── cork-api.json             # Cork API specification
 └── README.md                     # This documentation
 ```
 
@@ -47,6 +53,38 @@ src/app/lmx/deliverables/
 2. **Follow the JSON structure** shown in the examples below
 3. **Test the report** by visiting `/lmx/deliverables/qbr/[report-id]`
 
+## Live Data Integration
+
+### Cork QBR Report - JSON-First Approach
+
+The Cork QBR report uses a **JSON-first approach** that separates content (JSON template) from data (live API data). This enables better collaboration with Cork on report design while maintaining real-time data integration.
+
+**Key Features:**
+- **Template-Based**: JSON contains placeholders for dynamic data
+- **Vendor Collaboration**: Cork can edit content without touching code
+- **Real-time Data**: Fetch latest security metrics, device data, and compliance events
+- **Client Selection**: Dropdown to choose from available clients
+- **Interactive Refresh**: Button to update data without page reload
+- **Status Indicators**: Shows last refresh time and live status
+
+**Setup:**
+1. **Configure API Key**: Add to `.env.local`:
+   ```env
+   CORK_API_KEY=your_cork_api_key_here
+   CORK_BASE_URL=https://api.cork.dev
+   ```
+
+2. **Access Report**: Navigate to `/lmx/deliverables/qbr/qbr-report-cork`
+
+3. **Use Live Controls**: Select client and click "Refresh Data"
+
+**API Endpoints:**
+- `/api/deliverables/cork/clients` - Fetches available clients
+- `/api/deliverables/cork/refresh` - Refreshes live data
+
+**Documentation:**
+- [JSON-First Approach Documentation](./documentation/json-first-approach.md) - Detailed guide for template editing and vendor collaboration
+
 ## JSON Configuration Structure
 
 ### Individual Report Template
@@ -63,6 +101,13 @@ src/app/lmx/deliverables/
     "type": "individual",
     "description": "Example business review and analysis report",
     "executiveSummary": "Example company demonstrates strong business performance...",
+    "liveData": {
+      "enabled": false,
+      "refreshInterval": 3600,
+      "lastRefresh": null,
+      "selectedClientUuid": null,
+      "availableClients": []
+    },
     "categories": [
       {
         "name": "Security Posture",
@@ -100,6 +145,22 @@ src/app/lmx/deliverables/
         }
       ]
     }
+  }
+}
+```
+
+### Live Data Configuration
+
+For reports with live data integration, add the `liveData` section:
+
+```json
+{
+  "liveData": {
+    "enabled": true,
+    "refreshInterval": 3600,
+    "lastRefresh": "2025-08-14T03:34:04.359Z",
+    "selectedClientUuid": "client-uuid-here",
+    "availableClients": []
   }
 }
 ```

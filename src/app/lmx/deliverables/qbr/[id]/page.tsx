@@ -50,6 +50,11 @@ interface QBRData {
     risks: string;
     insights: string;
     recommendations: string;
+    securityMetrics: string;
+    deviceProtection: string;
+    integrationHealth: string;
+    warrantyCoverage: string;
+    emailSecurity: string;
   };
   tabNavigation?: Array<{
     id: string;
@@ -259,6 +264,49 @@ interface QBRData {
       impact: string;
     }>;
   };
+  securityMetrics?: {
+    totalEvents: number;
+    resolvedEvents: number;
+    unresolvedEvents: number;
+    responseTimeAvg: number;
+    criticalEvents: number;
+    warningEvents: number;
+    infoEvents: number;
+    eventTypes: string[];
+  };
+  deviceProtection?: {
+    totalDevices: number;
+    protectedDevices: number;
+    unprotectedDevices: number;
+    protectionRate: string;
+    deviceTypes: {
+      edr: number;
+      bcdr: number;
+      rmm: number;
+    };
+    activeIntegrations: number;
+    integrationNames: string[];
+  };
+  integrationHealth?: {
+    totalIntegrations: number;
+    activeIntegrations: number;
+    inactiveIntegrations: number;
+    healthRate: string;
+    vendors: string[];
+    connectionStatus: Array<{
+      name: string;
+      status: string;
+      vendor: string;
+    }>;
+  };
+  emailSecurity?: {
+    totalDomains: number;
+    totalInboxes: number;
+    protectedInboxes: number;
+    protectionRate: string;
+    domains: string[];
+    securityFeatures: string[];
+  };
 }
 
 export default function QBRReportPage() {
@@ -358,7 +406,7 @@ export default function QBRReportPage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'satisfactory': return 'bg-green-100 text-green-800';
-      case 'needs-attention': return 'bg-yellow-100 text-yellow-800';
+      case 'needs_attention': return 'bg-yellow-100 text-yellow-800';
       case 'at-risk': return 'bg-red-100 text-red-800';
       default: return 'bg-gray-100 text-gray-800';
     }
@@ -1710,7 +1758,7 @@ export default function QBRReportPage() {
                         <li key={item.name} className="flex justify-between items-center text-sm">
                           <span className="text-gray-700">{item.name}</span>
                           <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(item.status)}`}>
-                            {item.status.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                            {item.status.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
                           </span>
                         </li>
                       ))}
@@ -1821,6 +1869,224 @@ export default function QBRReportPage() {
                 </div>
               </div>
             </div>
+
+            {/* Cork-Specific Data Sections */}
+            {report.id === 'qbr-report-cork' && (
+              <div className="space-y-8">
+                {/* Security Metrics */}
+                {report.securityMetrics && (
+                  <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">{report.sectionHeaders?.securityMetrics}</h2>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
+                      <div className="text-center">
+                        <div className="text-3xl font-bold text-blue-600 mb-2">{report.securityMetrics.totalEvents}</div>
+                        <div className="text-sm text-gray-600">Total Events</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-3xl font-bold text-green-600 mb-2">{report.securityMetrics.resolvedEvents}</div>
+                        <div className="text-sm text-gray-600">Resolved</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-3xl font-bold text-red-600 mb-2">{report.securityMetrics.unresolvedEvents}</div>
+                        <div className="text-sm text-gray-600">Unresolved</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-3xl font-bold text-purple-600 mb-2">{report.securityMetrics.responseTimeAvg}s</div>
+                        <div className="text-sm text-gray-600">Avg Response</div>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="text-center p-4 bg-red-50 rounded-lg">
+                        <div className="text-2xl font-bold text-red-600 mb-1">{report.securityMetrics.criticalEvents}</div>
+                        <div className="text-sm text-gray-600">Critical Events</div>
+                      </div>
+                      <div className="text-center p-4 bg-yellow-50 rounded-lg">
+                        <div className="text-2xl font-bold text-yellow-600 mb-1">{report.securityMetrics.warningEvents}</div>
+                        <div className="text-sm text-gray-600">Warning Events</div>
+                      </div>
+                      <div className="text-center p-4 bg-green-50 rounded-lg">
+                        <div className="text-2xl font-bold text-green-600 mb-1">{report.securityMetrics.infoEvents}</div>
+                        <div className="text-sm text-gray-600">Info Events</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Device Protection */}
+                {report.deviceProtection && (
+                  <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">{report.sectionHeaders?.deviceProtection}</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div>
+                        <div className="grid grid-cols-2 gap-4 mb-6">
+                          <div className="text-center p-4 bg-blue-50 rounded-lg">
+                            <div className="text-3xl font-bold text-blue-600 mb-2">{report.deviceProtection.totalDevices}</div>
+                            <div className="text-sm text-gray-600">Total Devices</div>
+                          </div>
+                          <div className="text-center p-4 bg-green-50 rounded-lg">
+                            <div className="text-3xl font-bold text-green-600 mb-2">{report.deviceProtection.protectionRate}</div>
+                            <div className="text-sm text-gray-600">Protection Rate</div>
+                          </div>
+                        </div>
+                        <div className="space-y-3">
+                          <div className="flex justify-between items-center">
+                            <span className="text-gray-700">Protected Devices</span>
+                            <span className="font-semibold text-green-600">{report.deviceProtection.protectedDevices}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-gray-700">Unprotected Devices</span>
+                            <span className="font-semibold text-red-600">{report.deviceProtection.unprotectedDevices}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-gray-700">Active Integrations</span>
+                            <span className="font-semibold text-blue-600">{report.deviceProtection.activeIntegrations}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-4">Device Types</h3>
+                        <div className="space-y-3">
+                          <div className="flex justify-between items-center">
+                            <span className="text-gray-700">EDR Solutions</span>
+                            <span className="font-semibold text-blue-600">{report.deviceProtection.deviceTypes.edr}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-gray-700">BCDR Platforms</span>
+                            <span className="font-semibold text-purple-600">{report.deviceProtection.deviceTypes.bcdr}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-gray-700">RMM Tools</span>
+                            <span className="font-semibold text-green-600">{report.deviceProtection.deviceTypes.rmm}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Integration Health */}
+                {report.integrationHealth && (
+                  <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">{report.sectionHeaders?.integrationHealth}</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div>
+                        <div className="grid grid-cols-2 gap-4 mb-6">
+                          <div className="text-center p-4 bg-green-50 rounded-lg">
+                            <div className="text-3xl font-bold text-green-600 mb-2">{report.integrationHealth.healthRate}</div>
+                            <div className="text-sm text-gray-600">Health Rate</div>
+                          </div>
+                          <div className="text-center p-4 bg-blue-50 rounded-lg">
+                            <div className="text-3xl font-bold text-blue-600 mb-2">{report.integrationHealth.activeIntegrations}</div>
+                            <div className="text-sm text-gray-600">Active</div>
+                          </div>
+                        </div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-4">Vendor Distribution</h3>
+                        <div className="space-y-2">
+                          {report.integrationHealth.vendors.map((vendor, index) => (
+                            <div key={index} className="flex items-center p-3 bg-gray-50 rounded-lg">
+                              <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                              <span className="font-medium text-gray-900">{vendor}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-4">Integration Categories</h3>
+                        <div className="space-y-4">
+                          <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                            <div className="flex items-center">
+                              <div className="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                              <span className="font-medium text-gray-900">EDR Solutions</span>
+                            </div>
+                            <span className="text-lg font-bold text-blue-600">{report.deviceProtection?.deviceTypes?.edr || 0}</span>
+                          </div>
+                          <div className="flex justify-between items-center p-3 bg-purple-50 rounded-lg">
+                            <div className="flex items-center">
+                              <div className="w-3 h-3 bg-purple-500 rounded-full mr-3"></div>
+                              <span className="font-medium text-gray-900">BCDR Platforms</span>
+                            </div>
+                            <span className="text-lg font-bold text-purple-600">{report.deviceProtection?.deviceTypes?.bcdr || 0}</span>
+                          </div>
+                          <div className="flex justify-between items-center p-3 bg-orange-50 rounded-lg">
+                            <div className="flex items-center">
+                              <div className="w-3 h-3 bg-orange-500 rounded-full mr-3"></div>
+                              <span className="font-medium text-gray-900">RMM Tools</span>
+                            </div>
+                            <span className="text-lg font-bold text-orange-600">{report.deviceProtection?.deviceTypes?.rmm || 0}</span>
+                          </div>
+                        </div>
+                        
+                        <h3 className="text-lg font-semibold text-gray-900 mb-4 mt-6">Integration Summary</h3>
+                        <div className="space-y-3">
+                          <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                            <span className="text-gray-700">Total Integrations</span>
+                            <span className="font-semibold text-blue-600">{report.integrationHealth.totalIntegrations}</span>
+                          </div>
+                          <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                            <span className="text-gray-700">Inactive Integrations</span>
+                            <span className="font-semibold text-orange-600">{report.integrationHealth.inactiveIntegrations}</span>
+                          </div>
+                          <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                            <span className="text-gray-700">Unique Vendors</span>
+                            <span className="font-semibold text-green-600">{report.integrationHealth.vendors.length}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Email Security */}
+                {report.emailSecurity && (
+                  <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">{report.sectionHeaders?.emailSecurity}</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div>
+                        <div className="grid grid-cols-2 gap-4 mb-6">
+                          <div className="text-center p-4 bg-blue-50 rounded-lg">
+                            <div className="text-3xl font-bold text-blue-600 mb-2">{report.emailSecurity.totalDomains}</div>
+                            <div className="text-sm text-gray-600">Domains</div>
+                          </div>
+                          <div className="text-center p-4 bg-green-50 rounded-lg">
+                            <div className="text-3xl font-bold text-green-600 mb-2">{report.emailSecurity.protectionRate}</div>
+                            <div className="text-sm text-gray-600">Protection Rate</div>
+                          </div>
+                        </div>
+                        <div className="space-y-3">
+                          <div className="flex justify-between items-center">
+                            <span className="text-gray-700">Total Inboxes</span>
+                            <span className="font-semibold text-blue-600">{report.emailSecurity.totalInboxes}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-gray-700">Protected Inboxes</span>
+                            <span className="font-semibold text-green-600">{report.emailSecurity.protectedInboxes}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-4">Security Features</h3>
+                        <div className="space-y-2">
+                          {report.emailSecurity.securityFeatures.map((feature, index) => (
+                            <div key={index} className="flex items-center p-3 bg-green-50 rounded-lg">
+                              <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                              <span className="font-medium text-gray-900">{feature}</span>
+                            </div>
+                          ))}
+                        </div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-4 mt-6">Domains</h3>
+                        <div className="space-y-2">
+                          {report.emailSecurity.domains.map((domain, index) => (
+                            <div key={index} className="p-3 bg-gray-50 rounded-lg">
+                              <span className="font-medium text-gray-900">{domain}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         )}
       </div>

@@ -4,92 +4,110 @@
   "company": "Cork",
   "dateRange": "August 1-7, 2025 • Weekly Summary",
   "heroMetric": {
-    "value": "50%",
+    "value": "83%",
     "label": "Overall Security Coverage",
-    "description": "10 endpoints with 10 active integrations"
+    "description": "10 endpoints with 10 active integrations",
+    "calculation": "average(deviceProtection, integrationCoverage, complianceMonitoring)"
   },
   "type": "individual",
   "description": "Comprehensive security analytics and threat intelligence platform",
-  "executiveSummary": "Your organization demonstrates excellent security posture with comprehensive endpoint protection and active threat monitoring. The security stack provides 100% device coverage with 19 active integrations delivering multi-layered protection across 5 domains. Recent monitoring detected 17 security events with 11 successfully resolved, showing responsive security operations and strong incident response capabilities.",
+  "executiveSummary": "Your organization demonstrates excellent security posture with comprehensive endpoint protection and active threat monitoring. The security stack provides 100%% device coverage with 10 active integrations delivering multi-layered protection across 1 domains. Recent monitoring detected 1 security events with 0 successfully resolved, showing limited security operations and strong incident response capabilities.",
   "liveData": {
     "enabled": true,
     "refreshInterval": 3600,
-    "lastRefresh": "2025-08-14T03:34:04.359Z",
+    "lastRefresh": "2025-08-14T03:59:44.594Z",
     "selectedClientUuid": "0c72184a-2201-4353-a5b7-2f9f371239db",
     "availableClients": []
   },
   "categories": [
     {
       "name": "Device Protection",
-      "score": 100,
+      "score": "100",
+      "calculation": "based on protected devices and endpoint coverage",
       "items": [
         {
           "name": "Endpoint Detection",
-          "status": "satisfactory"
+          "status": "satisfactory",
+          "condition": "protectedDevices > 0"
         },
         {
           "name": "Threat Prevention",
-          "status": "satisfactory"
+          "status": "satisfactory",
+          "condition": "protectedDevices > 0"
         },
         {
           "name": "Machine Learning Models",
-          "status": "satisfactory"
+          "status": "satisfactory",
+          "condition": "protectedDevices > 0"
         },
         {
           "name": "Behavioral Analysis",
-          "status": "satisfactory"
+          "status": "satisfactory",
+          "condition": "protectedDevices > 0"
         },
         {
           "name": "Anomaly Detection",
-          "status": "satisfactory"
+          "status": "satisfactory",
+          "condition": "protectedDevices > 0"
         },
         {
           "name": "Predictive Analytics",
-          "status": "satisfactory"
+          "status": "satisfactory",
+          "condition": "protectedDevices > 0"
         }
       ]
     },
     {
       "name": "Integration Coverage",
-      "score": 100,
+      "score": "100",
+      "calculation": "(activeIntegrations / totalIntegrations) * 100",
       "items": [
         {
           "name": "EDR Solutions",
-          "status": "needs_attention"
+          "status": "needs_attention",
+          "condition": "deviceTypes.edr > 0"
         },
         {
           "name": "BCDR Platforms",
-          "status": "needs_attention"
+          "status": "needs_attention",
+          "condition": "deviceTypes.bcdr > 0"
         },
         {
           "name": "RMM Tools",
-          "status": "needs_attention"
+          "status": "needs_attention",
+          "condition": "deviceTypes.rmm > 0"
         },
         {
           "name": "Email Security",
-          "status": "satisfactory"
+          "status": "satisfactory",
+          "condition": "totalDomains > 0"
         }
       ]
     },
     {
       "name": "Compliance Monitoring",
-      "score": 0,
+      "score": "50",
+      "calculation": "eventDetection(25%) + riskAssessment(25%) + responseCapability(25%) + resolutionRate(25%)",
       "items": [
         {
           "name": "Event Detection",
-          "status": "satisfactory"
+          "status": "satisfactory",
+          "condition": "totalEvents > 0"
         },
         {
           "name": "Risk Assessment",
-          "status": "needs_attention"
+          "status": "satisfactory",
+          "condition": "criticalEvents > 0 OR warningEvents > 0"
         },
         {
-          "name": "Incident Response",
-          "status": "needs_attention"
+          "name": "Response Capability",
+          "status": "needs_attention",
+          "condition": "activeIntegrations > 0"
         },
         {
-          "name": "Audit Trail",
-          "status": "satisfactory"
+          "name": "Resolution Rate",
+          "status": "needs_attention",
+          "condition": "eventResolutionRate > 50"
         }
       ]
     }
@@ -111,72 +129,152 @@
     "enhancedAnalysis": "🤖 Enhanced Analysis",
     "risks": "⚠️ Risks",
     "insights": "🤖 Insights",
-    "recommendations": "🎯 Recommendations"
+    "recommendations": "🎯 Recommendations",
+    "securityMetrics": "🔒 Security Metrics",
+    "deviceProtection": "🛡️ Device Protection",
+    "integrationHealth": "🔗 Integration Health",
+    "warrantyCoverage": "📋 Warranty Coverage",
+    "emailSecurity": "📧 Email Security"
   },
   "enhancedSections": {
     "risks": [
       {
         "title": "Outstanding Security Events",
         "description": "1 unresolved security events requiring immediate attention and remediation.",
-        "severity": "medium",
-        "impact": "Ongoing security risk exposure and potential compliance violations."
+        "severity": "low",
+        "impact": "Ongoing security risk exposure and potential compliance violations.",
+        "condition": "unresolvedEvents > 0"
       }
     ],
     "insights": [
       {
         "title": "Overall Security Coverage",
-        "description": "50% overall security coverage with 10 devices and 10 active integrations.",
-        "metric": "50% Coverage",
-        "trend": "neutral"
+        "description": "83% overall security coverage with 10 devices and 10 active integrations.",
+        "metric": "83% Coverage",
+        "trend": "positive",
+        "calculation": "average(deviceProtection, integrationCoverage, complianceMonitoring)"
       },
       {
         "title": "Integration Health",
         "description": "10 of 10 integrations are active, providing 10 different vendor solutions.",
         "metric": "10/10 Active",
-        "trend": "positive"
+        "trend": "positive",
+        "calculation": "activeIntegrations / totalIntegrations"
       },
       {
         "title": "Event Response Rate",
         "description": "0% of security events resolved, with 1 total events detected.",
         "metric": "0% Resolved",
-        "trend": "neutral"
+        "trend": "negative",
+        "calculation": "(resolvedEvents / totalEvents) * 100"
       },
       {
         "title": "Asset Coverage",
         "description": "Managing 12 total assets including 10 devices, 1 domains, and 1 inboxes.",
         "metric": "12 Assets",
-        "trend": "positive"
+        "trend": "positive",
+        "calculation": "devices + domains + inboxes"
       },
       {
         "title": "Warranty Coverage",
-        "description": "3 of 6 warranties are active, providing 50% coverage rate.",
-        "metric": "50% Coverage",
-        "trend": "positive"
+        "description": "3 of 6 warranties are active, providing 50%% coverage rate.",
+        "metric": "50%% Coverage",
+        "trend": "negative",
+        "calculation": "(activeWarranties / totalWarranties) * 100"
       }
     ],
     "recommendations": [
       {
         "title": "Address Email Configuration Issues",
-        "description": "Resolve 6 insecure email configuration events to improve email deliverability and prevent spoofing attacks.",
+        "description": "Resolve 0 insecure email configuration events to improve email deliverability and prevent spoofing attacks.",
         "priority": "high",
         "effort": "Medium",
-        "impact": "Improve email deliverability and prevent spoofing attacks"
+        "impact": "Improve email deliverability and prevent spoofing attacks",
+        "condition": "insecureEmailEvents > 0"
       },
       {
         "title": "Enhance Multi-Factor Authentication",
-        "description": "Address 4 MFA-related security events to strengthen account security across all systems.",
+        "description": "Address 0 MFA-related security events to strengthen account security across all systems.",
         "priority": "high",
         "effort": "Medium",
-        "impact": "Strengthen account security and prevent credential-based attacks"
+        "impact": "Strengthen account security and prevent credential-based attacks",
+        "condition": "mfaEvents > 0"
       },
       {
         "title": "Improve Event Resolution",
-        "description": "Resolve 6 outstanding security events to reduce security risk and improve response metrics.",
+        "description": "Resolve 1 outstanding security events to reduce security risk and improve response metrics.",
         "priority": "medium",
         "effort": "Low",
-        "impact": "Reduce security risk and improve response metrics"
+        "impact": "Reduce security risk and improve response metrics",
+        "condition": "unresolvedEvents > 0"
       }
     ]
+  },
+  "dataMapping": {
+    "placeholders": {
+      "coveragePercent": "overallMetrics.security_coverage",
+      "deviceCount": "endpointData.total_devices",
+      "integrationCount": "integrations.active",
+      "activeIntegrationCount": "integrations.active",
+      "totalIntegrationCount": "integrations.total",
+      "vendorCount": "integrations.vendors.length",
+      "totalEventCount": "securityMetrics.total_events",
+      "resolvedEventCount": "securityMetrics.resolved_events",
+      "unresolvedEventCount": "securityMetrics.unresolved_events",
+      "eventResolutionRate": "overallMetrics.event_resolution_rate",
+      "totalAssetCount": "overallMetrics.total_assets",
+      "domainCount": "emailData.total_domains",
+      "inboxCount": "emailData.total_inboxes",
+      "activeWarrantyCount": "warranties.active",
+      "totalWarrantyCount": "warranties.total",
+      "warrantyCoverageRate": "warranties.coverage_rate",
+      "deviceProtectionScore": "overallMetrics.device_protection_score",
+      "integrationCoverageScore": "calculated.integrationCoverage",
+      "complianceMonitoringScore": "calculated.complianceMonitoring",
+      "lastRefresh": "lastRefresh",
+      "selectedClientUuid": "selectedClientUuid"
+    },
+    "calculations": {
+      "integrationCoverage": "(integrations.active / integrations.total) * 100",
+      "complianceMonitoring": "eventDetection(25%) + riskAssessment(25%) + responseCapability(25%) + resolutionRate(25%)",
+      "coverageAdjective": "coveragePercent > 80 ? 'excellent' : coveragePercent > 60 ? 'good' : 'fair'",
+      "responseAdjective": "eventResolutionRate > 80 ? 'highly responsive' : eventResolutionRate > 50 ? 'responsive' : 'limited'",
+      "responseCapabilityAdjective": "activeIntegrations > 5 ? 'strong' : activeIntegrations > 2 ? 'adequate' : 'limited'",
+      "coverageTrend": "coveragePercent > 80 ? 'positive' : coveragePercent > 60 ? 'neutral' : 'negative'",
+      "integrationHealthTrend": "integrationCoverageScore > 80 ? 'positive' : integrationCoverageScore > 60 ? 'neutral' : 'negative'",
+      "eventResponseTrend": "eventResolutionRate > 80 ? 'positive' : eventResolutionRate > 50 ? 'neutral' : 'negative'",
+      "warrantyTrend": "warrantyCoverageRate > 80 ? 'positive' : warrantyCoverageRate > 50 ? 'neutral' : 'negative'",
+      "unresolvedEventSeverity": "unresolvedEvents > 5 ? 'high' : unresolvedEvents > 2 ? 'medium' : 'low'"
+    },
+    "statusMappings": {
+      "endpointDetectionStatus": "protectedDevices > 0 ? 'satisfactory' : 'needs_attention'",
+      "threatPreventionStatus": "protectedDevices > 0 ? 'satisfactory' : 'needs_attention'",
+      "mlModelsStatus": "protectedDevices > 0 ? 'satisfactory' : 'needs_attention'",
+      "behavioralAnalysisStatus": "protectedDevices > 0 ? 'satisfactory' : 'needs_attention'",
+      "anomalyDetectionStatus": "protectedDevices > 0 ? 'satisfactory' : 'needs_attention'",
+      "predictiveAnalyticsStatus": "protectedDevices > 0 ? 'satisfactory' : 'needs_attention'",
+      "edrStatus": "deviceTypes.edr > 0 ? 'satisfactory' : 'needs_attention'",
+      "bcdrStatus": "deviceTypes.bcdr > 0 ? 'satisfactory' : 'needs_attention'",
+      "rmmStatus": "deviceTypes.rmm > 0 ? 'satisfactory' : 'needs_attention'",
+      "emailSecurityStatus": "totalDomains > 0 ? 'satisfactory' : 'needs_attention'",
+      "eventDetectionStatus": "totalEvents > 0 ? 'satisfactory' : 'needs_attention'",
+      "riskAssessmentStatus": "(criticalEvents > 0 || warningEvents > 0) ? 'satisfactory' : 'needs_attention'",
+      "responseCapabilityStatus": "activeIntegrations > 0 ? 'satisfactory' : 'needs_attention'",
+      "resolutionRateStatus": "eventResolutionRate > 50 ? 'satisfactory' : 'needs_attention'"
+    }
+  },
+  "templateVersion": "1.0",
+  "vendorCollaboration": {
+    "editableSections": [
+      "executiveSummary",
+      "enhancedSections.insights",
+      "enhancedSections.recommendations",
+      "enhancedSections.risks",
+      "sectionHeaders"
+    ],
+    "placeholders": "Use {placeholderName} syntax for dynamic data",
+    "calculations": "Reference dataMapping.calculations for computed values",
+    "statusMappings": "Reference dataMapping.statusMappings for conditional statuses"
   },
   "warrantyCoverage": {
     "rate": "50%",
@@ -219,6 +317,109 @@
         "active": true,
         "start_date": "2025-07-18T00:00:00Z"
       }
+    ]
+  },
+  "securityMetrics": {
+    "totalEvents": 1,
+    "resolvedEvents": 0,
+    "unresolvedEvents": 1,
+    "responseTimeAvg": 2.1,
+    "criticalEvents": 1,
+    "warningEvents": 0,
+    "infoEvents": 0,
+    "eventTypes": [
+      "insecure-email-configuration"
+    ]
+  },
+  "deviceProtection": {
+    "totalDevices": 10,
+    "protectedDevices": 10,
+    "unprotectedDevices": 0,
+    "protectionRate": "100%",
+    "deviceTypes": {
+      "edr": 2,
+      "bcdr": 2,
+      "rmm": 1
+    },
+    "activeIntegrations": 0,
+    "integrationNames": []
+  },
+  "integrationHealth": {
+    "totalIntegrations": 10,
+    "activeIntegrations": 10,
+    "inactiveIntegrations": 0,
+    "healthRate": "100%",
+    "vendors": [
+      "Sophos Central - EDR",
+      "Datto BCDR",
+      "Microsoft O365",
+      "Microsoft Authenticator",
+      "Acronis BCDR",
+      "Microsoft O365",
+      "Microsoft Authenticator",
+      "NinjaRMM",
+      "Sophos Central - EDR",
+      "Webroot"
+    ],
+    "connectionStatus": [
+      {
+        "status": "ok",
+        "vendor": "Sophos Central - EDR"
+      },
+      {
+        "status": "ok",
+        "vendor": "Datto BCDR"
+      },
+      {
+        "name": "17d487c6-4f33-4d98-88b6-d7d0ee8312f6",
+        "status": "ok",
+        "vendor": "Microsoft O365"
+      },
+      {
+        "name": "Cork",
+        "status": "ok",
+        "vendor": "Microsoft Authenticator"
+      },
+      {
+        "status": "ok",
+        "vendor": "Acronis BCDR"
+      },
+      {
+        "name": "cork",
+        "status": "ok",
+        "vendor": "Microsoft O365"
+      },
+      {
+        "name": "cork",
+        "status": "ok",
+        "vendor": "Microsoft Authenticator"
+      },
+      {
+        "status": "ok",
+        "vendor": "NinjaRMM"
+      },
+      {
+        "status": "ok",
+        "vendor": "Sophos Central - EDR"
+      },
+      {
+        "status": "ok",
+        "vendor": "Webroot"
+      }
+    ]
+  },
+  "emailSecurity": {
+    "totalDomains": 1,
+    "totalInboxes": 1,
+    "protectedInboxes": 1,
+    "protectionRate": "100%",
+    "domains": [
+      "example.com"
+    ],
+    "securityFeatures": [
+      "SPF",
+      "DKIM",
+      "DMARC"
     ]
   }
 }

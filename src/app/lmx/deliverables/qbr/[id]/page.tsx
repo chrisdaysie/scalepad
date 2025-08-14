@@ -1042,18 +1042,18 @@ export default function QBRReportPage() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                   {(() => {
                     // Calculate totals from both our services and third party vendors
-                    const ourServicesMonthly = report.contracts?.ourServices?.monthly?.reduce((sum: number, contract: any) => 
+                    const ourServicesMonthly = report.contracts?.ourServices?.monthly?.reduce((sum: number, contract: { cost: string }) => 
                       sum + parseFloat(contract.cost.replace(/[$,]/g, '')), 0) || 0;
-                    const ourServicesQuarterly = report.contracts?.ourServices?.quarterly?.reduce((sum: number, contract: any) => 
+                    const ourServicesQuarterly = report.contracts?.ourServices?.quarterly?.reduce((sum: number, contract: { cost: string }) => 
                       sum + parseFloat(contract.cost.replace(/[$,]/g, '')), 0) || 0;
-                    const ourServicesAnnual = report.contracts?.ourServices?.annual?.reduce((sum: number, contract: any) => 
+                    const ourServicesAnnual = report.contracts?.ourServices?.annual?.reduce((sum: number, contract: { cost: string }) => 
                       sum + parseFloat(contract.cost.replace(/[$,]/g, '')), 0) || 0;
                     
-                    const thirdPartyMonthly = report.contracts?.thirdPartyVendors?.monthly?.reduce((sum: number, contract: any) => 
+                    const thirdPartyMonthly = report.contracts?.thirdPartyVendors?.monthly?.reduce((sum: number, contract: { cost: string }) => 
                       sum + parseFloat(contract.cost.replace(/[$,]/g, '')), 0) || 0;
-                    const thirdPartyQuarterly = report.contracts?.thirdPartyVendors?.quarterly?.reduce((sum: number, contract: any) => 
+                    const thirdPartyQuarterly = report.contracts?.thirdPartyVendors?.quarterly?.reduce((sum: number, contract: { cost: string }) => 
                       sum + parseFloat(contract.cost.replace(/[$,]/g, '')), 0) || 0;
-                    const thirdPartyAnnual = report.contracts?.thirdPartyVendors?.annual?.reduce((sum: number, contract: any) => 
+                    const thirdPartyAnnual = report.contracts?.thirdPartyVendors?.annual?.reduce((sum: number, contract: { cost: string }) => 
                       sum + parseFloat(contract.cost.replace(/[$,]/g, '')), 0) || 0;
                     
                     const monthlyTotal = ourServicesMonthly + thirdPartyMonthly;
@@ -1792,8 +1792,7 @@ export default function QBRReportPage() {
                             if (!warrantyData) return null;
                             
                             const values = Object.values(warrantyData);
-                            const total = values.reduce((sum: number, val: any) => sum + val, 0);
-                            const avgCoverage = Math.round(total / values.length);
+                            const total = values.reduce((sum: number, val: number) => sum + val, 0);
                             const circumference = 251.2;
                             let currentOffset = 0;
                             

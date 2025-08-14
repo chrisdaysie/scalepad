@@ -72,12 +72,8 @@ export default function Home() {
         </div>
         
         {/* Main Content */}
-        <div className="text-center mb-20">
-          {/* Mysterious Status */}
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 mb-8 animate-fade-in">
-            <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-            <span className="text-white/60 text-sm font-mono">SYSTEM_ACTIVE</span>
-          </div>
+        <div className="text-center mb-20 mt-20">
+
           
           {/* Enigmatic Title */}
           <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 animate-slide-up font-mono">
@@ -112,14 +108,7 @@ export default function Home() {
               <div className={`absolute inset-0 bg-gradient-to-t from-black/50 to-transparent transition-opacity duration-500 ${
                 isHovered ? 'opacity-0' : 'opacity-100'
               }`} />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className={`text-white/60 text-center transition-all duration-500 ${
-                  isHovered || revealCount > 0 ? 'opacity-0 scale-90' : 'opacity-100 scale-100'
-                }`}>
-                  <div className="text-4xl mb-2">👁️</div>
-                  <div className="text-sm font-mono">HOVER_TO_REVEAL</div>
-                </div>
-              </div>
+              
             </div>
           </div>
           
@@ -138,44 +127,12 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Mysterious Projects Grid */}
-        <div className="max-w-6xl mx-auto mb-20">
-          <h2 className="text-3xl font-bold text-white/60 text-center mb-12 animate-slide-up delay-500 font-mono">
-            <span className="text-purple-400">//</span> ACTIVE_PROTOCOLS
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-8 hover:bg-white/10 transition-all duration-500 cursor-pointer">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-500" />
-              
-              <div className="relative z-10">
-                <div className="text-4xl mb-4">🔬</div>
-                <h3 className="text-xl font-bold text-white/80 mb-4 font-mono">
-                  LIFECYCLE_MANAGER_X
-                </h3>
-                <p className="text-white/50 mb-6 leading-relaxed text-sm">
-                  Advanced business intelligence and reporting system with live data integration.
-                </p>
-                <div className="flex items-center text-green-400 text-sm font-mono">
-                  <span className="px-3 py-1 bg-green-400/10 rounded-full border border-green-400/20">ACTIVE</span>
-                </div>
-              </div>
-            </div>
 
-            <div className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-8 opacity-60 cursor-not-allowed">
-              <div className="relative z-10">
-                <div className="text-4xl mb-4">🤖</div>
-                <h3 className="text-xl font-bold text-white/60 mb-4 font-mono">
-                  AI_ANALYTICS_ENGINE
-                </h3>
-                <p className="text-white/40 mb-6 leading-relaxed text-sm">
-                  Machine learning platform for predictive insights and automated decision making.
-                </p>
-                <div className="flex items-center text-yellow-400 text-sm font-mono">
-                  <span className="px-3 py-1 bg-yellow-400/10 rounded-full border border-yellow-400/20">IN_DEVELOPMENT</span>
-                </div>
-              </div>
-            </div>
+          
+
+
+
+
 
             <div className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-8 opacity-60 cursor-not-allowed">
               <div className="relative z-10">

@@ -1409,26 +1409,40 @@ export default function QBRReportPage() {
                             const ageData = report.assetAnalytics?.ageDistribution;
                             if (!ageData) return null;
                             
-                            const total = Object.values(ageData).reduce((sum: number, val: any) => sum + val, 0);
+                            const colors = ['#10B981', '#3B82F6', '#F59E0B', '#EF4444'];
                             const circumference = 251.2;
-                            let currentOffset = 0;
+                            let currentAngle = 0;
                             
                             return Object.entries(ageData).map(([range, percentage], index) => {
-                              const colors = ['#10B981', '#3B82F6', '#F59E0B', '#EF4444'];
-                              const dashOffset = currentOffset;
-                              currentOffset += (percentage as number / 100) * circumference;
+                              const angle = (percentage as number / 100) * 360;
+                              const startAngle = currentAngle;
+                              const endAngle = currentAngle + angle;
+                              currentAngle = endAngle;
+                              
+                              // Convert angles to radians
+                              const startRad = (startAngle - 90) * Math.PI / 180;
+                              const endRad = (endAngle - 90) * Math.PI / 180;
+                              
+                              // Calculate arc path
+                              const x1 = 50 + 40 * Math.cos(startRad);
+                              const y1 = 50 + 40 * Math.sin(startRad);
+                              const x2 = 50 + 40 * Math.cos(endRad);
+                              const y2 = 50 + 40 * Math.sin(endRad);
+                              
+                              const largeArcFlag = angle > 180 ? 1 : 0;
+                              
+                              const pathData = [
+                                `M 50 50`,
+                                `L ${x1} ${y1}`,
+                                `A 40 40 0 ${largeArcFlag} 1 ${x2} ${y2}`,
+                                `Z`
+                              ].join(' ');
                               
                               return (
-                                <circle 
+                                <path 
                                   key={range}
-                                  cx="50" 
-                                  cy="50" 
-                                  r="40" 
-                                  fill="none" 
-                                  stroke={colors[index]} 
-                                  strokeWidth="20" 
-                                  strokeDasharray={circumference} 
-                                  strokeDashoffset={circumference - dashOffset} 
+                                  d={pathData}
+                                  fill={colors[index]}
                                 />
                               );
                             });

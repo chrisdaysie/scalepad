@@ -1423,18 +1423,25 @@ export default function QBRReportPage() {
                               const startRad = (startAngle - 90) * Math.PI / 180;
                               const endRad = (endAngle - 90) * Math.PI / 180;
                               
-                              // Calculate arc path
+                              // Calculate outer arc path (donut)
                               const x1 = 50 + 40 * Math.cos(startRad);
                               const y1 = 50 + 40 * Math.sin(startRad);
                               const x2 = 50 + 40 * Math.cos(endRad);
                               const y2 = 50 + 40 * Math.sin(endRad);
                               
+                              // Calculate inner arc path (donut hole)
+                              const x3 = 50 + 20 * Math.cos(endRad);
+                              const y3 = 50 + 20 * Math.sin(endRad);
+                              const x4 = 50 + 20 * Math.cos(startRad);
+                              const y4 = 50 + 20 * Math.sin(startRad);
+                              
                               const largeArcFlag = angle > 180 ? 1 : 0;
                               
                               const pathData = [
-                                `M 50 50`,
-                                `L ${x1} ${y1}`,
+                                `M ${x1} ${y1}`,
                                 `A 40 40 0 ${largeArcFlag} 1 ${x2} ${y2}`,
+                                `L ${x3} ${y3}`,
+                                `A 20 20 0 ${largeArcFlag} 0 ${x4} ${y4}`,
                                 `Z`
                               ].join(' ');
                               

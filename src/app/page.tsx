@@ -125,31 +125,7 @@ export default function Home() {
               INITIATE_CONTACT
             </button>
           </div>
-        </div>
 
-
-          
-
-
-
-
-
-            <div className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-8 opacity-60 cursor-not-allowed">
-              <div className="relative z-10">
-                <div className="text-4xl mb-4">🎨</div>
-                <h3 className="text-xl font-bold text-white/60 mb-4 font-mono">
-                  CREATIVE_STUDIO_V2
-                </h3>
-                <p className="text-white/40 mb-6 leading-relaxed text-sm">
-                  Next-generation design tools and creative workflow automation.
-                </p>
-                <div className="flex items-center text-blue-400 text-sm font-mono">
-                  <span className="px-3 py-1 bg-blue-400/10 rounded-full border border-blue-400/20">PLANNED</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
         {/* Mysterious Footer */}
         <div className="text-center mt-20 pt-8 border-t border-white/10">

@@ -1410,7 +1410,6 @@ export default function QBRReportPage() {
                             if (!ageData) return null;
                             
                             const colors = ['#10B981', '#3B82F6', '#F59E0B', '#EF4444'];
-                            const circumference = 251.2;
                             let currentAngle = 0;
                             
                             return Object.entries(ageData).map(([range, percentage], index) => {
@@ -1429,11 +1428,11 @@ export default function QBRReportPage() {
                               const x2 = 50 + 40 * Math.cos(endRad);
                               const y2 = 50 + 40 * Math.sin(endRad);
                               
-                              // Calculate inner arc path (donut hole)
-                              const x3 = 50 + 20 * Math.cos(endRad);
-                              const y3 = 50 + 20 * Math.sin(endRad);
-                              const x4 = 50 + 20 * Math.cos(startRad);
-                              const y4 = 50 + 20 * Math.sin(startRad);
+                              // Calculate inner arc path (donut hole) - larger hole for text
+                              const x3 = 50 + 25 * Math.cos(endRad);
+                              const y3 = 50 + 25 * Math.sin(endRad);
+                              const x4 = 50 + 25 * Math.cos(startRad);
+                              const y4 = 50 + 25 * Math.sin(startRad);
                               
                               const largeArcFlag = angle > 180 ? 1 : 0;
                               
@@ -1441,7 +1440,7 @@ export default function QBRReportPage() {
                                 `M ${x1} ${y1}`,
                                 `A 40 40 0 ${largeArcFlag} 1 ${x2} ${y2}`,
                                 `L ${x3} ${y3}`,
-                                `A 20 20 0 ${largeArcFlag} 0 ${x4} ${y4}`,
+                                `A 25 25 0 ${largeArcFlag} 0 ${x4} ${y4}`,
                                 `Z`
                               ].join(' ');
                               

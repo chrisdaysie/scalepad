@@ -2,9 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import ScalepadLogo from '@/components/ScalepadLogo';
+import Image from 'next/image';
 
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+  const [revealCount, setRevealCount] = useState(0);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -15,129 +18,189 @@ export default function Home() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  const handleReveal = () => {
+    setRevealCount(prev => prev + 1);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
-      {/* Animated Background */}
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Mysterious Background */}
       <div className="absolute inset-0">
+        {/* Animated particles */}
+        <div className="absolute inset-0 opacity-20">
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${2 + Math.random() * 3}s`
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Gradient orbs */}
         <div 
-          className="absolute w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"
+          className="absolute w-[800px] h-[800px] bg-gradient-radial from-purple-500/10 via-transparent to-transparent rounded-full blur-3xl"
           style={{
-            left: `${mousePosition.x * 0.1}px`,
-            top: `${mousePosition.y * 0.1}px`,
-            transition: 'all 0.3s ease-out'
+            left: `${mousePosition.x * 0.1 - 400}px`,
+            top: `${mousePosition.y * 0.1 - 400}px`,
+            transition: 'all 0.5s ease-out'
           }}
         />
         <div 
-          className="absolute w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse delay-1000"
+          className="absolute w-[600px] h-[600px] bg-gradient-radial from-blue-500/10 via-transparent to-transparent rounded-full blur-3xl"
           style={{
-            right: `${mousePosition.x * 0.05}px`,
-            bottom: `${mousePosition.y * 0.05}px`,
-            transition: 'all 0.3s ease-out'
+            right: `${mousePosition.x * 0.05 - 300}px`,
+            bottom: `${mousePosition.y * 0.05 - 300}px`,
+            transition: 'all 0.5s ease-out'
           }}
         />
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%239C92AC%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-16">
-        {/* Logo */}
-        <div className="absolute top-8 right-8 z-20">
-          <ScalepadLogo size="lg" showText={false} variant="light" />
+        {/* Mysterious Logo */}
+        <div className="absolute top-8 right-8 z-20 opacity-60 hover:opacity-100 transition-opacity duration-500">
+          <div className="relative group">
+            <ScalepadLogo size="lg" showText={false} variant="light" />
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </div>
         </div>
         
-        {/* Hero Section */}
+        {/* Main Content */}
         <div className="text-center mb-20">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8 animate-fade-in">
+          {/* Mysterious Status */}
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 mb-8 animate-fade-in">
             <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-            <span className="text-white/80 text-sm">Available for new projects</span>
+            <span className="text-white/60 text-sm font-mono">SYSTEM_ACTIVE</span>
           </div>
           
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 animate-slide-up">
-            Chris Day&apos;s
-            <span className="block bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Playground
+          {/* Enigmatic Title */}
+          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 animate-slide-up font-mono">
+            <span className="text-white/40">[</span>
+            <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+              SCALEPAD_PLAYGROUND
             </span>
+            <span className="text-white/40">]</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto mb-12 animate-slide-up delay-200">
-            Exploring the intersection of technology and creativity through innovative web applications, 
-            AI experiments, and cutting-edge development projects.
+          {/* Mysterious Description */}
+          <p className="text-xl md:text-2xl text-white/50 max-w-3xl mx-auto mb-12 animate-slide-up delay-200 font-mono">
+            <span className="text-purple-400">//</span> A digital laboratory where ideas converge and possibilities emerge
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up delay-300">
-            <a href="/lmx" className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25 whitespace-nowrap">
-              Explore Lifecycle Manager X
+          {/* Hidden Image Reveal */}
+          <div className="relative mb-12 animate-slide-up delay-300">
+            <div 
+              className="relative w-64 h-64 mx-auto rounded-full overflow-hidden border-2 border-white/10 cursor-pointer group"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              onClick={handleReveal}
+            >
+              <Image
+                src="/chrisday.jpg"
+                alt="Mysterious Figure"
+                fill
+                className={`object-cover transition-all duration-700 ${
+                  isHovered || revealCount > 0 ? 'scale-100 opacity-100' : 'scale-110 opacity-30'
+                }`}
+              />
+              <div className={`absolute inset-0 bg-gradient-to-t from-black/50 to-transparent transition-opacity duration-500 ${
+                isHovered ? 'opacity-0' : 'opacity-100'
+              }`} />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className={`text-white/60 text-center transition-all duration-500 ${
+                  isHovered || revealCount > 0 ? 'opacity-0 scale-90' : 'opacity-100 scale-100'
+                }`}>
+                  <div className="text-4xl mb-2">👁️</div>
+                  <div className="text-sm font-mono">HOVER_TO_REVEAL</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Mysterious Navigation */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up delay-400">
+            <a 
+              href="/lmx" 
+              className="group relative px-8 py-4 bg-gradient-to-r from-purple-500/20 to-blue-500/20 backdrop-blur-sm border border-white/20 text-white rounded-lg font-mono hover:from-purple-500/30 hover:to-blue-500/30 transition-all duration-300 transform hover:scale-105"
+            >
+              <span className="relative z-10">ENTER_LABORATORY</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
-            <button className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-full font-semibold hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-              Get in Touch
+            <button className="px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/10 text-white/60 rounded-lg font-mono hover:bg-white/10 hover:text-white/80 transition-all duration-300 transform hover:scale-105">
+              INITIATE_CONTACT
             </button>
           </div>
         </div>
 
-        {/* Coming Soon Projects */}
+        {/* Mysterious Projects Grid */}
         <div className="max-w-6xl mx-auto mb-20">
-          <h2 className="text-3xl font-bold text-white text-center mb-12 animate-slide-up delay-400">
-            Coming Soon
+          <h2 className="text-3xl font-bold text-white/60 text-center mb-12 animate-slide-up delay-500 font-mono">
+            <span className="text-purple-400">//</span> ACTIVE_PROTOCOLS
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 opacity-50 cursor-not-allowed">
-              <div className="absolute inset-0 bg-gradient-to-r from-gray-500 to-gray-600 opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500" />
-              
-              <div className="relative z-10">
-                <div className="text-4xl mb-4">🚀</div>
-                <h3 className="text-2xl font-bold text-white/60 mb-4">
-                  AI-Powered Analytics
-                </h3>
-                <p className="text-white/50 mb-6 leading-relaxed">
-                  Advanced analytics platform with machine learning insights and predictive modeling.
-                </p>
-                <div className="flex items-center text-white/40 text-sm">
-                  <span className="px-3 py-1 bg-white/10 rounded-full">Coming Soon</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 opacity-50 cursor-not-allowed">
-              <div className="absolute inset-0 bg-gradient-to-r from-gray-500 to-gray-600 opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500" />
-              
-              <div className="relative z-10">
-                <div className="text-4xl mb-4">🎨</div>
-                <h3 className="text-2xl font-bold text-white/60 mb-4">
-                  Creative Studio
-                </h3>
-                <p className="text-white/50 mb-6 leading-relaxed">
-                  Digital design and creative tools for modern content creation workflows.
-                </p>
-                <div className="flex items-center text-white/40 text-sm">
-                  <span className="px-3 py-1 bg-white/10 rounded-full">Coming Soon</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 opacity-50 cursor-not-allowed">
-              <div className="absolute inset-0 bg-gradient-to-r from-gray-500 to-gray-600 opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500" />
+            <div className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-8 hover:bg-white/10 transition-all duration-500 cursor-pointer">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity duration-500" />
               
               <div className="relative z-10">
                 <div className="text-4xl mb-4">🔬</div>
-                <h3 className="text-2xl font-bold text-white/60 mb-4">
-                  Research Lab
+                <h3 className="text-xl font-bold text-white/80 mb-4 font-mono">
+                  LIFECYCLE_MANAGER_X
                 </h3>
-                <p className="text-white/50 mb-6 leading-relaxed">
-                  Experimental projects and cutting-edge technology research platform.
+                <p className="text-white/50 mb-6 leading-relaxed text-sm">
+                  Advanced business intelligence and reporting system with live data integration.
                 </p>
-                <div className="flex items-center text-white/40 text-sm">
-                  <span className="px-3 py-1 bg-white/10 rounded-full">Coming Soon</span>
+                <div className="flex items-center text-green-400 text-sm font-mono">
+                  <span className="px-3 py-1 bg-green-400/10 rounded-full border border-green-400/20">ACTIVE</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-8 opacity-60 cursor-not-allowed">
+              <div className="relative z-10">
+                <div className="text-4xl mb-4">🤖</div>
+                <h3 className="text-xl font-bold text-white/60 mb-4 font-mono">
+                  AI_ANALYTICS_ENGINE
+                </h3>
+                <p className="text-white/40 mb-6 leading-relaxed text-sm">
+                  Machine learning platform for predictive insights and automated decision making.
+                </p>
+                <div className="flex items-center text-yellow-400 text-sm font-mono">
+                  <span className="px-3 py-1 bg-yellow-400/10 rounded-full border border-yellow-400/20">IN_DEVELOPMENT</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-8 opacity-60 cursor-not-allowed">
+              <div className="relative z-10">
+                <div className="text-4xl mb-4">🎨</div>
+                <h3 className="text-xl font-bold text-white/60 mb-4 font-mono">
+                  CREATIVE_STUDIO_V2
+                </h3>
+                <p className="text-white/40 mb-6 leading-relaxed text-sm">
+                  Next-generation design tools and creative workflow automation.
+                </p>
+                <div className="flex items-center text-blue-400 text-sm font-mono">
+                  <span className="px-3 py-1 bg-blue-400/10 rounded-full border border-blue-400/20">PLANNED</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Footer */}
+        {/* Mysterious Footer */}
         <div className="text-center mt-20 pt-8 border-t border-white/10">
-          <p className="text-white/50 text-sm">
-            © 2024 Chris Day. Built with Next.js, TypeScript, and Tailwind CSS.
+          <p className="text-white/30 text-sm font-mono">
+            <span className="text-purple-400">//</span> SCALEPAD_PLAYGROUND © 2024
+          </p>
+          <p className="text-white/20 text-xs font-mono mt-2">
+            BUILT_WITH_NEXTJS_TYPESCRIPT_TAILWIND
           </p>
         </div>
       </div>
@@ -176,8 +239,12 @@ export default function Home() {
           animation-delay: 300ms;
         }
         
-        .delay-1000 {
-          animation-delay: 1000ms;
+        .delay-400 {
+          animation-delay: 400ms;
+        }
+        
+        .delay-500 {
+          animation-delay: 500ms;
         }
       `}</style>
     </div>

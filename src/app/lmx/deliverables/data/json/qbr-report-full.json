@@ -577,10 +577,10 @@
   },
   "assetAnalytics": {
     "ageDistribution": {
-      "0-1": 40,
-      "1-3": 35,
-      "3-5": 20,
-      "5+": 5
+      "0-1": 15,
+      "1-3": 25,
+      "3-5": 35,
+      "5+": 25
     },
     "warrantyCoverage": {
       "servers": 80,
@@ -590,8 +590,8 @@
     },
     "summary": {
       "totalAssets": 30,
-      "underWarranty": 22,
-      "outOfWarranty": 8,
+      "underWarranty": 19,
+      "outOfWarranty": 11,
       "replacementBudget": "$18K"
     }
   },

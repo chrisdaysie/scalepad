@@ -1405,18 +1405,34 @@ export default function QBRReportPage() {
                       <div className="relative w-48 h-48">
                         {/* Pie Chart - Age Distribution */}
                         <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-                          {/* 0-1 years: 40% */}
-                          <circle cx="50" cy="50" r="40" fill="none" stroke="#10B981" strokeWidth="20" 
-                            strokeDasharray="251.2" strokeDashoffset="150.72" />
-                          {/* 1-3 years: 35% */}
-                          <circle cx="50" cy="50" r="40" fill="none" stroke="#3B82F6" strokeWidth="20" 
-                            strokeDasharray="251.2" strokeDashoffset="87.92" />
-                          {/* 3-5 years: 20% */}
-                          <circle cx="50" cy="50" r="40" fill="none" stroke="#F59E0B" strokeWidth="20" 
-                            strokeDasharray="251.2" strokeDashoffset="50.24" />
-                          {/* 5+ years: 5% */}
-                          <circle cx="50" cy="50" r="40" fill="none" stroke="#EF4444" strokeWidth="20" 
-                            strokeDasharray="251.2" strokeDashoffset="0" />
+                          {(() => {
+                            const ageData = report.assetAnalytics?.ageDistribution;
+                            if (!ageData) return null;
+                            
+                            const total = Object.values(ageData).reduce((sum: number, val: any) => sum + val, 0);
+                            const circumference = 251.2;
+                            let currentOffset = 0;
+                            
+                            return Object.entries(ageData).map(([range, percentage], index) => {
+                              const colors = ['#10B981', '#3B82F6', '#F59E0B', '#EF4444'];
+                              const dashOffset = currentOffset;
+                              currentOffset += (percentage as number / 100) * circumference;
+                              
+                              return (
+                                <circle 
+                                  key={range}
+                                  cx="50" 
+                                  cy="50" 
+                                  r="40" 
+                                  fill="none" 
+                                  stroke={colors[index]} 
+                                  strokeWidth="20" 
+                                  strokeDasharray={circumference} 
+                                  strokeDashoffset={circumference - dashOffset} 
+                                />
+                              );
+                            });
+                          })()}
                         </svg>
                         <div className="absolute inset-0 flex items-center justify-center">
                           <div className="text-center">
@@ -1427,22 +1443,19 @@ export default function QBRReportPage() {
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-4 mt-6">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                        <span className="text-sm text-gray-600">0-1 years (40%)</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                        <span className="text-sm text-gray-600">1-3 years (35%)</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                        <span className="text-sm text-gray-600">3-5 years (20%)</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                        <span className="text-sm text-gray-600">5+ years (5%)</span>
-                      </div>
+                      {(() => {
+                        const ageData = report.assetAnalytics?.ageDistribution;
+                        if (!ageData) return null;
+                        
+                        const colors = ['bg-green-500', 'bg-blue-500', 'bg-yellow-500', 'bg-red-500'];
+                        
+                        return Object.entries(ageData).map(([range, percentage], index) => (
+                          <div key={range} className="flex items-center space-x-2">
+                            <div className={`w-3 h-3 ${colors[index]} rounded-full`}></div>
+                            <span className="text-sm text-gray-600">{range} years ({percentage}%)</span>
+                          </div>
+                        ));
+                      })()}
                     </div>
                   </div>
 
@@ -1453,44 +1466,59 @@ export default function QBRReportPage() {
                       <div className="relative w-48 h-48">
                         {/* Pie Chart - Warranty Coverage */}
                         <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-                          {/* Servers: 80% covered */}
-                          <circle cx="50" cy="50" r="40" fill="none" stroke="#10B981" strokeWidth="20" 
-                            strokeDasharray="251.2" strokeDashoffset="50.24" />
-                          {/* Workstations: 60% covered */}
-                          <circle cx="50" cy="50" r="40" fill="none" stroke="#3B82F6" strokeWidth="20" 
-                            strokeDasharray="251.2" strokeDashoffset="100.48" />
-                          {/* Network: 90% covered */}
-                          <circle cx="50" cy="50" r="40" fill="none" stroke="#8B5CF6" strokeWidth="20" 
-                            strokeDasharray="251.2" strokeDashoffset="25.12" />
-                          {/* Storage: 70% covered */}
-                          <circle cx="50" cy="50" r="40" fill="none" stroke="#F59E0B" strokeWidth="20" 
-                            strokeDasharray="251.2" strokeDashoffset="75.36" />
+                          {(() => {
+                            const warrantyData = report.assetAnalytics?.warrantyCoverage;
+                            if (!warrantyData) return null;
+                            
+                            const values = Object.values(warrantyData);
+                            const total = values.reduce((sum: number, val: any) => sum + val, 0);
+                            const avgCoverage = Math.round(total / values.length);
+                            const circumference = 251.2;
+                            let currentOffset = 0;
+                            
+                            return Object.entries(warrantyData).map(([type, percentage], index) => {
+                              const colors = ['#10B981', '#3B82F6', '#8B5CF6', '#F59E0B'];
+                              const dashOffset = currentOffset;
+                              currentOffset += (percentage as number / 100) * circumference;
+                              
+                              return (
+                                <circle 
+                                  key={type}
+                                  cx="50" 
+                                  cy="50" 
+                                  r="40" 
+                                  fill="none" 
+                                  stroke={colors[index]} 
+                                  strokeWidth="20" 
+                                  strokeDasharray={circumference} 
+                                  strokeDashoffset={circumference - dashOffset} 
+                                />
+                              );
+                            });
+                          })()}
                         </svg>
                         <div className="absolute inset-0 flex items-center justify-center">
                           <div className="text-center">
-                            <div className="text-2xl font-bold text-gray-900">75%</div>
+                            <div className="text-2xl font-bold text-gray-900">65%</div>
                             <div className="text-sm text-gray-600">Avg Coverage</div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-4 mt-6">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                        <span className="text-sm text-gray-600">Servers (80%)</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                        <span className="text-sm text-gray-600">Workstations (60%)</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-                        <span className="text-sm text-gray-600">Network (90%)</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                        <span className="text-sm text-gray-600">Storage (70%)</span>
-                      </div>
+                      {(() => {
+                        const warrantyData = report.assetAnalytics?.warrantyCoverage;
+                        if (!warrantyData) return null;
+                        
+                        const colors = ['bg-green-500', 'bg-blue-500', 'bg-purple-500', 'bg-yellow-500'];
+                        
+                        return Object.entries(warrantyData).map(([type, percentage], index) => (
+                          <div key={type} className="flex items-center space-x-2">
+                            <div className={`w-3 h-3 ${colors[index]} rounded-full`}></div>
+                            <span className="text-sm text-gray-600">{type.charAt(0).toUpperCase() + type.slice(1)} ({percentage}%)</span>
+                          </div>
+                        ));
+                      })()}
                     </div>
                   </div>
                 </div>

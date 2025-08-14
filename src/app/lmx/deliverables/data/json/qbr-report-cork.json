@@ -4,9 +4,9 @@
   "company": "Cork",
   "dateRange": "August 1-7, 2025 • Weekly Summary",
   "heroMetric": {
-    "value": "0%",
-    "label": "Device Protection Coverage",
-    "description": "2 endpoints protected with comprehensive security stack"
+    "value": "50%",
+    "label": "Overall Security Coverage",
+    "description": "2 endpoints with 10 active integrations"
   },
   "type": "individual",
   "description": "Comprehensive security analytics and threat intelligence platform",
@@ -14,14 +14,14 @@
   "liveData": {
     "enabled": true,
     "refreshInterval": 3600,
-    "lastRefresh": "2025-08-14T03:22:07.550Z",
+    "lastRefresh": "2025-08-14T03:29:56.371Z",
     "selectedClientUuid": "4911c0c5-cb68-4ea3-b3e9-625ba6358478",
     "availableClients": []
   },
   "categories": [
     {
       "name": "Device Protection",
-      "score": 0,
+      "score": 100,
       "items": [
         {
           "name": "Endpoint Detection",
@@ -50,45 +50,45 @@
       ]
     },
     {
-      "name": "Automated Response",
-      "score": 89,
+      "name": "Integration Coverage",
+      "score": 100,
       "items": [
         {
-          "name": "Threat Containment",
-          "status": "satisfactory"
+          "name": "EDR Solutions",
+          "status": "needs_attention"
         },
         {
-          "name": "Incident Response",
-          "status": "satisfactory"
+          "name": "BCDR Platforms",
+          "status": "needs_attention"
         },
         {
-          "name": "Remediation Actions",
-          "status": "needs-attention"
+          "name": "RMM Tools",
+          "status": "needs_attention"
         },
         {
-          "name": "Recovery Procedures",
+          "name": "Email Security",
           "status": "satisfactory"
         }
       ]
     },
     {
-      "name": "Compliance Automation",
-      "score": 91,
+      "name": "Compliance Monitoring",
+      "score": 0,
       "items": [
         {
-          "name": "Policy Enforcement",
-          "status": "satisfactory"
-        },
-        {
-          "name": "Audit Automation",
-          "status": "satisfactory"
-        },
-        {
-          "name": "Reporting Generation",
+          "name": "Event Detection",
           "status": "satisfactory"
         },
         {
           "name": "Risk Assessment",
+          "status": "needs_attention"
+        },
+        {
+          "name": "Incident Response",
+          "status": "needs_attention"
+        },
+        {
+          "name": "Audit Trail",
           "status": "satisfactory"
         }
       ]
@@ -124,27 +124,27 @@
     ],
     "insights": [
       {
-        "title": "Device Protection Coverage",
-        "description": "0% device protection coverage demonstrates strong endpoint security controls across all managed devices.",
-        "metric": "0% Coverage",
+        "title": "Overall Security Coverage",
+        "description": "50% overall security coverage with 2 devices and 10 active integrations.",
+        "metric": "50% Coverage",
+        "trend": "neutral"
+      },
+      {
+        "title": "Integration Health",
+        "description": "10 of 10 integrations are active, providing 10 different vendor solutions.",
+        "metric": "10/10 Active",
         "trend": "positive"
       },
       {
-        "title": "Security Integration Stack",
-        "description": "Comprehensive security stack with 0 active integrations providing multi-layered protection.",
-        "metric": "0 Integrations",
-        "trend": "positive"
+        "title": "Event Response Rate",
+        "description": "0% of security events resolved, with 6 total events detected.",
+        "metric": "0% Resolved",
+        "trend": "neutral"
       },
       {
-        "title": "Event Monitoring Activity",
-        "description": "Active security monitoring with 6 events detected and 0 resolved, showing responsive security operations.",
-        "metric": "6 Events Detected",
-        "trend": "positive"
-      },
-      {
-        "title": "Multi-Domain Management",
-        "description": "Multi-domain security management with 5 domains under centralized protection and monitoring.",
-        "metric": "5 Domains Protected",
+        "title": "Asset Coverage",
+        "description": "Managing 17 total assets including 2 devices, 5 domains, and 10 inboxes.",
+        "metric": "17 Assets",
         "trend": "positive"
       }
     ],

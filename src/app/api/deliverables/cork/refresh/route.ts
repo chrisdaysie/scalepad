@@ -10,6 +10,7 @@ interface CorkSecurityMetrics {
   critical_events: number;
   warning_events: number;
   info_events: number;
+  event_types: string[];
   last_updated: string;
 }
 
@@ -23,6 +24,8 @@ interface CorkEndpointData {
     bcdr: number;
     rmm: number;
   };
+  active_integrations: number;
+  integration_names: string[];
 }
 
 interface CorkEmailData {
@@ -36,6 +39,22 @@ interface CorkLiveData {
   securityMetrics: CorkSecurityMetrics;
   endpointData: CorkEndpointData;
   emailData: CorkEmailData;
+  integrations: {
+    total: number;
+    active: number;
+    vendors: string[];
+    connection_status: Array<{
+      name: string;
+      status: string;
+      vendor: string;
+    }>;
+  };
+  overallMetrics: {
+    device_protection_score: number;
+    event_resolution_rate: number;
+    total_assets: number;
+    security_coverage: number;
+  };
   lastRefresh: string;
   selectedClientUuid: string;
   selectedClientName: string;
@@ -139,6 +158,10 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
   
   console.log(`Found ${events.length} security events`);
 
+  // Get event types for better categorization
+  const eventTypes = events.map((e: any) => e.event_type);
+  const uniqueEventTypes = [...new Set(eventTypes)];
+
   const securityMetrics: CorkSecurityMetrics = {
     total_events: events.length,
     resolved_events: events.filter((e: any) => e.resolved_at).length,
@@ -147,6 +170,7 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
     critical_events: events.filter((e: any) => e.at_risk).length,
     warning_events: events.filter((e: any) => !e.at_risk && !e.resolved_at).length,
     info_events: events.filter((e: any) => e.resolved_at).length,
+    event_types: uniqueEventTypes,
     last_updated: new Date().toISOString(),
   };
 
@@ -176,16 +200,27 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
   
   console.log(`Found ${devices.length} devices`);
 
+  // Calculate device protection based on associated endpoints
+  const protectedDevices = devices.filter((d: any) => d.associated_endpoints && d.associated_endpoints.length > 0).length;
+  const unprotectedDevices = devices.length - protectedDevices;
+  const protectionRate = devices.length > 0 ? Math.round((protectedDevices / devices.length) * 100) : 0;
+
+  // Get unique integrations from associated endpoints
+  const allIntegrations = devices.flatMap((d: any) => d.associated_endpoints || []);
+  const uniqueIntegrations = [...new Set(allIntegrations.map((ep: any) => ep.integration?.display_name))].filter(Boolean);
+
   const endpointData: CorkEndpointData = {
     total_devices: devices.length,
-    protected_devices: devices.filter((d: any) => d.protection_status === 'protected').length,
-    unprotected_devices: devices.filter((d: any) => d.protection_status !== 'protected').length,
-    protection_rate: `${Math.round((devices.filter((d: any) => d.protection_status === 'protected').length / devices.length) * 100)}%`,
+    protected_devices: protectedDevices,
+    unprotected_devices: unprotectedDevices,
+    protection_rate: `${protectionRate}%`,
     device_types: {
-      edr: devices.filter((d: any) => d.type === 'edr').length,
-      bcdr: devices.filter((d: any) => d.type === 'bcdr').length,
-      rmm: devices.filter((d: any) => d.type === 'rmm').length,
+      edr: devices.filter((d: any) => d.associated_endpoints?.some((ep: any) => ep.integration?.vendor?.type === 'edr')).length,
+      bcdr: devices.filter((d: any) => d.associated_endpoints?.some((ep: any) => ep.integration?.vendor?.type === 'bcdr')).length,
+      rmm: devices.filter((d: any) => d.associated_endpoints?.some((ep: any) => ep.integration?.vendor?.type === 'rmm')).length,
     },
+    active_integrations: uniqueIntegrations.length,
+    integration_names: uniqueIntegrations,
   };
 
   // Fetch email data
@@ -227,6 +262,23 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
       '0%',
   };
 
+  console.log('Fetching connected integrations...');
+  
+  // Get connected integrations
+  const integrationsResponse = await fetch(`${baseUrl}/api/v1/integrations/connected`, { headers });
+  
+  if (!integrationsResponse.ok) {
+    console.warn(`Integrations API error: ${integrationsResponse.status} - ${integrationsResponse.statusText}`);
+  }
+  
+  let integrationsData;
+  try {
+    integrationsData = await integrationsResponse.json();
+  } catch (error) {
+    console.warn('Failed to parse integrations JSON:', error);
+    integrationsData = { items: [] };
+  }
+
   console.log('Getting client name from clients list...');
   
   // Get client name from the clients list instead of individual endpoint
@@ -251,10 +303,39 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
     throw new Error(`Client with UUID ${clientUuid} not found in clients list`);
   }
 
+  // Calculate comprehensive metrics
+  const totalIntegrations = integrationsData.items?.length || 0;
+  const activeIntegrations = integrationsData.items?.filter((i: any) => i.connection_status === 'ok').length || 0;
+  const integrationVendors = integrationsData.items?.map((i: any) => i.vendor?.name).filter(Boolean) || [];
+  
+  // Calculate overall protection score
+  const deviceProtectionScore = endpointData.total_devices > 0 ? 
+    Math.round((endpointData.protected_devices / endpointData.total_devices) * 100) : 0;
+  
+  // Calculate event resolution rate
+  const eventResolutionRate = securityMetrics.total_events > 0 ? 
+    Math.round((securityMetrics.resolved_events / securityMetrics.total_events) * 100) : 0;
+
   return {
     securityMetrics,
     endpointData,
     emailData,
+    integrations: {
+      total: totalIntegrations,
+      active: activeIntegrations,
+      vendors: integrationVendors,
+      connection_status: integrationsData.items?.map((i: any) => ({
+        name: i.display_name,
+        status: i.connection_status,
+        vendor: i.vendor?.name
+      })) || []
+    },
+    overallMetrics: {
+      device_protection_score: deviceProtectionScore,
+      event_resolution_rate: eventResolutionRate,
+      total_assets: endpointData.total_devices + emailData.total_domains + emailData.total_inboxes,
+      security_coverage: Math.round(((deviceProtectionScore + eventResolutionRate) / 2))
+    },
     lastRefresh: new Date().toISOString(),
     selectedClientUuid: clientUuid,
     selectedClientName: clientData.name || 'Unknown Client',
@@ -277,42 +358,42 @@ async function updateCorkReport(liveData: CorkLiveData) {
     },
     // Update hero metric with live data
     heroMetric: {
-      value: liveData.endpointData.protection_rate,
-      label: "Device Protection Coverage",
-      description: `${liveData.endpointData.total_devices} endpoints protected with comprehensive security stack`,
+      value: `${liveData.overallMetrics.security_coverage}%`,
+      label: "Overall Security Coverage",
+      description: `${liveData.endpointData.total_devices} endpoints with ${liveData.integrations.active} active integrations`,
     },
     // Update categories with live data
     categories: [
       {
         name: "Device Protection",
-        score: parseInt(liveData.endpointData.protection_rate),
+        score: liveData.overallMetrics.device_protection_score,
         items: [
-          { name: "Endpoint Detection", status: "satisfactory" },
-          { name: "Threat Prevention", status: "satisfactory" },
-          { name: "Machine Learning Models", status: "satisfactory" },
-          { name: "Behavioral Analysis", status: "satisfactory" },
-          { name: "Anomaly Detection", status: "satisfactory" },
-          { name: "Predictive Analytics", status: "satisfactory" }
+          { name: "Endpoint Detection", status: liveData.endpointData.protected_devices > 0 ? "satisfactory" : "needs_attention" },
+          { name: "Threat Prevention", status: liveData.endpointData.protected_devices > 0 ? "satisfactory" : "needs_attention" },
+          { name: "Machine Learning Models", status: liveData.endpointData.protected_devices > 0 ? "satisfactory" : "needs_attention" },
+          { name: "Behavioral Analysis", status: liveData.endpointData.protected_devices > 0 ? "satisfactory" : "needs_attention" },
+          { name: "Anomaly Detection", status: liveData.endpointData.protected_devices > 0 ? "satisfactory" : "needs_attention" },
+          { name: "Predictive Analytics", status: liveData.endpointData.protected_devices > 0 ? "satisfactory" : "needs_attention" }
         ]
       },
       {
-        name: "Automated Response",
-        score: Math.round((liveData.securityMetrics.resolved_events / liveData.securityMetrics.total_events) * 100) || 89,
+        name: "Integration Coverage",
+        score: liveData.integrations.total > 0 ? Math.round((liveData.integrations.active / liveData.integrations.total) * 100) : 0,
         items: [
-          { name: "Threat Containment", status: "satisfactory" },
-          { name: "Incident Response", status: "satisfactory" },
-          { name: "Remediation Actions", status: liveData.securityMetrics.unresolved_events > 0 ? "needs-attention" : "satisfactory" },
-          { name: "Recovery Procedures", status: "satisfactory" }
+          { name: "EDR Solutions", status: liveData.endpointData.device_types.edr > 0 ? "satisfactory" : "needs_attention" },
+          { name: "BCDR Platforms", status: liveData.endpointData.device_types.bcdr > 0 ? "satisfactory" : "needs_attention" },
+          { name: "RMM Tools", status: liveData.endpointData.device_types.rmm > 0 ? "satisfactory" : "needs_attention" },
+          { name: "Email Security", status: liveData.emailData.total_domains > 0 ? "satisfactory" : "needs_attention" }
         ]
       },
       {
-        name: "Compliance Automation",
-        score: 91,
+        name: "Compliance Monitoring",
+        score: liveData.overallMetrics.event_resolution_rate,
         items: [
-          { name: "Policy Enforcement", status: "satisfactory" },
-          { name: "Audit Automation", status: "satisfactory" },
-          { name: "Reporting Generation", status: "satisfactory" },
-          { name: "Risk Assessment", status: "satisfactory" }
+          { name: "Event Detection", status: liveData.securityMetrics.total_events > 0 ? "satisfactory" : "needs_attention" },
+          { name: "Risk Assessment", status: liveData.securityMetrics.critical_events > 0 ? "needs_attention" : "satisfactory" },
+          { name: "Incident Response", status: liveData.overallMetrics.event_resolution_rate > 50 ? "satisfactory" : "needs_attention" },
+          { name: "Audit Trail", status: "satisfactory" }
         ]
       }
     ],
@@ -321,27 +402,27 @@ async function updateCorkReport(liveData: CorkLiveData) {
       ...currentData.enhancedSections,
       insights: [
         {
-          title: "Device Protection Coverage",
-          description: `${liveData.endpointData.protection_rate} device protection coverage demonstrates strong endpoint security controls across all managed devices.`,
-          metric: `${liveData.endpointData.protection_rate} Coverage`,
-          trend: "positive"
+          title: "Overall Security Coverage",
+          description: `${liveData.overallMetrics.security_coverage}% overall security coverage with ${liveData.endpointData.total_devices} devices and ${liveData.integrations.active} active integrations.`,
+          metric: `${liveData.overallMetrics.security_coverage}% Coverage`,
+          trend: liveData.overallMetrics.security_coverage > 50 ? "positive" : "neutral"
         },
         {
-          title: "Security Integration Stack",
-          description: `Comprehensive security stack with ${liveData.endpointData.device_types.edr + liveData.endpointData.device_types.bcdr + liveData.endpointData.device_types.rmm} active integrations providing multi-layered protection.`,
-          metric: `${liveData.endpointData.device_types.edr + liveData.endpointData.device_types.bcdr + liveData.endpointData.device_types.rmm} Integrations`,
-          trend: "positive"
+          title: "Integration Health",
+          description: `${liveData.integrations.active} of ${liveData.integrations.total} integrations are active, providing ${liveData.integrations.vendors.length} different vendor solutions.`,
+          metric: `${liveData.integrations.active}/${liveData.integrations.total} Active`,
+          trend: liveData.integrations.active > 0 ? "positive" : "neutral"
         },
         {
-          title: "Event Monitoring Activity",
-          description: `Active security monitoring with ${liveData.securityMetrics.total_events} events detected and ${liveData.securityMetrics.resolved_events} resolved, showing responsive security operations.`,
-          metric: `${liveData.securityMetrics.total_events} Events Detected`,
-          trend: "positive"
+          title: "Event Response Rate",
+          description: `${liveData.overallMetrics.event_resolution_rate}% of security events resolved, with ${liveData.securityMetrics.total_events} total events detected.`,
+          metric: `${liveData.overallMetrics.event_resolution_rate}% Resolved`,
+          trend: liveData.overallMetrics.event_resolution_rate > 50 ? "positive" : "neutral"
         },
         {
-          title: "Multi-Domain Management",
-          description: `Multi-domain security management with ${liveData.emailData.total_domains} domains under centralized protection and monitoring.`,
-          metric: `${liveData.emailData.total_domains} Domains Protected`,
+          title: "Asset Coverage",
+          description: `Managing ${liveData.overallMetrics.total_assets} total assets including ${liveData.endpointData.total_devices} devices, ${liveData.emailData.total_domains} domains, and ${liveData.emailData.total_inboxes} inboxes.`,
+          metric: `${liveData.overallMetrics.total_assets} Assets`,
           trend: "positive"
         }
       ],

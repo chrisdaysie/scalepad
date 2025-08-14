@@ -3,7 +3,7 @@
   "title": "Comprehensive Business Review Report",
   "company": "Moneta",
   "dateRange": "Q2 2025 • Multi-Platform Business Intelligence",
-  "monthlyInvestment": "$7,736",
+  "monthlyInvestment": "$10,605",
   "managedEndpoints": "25 Managed Endpoints",
   "heroMetric": {
     "value": "87%",
@@ -620,43 +620,43 @@
     }
   ],
   "budgetSummary": {
-    "totalAnnual": "$221,400",
-    "recurringCosts": "$155,400",
-    "capitalProjects": "$66,000",
-    "monthlyAverage": "$18,450",
-    "recurringPercentage": 70,
-    "projectsPercentage": 30,
-    "yearOverYearGrowth": "+12%"
+    "totalAnnual": "$180,760",
+    "recurringCosts": "$139,260",
+    "capitalProjects": "$41,500",
+    "monthlyAverage": "$15,063",
+    "recurringPercentage": 77,
+    "projectsPercentage": 23,
+    "yearOverYearGrowth": "+8%"
   },
   "spendingCategories": [
     {
       "name": "Managed Services",
       "amount": "$60,000",
-      "percentage": 17,
+      "percentage": 33,
       "color": "blue"
     },
     {
       "name": "Software & Licensing",
-      "amount": "$78,000",
-      "percentage": 22,
+      "amount": "$45,000",
+      "percentage": 25,
       "color": "green"
     },
     {
       "name": "Infrastructure & Hardware",
-      "amount": "$88,000",
-      "percentage": 25,
+      "amount": "$25,000",
+      "percentage": 14,
       "color": "purple"
     },
     {
       "name": "Security & Compliance",
-      "amount": "$52,800",
-      "percentage": 15,
+      "amount": "$30,000",
+      "percentage": 17,
       "color": "yellow"
     },
     {
       "name": "Connectivity & Services",
-      "amount": "$74,000",
-      "percentage": 21,
+      "amount": "$20,760",
+      "percentage": 11,
       "color": "red"
     }
   ],

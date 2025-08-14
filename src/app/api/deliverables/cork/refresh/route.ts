@@ -149,16 +149,17 @@ export async function POST(request: NextRequest) {
       emailData: liveData.emailData
     });
 
-    console.log('Updating Cork JSON file...');
+    console.log('Processing Cork QBR template...');
     
-    // Update the Cork JSON file with live data
-    await updateCorkReport(liveData);
+    // Process the Cork QBR template with live data
+    const result = await updateCorkReport(liveData);
     
-    console.log('Cork JSON file updated successfully');
+    console.log('Cork QBR template processed successfully');
 
     return NextResponse.json({
       success: true,
-      data: liveData,
+      data: result.data,
+      liveData: liveData,
       message: 'Cork data refreshed successfully',
     });
 
@@ -565,20 +566,18 @@ async function updateCorkReport(liveData: CorkLiveData) {
   // Process template with live data
   const processedData = processTemplate(templateData, liveData);
 
-  // Write processed data back to JSON
-  fs.writeFileSync(jsonPath, JSON.stringify(processedData, null, 2));
-  
-  // Add debugging info to response
-  return NextResponse.json({
+  // Return the processed data instead of writing to file (Vercel has read-only filesystem)
+  return {
     success: true,
-    message: 'Cork QBR data refreshed successfully',
+    message: 'Cork QBR data processed successfully',
+    data: processedData,
     debug: {
       deviceCount: liveData.endpointData.total_devices,
       integrationCount: liveData.integrations.active,
       deviceTypes: liveData.endpointData.device_types,
       sampleIntegrations: liveData.endpointData.integration_names.slice(0, 3)
     }
-  });
+  };
 }
 
 function processTemplate(template: unknown, liveData: CorkLiveData): unknown {

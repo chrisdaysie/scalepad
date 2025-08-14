@@ -1732,7 +1732,16 @@ export default function QBRReportPage() {
 
             {/* Live Data Controls - Only for Cork */}
             {report.liveData?.enabled && (
-              <LiveDataControls report={report} />
+              <LiveDataControls 
+                report={report} 
+                reportId={reportId}
+                onReportUpdate={(newData) => {
+                  setQbrReports(prev => ({
+                    ...prev,
+                    [reportId]: newData
+                  }));
+                }}
+              />
             )}
             
             
@@ -2104,7 +2113,15 @@ export default function QBRReportPage() {
 }
 
 // Live Data Controls Component for Cork
-function LiveDataControls({ report }: { report: QBRData }) {
+function LiveDataControls({ 
+  report, 
+  reportId, 
+  onReportUpdate 
+}: { 
+  report: QBRData; 
+  reportId: string; 
+  onReportUpdate: (newData: QBRData) => void;
+}) {
   const [isLoading, setIsLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [availableClients, setAvailableClients] = useState<Array<{
@@ -2157,8 +2174,13 @@ function LiveDataControls({ report }: { report: QBRData }) {
       });
 
       if (response.ok) {
-        // Reload the page to show updated data
-        window.location.reload();
+        const result = await response.json();
+        // Update the report data with the processed template
+        if (result.data) {
+          onReportUpdate(result.data);
+        }
+        // Show success message
+        alert('Data refreshed successfully!');
       } else {
         const error = await response.json();
         alert(`Failed to refresh data: ${error.error}`);

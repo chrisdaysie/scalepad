@@ -42,6 +42,25 @@
       ]
     }
   ],
+  "sectionHeaders": {
+    "clientGoals": "🎯 Client Goals Overview",
+    "technologyRoadmap": "🗺️ Technology Roadmap",
+    "upcomingInitiatives": "Upcoming Initiatives",
+    "totalInvestment": "Total Investment",
+    "hardwareLifecycle": "💻 Hardware Lifecycle Report",
+    "softwareSummary": "🖥️ Software Summary",
+    "budgetForecast": "💰 Budget Forecast & Analysis",
+    "vendorContracts": "📄 Vendor Contracts",
+    "assessmentSummary": "📋 Assessment Summary",
+    "serviceAnalytics": "📈 Service Analytics",
+    "assetsOverview": "💻 Assets Overview",
+    "costOptimization": "💡 Cost Optimization Opportunities",
+    "keyResults": "📈 Key Results",
+    "enhancedAnalysis": "🤖 Enhanced Analysis",
+    "risks": "⚠️ Risks",
+    "insights": "🤖 Insights",
+    "recommendations": "🎯 Recommendations"
+  },
   "enhancedSections": {
     "risks": [
       {

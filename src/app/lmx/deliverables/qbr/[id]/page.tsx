@@ -494,7 +494,7 @@ export default function QBRReportPage() {
               <div className="space-y-8">
                 {/* Hardware Stats */}
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">💻 Hardware Lifecycle Report</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">{report.sectionHeaders?.hardwareLifecycle}</h2>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
                     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 text-center">
                       <div className="text-3xl font-bold text-red-600 mb-2">{report.hardwareStats?.totalAssets}</div>
@@ -517,7 +517,7 @@ export default function QBRReportPage() {
 
                 {/* Software Stats */}
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">🖥️ Software Summary</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">{report.sectionHeaders?.softwareSummary}</h2>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 text-center">
                       <div className="text-3xl font-bold text-gray-900 mb-2">{report.softwareStats?.totalAssets}</div>
@@ -1428,7 +1428,7 @@ export default function QBRReportPage() {
           <div className="space-y-8">
             {/* Executive Summary */}
             <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
-              <h2 className="text-2xl font-bold mb-6">🎯 {report.title}</h2>
+              <h2 className="text-2xl font-bold mb-6">{report.title}</h2>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="lg:col-span-2">
                   <p className="text-lg leading-relaxed opacity-95">
@@ -1480,8 +1480,7 @@ export default function QBRReportPage() {
               
               {/* Risks Section */}
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
-                  <span className="text-2xl mr-3">⚠️</span>
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">
                   {report.sectionHeaders?.risks}
                 </h3>
                 <div className="space-y-4">
@@ -1506,8 +1505,7 @@ export default function QBRReportPage() {
 
               {/* Insights Section */}
               <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-xl p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
-                  <span className="text-2xl mr-3">🤖</span>
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">
                   {report.sectionHeaders?.insights}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1541,8 +1539,7 @@ export default function QBRReportPage() {
 
               {/* Recommendations Section */}
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
-                  <span className="text-2xl mr-3">🎯</span>
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">
                   {report.sectionHeaders?.recommendations}
                 </h3>
                 <div className="space-y-4">

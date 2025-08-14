@@ -6,6 +6,7 @@ interface AssessmentConfig {
   aliases: string[];
   json_file: string;
   recommendation_function: string;
+  lastUpdated?: number;
   titles: string[];
   keywords: string[];
   description: string;

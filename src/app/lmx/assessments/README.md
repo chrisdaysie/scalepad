@@ -44,6 +44,7 @@ Add to `src/app/lmx/assessments/data/assessment-configs.json`:
       "aliases": ["coffee", "test-coffee"],
       "json_file": "assessment-test-coffee-data.json",
       "recommendation_function": "generate_ai_recommendations",
+      "lastUpdated": 1755207875,
       "titles": [
         "Coffee Quality Strategy",
         "Bean Selection & Sourcing",
@@ -61,7 +62,7 @@ Add to `src/app/lmx/assessments/data/assessment-configs.json`:
 ### Step 3: Done! ✅
 The assessment will automatically appear on the assessments page with:
 - ✅ Proper mixed case title
-- ✅ Dynamic timestamp
+- ✅ Current timestamp (set automatically by script)
 - ✅ Working run/view/download buttons
 - ✅ Smart recommendations
 
@@ -143,6 +144,45 @@ This will automatically:
 
 ---
 
+## ⏰ Timestamp Management
+
+### How Timestamps Work
+- **Timestamps are stored in the config file** (`assessment-configs.json`)
+- **JSON files stay clean** - no timestamp fields in assessment data
+- **New assessments get current timestamp automatically** when created with the script
+- **Timestamps display as "X days ago"** in the UI
+
+### Updating Timestamps
+To update when an assessment was last modified:
+
+1. **Edit the config file**: `src/app/lmx/assessments/data/assessment-configs.json`
+2. **Find your assessment** in the `assessment_types` object
+3. **Update the `lastUpdated` field** with a Unix timestamp
+
+```json
+{
+  "assessment_types": {
+    "your-assessment": {
+      "lastUpdated": 1755207875,  // Update this value
+      // ... other fields
+    }
+  }
+}
+```
+
+### Current Timestamp Distribution
+Our assessments are distributed over the past week:
+- **Compliance Readiness**: 30 minutes ago (newest)
+- **Technology Alignment**: 1 day ago
+- **New Client Quick**: 2 days ago
+- **New Client Comprehensive**: 3 days ago
+- **Digital Work Analytics**: 4 days ago
+- **Cyber Insurance**: 5 days ago
+- **Base Policies**: 6 days ago
+- **AI/CS/Cyber Resilience**: 7 days ago
+
+---
+
 ## 🔧 Configuration Options
 
 | Field | Required | Description |
@@ -150,6 +190,7 @@ This will automatically:
 | `aliases` | Yes | Alternative names for the assessment |
 | `json_file` | Yes | Path to the assessment JSON file |
 | `recommendation_function` | No | Custom recommendation function (defaults to AI) |
+| `lastUpdated` | No | Unix timestamp for "last updated" display (auto-set by script) |
 | `titles` | Yes | Category titles for recommendations |
 | `keywords` | Yes | Keywords for search and categorization |
 | `description` | Yes | Human-readable description |
@@ -164,6 +205,12 @@ This will automatically:
 3. **Check file paths**: Ensure the JSON file exists and the config points to the correct file
 4. **Check JSON syntax**: Validate your JSON file for syntax errors
 5. **Check browser console**: Look for any JavaScript errors
+
+### Timestamp Issues?
+- **Timestamps are managed in the config file** (`assessment-configs.json`), not in JSON files
+- **New assessments get current timestamp automatically** when created with the script
+- **To update a timestamp**: Edit the `lastUpdated` field in the config file
+- **JSON files stay clean** - no timestamp fields in assessment data files
 
 ### React Hook Errors?
 - The assessments page uses React hooks that can be sensitive to dependency changes
@@ -182,7 +229,7 @@ The modern system is **configuration-driven** - just add a JSON file and a confi
 - ✅ **No Python scripts needed**
 - ✅ **No HTML generation**
 - ✅ **No manual file management**
-- ✅ **Automatic timestamps**
+- ✅ **Centralized timestamp management**
 - ✅ **Smart recommendations**
 
 **Pro Tip**: Use the scripts! They handle all the complexity and avoid common mistakes.

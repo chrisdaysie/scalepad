@@ -1225,6 +1225,7 @@ export default function QBRReportPage() {
                 </div>
 
                 {/* Account Team Section */}
+                {(() => { console.log('Account Team Data:', report.accountTeam); return null; })()}
                 {report.accountTeam && (
                   <div className="mt-8">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">{report.accountTeam.title}</h2>
@@ -1249,6 +1250,7 @@ export default function QBRReportPage() {
                 )}
 
                 {/* User Directory Section */}
+                {(() => { console.log('User Directory Data:', report.userDirectory); return null; })()}
                 {report.userDirectory && (
                   <div className="mt-8">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">{report.userDirectory.title}</h2>

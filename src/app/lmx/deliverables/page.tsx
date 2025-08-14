@@ -42,6 +42,12 @@ export default function Deliverables() {
         }
         const data = await response.json();
         if (Array.isArray(data)) {
+          console.log('QBR Reports data:', data.map(report => ({
+            id: report.id,
+            title: report.title,
+            lastUpdated: report.lastUpdated,
+            formatted: formatRelativeTime(report.lastUpdated)
+          })));
           setQbrReports(data);
         } else {
           throw new Error('Invalid data format');
@@ -59,10 +65,14 @@ export default function Deliverables() {
   }, []);
 
   const formatRelativeTime = (timestamp: number) => {
+    // Ensure timestamp is in seconds (not milliseconds)
+    const timestampInSeconds = timestamp > 1000000000000 ? Math.floor(timestamp / 1000) : timestamp;
     const now = Math.floor(Date.now() / 1000);
-    const diff = now - timestamp;
+    const diff = now - timestampInSeconds;
     
-    if (diff < 60) {
+    if (diff < 0) {
+      return 'Just Now'; // Handle future timestamps
+    } else if (diff < 60) {
       return 'Just Now';
     } else if (diff < 3600) {
       const minutes = Math.floor(diff / 60);
@@ -73,9 +83,12 @@ export default function Deliverables() {
     } else if (diff < 2592000) {
       const days = Math.floor(diff / 86400);
       return `${days} day${days > 1 ? 's' : ''} ago`;
-    } else {
+    } else if (diff < 31536000) {
       const months = Math.floor(diff / 2592000);
       return `${months} month${months > 1 ? 's' : ''} ago`;
+    } else {
+      const years = Math.floor(diff / 31536000);
+      return `${years} year${years > 1 ? 's' : ''} ago`;
     }
   };
 

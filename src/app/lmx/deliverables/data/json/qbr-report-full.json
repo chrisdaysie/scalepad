@@ -30,18 +30,18 @@
       },
       {
         "name": "Mike Chen",
-        "title": "Senior Systems Engineer",
+        "title": "vCIO",
         "email": "mike.chen@scalepad.com",
         "phone": "(555) 123-4568",
-        "responsibilities": "Infrastructure design, technical implementation, troubleshooting",
+        "responsibilities": "Strategic IT planning, technology roadmap, business alignment",
         "avatar": "👨‍💻"
       },
       {
         "name": "Lisa Rodriguez",
-        "title": "Security Specialist",
+        "title": "Client Success Manager",
         "email": "lisa.rodriguez@scalepad.com",
         "phone": "(555) 123-4569",
-        "responsibilities": "Security assessments, compliance, threat monitoring",
+        "responsibilities": "Client satisfaction, onboarding, ongoing support coordination",
         "avatar": "👩‍🔒"
       },
       {
@@ -55,69 +55,56 @@
     ]
   },
   "userDirectory": {
-    "title": "👥 User Directory",
-    "description": "25 users across your organization",
-    "totalUsers": 25,
+    "title": "👥 Your Team",
+    "description": "12 users across your organization",
+    "totalUsers": 12,
     "departments": [
       {
-        "name": "Executive",
+        "name": "Sales",
         "count": 3,
         "users": [
-          { "name": "Jennifer Martinez", "title": "CEO", "email": "jennifer.martinez@moneta.com", "department": "Executive" },
-          { "name": "Robert Kim", "title": "CFO", "email": "robert.kim@moneta.com", "department": "Executive" },
-          { "name": "Amanda Foster", "title": "COO", "email": "amanda.foster@moneta.com", "department": "Executive" }
-        ]
-      },
-      {
-        "name": "Sales",
-        "count": 6,
-        "users": [
-          { "name": "Chris Davis", "title": "Sales Director", "email": "chris.davis@moneta.com", "department": "Sales" },
-          { "name": "Maria Garcia", "title": "Senior Account Executive", "email": "maria.garcia@moneta.com", "department": "Sales" },
-          { "name": "James Wilson", "title": "Account Executive", "email": "james.wilson@moneta.com", "department": "Sales" },
-          { "name": "Rachel Lee", "title": "Account Executive", "email": "rachel.lee@moneta.com", "department": "Sales" },
-          { "name": "Tom Anderson", "title": "Sales Development Rep", "email": "tom.anderson@moneta.com", "department": "Sales" },
-          { "name": "Sophie Brown", "title": "Sales Development Rep", "email": "sophie.brown@moneta.com", "department": "Sales" }
+          { "name": "John Smith", "title": "Sales Director", "department": "Sales", "assets": ["WS-001"] },
+          { "name": "Robert Taylor", "title": "Account Executive", "department": "Sales", "assets": ["WS-007"] },
+          { "name": "Matthew Green", "title": "Sales Development Rep", "department": "Sales", "assets": ["WS-025"] }
         ]
       },
       {
         "name": "Marketing",
-        "count": 4,
+        "count": 2,
         "users": [
-          { "name": "Alex Turner", "title": "Marketing Director", "email": "alex.turner@moneta.com", "department": "Marketing" },
-          { "name": "Jessica White", "title": "Marketing Manager", "email": "jessica.white@moneta.com", "department": "Marketing" },
-          { "name": "Kevin Park", "title": "Content Specialist", "email": "kevin.park@moneta.com", "department": "Marketing" },
-          { "name": "Nicole Adams", "title": "Digital Marketing Specialist", "email": "nicole.adams@moneta.com", "department": "Marketing" }
+          { "name": "Sarah Johnson", "title": "Marketing Director", "department": "Marketing", "assets": ["WS-002"] },
+          { "name": "Jennifer Lee", "title": "Marketing Manager", "department": "Marketing", "assets": ["WS-008"] }
         ]
       },
       {
-        "name": "Engineering",
-        "count": 5,
+        "name": "IT",
+        "count": 2,
         "users": [
-          { "name": "Daniel Clark", "title": "Engineering Manager", "email": "daniel.clark@moneta.com", "department": "Engineering" },
-          { "name": "Emily Zhang", "title": "Senior Software Engineer", "email": "emily.zhang@moneta.com", "department": "Engineering" },
-          { "name": "Ryan Miller", "title": "Software Engineer", "email": "ryan.miller@moneta.com", "department": "Engineering" },
-          { "name": "Laura Taylor", "title": "Software Engineer", "email": "laura.taylor@moneta.com", "department": "Engineering" },
-          { "name": "Marcus Johnson", "title": "QA Engineer", "email": "marcus.johnson@moneta.com", "department": "Engineering" }
+          { "name": "Mike Davis", "title": "IT Manager", "department": "IT", "assets": ["WS-003"] },
+          { "name": "Thomas Anderson", "title": "Systems Engineer", "department": "IT", "assets": ["WS-009"] }
         ]
       },
       {
         "name": "Finance",
-        "count": 3,
+        "count": 2,
         "users": [
-          { "name": "Patricia Moore", "title": "Finance Manager", "email": "patricia.moore@moneta.com", "department": "Finance" },
-          { "name": "Brian Lewis", "title": "Senior Accountant", "email": "brian.lewis@moneta.com", "department": "Finance" },
-          { "name": "Ashley Hall", "title": "Accountant", "email": "ashley.hall@moneta.com", "department": "Finance" }
+          { "name": "Lisa Wilson", "title": "Finance Manager", "department": "Finance", "assets": ["WS-004"] },
+          { "name": "Amanda Garcia", "title": "Senior Accountant", "department": "Finance", "assets": ["WS-010"] }
         ]
       },
       {
         "name": "Operations",
-        "count": 4,
+        "count": 2,
         "users": [
-          { "name": "Gregory Scott", "title": "Operations Director", "email": "gregory.scott@moneta.com", "department": "Operations" },
-          { "name": "Michelle Green", "title": "Operations Manager", "email": "michelle.green@moneta.com", "department": "Operations" },
-          { "name": "Jonathan Baker", "title": "Logistics Coordinator", "email": "jonathan.baker@moneta.com", "department": "Operations" },
-          { "name": "Stephanie Carter", "title": "Customer Success Manager", "email": "stephanie.carter@moneta.com", "department": "Operations" }
+          { "name": "David Brown", "title": "Operations Director", "department": "Operations", "assets": ["WS-005"] },
+          { "name": "Christopher Martinez", "title": "Operations Manager", "department": "Operations", "assets": ["WS-011"] }
+        ]
+      },
+      {
+        "name": "HR",
+        "count": 1,
+        "users": [
+          { "name": "Emily Chen", "title": "HR Manager", "department": "HR", "assets": ["WS-006"] }
         ]
       }
     ]

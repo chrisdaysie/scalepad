@@ -22,7 +22,18 @@ export async function GET() {
       
       if (fs.existsSync(jsonFilePath)) {
         const reportData = fs.readFileSync(jsonFilePath, 'utf8');
-        qbrReports[reportId] = JSON.parse(reportData);
+        const parsedData = JSON.parse(reportData);
+        qbrReports[reportId] = parsedData;
+        
+        // Debug logging for qbr-report-full
+        if (reportId === 'qbr-report-full') {
+          console.log('Loading qbr-report-full:', {
+            hasAccountTeam: !!parsedData.accountTeam,
+            hasUserDirectory: !!parsedData.userDirectory,
+            accountTeamTitle: parsedData.accountTeam?.title,
+            userDirectoryTitle: parsedData.userDirectory?.title
+          });
+        }
       } else {
         console.warn(`QBR report JSON file not found: ${jsonFilePath}`);
       }

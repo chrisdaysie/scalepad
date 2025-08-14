@@ -54,8 +54,8 @@ interface QBRData {
       users: Array<{
         name: string;
         title: string;
-        email: string;
         department: string;
+        assets: string[];
       }>;
     }>;
   };
@@ -475,6 +475,33 @@ export default function QBRReportPage() {
     }
   };
 
+  // Helper function to get asset details by asset name
+  const getAssetDetails = (assetName: string) => {
+    if (!report.assets) return null;
+    
+    // Check workstations first
+    const workstation = report.assets.workstations.find(ws => ws.name === assetName);
+    if (workstation) return workstation;
+    
+    // Check servers
+    const server = report.assets.servers.find(s => s.name === assetName);
+    if (server) return server;
+    
+    return null;
+  };
+
+  // Helper function to get asset status color
+  const getAssetStatusColor = (status: string) => {
+    switch (status) {
+      case 'Excellent': return 'bg-green-100 text-green-800';
+      case 'Good': return 'bg-blue-100 text-blue-800';
+      case 'Needs Upgrade': return 'bg-yellow-100 text-yellow-800';
+      case 'Critical - Replace': return 'bg-red-100 text-red-800';
+      case 'Healthy': return 'bg-green-100 text-green-800';
+      default: return 'bg-gray-100 text-gray-800';
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Header */}
@@ -829,6 +856,131 @@ export default function QBRReportPage() {
                     </div>
                   </div>
                 </div>
+
+                {/* Account Team Section */}
+                {report.accountTeam && (
+                  <div className="mt-8">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">{report.accountTeam.title}</h2>
+                    <p className="text-gray-600 mb-6">{report.accountTeam.description}</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                      {report.accountTeam.members.map((member, index) => (
+                        <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 text-center">
+                          <div className="text-4xl mb-4">{member.avatar}</div>
+                          <h3 className="text-lg font-semibold text-gray-900 mb-1">{member.name}</h3>
+                          <p className="text-sm text-blue-600 mb-3">{member.title}</p>
+                          <div className="space-y-2 text-sm text-gray-600">
+                            <div>{member.email}</div>
+                            <div>{member.phone}</div>
+                          </div>
+                          <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                            <p className="text-xs text-gray-600">{member.responsibilities}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* User Directory Section */}
+                {report.userDirectory && (
+                  <div className="mt-8">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">{report.userDirectory.title}</h2>
+                    <p className="text-gray-600 mb-6">{report.userDirectory.description}</p>
+                    
+                    {/* Overall Statistics */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 text-center">
+                        <div className="text-3xl font-bold text-blue-600 mb-2">{report.userDirectory.totalUsers}</div>
+                        <div className="text-sm text-gray-600">Total Users</div>
+                      </div>
+                      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 text-center">
+                        <div className="text-3xl font-bold text-green-600 mb-2">
+                          {report.userDirectory.departments.reduce((sum, dept) => 
+                            sum + dept.users.reduce((userSum, user) => userSum + (user.assets?.length || 0), 0), 0
+                          )}
+                        </div>
+                        <div className="text-sm text-gray-600">Total Assets Assigned</div>
+                      </div>
+                      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 text-center">
+                        <div className="text-3xl font-bold text-purple-600 mb-2">{report.userDirectory.departments.length}</div>
+                        <div className="text-sm text-gray-600">Departments</div>
+                      </div>
+                    </div>
+                    
+                    {/* Department Summary Cards */}
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+                      {report.userDirectory.departments.map((dept, index) => {
+                        const totalAssets = dept.users.reduce((sum, user) => sum + (user.assets?.length || 0), 0);
+                        return (
+                          <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 text-center">
+                            <div className="text-2xl font-bold text-blue-600 mb-1">{dept.count}</div>
+                            <div className="text-sm text-gray-600 mb-2">{dept.name}</div>
+                            <div className="text-xs text-gray-500">
+                              {totalAssets} asset{totalAssets !== 1 ? 's' : ''}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* User Directory Table */}
+                    <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                      <div className="overflow-x-auto">
+                        <table className="w-full">
+                          <thead className="bg-gray-50">
+                            <tr>
+                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
+                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assets</th>
+                            </tr>
+                          </thead>
+                          <tbody className="bg-white divide-y divide-gray-200">
+                            {report.userDirectory.departments.flatMap(dept => 
+                              dept.users.map((user, index) => (
+                                <tr key={`${dept.name}-${index}`} className="hover:bg-gray-50">
+                                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{user.name}</td>
+                                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.title}</td>
+                                  <td className="px-6 py-4 whitespace-nowrap">
+                                    <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">{user.department}</span>
+                                  </td>
+                                  <td className="px-6 py-4 text-sm text-gray-500">
+                                    {user.assets && user.assets.length > 0 ? (
+                                      <div className="space-y-2">
+                                        {user.assets.map((asset, assetIndex) => {
+                                          const assetDetails = getAssetDetails(asset);
+                                          return (
+                                            <div key={assetIndex} className="flex items-center space-x-2">
+                                              <span className="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">
+                                                {asset}
+                                              </span>
+                                              {assetDetails && (
+                                                <>
+                                                  <span className="text-xs text-gray-500">•</span>
+                                                  <span className={`px-2 py-1 text-xs font-medium rounded-full ${getAssetStatusColor(assetDetails.status)}`}>
+                                                    {assetDetails.status}
+                                                  </span>
+                                                  <span className="text-xs text-gray-500">•</span>
+                                                  <span className="text-xs text-gray-500">{assetDetails.age}</span>
+                                                </>
+                                              )}
+                                            </div>
+                                          );
+                                        })}
+                                      </div>
+                                    ) : (
+                                      <span className="text-gray-400">No assets</span>
+                                    )}
+                                  </td>
+                                </tr>
+                              ))
+                            )}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 
@@ -1224,79 +1376,7 @@ export default function QBRReportPage() {
                   </div>
                 </div>
 
-                {/* Account Team Section */}
-                {(() => { console.log('Account Team Data:', report.accountTeam); return null; })()}
-                {report.accountTeam && (
-                  <div className="mt-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">{report.accountTeam.title}</h2>
-                    <p className="text-gray-600 mb-6">{report.accountTeam.description}</p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                      {report.accountTeam.members.map((member, index) => (
-                        <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 text-center">
-                          <div className="text-4xl mb-4">{member.avatar}</div>
-                          <h3 className="text-lg font-semibold text-gray-900 mb-1">{member.name}</h3>
-                          <p className="text-sm text-blue-600 mb-3">{member.title}</p>
-                          <div className="space-y-2 text-sm text-gray-600">
-                            <div>{member.email}</div>
-                            <div>{member.phone}</div>
-                          </div>
-                          <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-                            <p className="text-xs text-gray-600">{member.responsibilities}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
 
-                {/* User Directory Section */}
-                {(() => { console.log('User Directory Data:', report.userDirectory); return null; })()}
-                {report.userDirectory && (
-                  <div className="mt-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">{report.userDirectory.title}</h2>
-                    <p className="text-gray-600 mb-6">{report.userDirectory.description}</p>
-                    
-                    {/* Department Summary Cards */}
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
-                      {report.userDirectory.departments.map((dept, index) => (
-                        <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 text-center">
-                          <div className="text-2xl font-bold text-blue-600 mb-1">{dept.count}</div>
-                          <div className="text-sm text-gray-600">{dept.name}</div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* User Directory Table */}
-                    <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-                      <div className="overflow-x-auto">
-                        <table className="w-full">
-                          <thead className="bg-gray-50">
-                            <tr>
-                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
-                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Department</th>
-                              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                            </tr>
-                          </thead>
-                          <tbody className="bg-white divide-y divide-gray-200">
-                            {report.userDirectory.departments.flatMap(dept => 
-                              dept.users.map((user, index) => (
-                                <tr key={`${dept.name}-${index}`} className="hover:bg-gray-50">
-                                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{user.name}</td>
-                                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.title}</td>
-                                  <td className="px-6 py-4 whitespace-nowrap">
-                                    <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">{user.department}</span>
-                                  </td>
-                                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.email}</td>
-                                </tr>
-                              ))
-                            )}
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
             )}
 

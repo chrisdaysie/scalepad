@@ -1410,45 +1410,24 @@ export default function QBRReportPage() {
                             if (!ageData) return null;
                             
                             const colors = ['#10B981', '#3B82F6', '#F59E0B', '#EF4444'];
-                            let currentAngle = 0;
+                            const circumference = 251.2;
+                            let currentOffset = 0;
                             
                             return Object.entries(ageData).map(([range, percentage], index) => {
-                              const angle = (percentage as number / 100) * 360;
-                              const startAngle = currentAngle;
-                              const endAngle = currentAngle + angle;
-                              currentAngle = endAngle;
-                              
-                              // Convert angles to radians
-                              const startRad = (startAngle - 90) * Math.PI / 180;
-                              const endRad = (endAngle - 90) * Math.PI / 180;
-                              
-                              // Calculate outer arc path (donut)
-                              const x1 = 50 + 40 * Math.cos(startRad);
-                              const y1 = 50 + 40 * Math.sin(startRad);
-                              const x2 = 50 + 40 * Math.cos(endRad);
-                              const y2 = 50 + 40 * Math.sin(endRad);
-                              
-                              // Calculate inner arc path (donut hole) - larger hole for text
-                              const x3 = 50 + 25 * Math.cos(endRad);
-                              const y3 = 50 + 25 * Math.sin(endRad);
-                              const x4 = 50 + 25 * Math.cos(startRad);
-                              const y4 = 50 + 25 * Math.sin(startRad);
-                              
-                              const largeArcFlag = angle > 180 ? 1 : 0;
-                              
-                              const pathData = [
-                                `M ${x1} ${y1}`,
-                                `A 40 40 0 ${largeArcFlag} 1 ${x2} ${y2}`,
-                                `L ${x3} ${y3}`,
-                                `A 25 25 0 ${largeArcFlag} 0 ${x4} ${y4}`,
-                                `Z`
-                              ].join(' ');
+                              const dashOffset = currentOffset;
+                              currentOffset += (percentage as number / 100) * circumference;
                               
                               return (
-                                <path 
+                                <circle 
                                   key={range}
-                                  d={pathData}
-                                  fill={colors[index]}
+                                  cx="50" 
+                                  cy="50" 
+                                  r="40" 
+                                  fill="none" 
+                                  stroke={colors[index]} 
+                                  strokeWidth="20" 
+                                  strokeDasharray={`${(percentage as number / 100) * circumference} ${circumference}`}
+                                  strokeDashoffset={-dashOffset} 
                                 />
                               );
                             });

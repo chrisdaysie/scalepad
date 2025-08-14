@@ -5,7 +5,7 @@
   "description": "A proof-of-concept dashboard for Scalepad",
   "homepage": "https://scalepad.chris.day",
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "NEXT_DISABLE_DEVTOOLS=true next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

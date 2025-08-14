@@ -2,13 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  devIndicators: {
-    buildActivity: false,
-  },
-  experimental: {
-    devIndicators: {
-      buildActivity: false,
-    },
+  // Disable development toolbar
+  env: {
+    NEXT_DISABLE_DEVTOOLS: 'true',
   },
 };
 

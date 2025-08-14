@@ -125,6 +125,12 @@ export default function Home() {
 
         </div>
 
+        {/* Mysterious Footer */}
+        <div className="text-center mt-20 pt-8 border-t border-white/10">
+          <p className="text-white/30 text-sm font-mono">
+            <span className="text-purple-400">//</span> SCALEPAD_PLAYGROUND © 2024
+          </p>
+        </div>
 
       </div>
 

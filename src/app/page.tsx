@@ -125,7 +125,7 @@ export default function Home() {
               INITIATE_CONTACT
             </button>
           </div>
-
+        </div>
 
         {/* Mysterious Footer */}
         <div className="text-center mt-20 pt-8 border-t border-white/10">

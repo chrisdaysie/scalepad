@@ -122,30 +122,10 @@ export default function Home() {
             </div>
           </div>
           
-          {/* Mysterious Navigation */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up delay-400">
-            <a 
-              href="/lmx" 
-              className="group relative px-8 py-4 bg-gradient-to-r from-purple-500/20 to-blue-500/20 backdrop-blur-sm border border-white/20 text-white rounded-lg font-mono hover:from-purple-500/30 hover:to-blue-500/30 transition-all duration-300 transform hover:scale-105"
-            >
-              <span className="relative z-10">ENTER_LABORATORY</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </a>
-            <button className="px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/10 text-white/60 rounded-lg font-mono hover:bg-white/10 hover:text-white/80 transition-all duration-300 transform hover:scale-105">
-              INITIATE_CONTACT
-            </button>
-          </div>
+
         </div>
 
-        {/* Mysterious Footer */}
-        <div className="text-center mt-20 pt-8 border-t border-white/10">
-          <p className="text-white/30 text-sm font-mono">
-            <span className="text-purple-400">//</span> SCALEPAD_PLAYGROUND © 2024
-          </p>
-          <p className="text-white/20 text-xs font-mono mt-2">
-            BUILT_WITH_NEXTJS_TYPESCRIPT_TAILWIND
-          </p>
-        </div>
+
       </div>
 
       <style jsx>{`

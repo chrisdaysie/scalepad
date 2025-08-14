@@ -97,21 +97,16 @@ export async function GET() {
         console.warn(`Could not read JSON file for ${id}:`, error);
       }
 
-      // Get last updated time from JSON file or file stats
+      // Get last updated time from config or fall back to file stats
       let lastUpdated = Math.floor(Date.now() / 1000);
       try {
-        if (fs.existsSync(jsonPath)) {
-          const jsonData = fs.readFileSync(jsonPath, 'utf8');
-          const assessmentData = JSON.parse(jsonData);
-          
-          // Check if JSON has a lastUpdated field
-          if (assessmentData.lastUpdated) {
-            lastUpdated = assessmentData.lastUpdated;
-          } else {
-            // Fall back to file modification time
-            const stats = fs.statSync(jsonPath);
-            lastUpdated = Math.floor(stats.mtime.getTime() / 1000);
-          }
+        // First check if config has lastUpdated
+        if (config.lastUpdated) {
+          lastUpdated = config.lastUpdated;
+        } else if (fs.existsSync(jsonPath)) {
+          // Fall back to file modification time
+          const stats = fs.statSync(jsonPath);
+          lastUpdated = Math.floor(stats.mtime.getTime() / 1000);
         }
       } catch (error) {
         console.warn(`Could not get last updated time for ${id}:`, error);

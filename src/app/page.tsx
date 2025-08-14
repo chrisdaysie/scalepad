@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import ScalepadLogo from '@/components/ScalepadLogo';
 
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -13,16 +14,6 @@ export default function Home() {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
-
-  const projects = [
-    {
-      title: "Scalepad Dashboard",
-      description: "A modern proof-of-concept dashboard with real-time data visualization and analytics.",
-      tech: ["Next.js", "TypeScript", "Tailwind CSS"],
-      link: "https://scalepad.chris.day",
-      gradient: "from-purple-500 to-pink-500"
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
@@ -49,6 +40,11 @@ export default function Home() {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-16">
+        {/* Logo */}
+        <div className="absolute top-8 right-8 z-20">
+          <ScalepadLogo size="lg" showText={false} variant="light" />
+        </div>
+        
         {/* Hero Section */}
         <div className="text-center mb-20">
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8 animate-fade-in">
@@ -69,58 +65,72 @@ export default function Home() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up delay-300">
-            <button className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25">
-              View Projects
-            </button>
+            <a href="/lmx" className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25 whitespace-nowrap">
+              Explore Lifecycle Manager X
+            </a>
             <button className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-full font-semibold hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
               Get in Touch
             </button>
           </div>
         </div>
 
-        {/* Projects Grid */}
-        <div className="flex justify-center max-w-6xl mx-auto">
-          <div className="w-full max-w-2xl">
-                      {projects.map((project, index) => (
-              <div
-                key={project.title}
-                className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-500 transform hover:scale-105 animate-slide-up"
-                style={{ animationDelay: `${400 + index * 100}ms` }}
-              >
-                <div className={`absolute inset-0 bg-gradient-to-r ${project.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500`} />
-                
-                <div className="relative z-10">
-                  <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 group-hover:bg-clip-text transition-all duration-300">
-                    {project.title}
-                  </h3>
-                  
-                  <p className="text-white/70 mb-6 leading-relaxed">
-                    {project.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-xs text-white/80"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  <a
-                    href={project.link}
-                    className="inline-flex items-center text-purple-400 hover:text-purple-300 font-semibold transition-colors duration-300 group/link"
-                  >
-                    View Project
-                    <svg className="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </a>
+        {/* Coming Soon Projects */}
+        <div className="max-w-6xl mx-auto mb-20">
+          <h2 className="text-3xl font-bold text-white text-center mb-12 animate-slide-up delay-400">
+            Coming Soon
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 opacity-50 cursor-not-allowed">
+              <div className="absolute inset-0 bg-gradient-to-r from-gray-500 to-gray-600 opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500" />
+              
+              <div className="relative z-10">
+                <div className="text-4xl mb-4">🚀</div>
+                <h3 className="text-2xl font-bold text-white/60 mb-4">
+                  AI-Powered Analytics
+                </h3>
+                <p className="text-white/50 mb-6 leading-relaxed">
+                  Advanced analytics platform with machine learning insights and predictive modeling.
+                </p>
+                <div className="flex items-center text-white/40 text-sm">
+                  <span className="px-3 py-1 bg-white/10 rounded-full">Coming Soon</span>
                 </div>
               </div>
-            ))}
+            </div>
+
+            <div className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 opacity-50 cursor-not-allowed">
+              <div className="absolute inset-0 bg-gradient-to-r from-gray-500 to-gray-600 opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500" />
+              
+              <div className="relative z-10">
+                <div className="text-4xl mb-4">🎨</div>
+                <h3 className="text-2xl font-bold text-white/60 mb-4">
+                  Creative Studio
+                </h3>
+                <p className="text-white/50 mb-6 leading-relaxed">
+                  Digital design and creative tools for modern content creation workflows.
+                </p>
+                <div className="flex items-center text-white/40 text-sm">
+                  <span className="px-3 py-1 bg-white/10 rounded-full">Coming Soon</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="group relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 opacity-50 cursor-not-allowed">
+              <div className="absolute inset-0 bg-gradient-to-r from-gray-500 to-gray-600 opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500" />
+              
+              <div className="relative z-10">
+                <div className="text-4xl mb-4">🔬</div>
+                <h3 className="text-2xl font-bold text-white/60 mb-4">
+                  Research Lab
+                </h3>
+                <p className="text-white/50 mb-6 leading-relaxed">
+                  Experimental projects and cutting-edge technology research platform.
+                </p>
+                <div className="flex items-center text-white/40 text-sm">
+                  <span className="px-3 py-1 bg-white/10 rounded-full">Coming Soon</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 

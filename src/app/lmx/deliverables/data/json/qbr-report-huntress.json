@@ -1,0 +1,138 @@
+{
+  "id": "qbr-report-huntress",
+  "title": "Huntress",
+  "company": "Huntress",
+  "dateRange": "Q2 2025 • Threat Detection & Response",
+  "heroMetric": {
+    "value": "94.8%",
+    "label": "Threat Detection Rate",
+    "description": "Successfully detected and contained threats"
+  },
+  "type": "individual",
+  "description": "Managed detection and response platform with threat hunting capabilities and incident response",
+  "executiveSummary": "Huntress provides comprehensive managed detection and response services for your organization. This quarter, we've successfully monitored 25 endpoints with advanced threat hunting capabilities, achieving a threat detection rate of 94.8% and incident response time of 2.3 hours. Your organization demonstrates excellent security posture with proactive threat hunting and rapid incident response capabilities, with opportunities for improvement in threat intelligence integration and automated response workflows.",
+  "categories": [
+    {
+      "name": "Threat Detection",
+      "score": 94.8,
+      "items": [
+        { "name": "Malware Detection", "status": "satisfactory" },
+        { "name": "Ransomware Protection", "status": "satisfactory" },
+        { "name": "Threat Hunting", "status": "satisfactory" },
+        { "name": "Behavioral Analysis", "status": "satisfactory" }
+      ]
+    },
+    {
+      "name": "Incident Response",
+      "score": 88.5,
+      "items": [
+        { "name": "Response Time", "status": "satisfactory" },
+        { "name": "Threat Containment", "status": "satisfactory" },
+        { "name": "Recovery Procedures", "status": "needs-attention" },
+        { "name": "Post-Incident Analysis", "status": "satisfactory" }
+      ]
+    },
+    {
+      "name": "Security Intelligence",
+      "score": 82.3,
+      "items": [
+        { "name": "Threat Intelligence", "status": "needs-attention" },
+        { "name": "Vulnerability Management", "status": "satisfactory" },
+        { "name": "Security Analytics", "status": "satisfactory" },
+        { "name": "Automated Response", "status": "needs-attention" }
+      ]
+    }
+  ],
+  "hardwareStats": {
+    "totalAssets": 156,
+    "protectedAssets": 156,
+    "unprotectedAssets": 0,
+    "protectionRate": "100%"
+  },
+  "softwareStats": {
+    "totalAssets": 892,
+    "monitoredSoftware": 892,
+    "unmonitoredSoftware": 0,
+    "monitoringCoverage": "100%"
+  },
+  "contracts": {
+    "monthly": [
+      { "vendor": "Huntress", "description": "Managed detection and response platform", "cost": "$4,500.00", "nextDue": "2025-08-31" }
+    ],
+    "annual": [
+      { "vendor": "Security Training", "description": "Annual security awareness training", "cost": "$6,000.00", "nextDue": "2025-12-31" }
+    ]
+  },
+  "roadmap": {
+    "totalInvestment": "$18,500.00",
+    "initiatives": [
+      {
+        "priority": "open",
+        "title": "Advanced Threat Intelligence",
+        "description": "Implement advanced threat intelligence integration and automated response workflows to improve threat detection and response capabilities.",
+        "investment": "$12,500.00",
+        "assets": 25
+      },
+      {
+        "priority": "open",
+        "title": "Enhanced Recovery Procedures",
+        "description": "Develop and implement enhanced recovery procedures and automated backup restoration capabilities.",
+        "investment": "$6,000.00",
+        "assets": 156
+      }
+    ]
+  },
+  "enhancedSections": {
+    "risks": [
+      {
+        "title": "Advanced Persistent Threats",
+        "description": "Sophisticated threat actors are increasingly targeting organizations with advanced persistent threat techniques that can evade traditional security measures.",
+        "severity": "high",
+        "impact": "Data breaches, intellectual property theft, and potential business disruption."
+      },
+      {
+        "title": "Ransomware Evolution",
+        "description": "Ransomware attacks are becoming more sophisticated with double extortion tactics and targeted approaches.",
+        "severity": "high",
+        "impact": "Data encryption, business disruption, and potential financial losses."
+      }
+    ],
+    "insights": [
+      {
+        "title": "Excellent Detection Capabilities",
+        "description": "Your organization demonstrates exceptional threat detection capabilities with 94.8% detection rate and comprehensive endpoint protection.",
+        "type": "positive",
+        "recommendation": "Continue maintaining high detection standards and consider implementing advanced threat intelligence."
+      },
+      {
+        "title": "Response Time Optimization",
+        "description": "Current incident response time of 2.3 hours is good but could be improved through automated response workflows and enhanced recovery procedures.",
+        "type": "improvement",
+        "recommendation": "Invest in automated response capabilities to reduce manual intervention and improve response times."
+      }
+    ],
+    "recommendations": [
+      {
+        "title": "Implement Advanced Threat Intelligence",
+        "description": "Deploy advanced threat intelligence integration to improve threat detection accuracy and provide proactive threat hunting capabilities.",
+        "priority": "high",
+        "investment": "$12,500.00",
+        "timeline": "3-6 months"
+      },
+      {
+        "title": "Enhance Recovery Procedures",
+        "description": "Develop automated recovery procedures and backup restoration capabilities to minimize downtime during security incidents.",
+        "priority": "medium",
+        "investment": "$6,000.00",
+        "timeline": "2-4 months"
+      },
+      {
+        "title": "Automated Response Workflows",
+        "description": "Implement automated response workflows to reduce manual intervention and improve incident response times.",
+        "priority": "medium",
+        "investment": "$4,000.00",
+        "timeline": "2-3 months"
+      }
+    ]
+  }
+}

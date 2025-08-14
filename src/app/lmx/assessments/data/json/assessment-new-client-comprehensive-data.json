@@ -1,0 +1,1893 @@
+{
+  "assessment_template_create_payload": {
+    "title": "New Client Assessment (Comprehensive)",
+    "description": "This 72-point assessment evaluates new client technical maturity, risk factors, and service requirements across 12 critical focus areas. Designed for MSPs to qualify prospects and identify engagement opportunities.",
+    "is_category_weight_evenly_distributed": true,
+    "categories": [
+      {
+        "title": "Infrastructure & Hosting",
+        "description": "Evaluates server infrastructure, hosting models, and physical environment maturity.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Infrastructure hosting model",
+            "description": "Assesses whether infrastructure is hosted in modern, scalable environments vs. legacy on-premises setups.",
+            "remediation_tips": "Cloud-first strategy reduces capital expenditure and improves scalability. Start with hybrid approach if full migration isn't feasible.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Entirely self-hosted in office/closet with no redundancy"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Mix of self-hosted and some cloud services, inconsistent approach"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Primarily cloud-hosted or professional colocation with proper redundancy"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No servers or infrastructure"
+              }
+            ],
+            "scoring_instructions": "Evaluate hosting approach - cloud/colo indicates modern thinking, self-hosted may signal budget constraints or legacy mindset."
+          },
+          {
+            "title": "Virtualization platform and architecture",
+            "description": "Evaluates whether infrastructure uses modern virtualization vs. physical servers.",
+            "remediation_tips": "Migrate to hypervisor-based virtualization (Hyper-V, VMware) or cloud-native services for better resource utilization and disaster recovery.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Primarily physical servers or aging virtualization platform"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Mix of physical and virtual, inconsistent virtualization strategy"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Modern virtualization platform (Hyper-V, VMware, or cloud-native)"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No servers or infrastructure"
+              }
+            ],
+            "scoring_instructions": "Modern virtualization indicates technical maturity and easier management. Physical-only setups suggest outdated approaches."
+          },
+          {
+            "title": "Server hardware age and support status",
+            "description": "Assesses whether physical infrastructure is current and under warranty.",
+            "remediation_tips": "Plan hardware refresh cycles every 4-5 years. Consider cloud migration to eliminate hardware refresh requirements.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Hardware >5 years old or out of warranty"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Mix of current and aging hardware, some warranty gaps"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Hardware <4 years old with active warranty coverage"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Cloud-hosted or no physical infrastructure"
+              }
+            ],
+            "scoring_instructions": "Out-of-warranty hardware indicates upcoming capital expenditure and higher risk of downtime."
+          },
+          {
+            "title": "Operating system versions and support",
+            "description": "Evaluates whether server operating systems are current and supported by vendor.",
+            "remediation_tips": "Prioritize migration from unsupported OS versions (Windows Server 2012, etc.) to current supported versions.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Unsupported OS versions (Server 2012 R2 or older)"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Mix of supported and legacy OS versions"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "All servers on supported OS versions (Server 2019+)"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No servers or fully cloud-managed"
+              }
+            ],
+            "scoring_instructions": "Unsupported OS versions create security vulnerabilities and compliance issues. Indicates maintenance discipline."
+          },
+          {
+            "title": "Power protection and environmental controls",
+            "description": "Assesses UPS protection and environmental safeguards for critical infrastructure.",
+            "remediation_tips": "Implement UPS protection for all critical infrastructure. Consider professional colocation for better environmental controls.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No UPS protection or environmental controls"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic UPS but inadequate runtime or missing environmental monitoring"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Proper UPS with adequate runtime and environmental monitoring"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Professional datacenter or cloud-hosted"
+              }
+            ],
+            "scoring_instructions": "Lack of power protection indicates high risk of data loss and downtime. Shows operational maturity."
+          },
+          {
+            "title": "Internet connectivity and redundancy",
+            "description": "Evaluates WAN connections and failover capabilities.",
+            "remediation_tips": "Implement redundant internet connections from different providers. Consider SD-WAN for automated failover.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Single internet connection with no backup"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Primary connection with basic backup (cellular, etc.)"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Redundant connections with automatic failover"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Single location with adequate connectivity"
+              }
+            ],
+            "scoring_instructions": "Single internet connection indicates business continuity risk. Multiple connections show operational maturity."
+          }
+        ]
+      },
+      {
+        "title": "Network & Security",
+        "description": "Assesses network architecture, wireless security, and perimeter protection.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Network segmentation and VLAN strategy",
+            "description": "Evaluates whether networks are properly segmented for security and performance.",
+            "remediation_tips": "Implement VLANs to separate guest, corporate, and server traffic. Add network access control where possible.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Flat network with no segmentation"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic segmentation but incomplete or inconsistent"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Proper network segmentation with VLANs and access controls"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Cloud-only or very simple network requirements"
+              }
+            ],
+            "scoring_instructions": "Flat networks indicate security risks. Proper segmentation shows advanced network planning."
+          },
+          {
+            "title": "Wireless network security and guest access",
+            "description": "Assesses wireless security protocols and guest network isolation.",
+            "remediation_tips": "Deploy WPA3 or WPA2-Enterprise with RADIUS authentication. Isolate guest networks from corporate resources.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "WEP, open networks, or shared corporate/guest access"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "WPA2 with PSK but no guest isolation or weak authentication"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "WPA2/3-Enterprise with isolated guest network"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No wireless networks"
+              }
+            ],
+            "scoring_instructions": "Weak wireless security creates easy attack vectors. Guest access without isolation poses internal risks."
+          },
+          {
+            "title": "Firewall and unified threat management",
+            "description": "Evaluates perimeter security devices and advanced threat protection.",
+            "remediation_tips": "Deploy next-generation firewall with IPS, content filtering, and malware protection. Ensure current security subscriptions.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No firewall, consumer router, or expired security subscriptions"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic business firewall but limited advanced features"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "UTM/NGFW with current IPS, content filtering, and malware protection"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Cloud-only environment with cloud-native security"
+              }
+            ],
+            "scoring_instructions": "Basic firewalls provide minimal protection. UTM with current subscriptions indicates security investment."
+          },
+          {
+            "title": "VPN and remote access security",
+            "description": "Assesses remote access solutions and security controls.",
+            "remediation_tips": "Implement modern VPN with MFA or zero-trust remote access. Disable direct RDP exposure.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "RDP exposed to internet or no secure remote access"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic VPN but no MFA or outdated authentication"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Secure VPN with MFA or zero-trust remote access solution"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No remote access requirements"
+              }
+            ],
+            "scoring_instructions": "Outdated VPN or RDP exposure creates security vulnerabilities. Modern solutions indicate security awareness."
+          },
+          {
+            "title": "DNS security and content filtering",
+            "description": "Evaluates DNS-based security controls and malicious site blocking.",
+            "remediation_tips": "Deploy DNS security service (Umbrella, etc.) to block malicious domains and provide visibility into threats.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Using public DNS with no filtering or protection"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic DNS filtering but limited threat intelligence"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Advanced DNS security with threat intelligence and reporting"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Cloud-only with managed DNS security"
+              }
+            ],
+            "scoring_instructions": "DNS security provides first line of defense against malware and phishing. Shows proactive security posture."
+          },
+          {
+            "title": "Network monitoring and alerting",
+            "description": "Assesses visibility into network performance and security events.",
+            "remediation_tips": "Implement network monitoring for all critical devices with automated alerting for outages and performance issues.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No network monitoring or visibility tools"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic monitoring but limited alerting or coverage"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive monitoring with automated alerts and reporting"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Very simple network with minimal monitoring needs"
+              }
+            ],
+            "scoring_instructions": "Network monitoring enables proactive issue resolution. Lack of monitoring indicates reactive IT approach."
+          }
+        ]
+      },
+      {
+        "title": "Endpoint Protection",
+        "description": "Covers endpoint security, encryption, patch management, and device controls.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Antivirus and endpoint detection/response",
+            "description": "Evaluates endpoint security solutions and threat detection capabilities.",
+            "remediation_tips": "Upgrade to EDR or MDR solution for better threat detection and response. Ensure 24/7 monitoring coverage.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No endpoint protection or outdated/expired solutions"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic antivirus but no advanced threat detection"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "EDR/MDR with 24/7 monitoring and threat response"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No endpoints to protect"
+              }
+            ],
+            "scoring_instructions": "Traditional AV provides basic protection. EDR/MDR indicates advanced security posture and threat response capability."
+          },
+          {
+            "title": "Device encryption and data protection",
+            "description": "Assesses encryption status of laptops, workstations, and mobile devices.",
+            "remediation_tips": "Deploy BitLocker or equivalent encryption on all devices. Implement centralized key recovery and reporting.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No device encryption implemented"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Partial encryption or no centralized key management"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Full device encryption with centralized key management"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No mobile devices or laptops"
+              }
+            ],
+            "scoring_instructions": "Unencrypted devices create data breach risk. Full encryption with key management shows security maturity."
+          },
+          {
+            "title": "Patch management and update process",
+            "description": "Evaluates systematic patching of operating systems and applications.",
+            "remediation_tips": "Implement automated patch management with testing groups and scheduled deployment windows.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Manual patching or systems significantly behind on updates"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Inconsistent patching process or OS-only coverage"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Automated patch management for OS and third-party applications"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Fully cloud-managed environment"
+              }
+            ],
+            "scoring_instructions": "Manual patching creates security gaps. Automated patch management indicates operational maturity."
+          },
+          {
+            "title": "Application control and software restrictions",
+            "description": "Assesses controls preventing unauthorized software installation and execution.",
+            "remediation_tips": "Implement application whitelisting or controlled folder access to prevent unauthorized software execution.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Users can install any software without restrictions"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Limited administrative restrictions but no application control"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Application whitelisting or controlled folder access implemented"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Locked-down environment or cloud-only applications"
+              }
+            ],
+            "scoring_instructions": "Application control prevents malware execution and reduces attack surface. Shows advanced security implementation."
+          },
+          {
+            "title": "Device compliance and screen lock policies",
+            "description": "Evaluates device configuration policies and security controls.",
+            "remediation_tips": "Implement device compliance policies through MDM or Group Policy. Enforce screen lock timeouts.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No device policies or screen lock enforcement"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic policies but inconsistent enforcement"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive device compliance with automated enforcement"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No managed devices"
+              }
+            ],
+            "scoring_instructions": "Device compliance ensures consistent security posture. Screen locks prevent physical access risks."
+          },
+          {
+            "title": "Local administrator access control",
+            "description": "Assesses restriction of local administrative privileges on workstations.",
+            "remediation_tips": "Remove local admin rights from standard users. Implement privileged access management or LAPS for administrative tasks.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Users have local admin rights or shared admin accounts"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Limited admin access but not consistently enforced"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Restricted admin access with privileged access management"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Cloud-only or highly restricted environment"
+              }
+            ],
+            "scoring_instructions": "Unrestricted admin access increases malware risk. Controlled admin access shows security discipline."
+          }
+        ]
+      },
+      {
+        "title": "Identity & Access Management",
+        "description": "Covers directory services, user lifecycle, MFA, and access controls.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Directory services and organizational structure",
+            "description": "Evaluates Active Directory or cloud directory implementation and organization.",
+            "remediation_tips": "Organize users into proper OUs, implement group-based access, and clean up inactive accounts regularly.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Workgroup or poorly organized directory with inactive accounts"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic domain but poor organization or many inactive accounts"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Well-organized directory with clean account management"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Cloud-only with minimal user management needs"
+              }
+            ],
+            "scoring_instructions": "Well-structured directory indicates IT maturity. Poor organization suggests ad-hoc user management."
+          },
+          {
+            "title": "Multi-factor authentication implementation",
+            "description": "Assesses MFA deployment across critical systems and user accounts.",
+            "remediation_tips": "Deploy MFA for all administrative accounts immediately, then roll out to all users. Start with Microsoft Authenticator or similar.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No MFA implemented anywhere"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "MFA on some systems but not comprehensive"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "MFA required for all administrative and external access"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Single user environment"
+              }
+            ],
+            "scoring_instructions": "MFA significantly reduces breach risk. Lack of MFA indicates high security vulnerability."
+          },
+          {
+            "title": "Password policies and complexity requirements",
+            "description": "Evaluates password policy implementation and enforcement across systems.",
+            "remediation_tips": "Implement modern password policies with length requirements and complexity. Consider passwordless authentication.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No password policy or very weak requirements"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic password policy but not consistently enforced"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Strong password policy consistently enforced across all systems"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Passwordless or SSO-only environment"
+              }
+            ],
+            "scoring_instructions": "Strong password policies reduce credential-based attacks. Weak or unenforced policies indicate security gaps."
+          },
+          {
+            "title": "User onboarding and offboarding process",
+            "description": "Assesses systematic processes for managing user account lifecycle.",
+            "remediation_tips": "Document onboarding/offboarding checklists. Implement automated account provisioning and regular access reviews.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Ad-hoc user management with no defined processes"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic processes but inconsistently followed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Documented processes with regular access reviews"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Very small team with minimal user changes"
+              }
+            ],
+            "scoring_instructions": "Poor lifecycle management creates security risks from orphaned accounts. Good processes indicate operational maturity."
+          },
+          {
+            "title": "Privileged account management and monitoring",
+            "description": "Evaluates management of administrative and service accounts.",
+            "remediation_tips": "Limit number of privileged accounts, implement password rotation, and monitor administrative activity.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Shared admin accounts or no privileged account controls"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Limited privileged accounts but no password rotation"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Privileged access management with automated password rotation"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Cloud-only with identity provider management"
+              }
+            ],
+            "scoring_instructions": "Poor privileged account management creates insider threat risks. Good controls indicate security maturity."
+          },
+          {
+            "title": "Access permissions and regular review process",
+            "description": "Assesses regular review and cleanup of user access permissions.",
+            "remediation_tips": "Implement quarterly access reviews with documented approval processes. Use access governance tools where possible.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No regular access reviews or permission audits"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Informal reviews but no documented process"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Regular documented access reviews with approval workflows"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Very simple access model with minimal complexity"
+              }
+            ],
+            "scoring_instructions": "Regular access reviews prevent privilege creep. Lack of reviews indicates potential over-privileged accounts."
+          }
+        ]
+      },
+      {
+        "title": "Microsoft 365 & Collaboration",
+        "description": "Assesses M365 configuration, security settings, and collaboration tool management.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Microsoft 365 security and compliance configuration",
+            "description": "Evaluates M365 security settings, conditional access, and compliance policies.",
+            "remediation_tips": "Enable Security Defaults at minimum, implement conditional access policies, and configure compliance settings.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Default settings with no security hardening"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic security enabled but limited conditional access"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Advanced security with conditional access and compliance policies"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not using Microsoft 365"
+              }
+            ],
+            "scoring_instructions": "Default M365 settings provide minimal security. Advanced configuration shows security investment and expertise."
+          },
+          {
+            "title": "SharePoint and OneDrive governance",
+            "description": "Assesses data governance, sharing policies, and access controls for collaboration platforms.",
+            "remediation_tips": "Configure sharing policies, implement data loss prevention, and establish governance framework for team sites.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Open sharing enabled with no governance policies"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic sharing restrictions but limited governance"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive governance with DLP and controlled sharing"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not using SharePoint/OneDrive"
+              }
+            ],
+            "scoring_instructions": "Poor governance creates data leak risks. Good governance indicates understanding of collaboration security."
+          },
+          {
+            "title": "Microsoft Teams security and external access",
+            "description": "Evaluates Teams security settings, guest access controls, and meeting policies.",
+            "remediation_tips": "Configure guest access policies, implement meeting restrictions, and control external federation.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Open external access with no meeting or guest restrictions"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic controls but limited external access policies"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Secure configuration with controlled external access"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not using Microsoft Teams"
+              }
+            ],
+            "scoring_instructions": "Open Teams access creates security risks. Controlled access with policies shows security awareness."
+          },
+          {
+            "title": "Email security and advanced threat protection",
+            "description": "Assesses email security measures, anti-phishing, and attachment protection.",
+            "remediation_tips": "Deploy Defender for Office 365 or equivalent with anti-phishing, safe attachments, and safe links.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Basic Exchange protection only"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Third-party email security but limited features"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Advanced threat protection with anti-phishing and attachment scanning"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not using Exchange Online"
+              }
+            ],
+            "scoring_instructions": "Email is primary attack vector. Advanced protection shows security investment and awareness."
+          },
+          {
+            "title": "Mobile device management and application protection",
+            "description": "Evaluates MDM implementation and mobile application management policies.",
+            "remediation_tips": "Implement Intune or equivalent MDM with device compliance and application protection policies.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No mobile device management or protection"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic MDM but limited application protection"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive MDM with application protection policies"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No mobile device usage"
+              }
+            ],
+            "scoring_instructions": "Unmanaged mobile devices create data access risks. MDM shows understanding of modern security needs."
+          },
+          {
+            "title": "License management and optimization",
+            "description": "Assesses M365 license allocation, usage tracking, and cost optimization.",
+            "remediation_tips": "Regular license audits, remove unused licenses, and optimize license types based on actual usage patterns.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No license tracking or many unused/incorrect licenses"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic license management but no regular optimization"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Active license management with regular optimization"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Very small license footprint"
+              }
+            ],
+            "scoring_instructions": "Poor license management wastes budget. Good optimization shows cost awareness and planning."
+          }
+        ]
+      },
+      {
+        "title": "Backup & Recovery",
+        "description": "Covers backup strategy, retention, testing, and disaster recovery capabilities.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Backup strategy and data coverage",
+            "description": "Evaluates comprehensive backup coverage of critical systems and data.",
+            "remediation_tips": "Implement 3-2-1 backup strategy covering all critical systems including cloud data (M365, etc.).",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No backups or only backing up some systems"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Backing up most systems but gaps in cloud data or endpoints"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive backup strategy covering all critical systems and cloud data"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No critical data to back up"
+              }
+            ],
+            "scoring_instructions": "Incomplete backup coverage creates business continuity risks. Comprehensive strategy shows operational maturity."
+          },
+          {
+            "title": "Backup retention and offsite storage",
+            "description": "Assesses backup retention policies and protection against local disasters.",
+            "remediation_tips": "Implement automated offsite backup replication and establish retention policies based on business requirements.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Local backups only or very short retention periods"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some offsite backup but inconsistent or manual process"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Automated offsite backups with appropriate retention policies"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Cloud-native with built-in redundancy"
+              }
+            ],
+            "scoring_instructions": "Local-only backups vulnerable to site disasters. Offsite storage shows business continuity planning."
+          },
+          {
+            "title": "Backup testing and restore validation",
+            "description": "Evaluates regular testing of backup systems and restore procedures.",
+            "remediation_tips": "Implement monthly restore tests with documented procedures. Test full system recovery scenarios annually.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No backup testing or restore validation"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Occasional testing but no regular schedule or documentation"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Regular automated testing with documented restore procedures"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No backup system to test"
+              }
+            ],
+            "scoring_instructions": "Untested backups may fail when needed. Regular testing shows operational discipline and reliability."
+          },
+          {
+            "title": "Recovery time and point objectives alignment",
+            "description": "Assesses whether backup strategy aligns with business recovery requirements.",
+            "remediation_tips": "Document business requirements for recovery time and data loss tolerance. Align backup strategy accordingly.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No defined RTO/RPO or backup strategy doesn't meet requirements"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic understanding but backup strategy partially meets requirements"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Documented RTO/RPO with backup strategy designed to meet requirements"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Very simple requirements with minimal recovery needs"
+              }
+            ],
+            "scoring_instructions": "Misaligned RTO/RPO indicates backup strategy doesn't meet business needs. Proper alignment shows planning maturity."
+          },
+          {
+            "title": "Disaster recovery planning and documentation",
+            "description": "Evaluates documented procedures for major disaster scenarios and business continuity.",
+            "remediation_tips": "Document disaster recovery procedures, identify alternative work locations, and test DR plans annually.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No disaster recovery plan or procedures"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic DR plan but not tested or outdated"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive DR plan with regular testing and updates"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Cloud-only with provider-managed DR"
+              }
+            ],
+            "scoring_instructions": "Lack of DR planning indicates high business risk. Documented plans show business continuity maturity."
+          },
+          {
+            "title": "Backup monitoring and failure alerting",
+            "description": "Assesses proactive monitoring of backup jobs and automated failure notifications.",
+            "remediation_tips": "Configure automated alerts for backup failures, implement monitoring dashboards, and review backup reports regularly.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No backup monitoring or failure notifications"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic monitoring but manual checking required"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Automated monitoring with proactive failure alerting"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No backup system to monitor"
+              }
+            ],
+            "scoring_instructions": "Silent backup failures create false security. Active monitoring shows operational discipline."
+          }
+        ]
+      },
+      {
+        "title": "Policy & Compliance",
+        "description": "Evaluates security policies, regulatory compliance, and governance frameworks.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Security policy framework and documentation",
+            "description": "Assesses existence and quality of documented security policies and procedures.",
+            "remediation_tips": "Develop security policy framework covering key areas: acceptable use, password, incident response, and data handling.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No documented security policies or procedures"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic policies exist but outdated or incomplete"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive, current security policies with regular review"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Very small organization with minimal policy needs"
+              }
+            ],
+            "scoring_instructions": "Lack of policies indicates ad-hoc security approach. Well-documented policies show security governance maturity."
+          },
+          {
+            "title": "Incident response plan and procedures",
+            "description": "Evaluates documented procedures for security incidents and breaches.",
+            "remediation_tips": "Develop incident response plan with roles, responsibilities, communication procedures, and escalation paths.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No incident response plan or procedures"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic plan but not tested or lacks detail"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive plan with regular testing and updates"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Relying on MSP incident response procedures"
+              }
+            ],
+            "scoring_instructions": "Lack of incident response planning increases breach impact. Good planning shows security maturity."
+          },
+          {
+            "title": "Data classification and handling procedures",
+            "description": "Assesses data governance, classification schemes, and handling requirements.",
+            "remediation_tips": "Implement data classification scheme and establish handling procedures for different data types and sensitivity levels.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No data classification or handling procedures"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic understanding but no formal classification system"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Formal data classification with documented handling procedures"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No sensitive data or regulatory requirements"
+              }
+            ],
+            "scoring_instructions": "Poor data governance creates compliance and breach risks. Good classification shows data security awareness."
+          },
+          {
+            "title": "Regulatory compliance requirements and controls",
+            "description": "Evaluates understanding and implementation of applicable regulatory requirements.",
+            "remediation_tips": "Identify applicable regulations (HIPAA, PCI, SOX, etc.) and implement required controls with regular assessments.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No awareness of compliance requirements or controls"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Aware of requirements but inconsistent implementation"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive compliance program with regular assessments"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No specific regulatory requirements"
+              }
+            ],
+            "scoring_instructions": "Compliance failures create legal and financial risks. Good compliance programs indicate risk management maturity."
+          },
+          {
+            "title": "Security awareness training program",
+            "description": "Assesses employee security education and phishing awareness programs.",
+            "remediation_tips": "Implement regular security awareness training with phishing simulations and track completion rates.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No security awareness training or education"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Occasional training but no formal program"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Regular training program with phishing simulations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Single user organization"
+              }
+            ],
+            "scoring_instructions": "Untrained users are the weakest security link. Good training programs reduce human error risks."
+          },
+          {
+            "title": "Cyber liability insurance coverage",
+            "description": "Evaluates cyber insurance coverage and alignment with risk profile.",
+            "remediation_tips": "Obtain cyber liability insurance appropriate for business size and risk profile. Review coverage annually.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No cyber liability insurance coverage"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic coverage but may not align with current risk profile"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive coverage aligned with business risk profile"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Covered under broader business insurance"
+              }
+            ],
+            "scoring_instructions": "Lack of cyber insurance indicates unmanaged financial risk. Good coverage shows risk transfer planning."
+          }
+        ]
+      },
+      {
+        "title": "Business Continuity Planning",
+        "description": "Evaluates organizational preparedness for extended outages and disaster scenarios.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Business impact analysis and critical process identification",
+            "description": "Assesses understanding of critical business processes and impact of IT outages.",
+            "remediation_tips": "Conduct business impact analysis to identify critical processes, dependencies, and recovery time requirements.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No understanding of critical processes or outage impacts"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic understanding but no formal analysis"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Formal business impact analysis with documented priorities"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Very simple business with minimal IT dependencies"
+              }
+            ],
+            "scoring_instructions": "BIA identifies priorities for recovery planning. Lack of analysis indicates poor continuity planning."
+          },
+          {
+            "title": "Alternative work locations and remote capabilities",
+            "description": "Evaluates ability to maintain operations from alternative locations during disruptions.",
+            "remediation_tips": "Establish remote work capabilities, identify alternative work locations, and ensure secure remote access.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No remote work capability or alternative locations"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Limited remote capability or no formal alternative plans"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive remote work capability with alternative locations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Already fully remote or cloud-based operations"
+              }
+            ],
+            "scoring_instructions": "Remote work capability reduces business continuity risks. Limited capability indicates vulnerability to site outages."
+          },
+          {
+            "title": "Emergency communication procedures and contact lists",
+            "description": "Assesses emergency communication plans and stakeholder notification procedures.",
+            "remediation_tips": "Develop emergency communication plans with current contact lists and multiple communication channels.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No emergency communication procedures or contact lists"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic procedures but outdated contacts or limited channels"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive communication plan with current contacts"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Very small team with simple communication needs"
+              }
+            ],
+            "scoring_instructions": "Poor communication during emergencies compounds problems. Good procedures show crisis management planning."
+          },
+          {
+            "title": "Vendor and supplier continuity planning",
+            "description": "Evaluates backup arrangements for critical vendors and suppliers.",
+            "remediation_tips": "Identify critical vendors, assess their continuity plans, and establish backup supplier relationships.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Single vendors for critical services with no backup plans"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some vendor redundancy but no formal continuity assessment"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Diversified vendors with documented continuity plans"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Minimal vendor dependencies"
+              }
+            ],
+            "scoring_instructions": "Single vendor dependencies create continuity risks. Backup arrangements show supply chain planning."
+          },
+          {
+            "title": "Business continuity plan testing and exercises",
+            "description": "Assesses regular testing of continuity plans through tabletop or live exercises.",
+            "remediation_tips": "Conduct annual tabletop exercises and periodic live tests of continuity procedures.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No continuity plan testing or exercises"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Informal testing but no regular schedule"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Regular testing with documented results and improvements"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No formal continuity plan to test"
+              }
+            ],
+            "scoring_instructions": "Untested plans often fail during real incidents. Regular testing shows operational discipline."
+          },
+          {
+            "title": "Supply chain resilience and diversification",
+            "description": "Evaluates diversification of critical suppliers and services to reduce dependencies.",
+            "remediation_tips": "Diversify critical suppliers, establish alternative sourcing arrangements, and monitor supplier health.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Heavy reliance on single suppliers for critical needs"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some diversification but key dependencies remain"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Well-diversified supply chain with resilience planning"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Minimal supply chain complexity"
+              }
+            ],
+            "scoring_instructions": "Concentrated supply chains create systemic risks. Diversification shows risk management maturity."
+          }
+        ]
+      },
+      {
+        "title": "IT Operations & Monitoring",
+        "description": "Assesses system monitoring, documentation, and operational management practices.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Infrastructure monitoring and proactive alerting",
+            "description": "Evaluates monitoring coverage of servers, network devices, and critical services.",
+            "remediation_tips": "Deploy comprehensive monitoring with automated alerting for all critical infrastructure components.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No monitoring or purely reactive approach"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic monitoring but limited alerting or coverage gaps"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive monitoring with proactive alerting"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Fully cloud-managed with provider monitoring"
+              }
+            ],
+            "scoring_instructions": "Reactive IT creates more downtime and higher costs. Proactive monitoring indicates operational maturity."
+          },
+          {
+            "title": "System documentation and configuration management",
+            "description": "Assesses quality and currency of technical documentation and configuration records.",
+            "remediation_tips": "Maintain current network diagrams, system configurations, and procedure documentation with regular updates.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No documentation or severely outdated information"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic documentation but outdated or incomplete"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive, current documentation with regular updates"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Simple environment with minimal documentation needs"
+              }
+            ],
+            "scoring_instructions": "Poor documentation increases troubleshooting time and creates knowledge risks. Good documentation shows operational discipline."
+          },
+          {
+            "title": "Change management and approval processes",
+            "description": "Evaluates systematic approach to IT changes and configuration control.",
+            "remediation_tips": "Implement change management process with approval workflows, testing requirements, and rollback procedures.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No change management or ad-hoc approach"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Informal change process but not consistently followed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Formal change management with approval and testing"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Cloud-managed environment with minimal changes"
+              }
+            ],
+            "scoring_instructions": "Uncontrolled changes create stability risks. Good change management shows operational maturity."
+          },
+          {
+            "title": "Performance monitoring and capacity planning",
+            "description": "Assesses tracking of system performance trends and future capacity requirements.",
+            "remediation_tips": "Monitor performance trends, establish capacity thresholds, and develop growth projections for infrastructure.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No performance monitoring or capacity planning"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic performance monitoring but no formal capacity planning"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Performance trends tracked with proactive capacity planning"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Cloud-native with auto-scaling capabilities"
+              }
+            ],
+            "scoring_instructions": "Lack of capacity planning leads to performance issues and reactive purchasing. Good planning shows operational foresight."
+          },
+          {
+            "title": "Service level agreements and performance metrics",
+            "description": "Evaluates definition and tracking of IT service performance standards.",
+            "remediation_tips": "Define service level agreements for key IT services and implement metrics tracking and reporting.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No defined service levels or performance metrics"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Informal expectations but no measured SLAs"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Defined SLAs with regular performance reporting"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Very simple environment with minimal service requirements"
+              }
+            ],
+            "scoring_instructions": "Undefined service levels create expectation mismatches. Clear SLAs show professional service management."
+          },
+          {
+            "title": "Asset inventory and lifecycle tracking",
+            "description": "Assesses tracking of IT assets, warranties, and replacement schedules.",
+            "remediation_tips": "Maintain current asset inventory with warranty dates and implement lifecycle replacement planning.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No asset tracking or inventory management"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic inventory but no lifecycle or warranty tracking"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive asset management with lifecycle planning"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Cloud-only with minimal physical assets"
+              }
+            ],
+            "scoring_instructions": "Poor asset tracking leads to unexpected failures and budget surprises. Good tracking shows operational planning."
+          }
+        ]
+      },
+      {
+        "title": "Application & Data Management",
+        "description": "Covers business applications, data governance, and file management systems.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Line of business application currency and support",
+            "description": "Evaluates whether critical business applications are current and under vendor support.",
+            "remediation_tips": "Audit all business applications for support status and plan upgrades or replacements for unsupported software.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Critical applications out of support or significantly outdated"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Mix of current and legacy applications"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "All critical applications current and under vendor support"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Cloud-only or very simple application needs"
+              }
+            ],
+            "scoring_instructions": "Unsupported applications create security and operational risks. Current applications show technology investment."
+          },
+          {
+            "title": "File sharing and collaboration platform strategy",
+            "description": "Assesses approach to file storage, sharing, and collaboration tools.",
+            "remediation_tips": "Standardize on secure collaboration platform with proper governance and access controls.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Multiple inconsistent file sharing methods or insecure sharing"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic file sharing but limited governance or security"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Unified collaboration platform with security and governance"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Minimal file sharing requirements"
+              }
+            ],
+            "scoring_instructions": "Inconsistent file sharing creates security risks. Unified strategy shows collaboration planning."
+          },
+          {
+            "title": "Data retention and archival policies",
+            "description": "Evaluates systematic approach to data lifecycle management and retention requirements.",
+            "remediation_tips": "Develop data retention policies based on legal and business requirements with automated archival processes.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No data retention policies or uncontrolled data growth"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic retention practices but no formal policies"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Formal retention policies with automated enforcement"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Minimal data retention requirements"
+              }
+            ],
+            "scoring_instructions": "Poor data retention creates compliance and storage cost risks. Good policies show data governance maturity."
+          },
+          {
+            "title": "Database management and maintenance practices",
+            "description": "Assesses database administration, maintenance, and performance optimization.",
+            "remediation_tips": "Implement regular database maintenance, monitoring, and backup validation with performance optimization.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No database maintenance or monitoring"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic maintenance but no performance monitoring"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive database management with monitoring"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Cloud-managed databases or no databases"
+              }
+            ],
+            "scoring_instructions": "Poor database maintenance creates performance and reliability risks. Good practices show data management maturity."
+          },
+          {
+            "title": "Application integration and API management",
+            "description": "Evaluates integration between systems and management of API connections.",
+            "remediation_tips": "Implement proper integration architecture with API management and monitoring for system connections.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No system integration or manual data transfer processes"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic integration but inconsistent or unreliable"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Well-architected integration with API management"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Single application or no integration needs"
+              }
+            ],
+            "scoring_instructions": "Poor integration creates data silos and manual work. Good integration shows system architecture maturity."
+          },
+          {
+            "title": "Software licensing and compliance tracking",
+            "description": "Assesses tracking of software licenses and compliance with vendor agreements.",
+            "remediation_tips": "Implement software asset management with license tracking and regular compliance audits.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No license tracking or potential compliance issues"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic tracking but no regular compliance audits"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive license management with compliance tracking"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Minimal software licensing requirements"
+              }
+            ],
+            "scoring_instructions": "License non-compliance creates legal and financial risks. Good tracking shows procurement discipline."
+          }
+        ]
+      },
+      {
+        "title": "Vendor & Technology Alignment",
+        "description": "Reviews vendor relationships, technology stack coherence, and strategic IT alignment.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "IT vendor relationship and contract management",
+            "description": "Assesses management of IT vendor relationships, contracts, and performance.",
+            "remediation_tips": "Implement vendor management program with contract tracking, performance reviews, and renewal planning.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No vendor management or contract tracking"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic vendor relationships but no formal management"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Formal vendor management with performance tracking"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Minimal vendor relationships"
+              }
+            ],
+            "scoring_instructions": "Poor vendor management creates service and cost risks. Good management shows procurement maturity."
+          },
+          {
+            "title": "Technology stack standardization and coherence",
+            "description": "Evaluates consistency and integration of technology choices across the organization.",
+            "remediation_tips": "Develop technology standards and rationalize disparate tools to reduce complexity and improve integration.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Highly fragmented technology with many overlapping tools"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some standardization but significant fragmentation remains"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Coherent technology stack with clear standards"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Very simple technology environment"
+              }
+            ],
+            "scoring_instructions": "Fragmented technology creates complexity and support costs. Coherent stack shows architectural planning."
+          },
+          {
+            "title": "IT strategy alignment with business objectives",
+            "description": "Assesses how well IT decisions support and enable business goals.",
+            "remediation_tips": "Establish regular business-IT planning sessions and align technology investments with business priorities.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "IT decisions made in isolation from business strategy"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some alignment but inconsistent strategic planning"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Strong IT-business alignment with strategic planning"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "IT needs are very simple and straightforward"
+              }
+            ],
+            "scoring_instructions": "Misaligned IT creates waste and missed opportunities. Good alignment shows strategic IT planning."
+          },
+          {
+            "title": "Technology budgeting and financial planning",
+            "description": "Evaluates IT budget planning, cost tracking, and return on investment analysis.",
+            "remediation_tips": "Implement IT budget planning with cost tracking, ROI analysis, and regular budget reviews.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No IT budget planning or cost tracking"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic budgeting but no ROI analysis or strategic planning"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive IT financial planning with ROI tracking"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Very simple IT costs with minimal planning needs"
+              }
+            ],
+            "scoring_instructions": "Poor IT budgeting leads to surprise costs and poor investment decisions. Good planning shows financial discipline."
+          },
+          {
+            "title": "Innovation appetite and technology adoption strategy",
+            "description": "Assesses organizational openness to new technologies and innovation initiatives.",
+            "remediation_tips": "Develop innovation framework with pilot programs and systematic evaluation of new technologies.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Highly risk-averse with no innovation initiatives"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Cautious approach but some openness to new technology"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Balanced innovation strategy with systematic evaluation"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Industry or role doesn't require innovation focus"
+              }
+            ],
+            "scoring_instructions": "Risk aversion may limit competitive advantage. Balanced innovation shows strategic thinking."
+          },
+          {
+            "title": "Support escalation and service management",
+            "description": "Evaluates processes for IT support, escalation procedures, and service request management.",
+            "remediation_tips": "Implement formal support processes with ticketing, escalation procedures, and service level tracking.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No formal support process or escalation procedures"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic support but no formal escalation or tracking"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Formal service management with escalation procedures"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Single user or very simple support needs"
+              }
+            ],
+            "scoring_instructions": "Poor support processes create user frustration and business impact. Good processes show service maturity."
+          }
+        ]
+      },
+      {
+        "title": "Endpoint Lifecycle Management",
+        "description": "Evaluates workstation and mobile device lifecycle, configuration, and management.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Device age and warranty status tracking",
+            "description": "Assesses tracking of device age, warranty coverage, and replacement planning.",
+            "remediation_tips": "Maintain device inventory with warranty tracking and implement proactive replacement planning.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No tracking of device age or warranty status"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic tracking but no proactive replacement planning"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive tracking with proactive lifecycle management"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Very few devices or cloud-only environment"
+              }
+            ],
+            "scoring_instructions": "Out-of-warranty devices create support risks and unexpected costs. Good tracking shows lifecycle planning."
+          },
+          {
+            "title": "Device standardization and imaging processes",
+            "description": "Evaluates consistency of device configurations and automated deployment processes.",
+            "remediation_tips": "Implement standardized device configurations with automated imaging or provisioning processes.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No device standards or manual configuration processes"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some standardization but inconsistent deployment"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Standardized devices with automated deployment"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "BYOD environment or minimal device management"
+              }
+            ],
+            "scoring_instructions": "Device inconsistency increases support costs. Standardization shows operational efficiency."
+          },
+          {
+            "title": "Endpoint security and compliance enforcement",
+            "description": "Assesses security controls and compliance enforcement on workstations and mobile devices.",
+            "remediation_tips": "Implement endpoint compliance policies with automated enforcement and regular compliance reporting.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No endpoint security policies or compliance checking"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic security but limited compliance enforcement"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive endpoint security with compliance enforcement"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No managed endpoints"
+              }
+            ],
+            "scoring_instructions": "Non-compliant endpoints create security risks. Strong enforcement shows security discipline."
+          },
+          {
+            "title": "Remote device management and support capabilities",
+            "description": "Evaluates ability to manage and support devices outside the office environment.",
+            "remediation_tips": "Deploy remote management tools with VPN or cloud-based device management capabilities.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No remote management capabilities"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Limited remote access but inconsistent capabilities"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive remote management and support"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "All devices in single location"
+              }
+            ],
+            "scoring_instructions": "Limited remote management increases support costs and response times. Good capabilities show modern IT practices."
+          },
+          {
+            "title": "BYOD and mobile device governance",
+            "description": "Assesses policies and controls for personal devices accessing corporate resources.",
+            "remediation_tips": "Implement BYOD policies with MDM enforcement and application-level data protection.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Uncontrolled personal device access to corporate data"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic BYOD policies but limited technical enforcement"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive BYOD governance with technical controls"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No personal device usage"
+              }
+            ],
+            "scoring_instructions": "Uncontrolled BYOD creates security and data risks. Good governance shows understanding of modern work patterns."
+          },
+          {
+            "title": "Device refresh and lifecycle planning",
+            "description": "Evaluates systematic approach to device replacement and technology refresh cycles.",
+            "remediation_tips": "Develop device refresh schedule with budget planning and user communication processes.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Reactive device replacement with no planning"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some refresh planning but inconsistent execution"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Systematic refresh planning with budget alignment"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Very stable device environment with minimal refresh needs"
+              }
+            ],
+            "scoring_instructions": "Reactive device replacement creates budget spikes and user disruption. Planned refresh shows financial and operational discipline."
+          }
+        ]
+      }
+    ]
+  }
+}

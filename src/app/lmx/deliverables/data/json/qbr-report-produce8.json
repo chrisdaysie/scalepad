@@ -1,0 +1,138 @@
+{
+  "id": "qbr-report-produce8",
+  "title": "Produce8",
+  "company": "Produce8",
+  "dateRange": "Q2 2025 • Productivity Analytics",
+  "heroMetric": {
+    "value": "2.3 hrs",
+    "label": "Avg Response Time",
+    "description": "Average time to respond to productivity issues"
+  },
+  "type": "individual",
+  "description": "Productivity analytics and time tracking platform for MSPs with performance insights",
+  "executiveSummary": "Produce8 provides comprehensive productivity analytics and time tracking for your organization. This quarter, we've successfully tracked productivity metrics across 25 endpoints, achieving an average productivity score of 76.4% and time utilization rate of 82%. Your organization demonstrates good productivity practices with effective time management, with opportunities for improvement in workflow optimization and automated productivity insights.",
+  "categories": [
+    {
+      "name": "Productivity Metrics",
+      "score": 76.4,
+      "items": [
+        { "name": "Time Utilization", "status": "satisfactory" },
+        { "name": "Task Completion", "status": "satisfactory" },
+        { "name": "Focus Time", "status": "needs-attention" },
+        { "name": "Meeting Efficiency", "status": "satisfactory" }
+      ]
+    },
+    {
+      "name": "Workflow Optimization",
+      "score": 68.2,
+      "items": [
+        { "name": "Process Automation", "status": "needs-attention" },
+        { "name": "Tool Integration", "status": "satisfactory" },
+        { "name": "Workflow Efficiency", "status": "needs-attention" },
+        { "name": "Collaboration Tools", "status": "satisfactory" }
+      ]
+    },
+    {
+      "name": "Performance Insights",
+      "score": 71.8,
+      "items": [
+        { "name": "Analytics Dashboard", "status": "satisfactory" },
+        { "name": "Performance Reports", "status": "satisfactory" },
+        { "name": "Trend Analysis", "status": "needs-attention" },
+        { "name": "Predictive Insights", "status": "at-risk" }
+      ]
+    }
+  ],
+  "hardwareStats": {
+    "totalAssets": 156,
+    "trackedAssets": 156,
+    "untrackedAssets": 0,
+    "trackingCoverage": "100%"
+  },
+  "softwareStats": {
+    "totalAssets": 892,
+    "monitoredApps": 45,
+    "unmonitoredApps": 847,
+    "appMonitoringRate": "5%"
+  },
+  "contracts": {
+    "monthly": [
+      { "vendor": "Produce8", "description": "Productivity analytics and time tracking platform", "cost": "$2,800.00", "nextDue": "2025-08-31" }
+    ],
+    "annual": [
+      { "vendor": "Productivity Training", "description": "Annual productivity and time management training", "cost": "$3,500.00", "nextDue": "2025-12-31" }
+    ]
+  },
+  "roadmap": {
+    "totalInvestment": "$8,300.00",
+    "initiatives": [
+      {
+        "priority": "open",
+        "title": "Workflow Automation",
+        "description": "Implement workflow automation and process optimization to improve productivity and reduce manual tasks.",
+        "investment": "$4,800.00",
+        "assets": 25
+      },
+      {
+        "priority": "open",
+        "title": "Advanced Analytics",
+        "description": "Deploy advanced analytics and predictive insights to optimize productivity and identify improvement opportunities.",
+        "investment": "$3,500.00",
+        "assets": 156
+      }
+    ]
+  },
+  "enhancedSections": {
+    "risks": [
+      {
+        "title": "Productivity Plateaus",
+        "description": "Without continuous optimization and automation, productivity gains may plateau, leading to stagnant performance and missed efficiency opportunities.",
+        "severity": "medium",
+        "impact": "Reduced efficiency, increased operational costs, and competitive disadvantages."
+      },
+      {
+        "title": "Tool Fatigue",
+        "description": "Excessive use of productivity tools without proper integration can lead to tool fatigue and reduced adoption rates.",
+        "severity": "medium",
+        "impact": "Decreased productivity, poor user adoption, and wasted technology investments."
+      }
+    ],
+    "insights": [
+      {
+        "title": "Strong Time Management",
+        "description": "Your organization demonstrates good time management practices with 82% time utilization and effective meeting management.",
+        "type": "positive",
+        "recommendation": "Continue maintaining good time management practices and consider implementing focus time optimization."
+      },
+      {
+        "title": "Automation Opportunities",
+        "description": "There are significant opportunities to improve productivity through workflow automation and process optimization.",
+        "type": "improvement",
+        "recommendation": "Invest in workflow automation tools to reduce manual tasks and improve efficiency."
+      }
+    ],
+    "recommendations": [
+      {
+        "title": "Implement Workflow Automation",
+        "description": "Deploy workflow automation tools to streamline processes, reduce manual tasks, and improve overall productivity.",
+        "priority": "high",
+        "investment": "$4,800.00",
+        "timeline": "3-6 months"
+      },
+      {
+        "title": "Enhance Analytics Capabilities",
+        "description": "Implement advanced analytics and predictive insights to identify productivity trends and optimization opportunities.",
+        "priority": "medium",
+        "investment": "$3,500.00",
+        "timeline": "2-4 months"
+      },
+      {
+        "title": "Focus Time Optimization",
+        "description": "Implement focus time optimization strategies to improve deep work capabilities and reduce distractions.",
+        "priority": "medium",
+        "investment": "$2,000.00",
+        "timeline": "1-2 months"
+      }
+    ]
+  }
+}

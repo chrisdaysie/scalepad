@@ -1,0 +1,758 @@
+{
+  "assessment_template_create_payload": {
+    "title": "AI Readiness Assessment",
+    "description": "This 28-point assessment helps MSPs evaluate client readiness across four core dimensions critical to strategic engagement and account growth. Each item includes tiered scoring (At Risk, Needs Attention, Satisfactory, Not Applicable) and is framed in business terms — not just technical criteria.",
+    "is_category_weight_evenly_distributed": true,
+    "categories": [
+      {
+        "title": "Strategic Alignment",
+        "description": "Evaluates how AI is positioned within the organization's strategy, leadership mindset, and transformation roadmap. High maturity reflects intentional integration of AI into planning, not just reactive experimentation.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Willingness to explore AI as part of strategic planning",
+            "description": "Assesses whether the organization views AI as a strategic enabler or simply a technical experiment.",
+            "remediation_tips": "If AI isn't part of strategic dialogue, connect it to high-priority goals like efficiency, scalability, or client experience.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Evaluate how often AI is mentioned in leadership or planning discussions. Is it positioned as a core enabler of transformation?"
+          },
+          {
+            "title": "Clarity of business goals that could benefit from AI",
+            "description": "Evaluates whether the organization has clearly defined business outcomes that AI could support.",
+            "remediation_tips": "If unclear, lead with use-case examples. Ask \"What's slow, manual, or expensive?\"",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask what they hope AI could improve — speed, cost, decision-making, experience?"
+          },
+          {
+            "title": "Leadership commitment to AI-driven transformation",
+            "description": "Measures executive sponsorship and prioritization of AI initiatives.",
+            "remediation_tips": "If missing, connect AI to metrics that matter to execs (growth, margin, customer NPS).",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Look for visible support from leadership: resourcing, advocacy, or ownership of AI efforts."
+          },
+          {
+            "title": "Perception of AI as a business enabler",
+            "description": "Assesses whether AI is seen as a lever for insight and impact, not just efficiency.",
+            "remediation_tips": "Use examples beyond workflow automation: e.g., personalization, forecasting, decision support.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask how they define AI's value. Is it framed around automation or transformation?"
+          }
+        ]
+      },
+      {
+        "title": "Data Foundation",
+        "description": "Assesses the accessibility, quality, and governance of the organization's core data assets. Strong foundations ensure that AI initiatives are built on accurate, centralized, and well-managed data sources.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Centralization and accessibility of key data (systems, ownership, silos)",
+            "description": "Evaluates whether data is structured, consolidated, and accessible across teams.",
+            "remediation_tips": "Start by mapping systems and identifying gaps in ownership or access.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask: is data scattered across systems, or is there a source of truth?"
+          },
+          {
+            "title": "Data cleanliness and consistency across systems",
+            "description": "Measures whether data is accurate, deduplicated, and standardized.",
+            "remediation_tips": "Start with one high-impact dataset and build discipline around quality.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Look for signs of duplication, conflicting fields, or manual cleanup."
+          },
+          {
+            "title": "Awareness of data ownership and governance policies",
+            "description": "Assesses whether teams understand who owns what data and how it's managed.",
+            "remediation_tips": "Start small: define data stewards for 1–2 domains and expand from there.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask if roles, responsibilities, and access controls are defined."
+          },
+          {
+            "title": "Use of structured data for decision-making",
+            "description": "Assesses whether teams rely on dashboards, reports, or data models to guide decisions.",
+            "remediation_tips": "If decisions are gut-based, build momentum with a simple, visual report tied to a business priority.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How do you know what's working?\" Look for signals of data-driven culture."
+          }
+        ]
+      },
+      {
+        "title": "Operational Readiness",
+        "description": "Measures the organization's ability to execute on AI initiatives — including process maturity, internal ownership, and historical delivery of tech-driven change.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Availability of internal champions or owners for AI initiatives",
+            "description": "Evaluates whether anyone is tasked (even informally) with exploring or driving AI.",
+            "remediation_tips": "Recommend assigning a single point of contact or forming a cross-functional squad.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask if anyone is responsible for learning about or coordinating AI internally."
+          },
+          {
+            "title": "Maturity of internal processes that could be automated",
+            "description": "Assesses whether there are consistent workflows that AI can build on.",
+            "remediation_tips": "If ad hoc, start by mapping workflows in a single function.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask: are key processes defined, documented, and repeatable?"
+          },
+          {
+            "title": "History of executing past IT or automation projects",
+            "description": "Assesses whether the org has proven it can complete and adopt new tech.",
+            "remediation_tips": "If shaky, recommend light-weight pilots with weekly check-ins.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask about prior digital projects: Were they completed? Did they stick?"
+          },
+          {
+            "title": "Ability to define business KPIs that AI could influence",
+            "description": "Assesses whether teams know what success would look like from AI.",
+            "remediation_tips": "Use benchmarked metrics or common ROI levers to shape the conversation.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask: \"What metric would you want to improve with AI?\""
+          }
+        ]
+      },
+      {
+        "title": "Technology Infrastructure",
+        "description": "Reviews the scalability, integration, and flexibility of the organization's tech stack — including use of cloud systems, standardized tools, and potential blockers like legacy platforms.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Use of cloud-based systems that support integration",
+            "description": "Assesses whether the organization uses cloud platforms that are scalable, API-ready, and AI-compatible.",
+            "remediation_tips": "If they're not cloud-ready, position migration in terms of flexibility, scalability, and AI enablement — not just cost.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask about major systems: are they cloud-native, and can they connect to other tools?"
+          },
+          {
+            "title": "Use of platforms already offering AI features (e.g., CRM, ERP)",
+            "description": "Evaluates whether current tools already include AI — and whether those features are being used.",
+            "remediation_tips": "If features are unused, highlight them as a no-cost entry point to explore AI impact.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask: \"Are you using any predictive tools, AI assistants, or automated insights built into your stack?\""
+          },
+          {
+            "title": "Standardization across core systems to reduce fragmentation",
+            "description": "Assesses whether key systems (CRM, ticketing, finance, etc.) are unified or redundant.",
+            "remediation_tips": "If fragmented, advocate for standardization before pursuing automation or AI integration.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Look for signs of duplication — multiple CRMs, data silos, manual syncing."
+          },
+          {
+            "title": "Legacy systems or infrastructure that limit flexibility",
+            "description": "Evaluates how much technical debt is holding back modernization or AI readiness.",
+            "remediation_tips": "If legacy tools are blockers, isolate them and begin modernization module-by-module.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask what systems \"can't be touched\" and why — cost, vendor lock, complexity?"
+          }
+        ]
+      },
+      {
+        "title": "Innovation Appetite",
+        "description": "Measures the organization's cultural and financial appetite for emerging technology. Includes willingness to invest, pilot, and pursue AI as a competitive differentiator.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Budget availability (or flexibility) for exploring new technologies",
+            "description": "Assesses whether budget is allocated or accessible for pilot programs or exploration.",
+            "remediation_tips": "Frame pilots in terms of outcome efficiency or reduced operational friction — not just \"innovation.\"",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask if there's a formal R&D or innovation budget — or discretionary funds for \"trying new stuff.\""
+          },
+          {
+            "title": "Previous investment in automation or AI tools",
+            "description": "Assesses whether the org has already dabbled in AI or automation, formally or informally.",
+            "remediation_tips": "If they've never tried, position low-cost, low-lift tools as safe ways to start building experience and confidence.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask: \"Have you experimented with AI chat, email sorting, or even RPA tools before?\""
+          },
+          {
+            "title": "Interest in competitive advantage through tech innovation",
+            "description": "Measures how much the organization sees AI as a lever for growth, not just maintenance.",
+            "remediation_tips": "If innovation isn't a priority, share examples from their industry or competitors to create urgency.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask about competitive drivers: \"Are you looking to lead or follow?\" See if tech is viewed as a strategic lever or just a support function."
+          },
+          {
+            "title": "Willingness to run proofs of concept or limited pilots",
+            "description": "Assesses whether the client is open to running small tests before full rollout.",
+            "remediation_tips": "Position it as a no-risk trial: clear outcome, small scale, limited scope.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask: \"Would you be open to a 2-week pilot to validate one idea?\""
+          }
+        ]
+      },
+      {
+        "title": "Change Management & Culture",
+        "description": "Assesses the organization's openness to change, including staff readiness, training investment, and a test-and-learn mindset necessary to support innovation.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Receptiveness of staff to new technologies",
+            "description": "Measures how frontline teams respond to new systems and workflows.",
+            "remediation_tips": "If skeptical, start with user-focused tools that save time and invite feedback.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How do people usually react when you roll out a new tool?\""
+          },
+          {
+            "title": "Historical success with major workflow/process changes",
+            "description": "Assesses the organization's ability to adopt new ways of working.",
+            "remediation_tips": "If history is rough, suggest a gradual rollout with one team, and build from there.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask about the last big change initiative — what went well, what didn't?"
+          },
+          {
+            "title": "Internal training programs or plans to reskill teams",
+            "description": "Evaluates whether digital literacy, AI awareness, or upskilling is on the roadmap.",
+            "remediation_tips": "If lacking, recommend a lightweight education series focused on use cases, not algorithms.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask about lunch-and-learns, LMS usage, certifications, or skill-building programs."
+          },
+          {
+            "title": "Culture of experimentation and iteration",
+            "description": "Assesses whether the organization has a test-and-learn mindset or fears failure.",
+            "remediation_tips": "If conservative, run a \"safe-to-fail\" pilot with clear boundaries and ROI framing.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How comfortable are you with pilots, iteration, and small failures?\""
+          }
+        ]
+      },
+      {
+        "title": "Security & Compliance",
+        "description": "Evaluates awareness and preparedness around the ethical, regulatory, and security implications of AI adoption — especially where customer or sensitive data is involved.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Understanding of AI-related compliance risks (privacy, bias, etc.)",
+            "description": "Assesses whether the organization recognizes the legal and ethical risks tied to AI.",
+            "remediation_tips": "Introduce examples like GDPR violations, AI hallucination, or unfair model outcomes to start the dialogue.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask about how they think about model bias, data privacy, transparency, and explainability."
+          },
+          {
+            "title": "Comfort with third-party tools accessing sensitive data",
+            "description": "Evaluates whether the org is comfortable with SaaS or cloud AI tools processing sensitive data.",
+            "remediation_tips": "If trust is low, explore private-hosted models, zero-retention policies, or masked input flows.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask: \"Would you be open to using OpenAI, Copilot, or other tools on your internal data?\""
+          },
+          {
+            "title": "Established security frameworks and access controls",
+            "description": "Assesses whether foundational security is in place to support AI adoption.",
+            "remediation_tips": "If security is weak, prioritize least-privilege access, MFA, and endpoint controls.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask about role-based access, encryption, audits, or alignment with frameworks like NIST or ISO."
+          },
+          {
+            "title": "Formal or informal review process for new tech adoption",
+            "description": "Assesses whether new tools — especially AI — go through structured review for risk and impact.",
+            "remediation_tips": "If missing, introduce a simple 5-question intake checklist (e.g., data type, owner, cost, risk, outcome).",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant improvement needed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some improvement needed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Meets expectations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Ask: \"What's the process when someone wants to try a new tool?\""
+          }
+        ]
+      }
+    ]
+  }
+}

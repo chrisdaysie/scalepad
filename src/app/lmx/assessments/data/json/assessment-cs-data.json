@@ -1,0 +1,437 @@
+{
+  "assessment_template_create_payload": {
+    "title": "CS Readiness Assessment",
+    "description": "This 16-point assessment helps organizations evaluate client readiness across four core dimensions critical to long-term success: strategic engagement, operational maturity, relationship strength, and growth potential. It is designed to uncover where clients are poised for strategic growth and where friction may exist in execution or collaboration.",
+    "categories": [
+      {
+        "title": "Strategic Engagement",
+        "description": "Evaluates client alignment, participation, and willingness to plan beyond tickets. High scores reflect partner-level relationships.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Business Planning & Outcome Alignment",
+            "description": "Combines visibility into business goals with openness to budget planning and ROI-focused outcomes.",
+            "remediation_tips": "Use QBRs to position technology as a business enabler. Connect IT recommendations to revenue, risk, or productivity.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Goals and budgets are not shared or discussed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some vague or tactical planning occurs"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Clear, proactive business alignment exists"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not discussed"
+              }
+            ],
+            "scoring_instructions": "Evaluate whether the client shares business priorities, engages in forward planning, and seeks business value."
+          },
+          {
+            "title": "Engagement in Strategic Conversations",
+            "description": "Combines QBR participation, follow-through, and proactive strategic dialogue beyond support.",
+            "remediation_tips": "Elevate QBR content to business outcomes. Invite decision-makers and track follow-through.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Low participation and passive follow-up"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Occasional engagement, inconsistent execution"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Regular participation with follow-through"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No sessions yet held"
+              }
+            ],
+            "scoring_instructions": "Look at meeting attendance, post-QBR execution, and types of questions clients ask."
+          },
+          {
+            "title": "Willingness to Embrace Change with Justification",
+            "description": "Measures client openness to recommendations and their ability to articulate business value.",
+            "remediation_tips": "Frame changes in business terms. Build trust through small wins before major initiatives.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Resistant to change or no business case"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Selective adoption with weak justification"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Open to change with clear business reasoning"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No changes proposed"
+              }
+            ],
+            "scoring_instructions": "Assess how clients respond to recommendations and whether they can articulate value."
+          },
+          {
+            "title": "Long-term Partnership Mindset",
+            "description": "Evaluates whether the client views you as a strategic partner versus a vendor.",
+            "remediation_tips": "Demonstrate strategic value beyond technical support. Share industry insights and business outcomes.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Transactional, price-focused relationship"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Mixed signals on partnership value"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Views MSP as strategic business partner"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Relationship too new to assess"
+              }
+            ],
+            "scoring_instructions": "Look for signs of strategic thinking, long-term planning, and partnership language."
+          }
+        ]
+      },
+      {
+        "title": "Operational Maturity",
+        "description": "Assesses client infrastructure, processes, and operational readiness for strategic initiatives.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Infrastructure Documentation Quality",
+            "description": "Evaluates the completeness and accuracy of network documentation, asset inventories, and process documentation.",
+            "remediation_tips": "Offer documentation services. Use discovery tools to build comprehensive inventories.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor or missing documentation"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Partial documentation with gaps"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive, up-to-date documentation"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Review network diagrams, asset lists, and process documentation for completeness."
+          },
+          {
+            "title": "Change Management Process",
+            "description": "Assesses whether the client has formal change management procedures and follows them consistently.",
+            "remediation_tips": "Implement change management framework. Train staff on procedures and track compliance.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No formal process or ad-hoc changes"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Process exists but inconsistently followed"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Formal process with consistent execution"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to client size"
+              }
+            ],
+            "scoring_instructions": "Evaluate change request procedures, approval workflows, and testing protocols."
+          },
+          {
+            "title": "Backup and Disaster Recovery",
+            "description": "Assesses the robustness of backup systems, recovery procedures, and business continuity planning.",
+            "remediation_tips": "Implement comprehensive backup strategy. Test recovery procedures regularly.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Inadequate or missing backup systems"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic backup with limited testing"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive backup with tested recovery"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Review backup coverage, retention policies, and recovery testing frequency."
+          },
+          {
+            "title": "Security Posture and Compliance",
+            "description": "Evaluates security controls, compliance status, and overall security maturity.",
+            "remediation_tips": "Implement security framework. Conduct regular assessments and gap analysis.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Significant security gaps or compliance issues"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic security with compliance gaps"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Strong security posture with compliance"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Review security controls, compliance requirements, and recent assessments."
+          }
+        ]
+      },
+      {
+        "title": "Relationship Strength",
+        "description": "Measures the quality of communication, trust, and collaboration between the MSP and client.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Communication Quality and Frequency",
+            "description": "Evaluates the effectiveness of communication channels, response times, and information sharing.",
+            "remediation_tips": "Establish communication protocols. Use multiple channels and regular check-ins.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor communication or delayed responses"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Inconsistent communication patterns"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Regular, effective communication"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Relationship too new to assess"
+              }
+            ],
+            "scoring_instructions": "Assess response times, communication clarity, and information sharing."
+          },
+          {
+            "title": "Trust and Transparency",
+            "description": "Measures the level of trust, transparency, and openness in the relationship.",
+            "remediation_tips": "Build trust through consistent delivery. Share insights and be transparent about challenges.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Low trust or lack of transparency"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Moderate trust with some transparency"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "High trust and full transparency"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Relationship too new to assess"
+              }
+            ],
+            "scoring_instructions": "Evaluate information sharing, problem-solving approach, and relationship dynamics."
+          },
+          {
+            "title": "Collaboration and Teamwork",
+            "description": "Assesses how well the MSP and client teams work together on projects and initiatives.",
+            "remediation_tips": "Foster collaborative culture. Include client teams in planning and decision-making.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor collaboration or siloed teams"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some collaboration with room for improvement"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Strong collaboration and teamwork"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No joint projects yet"
+              }
+            ],
+            "scoring_instructions": "Review project collaboration, team interactions, and joint problem-solving."
+          },
+          {
+            "title": "Feedback and Continuous Improvement",
+            "description": "Evaluates the client's willingness to provide feedback and participate in improvement initiatives.",
+            "remediation_tips": "Solicit regular feedback. Implement improvement processes and track progress.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No feedback or resistance to improvement"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Limited feedback or inconsistent improvement"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Regular feedback and continuous improvement"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Relationship too new to assess"
+              }
+            ],
+            "scoring_instructions": "Assess feedback frequency, improvement participation, and process refinement."
+          }
+        ]
+      },
+      {
+        "title": "Growth Potential",
+        "description": "Evaluates opportunities for expanding services, increasing revenue, and deepening the relationship.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Service Expansion Opportunities",
+            "description": "Identifies potential areas for adding new services or expanding existing ones.",
+            "remediation_tips": "Conduct service gap analysis. Present opportunities aligned with client needs.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Limited expansion potential or resistance"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some opportunities with moderate interest"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Strong expansion opportunities and interest"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Review current services, client needs, and expansion opportunities."
+          },
+          {
+            "title": "Budget and Investment Capacity",
+            "description": "Assesses the client's financial capacity and willingness to invest in technology and services.",
+            "remediation_tips": "Understand budget cycles and constraints. Present ROI-focused proposals.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Limited budget or investment resistance"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Moderate budget with selective investment"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Strong budget and investment willingness"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not discussed"
+              }
+            ],
+            "scoring_instructions": "Evaluate budget discussions, investment history, and financial capacity."
+          },
+          {
+            "title": "Market Position and Industry Trends",
+            "description": "Assesses how well-positioned the client is to capitalize on industry trends and market opportunities.",
+            "remediation_tips": "Share industry insights. Help clients understand market positioning and opportunities.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor market position or declining industry"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Stable position with some growth potential"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Strong position in growing market"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Review market position, industry trends, and growth opportunities."
+          },
+          {
+            "title": "Strategic Alignment and Vision",
+            "description": "Evaluates alignment between client's strategic vision and MSP's capabilities and offerings.",
+            "remediation_tips": "Understand client vision and goals. Align services with strategic objectives.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor alignment or conflicting visions"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Partial alignment with some gaps"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Strong strategic alignment"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not discussed"
+              }
+            ],
+            "scoring_instructions": "Assess strategic goals, vision alignment, and long-term planning."
+          }
+        ]
+      }
+    ],
+    "is_category_weight_evenly_distributed": true
+  }
+}

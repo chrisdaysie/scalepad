@@ -1,0 +1,726 @@
+{
+  "assessment_template_create_payload": {
+    "title": "Technology Alignment Assessment",
+    "description": "This 27-point assessment evaluates client technology alignment across six core service areas, designed to help MSPs understand current state, identify opportunities, and align services with business objectives. Each item includes tiered scoring and is framed in business terms to support both customer acquisition and existing relationship optimization.",
+    "categories": [
+      {
+        "title": "Foundation Services",
+        "description": "Core IT infrastructure and support services that form the backbone of reliable business operations. These foundational elements enable day-to-day productivity and establish the groundwork for advanced technology initiatives.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Help Desk & End-User Support",
+            "description": "Comprehensive user support including self-service portals, 24×7 service desk, remote assistance, on-site dispatch, and VIP executive support services.",
+            "remediation_tips": "Implement tiered support structure with self-service options, establish SLAs for response times, and consider VIP support for executives. Focus on proactive communication and user experience.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Basic or ad-hoc support only, no structured help desk services"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Standard help desk during business hours with basic ticketing"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "24×7 support with self-service portal and remote assistance capabilities"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Comprehensive support ecosystem with VIP services, proactive monitoring, and user satisfaction tracking"
+              }
+            ],
+            "scoring_instructions": "Evaluate the maturity and comprehensiveness of end-user support services. Consider availability, response times, escalation procedures, and user satisfaction."
+          },
+          {
+            "title": "Device & Endpoint Management",
+            "description": "Complete lifecycle management of all endpoints including asset tracking, configuration management, patch management, encryption, mobile device management, and warranty tracking.",
+            "remediation_tips": "Deploy unified endpoint management (UEM) platform, implement automated patching, ensure encryption compliance, and establish asset lifecycle processes.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Manual device management with limited visibility and control"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic asset inventory and manual patching processes"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Automated patching, encryption management, and MDM for mobile devices"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Comprehensive UEM with automated lifecycle management, compliance reporting, and predictive maintenance"
+              }
+            ],
+            "scoring_instructions": "Assess the comprehensiveness of endpoint management including asset visibility, security posture, compliance, and automation levels."
+          },
+          {
+            "title": "Network Infrastructure",
+            "description": "Robust network infrastructure including wired and wireless connectivity, network security, monitoring, and optimization for performance and reliability.",
+            "remediation_tips": "Implement network monitoring and management tools, ensure redundancy and failover capabilities, and establish network security best practices.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Basic network infrastructure with limited monitoring and security"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Standard network with basic monitoring and security measures"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Advanced network with comprehensive monitoring, security, and optimization"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Optimized network infrastructure with predictive maintenance and advanced security"
+              }
+            ],
+            "scoring_instructions": "Evaluate network infrastructure maturity, security posture, monitoring capabilities, and performance optimization."
+          },
+          {
+            "title": "Data Backup & Recovery",
+            "description": "Comprehensive data protection including backup strategies, disaster recovery planning, and business continuity solutions.",
+            "remediation_tips": "Implement 3-2-1 backup strategy, test recovery procedures regularly, and establish disaster recovery plans with clear RTO/RPO objectives.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Basic backup with limited testing and no disaster recovery plan"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Standard backup with periodic testing and basic disaster recovery"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive backup and recovery with regular testing and documented procedures"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced backup and recovery with automated testing and business continuity integration"
+              }
+            ],
+            "scoring_instructions": "Assess backup strategy comprehensiveness, testing frequency, disaster recovery planning, and business continuity readiness."
+          },
+          {
+            "title": "Security & Compliance",
+            "description": "Comprehensive security measures including endpoint protection, access controls, monitoring, and compliance management.",
+            "remediation_tips": "Implement layered security approach, establish access controls and monitoring, and ensure compliance with relevant regulations.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Basic security measures with limited compliance oversight"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Standard security with basic compliance management"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive security with active monitoring and compliance management"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced security with proactive threat detection and automated compliance"
+              }
+            ],
+            "scoring_instructions": "Evaluate security posture, compliance status, monitoring capabilities, and incident response readiness."
+          },
+          {
+            "title": "Cloud Services",
+            "description": "Cloud infrastructure and services including migration, management, optimization, and cost control.",
+            "remediation_tips": "Develop cloud strategy, implement cost management tools, and establish governance and security controls for cloud services.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Limited cloud adoption with no formal strategy or management"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic cloud services with limited optimization and cost control"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive cloud services with optimization and cost management"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced cloud strategy with automation, optimization, and governance"
+              }
+            ],
+            "scoring_instructions": "Assess cloud adoption level, strategy maturity, cost management, and governance practices."
+          }
+        ]
+      },
+      {
+        "title": "Business Applications",
+        "description": "Critical business applications and software solutions that drive productivity, collaboration, and operational efficiency.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Email & Collaboration",
+            "description": "Email systems, collaboration tools, and communication platforms that enable effective team work and communication.",
+            "remediation_tips": "Implement modern collaboration platforms, ensure email security and compliance, and provide training on effective collaboration tools.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Basic email with limited collaboration tools"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Standard email and collaboration with basic security"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Advanced collaboration platform with security and compliance"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Optimized collaboration ecosystem with advanced features and automation"
+              }
+            ],
+            "scoring_instructions": "Evaluate email system maturity, collaboration tool effectiveness, security measures, and user adoption."
+          },
+          {
+            "title": "Business Intelligence & Analytics",
+            "description": "Data analytics, reporting, and business intelligence tools that provide insights for decision-making.",
+            "remediation_tips": "Implement data analytics platforms, establish data governance, and provide training on data-driven decision making.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Limited analytics capabilities with manual reporting processes"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic analytics with standard reporting tools"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive analytics with automated reporting and dashboards"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced analytics with predictive capabilities and real-time insights"
+              }
+            ],
+            "scoring_instructions": "Assess analytics capabilities, reporting automation, data quality, and insight generation."
+          },
+          {
+            "title": "Customer Relationship Management",
+            "description": "CRM systems and customer management tools that support sales, marketing, and customer service operations.",
+            "remediation_tips": "Implement integrated CRM solution, ensure data quality and user adoption, and integrate with other business systems.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Basic customer tracking with limited CRM functionality"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Standard CRM with basic sales and marketing features"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive CRM with advanced features and integration"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced CRM with automation, analytics, and customer journey optimization"
+              }
+            ],
+            "scoring_instructions": "Evaluate CRM system maturity, feature utilization, data quality, and integration with other systems."
+          },
+          {
+            "title": "Enterprise Resource Planning",
+            "description": "ERP systems and business management software that integrate core business processes.",
+            "remediation_tips": "Implement ERP solution that integrates key business processes, ensure data consistency, and provide comprehensive user training.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Disconnected business systems with manual processes"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic ERP with limited integration and automation"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive ERP with good integration and process automation"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced ERP with full integration, automation, and real-time insights"
+              }
+            ],
+            "scoring_instructions": "Assess ERP system maturity, process integration, automation levels, and data consistency."
+          },
+          {
+            "title": "Industry-Specific Applications",
+            "description": "Specialized software and applications tailored to specific industry requirements and compliance needs.",
+            "remediation_tips": "Evaluate industry-specific software needs, ensure compliance with industry regulations, and integrate with core business systems.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Limited industry-specific software with compliance gaps"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic industry software with standard compliance measures"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive industry software with good compliance and integration"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced industry software with full compliance and optimization"
+              }
+            ],
+            "scoring_instructions": "Evaluate industry software effectiveness, compliance status, integration with core systems, and optimization."
+          }
+        ]
+      },
+      {
+        "title": "Advanced Technologies",
+        "description": "Emerging and advanced technologies that provide competitive advantages and operational efficiencies.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Artificial Intelligence & Machine Learning",
+            "description": "AI/ML solutions that automate processes, provide insights, and enhance decision-making capabilities.",
+            "remediation_tips": "Identify AI/ML opportunities, implement pilot projects, and ensure data quality and governance for AI initiatives.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No AI/ML implementation with limited understanding of potential"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic AI/ML with limited scope and impact"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive AI/ML implementation with measurable benefits"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced AI/ML with strategic integration and competitive advantage"
+              }
+            ],
+            "scoring_instructions": "Assess AI/ML adoption level, implementation scope, business impact, and strategic alignment."
+          },
+          {
+            "title": "Internet of Things (IoT)",
+            "description": "IoT devices and platforms that enable data collection, monitoring, and automation across business operations.",
+            "remediation_tips": "Develop IoT strategy, implement security measures, and ensure data management and integration capabilities.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No IoT implementation with limited understanding of potential"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic IoT with limited scope and security"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive IoT with good security and data management"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced IoT with strategic integration and automation"
+              }
+            ],
+            "scoring_instructions": "Evaluate IoT adoption, security measures, data management, and business value generation."
+          },
+          {
+            "title": "Robotic Process Automation",
+            "description": "RPA solutions that automate repetitive tasks and improve operational efficiency.",
+            "remediation_tips": "Identify automation opportunities, implement RPA solutions, and ensure proper governance and monitoring.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No RPA implementation with manual processes"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic RPA with limited scope and impact"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive RPA with measurable efficiency gains"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced RPA with strategic automation and optimization"
+              }
+            ],
+            "scoring_instructions": "Assess RPA adoption, automation scope, efficiency gains, and strategic alignment."
+          },
+          {
+            "title": "Blockchain & Distributed Ledger",
+            "description": "Blockchain solutions for secure transactions, smart contracts, and decentralized applications.",
+            "remediation_tips": "Evaluate blockchain opportunities, implement pilot projects, and ensure security and compliance measures.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No blockchain implementation with limited understanding"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic blockchain with limited scope and impact"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive blockchain with good security and compliance"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced blockchain with strategic integration and innovation"
+              }
+            ],
+            "scoring_instructions": "Evaluate blockchain adoption, implementation scope, security measures, and business value."
+          }
+        ]
+      },
+      {
+        "title": "Strategic Planning",
+        "description": "Technology strategy, planning, and governance that align IT initiatives with business objectives.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Technology Strategy & Roadmap",
+            "description": "Comprehensive technology strategy and roadmap that aligns IT initiatives with business goals and objectives.",
+            "remediation_tips": "Develop comprehensive technology strategy, create detailed roadmap, and ensure alignment with business objectives.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No formal technology strategy or roadmap"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic technology strategy with limited roadmap"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive technology strategy with detailed roadmap"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced technology strategy with agile roadmap and continuous optimization"
+              }
+            ],
+            "scoring_instructions": "Assess technology strategy comprehensiveness, roadmap detail, business alignment, and execution planning."
+          },
+          {
+            "title": "IT Governance & Risk Management",
+            "description": "IT governance framework and risk management processes that ensure effective technology oversight and control.",
+            "remediation_tips": "Establish IT governance framework, implement risk management processes, and ensure compliance and oversight.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Limited IT governance with poor risk management"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic IT governance with standard risk management"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive IT governance with good risk management"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced IT governance with proactive risk management and optimization"
+              }
+            ],
+            "scoring_instructions": "Evaluate IT governance maturity, risk management effectiveness, compliance status, and oversight capabilities."
+          },
+          {
+            "title": "Technology Investment & ROI",
+            "description": "Technology investment strategy and ROI measurement that ensures optimal resource allocation and value delivery.",
+            "remediation_tips": "Develop technology investment strategy, implement ROI measurement, and ensure value delivery and optimization.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor technology investment strategy with limited ROI measurement"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic investment strategy with standard ROI measurement"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive investment strategy with good ROI measurement"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced investment strategy with predictive ROI and optimization"
+              }
+            ],
+            "scoring_instructions": "Assess investment strategy effectiveness, ROI measurement accuracy, value delivery, and optimization practices."
+          },
+          {
+            "title": "Digital Transformation Readiness",
+            "description": "Organizational readiness for digital transformation initiatives and change management capabilities.",
+            "remediation_tips": "Assess digital transformation readiness, develop change management capabilities, and ensure organizational alignment.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor digital transformation readiness with limited change management"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic readiness with standard change management"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Good readiness with comprehensive change management"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced readiness with proactive change management and optimization"
+              }
+            ],
+            "scoring_instructions": "Evaluate digital transformation readiness, change management effectiveness, organizational alignment, and execution capabilities."
+          }
+        ]
+      },
+      {
+        "title": "Operational Excellence",
+        "description": "IT operations, service management, and continuous improvement processes that ensure reliable and efficient technology delivery.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "IT Service Management",
+            "description": "ITSM processes and tools that ensure effective service delivery, incident management, and continuous improvement.",
+            "remediation_tips": "Implement ITSM framework, establish service management processes, and ensure continuous improvement and optimization.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor ITSM with limited processes and tools"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic ITSM with standard processes and tools"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive ITSM with good processes and tools"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced ITSM with optimized processes and automation"
+              }
+            ],
+            "scoring_instructions": "Assess ITSM maturity, process effectiveness, tool utilization, and continuous improvement practices."
+          },
+          {
+            "title": "Performance Monitoring & Optimization",
+            "description": "Comprehensive monitoring and optimization of technology systems, applications, and infrastructure performance.",
+            "remediation_tips": "Implement comprehensive monitoring, establish performance baselines, and ensure proactive optimization and improvement.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Limited monitoring with reactive performance management"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic monitoring with standard performance management"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive monitoring with proactive performance management"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced monitoring with predictive optimization and automation"
+              }
+            ],
+            "scoring_instructions": "Evaluate monitoring comprehensiveness, performance management effectiveness, optimization practices, and automation levels."
+          },
+          {
+            "title": "Capacity Planning & Scalability",
+            "description": "Capacity planning processes and scalability strategies that ensure technology systems can meet current and future demands.",
+            "remediation_tips": "Implement capacity planning processes, develop scalability strategies, and ensure proactive resource management.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor capacity planning with limited scalability"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic capacity planning with standard scalability"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive capacity planning with good scalability"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced capacity planning with predictive scalability and optimization"
+              }
+            ],
+            "scoring_instructions": "Assess capacity planning effectiveness, scalability strategies, resource management, and future readiness."
+          },
+          {
+            "title": "Quality Assurance & Testing",
+            "description": "Quality assurance processes and testing methodologies that ensure reliable and high-quality technology delivery.",
+            "remediation_tips": "Implement quality assurance processes, establish testing methodologies, and ensure continuous improvement and optimization.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor quality assurance with limited testing processes"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic quality assurance with standard testing processes"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive quality assurance with good testing processes"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced quality assurance with automated testing and optimization"
+              }
+            ],
+            "scoring_instructions": "Evaluate quality assurance effectiveness, testing methodologies, defect management, and continuous improvement practices."
+          }
+        ]
+      },
+      {
+        "title": "Innovation & Future Readiness",
+        "description": "Innovation capabilities, emerging technology adoption, and future readiness that position the organization for long-term success.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Innovation Culture & Processes",
+            "description": "Organizational culture and processes that foster innovation, experimentation, and creative problem-solving.",
+            "remediation_tips": "Foster innovation culture, establish innovation processes, and ensure support for experimentation and creative problem-solving.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor innovation culture with limited experimentation"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic innovation culture with standard processes"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Good innovation culture with comprehensive processes"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced innovation culture with optimized processes and automation"
+              }
+            ],
+            "scoring_instructions": "Assess innovation culture strength, process effectiveness, experimentation support, and creative problem-solving capabilities."
+          },
+          {
+            "title": "Emerging Technology Evaluation",
+            "description": "Processes and capabilities for evaluating, piloting, and adopting emerging technologies that provide competitive advantages.",
+            "remediation_tips": "Establish emerging technology evaluation processes, implement pilot programs, and ensure strategic adoption and integration.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor emerging technology evaluation with limited adoption"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic evaluation with standard adoption processes"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive evaluation with good adoption processes"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced evaluation with strategic adoption and optimization"
+              }
+            ],
+            "scoring_instructions": "Evaluate emerging technology evaluation processes, pilot program effectiveness, adoption strategies, and competitive advantage generation."
+          },
+          {
+            "title": "Technology Talent & Skills",
+            "description": "Technology talent acquisition, development, and retention strategies that ensure access to required skills and capabilities.",
+            "remediation_tips": "Develop technology talent strategy, implement skills development programs, and ensure talent retention and optimization.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor technology talent with limited skills development"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic talent strategy with standard skills development"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive talent strategy with good skills development"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced talent strategy with optimized skills development and retention"
+              }
+            ],
+            "scoring_instructions": "Assess technology talent strategy, skills development effectiveness, retention practices, and capability optimization."
+          },
+          {
+            "title": "Future Technology Vision",
+            "description": "Long-term technology vision and strategic planning that positions the organization for future success and competitive advantage.",
+            "remediation_tips": "Develop future technology vision, create strategic planning processes, and ensure alignment with business objectives and market trends.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor future vision with limited strategic planning"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic future vision with standard strategic planning"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive future vision with good strategic planning"
+              },
+              {
+                "label_enum": "AcceptableRisk",
+                "description": "Advanced future vision with optimized strategic planning and execution"
+              }
+            ],
+            "scoring_instructions": "Evaluate future technology vision clarity, strategic planning effectiveness, market alignment, and competitive positioning."
+          }
+        ]
+      }
+    ],
+    "is_category_weight_evenly_distributed": true
+  }
+}

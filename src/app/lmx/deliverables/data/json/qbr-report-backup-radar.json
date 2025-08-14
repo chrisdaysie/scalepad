@@ -1,0 +1,116 @@
+{
+  "id": "qbr-report-backup-radar",
+  "title": "Backup Radar",
+  "company": "Backup Radar",
+  "dateRange": "August 1-7, 2025 • Weekly Summary",
+  "heroMetric": {
+    "value": "99.9%",
+    "label": "Backup Success Rate",
+    "description": "Successful backup completions this quarter"
+  },
+  "type": "individual",
+  "description": "Weekly backup monitoring and data protection analysis",
+  "executiveSummary": "Your business data is well-protected with enterprise-grade backup systems actively monitoring your critical information. This week we successfully backed up 245 critical files across your servers and workstations. Your 15 business systems are covered by our comprehensive protection strategy, with 99% success rate ensuring your business can recover from any data loss scenario.",
+  "categories": [
+    {
+      "name": "Backup Success",
+      "score": 99,
+      "items": [
+        { "name": "File Backup Success", "status": "satisfactory" },
+        { "name": "System Backup Success", "status": "satisfactory" },
+        { "name": "Database Backup Success", "status": "satisfactory" },
+        { "name": "Cloud Backup Success", "status": "satisfactory" }
+      ]
+    },
+    {
+      "name": "Recovery Testing",
+      "score": 85,
+      "items": [
+        { "name": "Monthly Recovery Tests", "status": "satisfactory" },
+        { "name": "Quarterly DR Drills", "status": "needs-attention" },
+        { "name": "Backup Validation", "status": "satisfactory" }
+      ]
+    },
+    {
+      "name": "Data Protection",
+      "score": 92,
+      "items": [
+        { "name": "Encryption", "status": "satisfactory" },
+        { "name": "Retention Policies", "status": "satisfactory" },
+        { "name": "Access Controls", "status": "needs-attention" },
+        { "name": "Compliance", "status": "satisfactory" }
+      ]
+    }
+  ],
+  "enhancedSections": {
+    "risks": [
+      {
+        "title": "Data Loss Risk",
+        "description": "2 backup failures detected this week, representing a 1% failure rate that could lead to data loss in case of system failure.",
+        "severity": "medium",
+        "impact": "Potential data loss and business disruption if primary systems fail."
+      },
+      {
+        "title": "Recovery Time Risk",
+        "description": "Current recovery testing shows 85% success rate, indicating potential delays in disaster recovery scenarios.",
+        "severity": "medium",
+        "impact": "Extended downtime during disaster recovery situations."
+      },
+      {
+        "title": "Compliance Risk",
+        "description": "Retention policies need review to ensure compliance with industry regulations and data protection requirements.",
+        "severity": "low",
+        "impact": "Potential compliance violations and regulatory penalties."
+      }
+    ],
+    "insights": [
+      {
+        "title": "Backup Success Rate",
+        "description": "99% backup success rate demonstrates excellent data protection coverage across all critical systems.",
+        "metric": "99% Success Rate",
+        "trend": "positive"
+      },
+      {
+        "title": "File Protection Coverage",
+        "description": "245 critical files successfully backed up this week across 15 business systems.",
+        "metric": "245 Files Protected",
+        "trend": "positive"
+      },
+      {
+        "title": "System Coverage",
+        "description": "Comprehensive backup coverage across all 15 business systems with automated monitoring.",
+        "metric": "15 Systems Covered",
+        "trend": "positive"
+      },
+      {
+        "title": "Recovery Testing",
+        "description": "85% recovery testing success rate shows good disaster recovery preparedness.",
+        "metric": "85% Recovery Success",
+        "trend": "positive"
+      }
+    ],
+    "recommendations": [
+      {
+        "title": "Improve Recovery Testing",
+        "description": "Increase recovery testing frequency and success rate to ensure faster disaster recovery.",
+        "priority": "high",
+        "effort": "Medium",
+        "impact": "Faster disaster recovery and reduced downtime"
+      },
+      {
+        "title": "Enhance Backup Monitoring",
+        "description": "Implement real-time backup monitoring and alerting to prevent backup failures.",
+        "priority": "medium",
+        "effort": "Low",
+        "impact": "Proactive backup failure prevention"
+      },
+      {
+        "title": "Review Retention Policies",
+        "description": "Audit and update data retention policies to ensure compliance with industry regulations.",
+        "priority": "medium",
+        "effort": "Low",
+        "impact": "Ensure regulatory compliance and data governance"
+      }
+    ]
+  }
+}

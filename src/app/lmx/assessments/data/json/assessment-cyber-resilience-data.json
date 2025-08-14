@@ -1,0 +1,758 @@
+{
+  "assessment_template_create_payload": {
+    "title": "Cyber Resilience Assessment",
+    "description": "This 28-point assessment helps organizations evaluate their cybersecurity maturity, resilience posture, and cultural readiness to handle risk. It surfaces blind spots not just in tooling, but in habits, awareness, decision-making, and strategic alignment.",
+    "categories": [
+      {
+        "title": "Risk Culture & Awareness",
+        "description": "Evaluates how cyber risk is perceived and acted on within the organization — from leadership to the front lines. Strong cultures treat risk as a shared responsibility, not just an IT task.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Leadership Involvement in Risk Conversations",
+            "description": "Measures whether cyber risk is discussed regularly at the leadership level — not just during incidents or audits.",
+            "remediation_tips": "If it's not on the agenda, tie risk to revenue, reputation, and resilience — not compliance.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Not part of leadership dialogue"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Occasionally discussed, not prioritized"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Risk is actively discussed and owned at the top"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Unknown"
+              }
+            ],
+            "scoring_instructions": "Ask: \"When was the last time risk was discussed in an ELT or board meeting?\""
+          },
+          {
+            "title": "Employee Understanding of Cyber Risk",
+            "description": "Assesses how well employees understand what cyber risk looks like in their daily work — emails, links, data sharing, etc.",
+            "remediation_tips": "Move beyond once-a-year training. Use micro-learning, real-world examples, and team-led discussions.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No real understanding or engagement"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic awareness, but no fluency"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Risk literacy is strong across roles"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"What would a risky behavior look like in your role?\" Look for awareness, not just policy."
+          },
+          {
+            "title": "Psychological Safety Around Reporting",
+            "description": "Evaluates whether employees feel safe reporting security concerns without fear of retribution or blame.",
+            "remediation_tips": "Create anonymous reporting channels and celebrate security-conscious behavior. Focus on learning, not punishment.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Fear of reporting or blame culture"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Mixed signals on reporting safety"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Strong culture of reporting and learning"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How do employees feel about reporting security concerns?\""
+          },
+          {
+            "title": "Risk Communication & Transparency",
+            "description": "Assesses how openly and effectively cyber risks are communicated throughout the organization.",
+            "remediation_tips": "Use clear, non-technical language. Share real examples and lessons learned. Make risk communication regular and accessible.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor communication or information hoarding"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Inconsistent or unclear communication"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Clear, regular, and transparent communication"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How are cyber risks communicated to employees?\""
+          }
+        ]
+      },
+      {
+        "title": "Technical Resilience",
+        "description": "Evaluates the technical infrastructure and capabilities that support cyber resilience and incident response.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Incident Detection & Response Capabilities",
+            "description": "Assesses the organization's ability to detect and respond to security incidents quickly and effectively.",
+            "remediation_tips": "Implement 24/7 monitoring, automated alerting, and well-defined incident response procedures. Conduct regular tabletop exercises.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No detection or response capabilities"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic capabilities with gaps"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive detection and response capabilities"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How quickly can you detect and respond to security incidents?\""
+          },
+          {
+            "title": "Backup & Recovery Systems",
+            "description": "Evaluates the robustness of backup systems and disaster recovery procedures.",
+            "remediation_tips": "Implement 3-2-1 backup strategy with regular testing. Ensure backups are immutable and air-gapped.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Inadequate or missing backup systems"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic backup with limited testing"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive backup with tested recovery"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How robust are your backup and recovery systems?\""
+          },
+          {
+            "title": "Security Monitoring & Logging",
+            "description": "Assesses the comprehensiveness of security monitoring and log collection across systems.",
+            "remediation_tips": "Implement centralized logging, SIEM solutions, and regular log analysis. Ensure logs are retained appropriately.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor monitoring or missing logs"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic monitoring with gaps"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive monitoring and logging"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How comprehensive is your security monitoring?\""
+          },
+          {
+            "title": "Vulnerability Management",
+            "description": "Evaluates the organization's approach to identifying and remediating security vulnerabilities.",
+            "remediation_tips": "Implement regular vulnerability scanning, prioritization processes, and timely remediation workflows.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No vulnerability management process"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic process with gaps"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive vulnerability management"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How do you manage security vulnerabilities?\""
+          }
+        ]
+      },
+      {
+        "title": "Operational Resilience",
+        "description": "Evaluates the operational processes and procedures that support cyber resilience.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Incident Response Planning",
+            "description": "Assesses the quality and comprehensiveness of incident response plans and procedures.",
+            "remediation_tips": "Develop detailed incident response playbooks, assign roles and responsibilities, and conduct regular training.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No incident response planning"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic plans with gaps"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive incident response planning"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How comprehensive are your incident response plans?\""
+          },
+          {
+            "title": "Business Continuity Planning",
+            "description": "Evaluates the organization's business continuity and disaster recovery planning.",
+            "remediation_tips": "Develop comprehensive BCP documents, test recovery procedures regularly, and update plans annually.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No business continuity planning"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic planning with gaps"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive business continuity planning"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How comprehensive is your business continuity planning?\""
+          },
+          {
+            "title": "Change Management Process",
+            "description": "Assesses the organization's change management procedures and their security implications.",
+            "remediation_tips": "Implement formal change management processes that include security review and testing procedures.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No formal change management process"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic process with gaps"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive change management process"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How do you manage changes to systems and processes?\""
+          },
+          {
+            "title": "Third-Party Risk Management",
+            "description": "Evaluates the organization's approach to managing risks from third-party vendors and partners.",
+            "remediation_tips": "Implement vendor risk assessment processes, monitor third-party access, and maintain vendor inventories.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No third-party risk management"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic process with gaps"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive third-party risk management"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How do you manage risks from third-party vendors?\""
+          }
+        ]
+      },
+      {
+        "title": "Strategic Resilience",
+        "description": "Evaluates the strategic alignment and long-term planning for cyber resilience.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Cyber Risk Integration in Strategy",
+            "description": "Assesses how cyber risk is integrated into overall business strategy and decision-making.",
+            "remediation_tips": "Include cyber risk in strategic planning, tie it to business objectives, and ensure leadership ownership.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Cyber risk not integrated in strategy"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Partial integration with gaps"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Cyber risk fully integrated in strategy"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How is cyber risk integrated into your business strategy?\""
+          },
+          {
+            "title": "Investment in Cyber Resilience",
+            "description": "Evaluates the organization's investment in cyber resilience capabilities and resources.",
+            "remediation_tips": "Allocate appropriate budget and resources for cyber resilience initiatives and capabilities.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Insufficient investment in cyber resilience"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Moderate investment with gaps"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Adequate investment in cyber resilience"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How much do you invest in cyber resilience capabilities?\""
+          },
+          {
+            "title": "Long-term Cyber Resilience Planning",
+            "description": "Assesses the organization's long-term planning for cyber resilience and capability development.",
+            "remediation_tips": "Develop multi-year cyber resilience roadmaps and capability development plans.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No long-term cyber resilience planning"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic planning with gaps"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive long-term planning"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How do you plan for long-term cyber resilience?\""
+          },
+          {
+            "title": "Cyber Resilience Metrics & KPIs",
+            "description": "Evaluates the organization's approach to measuring and tracking cyber resilience performance.",
+            "remediation_tips": "Define meaningful cyber resilience metrics and KPIs, track them regularly, and use them for improvement.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No cyber resilience metrics or KPIs"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic metrics with gaps"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive cyber resilience metrics"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How do you measure cyber resilience performance?\""
+          }
+        ]
+      },
+      {
+        "title": "Data Protection & Privacy",
+        "description": "Evaluates the organization's data protection practices, privacy controls, and data governance frameworks that are essential for cyber resilience.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Data Classification & Handling",
+            "description": "Assesses whether the organization has proper data classification and handling procedures in place.",
+            "remediation_tips": "Implement data classification framework and train employees on proper data handling procedures.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No data classification or handling procedures"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic procedures exist but not consistently applied"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive data classification and handling framework"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Evaluate the maturity of data classification and handling procedures."
+          },
+          {
+            "title": "Privacy Controls & Compliance",
+            "description": "Evaluates privacy controls and compliance with relevant data protection regulations.",
+            "remediation_tips": "Implement privacy controls and ensure compliance with relevant regulations.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No privacy controls or compliance measures"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some privacy controls but gaps in compliance"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive privacy controls and compliance"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Assess privacy controls and regulatory compliance maturity."
+          },
+          {
+            "title": "Data Backup & Recovery",
+            "description": "Evaluates the organization's data backup and recovery capabilities.",
+            "remediation_tips": "Implement comprehensive backup and recovery procedures with regular testing.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No backup or recovery procedures"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic backup procedures but limited recovery testing"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive backup and recovery with regular testing"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Evaluate backup and recovery procedures and testing frequency."
+          },
+          {
+            "title": "Data Encryption & Security",
+            "description": "Assesses the use of encryption and security measures to protect sensitive data.",
+            "remediation_tips": "Implement encryption for data at rest and in transit, with proper key management.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No encryption or data security measures"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some encryption but not comprehensive"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive encryption and data security"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Assess encryption implementation and data security measures."
+          }
+        ]
+      },
+      {
+        "title": "Network Security & Infrastructure",
+        "description": "Evaluates the organization's network security posture, infrastructure protection, and network monitoring capabilities.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Network Segmentation & Controls",
+            "description": "Assesses network segmentation and access controls to protect critical systems.",
+            "remediation_tips": "Implement network segmentation and access controls to isolate critical systems.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No network segmentation or access controls"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic segmentation but limited controls"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive network segmentation and controls"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Evaluate network segmentation and access control implementation."
+          },
+          {
+            "title": "Firewall & Network Monitoring",
+            "description": "Evaluates firewall configuration and network monitoring capabilities.",
+            "remediation_tips": "Implement comprehensive firewall rules and network monitoring solutions.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No firewall or network monitoring"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic firewall but limited monitoring"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Advanced firewall and comprehensive monitoring"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Assess firewall configuration and network monitoring capabilities."
+          },
+          {
+            "title": "Wireless Network Security",
+            "description": "Evaluates the security of wireless networks and mobile device access.",
+            "remediation_tips": "Implement secure wireless networks with proper authentication and encryption.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No wireless security or open networks"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic wireless security but vulnerabilities exist"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive wireless security and monitoring"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Evaluate wireless network security and mobile device management."
+          },
+          {
+            "title": "Cloud Infrastructure Security",
+            "description": "Assesses security controls for cloud infrastructure and services.",
+            "remediation_tips": "Implement cloud security controls and monitoring for all cloud services.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No cloud security controls or monitoring"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some cloud security but gaps exist"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive cloud security and monitoring"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Assess cloud infrastructure security and monitoring capabilities."
+          }
+        ]
+      },
+      {
+        "title": "Access Controls & Identity Management",
+        "description": "Evaluates identity and access management practices, authentication controls, and privilege management.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Multi-Factor Authentication",
+            "description": "Assesses the implementation of multi-factor authentication across systems.",
+            "remediation_tips": "Implement MFA for all critical systems and user accounts.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No multi-factor authentication implemented"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "MFA on some systems but not comprehensive"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive MFA across all critical systems"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Evaluate MFA implementation across systems and user accounts."
+          },
+          {
+            "title": "Privileged Access Management",
+            "description": "Evaluates privileged access management and least privilege principles.",
+            "remediation_tips": "Implement privileged access management and enforce least privilege principles.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No privileged access management or controls"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some privileged access controls but gaps exist"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive privileged access management"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Assess privileged access management and least privilege implementation."
+          },
+          {
+            "title": "User Lifecycle Management",
+            "description": "Evaluates user account lifecycle management and access provisioning.",
+            "remediation_tips": "Implement automated user lifecycle management and access provisioning.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No user lifecycle management or automation"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Manual processes with some automation"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive automated user lifecycle management"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Evaluate user lifecycle management and access provisioning processes."
+          },
+          {
+            "title": "Identity Governance & Compliance",
+            "description": "Assesses identity governance and compliance with access control policies.",
+            "remediation_tips": "Implement identity governance and regular access reviews.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No identity governance or access reviews"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some governance but irregular reviews"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive identity governance and regular reviews"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization"
+              }
+            ],
+            "scoring_instructions": "Assess identity governance and access review processes."
+          }
+        ]
+      }
+    ],
+    "is_category_weight_evenly_distributed": true
+  }
+}

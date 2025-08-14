@@ -1,0 +1,720 @@
+{
+  "id": "qbr-report-full",
+  "title": "Comprehensive Business Review Report",
+  "company": "Moneta",
+  "dateRange": "Q2 2025 • Multi-Platform Business Intelligence",
+  "monthlyInvestment": "$7,736",
+  "managedEndpoints": "25 Managed Endpoints",
+  "heroMetric": {
+    "value": "87%",
+    "label": "Overall Security Score",
+    "trend": "+12% improvement this quarter",
+    "description": "Comprehensive security posture assessment"
+  },
+  "businessOverview": {
+    "title": "🎯 Business Performance Overview",
+    "introText": "demonstrates strong business performance with opportunities for IT optimization.",
+    "subtitle": "Comprehensive multi-platform business intelligence and performance analysis"
+  },
+  "sectionHeaders": {
+    "clientGoals": "🎯 Client Goals Overview",
+    "technologyRoadmap": "🗺️ Technology Roadmap",
+    "upcomingInitiatives": "Upcoming Initiatives",
+    "totalInvestment": "Total Investment",
+    "hardwareLifecycle": "💻 Hardware Lifecycle Report",
+    "softwareSummary": "🖥️ Software Summary",
+    "budgetForecast": "💰 Budget Forecast & Analysis",
+    "vendorContracts": "📄 Vendor Contracts",
+    "assessmentSummary": "📋 Assessment Summary",
+    "serviceAnalytics": "📈 Service Analytics",
+    "assetsOverview": "💻 Assets Overview",
+    "costOptimization": "💡 Cost Optimization Opportunities",
+    "keyResults": "📈 Key Results",
+    "enhancedAnalysis": "🤖 Enhanced Analysis",
+    "risks": "⚠️ Risks",
+    "insights": "🤖 Insights",
+    "recommendations": "🎯 Recommendations"
+  },
+  "tabNavigation": [
+    { "id": "overview", "label": "Overview", "icon": "📊" },
+    { "id": "goals", "label": "Goals", "icon": "🎯" },
+    { "id": "roadmap", "label": "Roadmap", "icon": "🗺️" },
+    { "id": "budget", "label": "Budget", "icon": "💰" },
+    { "id": "contracts", "label": "Contracts", "icon": "📄" },
+    { "id": "assessments", "label": "Assessments", "icon": "📋" },
+    { "id": "analytics", "label": "Analytics", "icon": "📈" },
+    { "id": "assets", "label": "Assets", "icon": "💻" }
+  ],
+  "type": "aggregate",
+  "description": "Comprehensive multi-platform business review aggregating data from all managed services",
+  "executiveSummary": "Moneta demonstrates strong business performance with opportunities for IT optimization. This quarter, we've successfully managed 25 endpoints across multiple platforms, achieving an average security score of 31.6% and business continuity score of 25%. Your organization has shown excellent progress in endpoint security and backup management, with room for improvement in overall security posture and business continuity planning.",
+  "goals": [
+    {
+      "title": "Enhance Security Posture",
+      "description": "Improve overall security posture through advanced threat protection and security awareness training",
+      "targetDate": "2025 Q4",
+      "status": "in-progress",
+      "progress": 65,
+      "metrics": [
+        { "name": "Security Score", "current": "31.6%", "target": "75%", "trend": "improving" },
+        { "name": "MFA Adoption", "current": "40%", "target": "100%", "trend": "stable" },
+        { "name": "Security Incidents", "current": "2", "target": "0", "trend": "improving" }
+      ]
+    },
+    {
+      "title": "Modernize IT Infrastructure",
+      "description": "Upgrade aging hardware and software to improve performance, security, and user experience",
+      "targetDate": "2026 Q1",
+      "status": "planned",
+      "progress": 25,
+      "metrics": [
+        { "name": "Hardware Age", "current": "4.2 years", "target": "<3 years", "trend": "stable" },
+        { "name": "OS Support", "current": "78%", "target": "100%", "trend": "improving" },
+        { "name": "Performance Score", "current": "45%", "target": "85%", "trend": "stable" }
+      ]
+    },
+    {
+      "title": "Optimize Business Continuity",
+      "description": "Strengthen disaster recovery capabilities and ensure business resilience",
+      "targetDate": "2025 Q3",
+      "status": "completed",
+      "progress": 90,
+      "metrics": [
+        { "name": "Backup Success Rate", "current": "99.9%", "target": "99.9%", "trend": "excellent" },
+        { "name": "Recovery Time", "current": "4 hours", "target": "<2 hours", "trend": "improving" },
+        { "name": "DR Testing", "current": "Quarterly", "target": "Monthly", "trend": "stable" }
+      ]
+    }
+  ],
+  "analytics": {
+    "serviceMetrics": {
+      "uptime": "99.8%",
+      "responseTime": "2.3 hours",
+      "ticketVolume": 45,
+      "resolutionRate": "94.2%",
+      "customerSatisfaction": "4.6/5"
+    },
+    "performanceTrends": [
+      {
+        "metric": "System Uptime",
+        "current": "99.8%",
+        "previous": "99.5%",
+        "trend": "improving",
+        "change": "+0.3%"
+      },
+      {
+        "metric": "Response Time",
+        "current": "2.3 hours",
+        "previous": "3.1 hours",
+        "trend": "improving",
+        "change": "-0.8 hours"
+      },
+      {
+        "metric": "Ticket Volume",
+        "current": 45,
+        "previous": 52,
+        "trend": "improving",
+        "change": "-13.5%"
+      }
+    ]
+  },
+  "assessments": {
+    "summary": {
+      "totalAssessments": 6,
+      "completedAssessments": 6,
+      "averageScore": "52.3%",
+      "improvementAreas": ["Security Posture", "Hardware Lifecycle", "Compliance"]
+    },
+    "recentAssessments": [
+      {
+        "name": "Security Assessment",
+        "date": "2025-07-15",
+        "score": "31.6%",
+        "status": "needs-improvement",
+        "keyFindings": ["MFA not fully deployed", "Security awareness training needed"]
+      },
+      {
+        "name": "Infrastructure Assessment",
+        "date": "2025-07-10",
+        "score": "45%",
+        "status": "needs-improvement",
+        "keyFindings": ["Hardware aging", "OS updates needed"]
+      },
+      {
+        "name": "Compliance Assessment",
+        "date": "2025-07-05",
+        "score": "25%",
+        "status": "at-risk",
+        "keyFindings": ["Documentation gaps", "Policy enforcement needed"]
+      }
+    ]
+  },
+  "hardwareStats": {
+    "totalAssets": 156,
+    "overdueReplacement": 12,
+    "unsupportedOS": 8,
+    "replacementBudget": "$18,000"
+  },
+  "assets": {
+    "servers": [
+      {
+        "name": "DC-01",
+        "type": "Domain Controller",
+        "location": "Main Office",
+        "os": "Windows Server 2022",
+        "age": "2.5 years",
+        "status": "Healthy",
+        "specs": "Dell PowerEdge R750, 32GB RAM, 2TB SSD"
+      },
+      {
+        "name": "FS-01",
+        "type": "File Server",
+        "location": "Main Office",
+        "os": "Windows Server 2019",
+        "age": "4.1 years",
+        "status": "Needs Upgrade",
+        "specs": "Dell PowerEdge R740, 64GB RAM, 8TB HDD"
+      },
+      {
+        "name": "SQL-01",
+        "type": "Database Server",
+        "location": "Main Office",
+        "os": "Windows Server 2022",
+        "age": "1.8 years",
+        "status": "Healthy",
+        "specs": "Dell PowerEdge R750, 128GB RAM, 4TB NVMe"
+      },
+      {
+        "name": "WEB-01",
+        "type": "Web Server",
+        "location": "Data Center",
+        "os": "Ubuntu 22.04 LTS",
+        "age": "3.2 years",
+        "status": "Healthy",
+        "specs": "HP ProLiant DL380, 32GB RAM, 1TB SSD"
+      },
+      {
+        "name": "BACKUP-01",
+        "type": "Backup Server",
+        "location": "Main Office",
+        "os": "Windows Server 2019",
+        "age": "5.0 years",
+        "status": "Critical - Replace",
+        "specs": "Dell PowerEdge R730, 16GB RAM, 12TB HDD"
+      }
+    ],
+    "workstations": [
+      {
+        "name": "WS-001",
+        "user": "John Smith",
+        "department": "Sales",
+        "os": "Windows 11 Pro",
+        "age": "1.2 years",
+        "status": "Excellent",
+        "specs": "Dell OptiPlex 7090, 16GB RAM, 512GB SSD"
+      },
+      {
+        "name": "WS-002",
+        "user": "Sarah Johnson",
+        "department": "Marketing",
+        "os": "Windows 11 Pro",
+        "age": "0.8 years",
+        "status": "Excellent",
+        "specs": "Dell OptiPlex 7090, 16GB RAM, 512GB SSD"
+      },
+      {
+        "name": "WS-003",
+        "user": "Mike Davis",
+        "department": "IT",
+        "os": "Windows 11 Pro",
+        "age": "2.1 years",
+        "status": "Good",
+        "specs": "Dell OptiPlex 7080, 32GB RAM, 1TB SSD"
+      },
+      {
+        "name": "WS-004",
+        "user": "Lisa Wilson",
+        "department": "Finance",
+        "os": "Windows 10 Pro",
+        "age": "3.5 years",
+        "status": "Needs Upgrade",
+        "specs": "Dell OptiPlex 7060, 8GB RAM, 256GB SSD"
+      },
+      {
+        "name": "WS-005",
+        "user": "David Brown",
+        "department": "Operations",
+        "os": "Windows 11 Pro",
+        "age": "1.5 years",
+        "status": "Excellent",
+        "specs": "Dell OptiPlex 7090, 16GB RAM, 512GB SSD"
+      },
+      {
+        "name": "WS-006",
+        "user": "Emily Chen",
+        "department": "HR",
+        "os": "Windows 10 Pro",
+        "age": "4.2 years",
+        "status": "Critical - Replace",
+        "specs": "Dell OptiPlex 7050, 8GB RAM, 500GB HDD"
+      },
+      {
+        "name": "WS-007",
+        "user": "Robert Taylor",
+        "department": "Sales",
+        "os": "Windows 11 Pro",
+        "age": "0.6 years",
+        "status": "Excellent",
+        "specs": "Dell OptiPlex 7090, 16GB RAM, 512GB SSD"
+      },
+      {
+        "name": "WS-008",
+        "user": "Jennifer Lee",
+        "department": "Marketing",
+        "os": "Windows 11 Pro",
+        "age": "1.8 years",
+        "status": "Good",
+        "specs": "Dell OptiPlex 7080, 16GB RAM, 512GB SSD"
+      },
+      {
+        "name": "WS-009",
+        "user": "Thomas Anderson",
+        "department": "IT",
+        "os": "Windows 11 Pro",
+        "age": "2.3 years",
+        "status": "Good",
+        "specs": "Dell OptiPlex 7080, 32GB RAM, 1TB SSD"
+      },
+      {
+        "name": "WS-010",
+        "user": "Amanda Garcia",
+        "department": "Finance",
+        "os": "Windows 10 Pro",
+        "age": "3.8 years",
+        "status": "Needs Upgrade",
+        "specs": "Dell OptiPlex 7060, 8GB RAM, 256GB SSD"
+      },
+      {
+        "name": "WS-011",
+        "user": "Christopher Martinez",
+        "department": "Operations",
+        "os": "Windows 11 Pro",
+        "age": "1.1 years",
+        "status": "Excellent",
+        "specs": "Dell OptiPlex 7090, 16GB RAM, 512GB SSD"
+      },
+      {
+        "name": "WS-012",
+        "user": "Jessica Rodriguez",
+        "department": "HR",
+        "os": "Windows 11 Pro",
+        "age": "0.9 years",
+        "status": "Excellent",
+        "specs": "Dell OptiPlex 7090, 16GB RAM, 512GB SSD"
+      },
+      {
+        "name": "WS-013",
+        "user": "Daniel Thompson",
+        "department": "Sales",
+        "os": "Windows 10 Pro",
+        "age": "4.0 years",
+        "status": "Critical - Replace",
+        "specs": "Dell OptiPlex 7050, 8GB RAM, 500GB HDD"
+      },
+      {
+        "name": "WS-014",
+        "user": "Nicole White",
+        "department": "Marketing",
+        "os": "Windows 11 Pro",
+        "age": "1.3 years",
+        "status": "Excellent",
+        "specs": "Dell OptiPlex 7090, 16GB RAM, 512GB SSD"
+      },
+      {
+        "name": "WS-015",
+        "user": "Kevin Harris",
+        "department": "IT",
+        "os": "Windows 11 Pro",
+        "age": "2.7 years",
+        "status": "Good",
+        "specs": "Dell OptiPlex 7080, 32GB RAM, 1TB SSD"
+      },
+      {
+        "name": "WS-016",
+        "user": "Rachel Clark",
+        "department": "Finance",
+        "os": "Windows 11 Pro",
+        "age": "1.6 years",
+        "status": "Excellent",
+        "specs": "Dell OptiPlex 7090, 16GB RAM, 512GB SSD"
+      },
+      {
+        "name": "WS-017",
+        "user": "Steven Lewis",
+        "department": "Operations",
+        "os": "Windows 10 Pro",
+        "age": "3.9 years",
+        "status": "Needs Upgrade",
+        "specs": "Dell OptiPlex 7060, 8GB RAM, 256GB SSD"
+      },
+      {
+        "name": "WS-018",
+        "user": "Michelle Hall",
+        "department": "HR",
+        "os": "Windows 11 Pro",
+        "age": "0.7 years",
+        "status": "Excellent",
+        "specs": "Dell OptiPlex 7090, 16GB RAM, 512GB SSD"
+      },
+      {
+        "name": "WS-019",
+        "user": "Andrew Young",
+        "department": "Sales",
+        "os": "Windows 11 Pro",
+        "age": "1.9 years",
+        "status": "Good",
+        "specs": "Dell OptiPlex 7080, 16GB RAM, 512GB SSD"
+      },
+      {
+        "name": "WS-020",
+        "user": "Stephanie King",
+        "department": "Marketing",
+        "os": "Windows 10 Pro",
+        "age": "4.1 years",
+        "status": "Critical - Replace",
+        "specs": "Dell OptiPlex 7050, 8GB RAM, 500GB HDD"
+      },
+      {
+        "name": "WS-021",
+        "user": "Ryan Wright",
+        "department": "IT",
+        "os": "Windows 11 Pro",
+        "age": "2.0 years",
+        "status": "Good",
+        "specs": "Dell OptiPlex 7080, 32GB RAM, 1TB SSD"
+      },
+      {
+        "name": "WS-022",
+        "user": "Lauren Lopez",
+        "department": "Finance",
+        "os": "Windows 11 Pro",
+        "age": "1.4 years",
+        "status": "Excellent",
+        "specs": "Dell OptiPlex 7090, 16GB RAM, 512GB SSD"
+      },
+      {
+        "name": "WS-023",
+        "user": "Brandon Hill",
+        "department": "Operations",
+        "os": "Windows 11 Pro",
+        "age": "0.5 years",
+        "status": "Excellent",
+        "specs": "Dell OptiPlex 7090, 16GB RAM, 512GB SSD"
+      },
+      {
+        "name": "WS-024",
+        "user": "Ashley Scott",
+        "department": "HR",
+        "os": "Windows 10 Pro",
+        "age": "3.7 years",
+        "status": "Needs Upgrade",
+        "specs": "Dell OptiPlex 7060, 8GB RAM, 256GB SSD"
+      },
+      {
+        "name": "WS-025",
+        "user": "Matthew Green",
+        "department": "Sales",
+        "os": "Windows 11 Pro",
+        "age": "1.7 years",
+        "status": "Excellent",
+        "specs": "Dell OptiPlex 7090, 16GB RAM, 512GB SSD"
+      }
+    ]
+  },
+  "softwareStats": {
+    "totalAssets": 892,
+    "unsupported": 34,
+    "unsupportedSoon": 23,
+    "supported": 835
+  },
+  "contracts": {
+    "monthly": [
+      { "vendor": "Scalepad MSP", "description": "Managed Services Agreement", "cost": "$5,000.00", "nextDue": "2025-08-31" },
+      { "vendor": "Microsoft 365", "description": "Email and productivity suite", "cost": "$2,500.00", "nextDue": "2025-08-31" },
+      { "vendor": "Internet Service", "description": "Business fiber internet (1Gbps)", "cost": "$1,200.00", "nextDue": "2025-08-31" },
+      { "vendor": "Phone System", "description": "VoIP phone service and lines", "cost": "$800.00", "nextDue": "2025-08-31" },
+      { "vendor": "Cloud Storage", "description": "Enterprise cloud storage (5TB)", "cost": "$450.00", "nextDue": "2025-08-31" },
+      { "vendor": "Security Monitoring", "description": "24/7 security monitoring service", "cost": "$1,500.00", "nextDue": "2025-08-31" },
+      { "vendor": "Backup Service", "description": "Cloud backup and disaster recovery", "cost": "$1,800.00", "nextDue": "2025-08-31" }
+    ],
+    "quarterly": [
+      { "vendor": "Network Security", "description": "Firewall and security appliance licensing", "cost": "$1,800.00", "nextDue": "2025-09-30" },
+      { "vendor": "Cloud Backup", "description": "Cloud storage and backup services", "cost": "$2,200.00", "nextDue": "2025-09-30" },
+      { "vendor": "Network Equipment", "description": "Switch and router maintenance", "cost": "$1,500.00", "nextDue": "2025-09-30" }
+    ],
+    "annual": [
+      { "vendor": "Hardware Maintenance", "description": "Annual hardware support contracts", "cost": "$15,000.00", "nextDue": "2025-12-31" },
+      { "vendor": "Software Licensing", "description": "Annual software license renewals", "cost": "$8,000.00", "nextDue": "2025-06-30" },
+      { "vendor": "Security Training", "description": "Annual security awareness training", "cost": "$6,000.00", "nextDue": "2025-12-31" },
+      { "vendor": "Compliance Audit", "description": "Annual compliance and audit services", "cost": "$12,000.00", "nextDue": "2025-11-30" },
+      { "vendor": "Insurance", "description": "Cyber liability insurance", "cost": "$8,500.00", "nextDue": "2025-12-31" },
+      { "vendor": "Domain & SSL", "description": "Domain registration and SSL certificates", "cost": "$2,500.00", "nextDue": "2025-06-30" },
+      { "vendor": "Consulting Services", "description": "Strategic IT consulting and planning", "cost": "$10,000.00", "nextDue": "2025-12-31" }
+    ]
+  },
+  "roadmap": {
+    "totalInvestment": "$24,750.00",
+    "initiatives": [
+      {
+        "priority": "open",
+        "title": "Workstation Modernization",
+        "description": "Replace 12 workstations that have reached end of useful life. Older workstations exhibit performance and reliability issues impacting productivity.",
+        "investment": "$18,000.00",
+        "assets": 12
+      },
+      {
+        "priority": "open",
+        "title": "Security Enhancement",
+        "description": "Implement advanced security measures including enhanced endpoint protection and security awareness training.",
+        "investment": "$6,750.00",
+        "assets": 25
+      }
+    ],
+    "kanban": {
+      "q3-2025": [
+        {
+          "title": "Server Upgrade - FS-01",
+          "description": "Upgrade file server to Windows Server 2022 with improved storage",
+          "investment": "$8,500",
+          "status": "In Progress",
+          "priority": "High"
+        },
+        {
+          "title": "Network Security Enhancement",
+          "description": "Implement advanced firewall rules and network segmentation",
+          "investment": "$3,200",
+          "status": "Planning",
+          "priority": "Medium"
+        },
+        {
+          "title": "Backup Infrastructure Upgrade",
+          "description": "Replace aging backup server with modern solution",
+          "investment": "$12,000",
+          "status": "Approved",
+          "priority": "Critical"
+        }
+      ],
+      "q4-2025": [
+        {
+          "title": "Workstation Replacement (Phase 1)",
+          "description": "Replace 8 critical workstations with modern hardware",
+          "investment": "$12,000",
+          "status": "Scheduled",
+          "priority": "High"
+        },
+        {
+          "title": "Cloud Migration - Email",
+          "description": "Migrate email system to Microsoft 365 with advanced security",
+          "investment": "$5,500",
+          "status": "Planning",
+          "priority": "Medium"
+        },
+        {
+          "title": "Security Awareness Training",
+          "description": "Implement comprehensive security training program",
+          "investment": "$4,800",
+          "status": "Approved",
+          "priority": "Medium"
+        }
+      ],
+      "q1-2026": [
+        {
+          "title": "Workstation Replacement (Phase 2)",
+          "description": "Replace remaining 4 workstations and upgrade 6 others",
+          "investment": "$10,000",
+          "status": "Planned",
+          "priority": "Medium"
+        },
+        {
+          "title": "Database Server Optimization",
+          "description": "Optimize SQL server performance and add monitoring",
+          "investment": "$6,500",
+          "status": "Planning",
+          "priority": "Low"
+        },
+        {
+          "title": "Compliance Framework Implementation",
+          "description": "Implement comprehensive compliance monitoring and reporting",
+          "investment": "$8,200",
+          "status": "Planned",
+          "priority": "High"
+        }
+      ],
+      "q2-2026": [
+        {
+          "title": "Network Infrastructure Upgrade",
+          "description": "Upgrade network switches and implement SD-WAN",
+          "investment": "$15,000",
+          "status": "Planned",
+          "priority": "Medium"
+        },
+        {
+          "title": "Disaster Recovery Enhancement",
+          "description": "Implement automated disaster recovery and testing",
+          "investment": "$9,500",
+          "status": "Planned",
+          "priority": "High"
+        },
+        {
+          "title": "Advanced Analytics Platform",
+          "description": "Deploy business intelligence and analytics tools",
+          "investment": "$7,800",
+          "status": "Planned",
+          "priority": "Low"
+        }
+      ]
+    }
+  },
+  "assetAnalytics": {
+    "ageDistribution": {
+      "0-1": 40,
+      "1-3": 35,
+      "3-5": 20,
+      "5+": 5
+    },
+    "warrantyCoverage": {
+      "servers": 80,
+      "workstations": 60,
+      "network": 90,
+      "storage": 70
+    },
+    "summary": {
+      "totalAssets": 30,
+      "underWarranty": 22,
+      "outOfWarranty": 8,
+      "replacementBudget": "$18K"
+    }
+  },
+  "costOptimization": [
+    {
+      "title": "Software License Consolidation",
+      "description": "Potential savings of $8,000 annually by consolidating overlapping software licenses.",
+      "savings": "$8,000/year",
+      "effort": "Medium",
+      "timeline": "Q1 2026"
+    },
+    {
+      "title": "Cloud Storage Optimization",
+      "description": "Reduce cloud storage costs by implementing data lifecycle policies.",
+      "savings": "$2,400/year",
+      "effort": "Low",
+      "timeline": "Q4 2025"
+    }
+  ],
+  "budgetSummary": {
+    "totalAnnual": "$221,400",
+    "recurringCosts": "$155,400",
+    "capitalProjects": "$66,000",
+    "monthlyAverage": "$18,450",
+    "recurringPercentage": 70,
+    "projectsPercentage": 30,
+    "yearOverYearGrowth": "+12%"
+  },
+  "spendingCategories": [
+    {
+      "name": "Managed Services",
+      "amount": "$60,000",
+      "percentage": 17,
+      "color": "blue"
+    },
+    {
+      "name": "Software & Licensing",
+      "amount": "$78,000",
+      "percentage": 22,
+      "color": "green"
+    },
+    {
+      "name": "Infrastructure & Hardware",
+      "amount": "$88,000",
+      "percentage": 25,
+      "color": "purple"
+    },
+    {
+      "name": "Security & Compliance",
+      "amount": "$52,800",
+      "percentage": 15,
+      "color": "yellow"
+    },
+    {
+      "name": "Connectivity & Services",
+      "amount": "$74,000",
+      "percentage": 21,
+      "color": "red"
+    }
+  ],
+  "enhancedSections": {
+    "risks": [
+      {
+        "title": "Ransomware Threat",
+        "description": "High-profile ransomware attacks targeting critical infrastructure are on the rise. Recent attacks have demonstrated the ability to encrypt data and demand significant ransom.",
+        "severity": "high",
+        "impact": "Significant data loss, business disruption, financial loss, and reputation damage."
+      },
+      {
+        "title": "Supply Chain Vulnerabilities",
+        "description": "Third-party vendors and suppliers are increasingly becoming vectors for cyber attacks. Recent incidents have shown how compromised supply chain partners can lead to widespread breaches.",
+        "severity": "medium",
+        "impact": "Data breaches, unauthorized access, and potential intellectual property theft."
+      },
+      {
+        "title": "Zero-Day Exploits",
+        "description": "New vulnerabilities discovered in software and operating systems are often exploited before patches are available, leading to widespread attacks.",
+        "severity": "low",
+        "impact": "Limited impact on specific organizations, but contributes to overall threat landscape."
+      }
+    ],
+    "insights": [
+      {
+        "title": "Increased Remote Workforce",
+        "description": "The pandemic has accelerated the adoption of remote work, leading to a significant increase in the number of endpoints and devices.",
+        "metric": "25 Managed Endpoints",
+        "trend": "positive"
+      },
+      {
+        "title": "Enhanced Security Posture",
+        "description": "The organization has implemented multi-factor authentication and endpoint security measures, resulting in a 31.6% security score.",
+        "metric": "31.6%",
+        "trend": "positive"
+      },
+      {
+        "title": "Improved Business Continuity",
+        "description": "The organization has robust backup and disaster recovery procedures in place, achieving a 25% business continuity score.",
+        "metric": "25%",
+        "trend": "positive"
+      }
+    ],
+    "recommendations": [
+      {
+        "title": "Enhanced Endpoint Detection & Response (EDR)",
+        "description": "Implement EDR solutions to proactively detect and respond to advanced threats, including zero-day exploits.",
+        "priority": "critical",
+        "effort": "High",
+        "impact": "Significant reduction in ransomware incidents and faster incident response."
+      },
+      {
+        "title": "Advanced Threat Hunting",
+        "description": "Deploy a dedicated threat hunting team to proactively identify and investigate potential threats.",
+        "priority": "high",
+        "effort": "Medium",
+        "impact": "Early detection of potential attacks and reduced breach response time."
+      },
+      {
+        "title": "Regular Security Training",
+        "description": "Conduct regular security awareness training for all employees to keep them informed about the latest threats and best practices.",
+        "priority": "medium",
+        "effort": "Low",
+        "impact": "Increased employee awareness and ability to identify potential threats."
+      }
+    ]
+  }
+}

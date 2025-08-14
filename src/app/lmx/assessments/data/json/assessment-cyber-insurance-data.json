@@ -1,0 +1,537 @@
+{
+  "assessment_template_create_payload": {
+    "title": "Cyber Insurance Readiness Assessment",
+    "description": "The definitive 20-item assessment that combines business-focused insurance requirements with technical implementation guidance. Designed to evaluate an organization's ability to qualify for cyber insurance, maintain coverage, and successfully navigate claims while providing clear technical roadmaps for improvement.",
+    "categories": [
+      {
+        "title": "Technical Foundation",
+        "description": "Core security controls that insurance underwriters require for coverage eligibility. These technical safeguards directly impact premium rates and coverage terms.",
+        "questions": [
+          {
+            "title": "Multi-Factor Authentication (MFA) Enforcement",
+            "description": "Assesses whether MFA is enforced across all privileged accounts, SaaS applications, and remote access points.",
+            "remediation_tips": "MFA failures are the #1 cause of coverage denials. Start with admin accounts and email, then expand to all users. Use SSO providers with built-in MFA enforcement like Microsoft Entra ID, Google Workspace, or Okta. Consider hardware tokens for privileged accounts and implement conditional access policies that require MFA for all external access.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "MFA is missing or optional for critical systems - immediate coverage denial risk"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "MFA enabled in some places but inconsistent enforcement"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "MFA enforced everywhere with documented policies and regular auditing"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No user accounts or systems requiring authentication"
+              }
+            ],
+            "scoring_instructions": "Ask: 'Is MFA mandatory for all admin accounts, email access, VPN connections, and cloud services? Can you demonstrate enforcement with policy screenshots?'"
+          },
+          {
+            "title": "Endpoint Protection & Automated Patch Management",
+            "description": "Evaluates endpoint detection and response (EDR) deployment and automated patching for operating systems and critical applications.",
+            "remediation_tips": "Unpatched endpoints are exploit entry points that void insurance claims when breaches exploit known vulnerabilities. Deploy enterprise EDR like CrowdStrike, SentinelOne, or Microsoft Defender for Endpoint. Use WSUS, SCCM, or Intune for Windows patching. Enable automatic updates for browsers and common applications. Prioritize critical and high-severity patches within 72 hours.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No centralized endpoint protection or patching visibility"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic antivirus deployed but manual patching processes"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Enterprise EDR deployed with automated patching and compliance reporting"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No managed endpoints in environment"
+              }
+            ],
+            "scoring_instructions": "Ask: 'Can you show me which devices are unpatched right now? What EDR solution monitors your endpoints? How quickly are critical patches deployed?'"
+          },
+          {
+            "title": "Immutable Backup Strategy with Air-Gap Protection",
+            "description": "Assesses backup immutability, air-gap separation, and verified restore capabilities to protect against ransomware.",
+            "remediation_tips": "Ransomware claims are the largest cyber insurance payouts. Immutable backups can reduce business interruption claims by 80%+ and are now mandatory for most policies. Implement 3-2-1-1 backup strategy: 3 copies, 2 different media, 1 offsite, 1 immutable. Use backup solutions with immutable snapshots like Veeam with immutable repositories, AWS S3 with Object Lock, or Azure Backup with soft delete. Use separate service accounts for backups with limited retention policies.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Backups accessible to same credentials or could be encrypted by ransomware"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Backups exist with some protection but not fully immutable or tested"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Immutable, air-gapped backups with verified restore testing and separate credentials"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No data requiring backup protection"
+              }
+            ],
+            "scoring_instructions": "Ask: 'If ransomware encrypted your environment today, could an attacker also destroy your backups? When did you last test a full restore?'"
+          },
+          {
+            "title": "Network Security & Zero Trust Architecture",
+            "description": "Evaluates network segmentation, firewall configuration, privileged access management, and zero trust principles implementation.",
+            "remediation_tips": "Flat networks enable lateral movement during breaches, increasing damage costs by 60%. Implement network micro-segmentation using VLANs, software-defined perimeters, or cloud security groups. Deploy privileged access management (PAM) solutions like CyberArk or BeyondTrust with just-in-time access. Use identity-based access controls rather than network location. Implement continuous monitoring and automatic threat response.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Flat network with broad access permissions and no privileged access controls"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic network segmentation but inconsistent access controls"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive network segmentation with zero trust principles and PAM implementation"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No internal network infrastructure"
+              }
+            ],
+            "scoring_instructions": "Ask: 'Are your networks segmented? Do you have least-privilege access controls? Can you monitor and control lateral movement?'"
+          },
+          {
+            "title": "Advanced Email Security & Anti-Phishing",
+            "description": "Assesses email security controls including anti-phishing, safe attachments, link protection, and user training effectiveness.",
+            "remediation_tips": "Email-based attacks cause 90% of successful breaches. Deploy advanced threat protection with sandboxing, safe attachments, and real-time link analysis using Microsoft Defender for Office 365, Proofpoint, or Mimecast. Implement DMARC, SPF, and DKIM authentication to prevent spoofing. Use simulation-based phishing training platforms like KnowBe4 quarterly. Enable zero-hour auto-purge for malicious emails.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Basic email filtering only, no advanced threat protection or user training"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some advanced features enabled but incomplete protection or training"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive email security with sandboxing, link protection, and regular phishing simulation"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No email systems in use"
+              }
+            ],
+            "scoring_instructions": "Ask: 'Do you have advanced threat protection for email? How do you handle suspicious attachments and links? What phishing training do users receive?'"
+          }
+        ],
+        "is_question_weight_evenly_distributed": true
+      },
+      {
+        "title": "Incident Management & Response",
+        "description": "Capabilities to detect, respond to, and recover from cyber incidents. Strong incident response directly impacts insurance claims approval and business interruption coverage.",
+        "questions": [
+          {
+            "title": "Documented Incident Response Plan with Defined Roles",
+            "description": "Evaluates the existence, quality, and operational readiness of written incident response procedures with clear role assignments.",
+            "remediation_tips": "Insurance claims require evidence of following proper incident response procedures. Poor response can void coverage or reduce claim payments by 40%+. Develop NIST-based incident response procedures covering preparation, detection, analysis, containment, eradication, and recovery. Assign specific roles using RACI matrix. Include legal and PR contact procedures for breach notification.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No documented plan or unclear responsibilities during incidents"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Written procedures exist but roles unclear or plan not operationalized"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive, tested incident response plan with clear roles and regular updates"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No IT systems requiring incident response"
+              }
+            ],
+            "scoring_instructions": "Ask: 'If a breach happened right now, what's your step-by-step playbook? Who leads the response team? Who has what responsibilities?'"
+          },
+          {
+            "title": "Security Monitoring & SIEM Implementation",
+            "description": "Assesses security event monitoring, log aggregation, threat detection capabilities, and incident alerting systems.",
+            "remediation_tips": "Early threat detection reduces breach impact by 70%. Implement SIEM or cloud-native security monitoring like Microsoft Sentinel, Splunk, or AWS Security Hub. Collect logs from endpoints, firewalls, cloud services, and applications. Create alerting rules for suspicious activities. Focus on high-fidelity alerts to reduce noise and establish escalation procedures for critical alerts.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No centralized monitoring or alerting systems in place"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic logging exists but limited monitoring and manual alert review"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive SIEM with automated alerting, log retention, and 24/7 monitoring"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No systems generating security events"
+              }
+            ],
+            "scoring_instructions": "Ask: 'How quickly would you detect credential theft or unauthorized access? What logs do you collect and monitor? Who responds to security alerts?'"
+          },
+          {
+            "title": "Breach Notification & Communication Procedures",
+            "description": "Evaluates preparedness for internal escalation, external notifications, regulatory reporting, and stakeholder communications during incidents.",
+            "remediation_tips": "Regulatory fines for late notification can exceed breach costs. Create notification workflow with escalation timelines. Map regulatory requirements by jurisdiction. Prepare legal-reviewed communication templates for different breach scenarios. Include insurance carrier in notification procedures. Establish media response procedures and designated spokespersons.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No clear notification procedures or understanding of requirements"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic understanding of requirements but no documented procedures"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive notification procedures with templates and clear timelines"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No data requiring breach notification"
+              }
+            ],
+            "scoring_instructions": "Ask: 'Who do you notify during a breach and in what order? Do you know your regulatory notification requirements? How do you handle customer communications?'"
+          },
+          {
+            "title": "Tabletop Exercises & Response Testing",
+            "description": "Assesses frequency and quality of incident response testing through simulations, tabletop exercises, and post-incident reviews.",
+            "remediation_tips": "Untested response plans fail 70% of the time during real incidents. Conduct quarterly tabletop exercises with different scenarios (ransomware, data breach, BEC). Include all stakeholders: IT, legal, HR, communications, executives. Use SANS tabletop exercise templates. Document lessons learned and update procedures. Include external partners like insurance carriers and legal counsel.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No testing or exercises of incident response procedures"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Infrequent or limited testing with minimal stakeholder participation"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Regular exercises with documented improvements and stakeholder participation"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No incident response plan to test"
+              }
+            ],
+            "scoring_instructions": "Ask: 'When did you last test your incident response plan? What scenarios have you practiced? How do you improve the plan based on exercises?'"
+          },
+          {
+            "title": "Digital Forensics & Evidence Preservation Readiness",
+            "description": "Evaluates capability to preserve digital evidence, engage forensic specialists, and support legal proceedings during incidents.",
+            "remediation_tips": "Poor evidence handling can invalidate insurance claims and legal proceedings. Establish relationships with digital forensics firms like Mandiant or CrowdStrike Services. Implement evidence preservation procedures including chain of custody. Pre-negotiate forensic service agreements. Train staff on evidence preservation basics and document system baselines for forensic teams.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No forensic capabilities or evidence preservation procedures"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic understanding but no established forensic partnerships"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Pre-approved forensic partners with evidence preservation procedures and staff training"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No digital assets requiring forensic analysis"
+              }
+            ],
+            "scoring_instructions": "Ask: 'Do you have pre-approved forensic partners? Can you preserve evidence without disrupting operations? What's your evidence handling procedure?'"
+          }
+        ],
+        "is_question_weight_evenly_distributed": true
+      },
+      {
+        "title": "Governance & Documentation",
+        "description": "Policies, procedures, and documentation that prove compliance and support insurance claims. Strong governance reduces claim disputes and demonstrates due care.",
+        "questions": [
+          {
+            "title": "Security Governance Framework & Policy Management",
+            "description": "Assesses the existence, currency, and enforcement of comprehensive security policies and governance structure.",
+            "remediation_tips": "Insurance claims require proof of established security policies and due care. Implement policy management framework with regular review cycles using templates from NIST, ISO 27001, or industry frameworks. Start with essential policies: acceptable use, incident response, data classification, access control. Assign policy owners and review annually or after major changes.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No formal security policies or severely outdated documentation"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic policies exist but lack regular updates or enforcement mechanisms"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive, current security policies with regular review and enforcement tracking"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No formal organization requiring security policies"
+              }
+            ],
+            "scoring_instructions": "Ask: 'Do you have current security policies? Who owns and updates them? How do you ensure compliance with policies across the organization?'"
+          },
+          {
+            "title": "Access Control & Identity Management Documentation",
+            "description": "Evaluates documentation of user access rights, privilege management, and identity lifecycle processes.",
+            "remediation_tips": "Privileged access abuse causes 30% of insider incidents. Document role-based access control (RBAC) model using tools like SailPoint, Okta Lifecycle Management, or Microsoft Entra ID Governance. Implement identity governance with automated provisioning/deprovisioning. Start with privileged account inventory and conduct quarterly access reviews. Document approval workflows for access requests.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No documented access controls or user lifecycle management"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic access documentation but manual processes and infrequent reviews"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive access documentation with automated lifecycle management and regular audits"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No user access systems in environment"
+              }
+            ],
+            "scoring_instructions": "Ask: 'Can you show me who has access to what systems? How do you onboard/offboard users? When did you last review privileged access?'"
+          },
+          {
+            "title": "Data Classification & Handling Procedures",
+            "description": "Assesses data inventory, classification schemes, handling procedures, and retention policies for sensitive information.",
+            "remediation_tips": "Privacy violations average $4.4M per incident. Implement data discovery tools like Microsoft Purview, Varonis, or Spirion to locate sensitive data. Create classification scheme (public, internal, confidential, restricted). Start with PII and payment data discovery. Implement data loss prevention (DLP) based on classification and document retention schedules and disposal procedures.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No data classification or unknown data locations"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic data awareness but inconsistent classification and protection"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive data classification with automated discovery and protection controls"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No sensitive data requiring classification"
+              }
+            ],
+            "scoring_instructions": "Ask: 'Do you know where your sensitive data is stored? How do you classify and protect different data types? What are your retention requirements?'"
+          },
+          {
+            "title": "Third-Party Vendor Risk Management",
+            "description": "Evaluates vendor security assessment processes, contract requirements, and ongoing monitoring of third-party risks.",
+            "remediation_tips": "Supply chain attacks increased 400% in recent years. Implement vendor risk assessment program with security questionnaires, certifications, and penetration testing requirements. Prioritize critical vendors by data access and business impact. Include security terms in contracts and require cyber insurance certificates from high-risk vendors. Use vendor risk platforms like SecurityScorecard or BitSight for ongoing monitoring.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No vendor security assessment or contract requirements"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Ad hoc vendor reviews with minimal security requirements"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Formal vendor risk program with assessments, contracts, and ongoing monitoring"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No third-party vendors with system access"
+              }
+            ],
+            "scoring_instructions": "Ask: 'How do you assess vendor security? What security requirements are in contracts? How do you monitor vendor incidents?'"
+          },
+          {
+            "title": "Compliance Audit & Documentation Management",
+            "description": "Assesses compliance with relevant regulations, audit readiness, and documentation retention for legal and insurance purposes.",
+            "remediation_tips": "Compliance documentation proves due care and supports claim defenses. Identify applicable regulations (GDPR, HIPAA, PCI DSS, SOX) and map regulatory requirements to security controls. Implement continuous compliance monitoring using GRC platforms like ServiceNow or MetricStream. Maintain audit logs and evidence repositories. Conduct annual security assessments or audits to validate control effectiveness.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No compliance program or audit documentation"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic compliance awareness but manual tracking and gaps in documentation"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive compliance program with regular audits and automated documentation"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No regulatory compliance requirements"
+              }
+            ],
+            "scoring_instructions": "Ask: 'What compliance requirements apply to your business? When was your last security audit? How do you maintain evidence for compliance?'"
+          }
+        ],
+        "is_question_weight_evenly_distributed": true
+      },
+      {
+        "title": "Insurance & Claims Readiness",
+        "description": "Specific preparation for insurance coverage decisions, claims filing, and recovery processes. This category directly impacts policy terms and claim success rates.",
+        "questions": [
+          {
+            "title": "Policy Coverage Analysis & Gap Assessment",
+            "description": "Evaluates understanding of current coverage terms, exclusions, and alignment with business risk exposure.",
+            "remediation_tips": "Misunderstood coverage leads to claim denials and unexpected costs. Conduct annual policy review with broker and legal counsel. Map coverage to business assets and processes and document any coverage gaps. Create policy summary for operational teams. Review coverage after major business changes and consider cyber insurance as part of broader risk management strategy.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Coverage terms unknown or significantly misaligned with business needs"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic policy awareness but limited operational understanding"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive policy understanding with regular reviews and documented coverage analysis"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No cyber insurance coverage in place"
+              }
+            ],
+            "scoring_instructions": "Ask: 'What's your policy deductible and limits? What's specifically excluded? Have you reviewed coverage against your actual risk exposure?'"
+          },
+          {
+            "title": "Claims Process Preparation & Documentation",
+            "description": "Assesses readiness to initiate claims, understanding of required documentation, and preparation of claim support materials.",
+            "remediation_tips": "Proper claims preparation can reduce processing time by 60% and increase claim approval rates. Create claims filing checklist and emergency contact list. Prepare documentation package: policies, network diagrams, asset inventories, contact lists. Review claims process with insurance carrier annually. Prepare template incident reports and establish secure communication channels with carrier.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No understanding of claims process or required documentation"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic claims awareness but unprepared documentation and processes"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive claims preparation with documented processes and prepared materials"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No insurance coverage requiring claims preparation"
+              }
+            ],
+            "scoring_instructions": "Ask: 'Do you know the first steps to file a claim? What documentation does your insurer require? Have you prepared claim support materials?'"
+          },
+          {
+            "title": "Business Continuity & Recovery Planning Integration",
+            "description": "Evaluates integration of cyber recovery with business continuity, including recovery time objectives and insurance coverage alignment.",
+            "remediation_tips": "Business interruption coverage requires proof of recovery efforts and realistic timelines. Develop recovery time objectives (RTO) aligned with business impact analysis. Map critical business functions to IT systems and establish minimum viable operations during recovery. Create alternate process documentation. Document recovery costs for BI claim support and test recovery procedures regularly.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No business continuity planning or recovery timeline definition"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic recovery planning but not integrated with insurance coverage terms"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive recovery planning aligned with insurance coverage and regularly tested"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No business operations requiring continuity planning"
+              }
+            ],
+            "scoring_instructions": "Ask: 'What's your recovery timeline for critical systems? How does this align with your BI coverage waiting periods? Do you have alternate business processes?'"
+          },
+          {
+            "title": "Crisis Communication & Stakeholder Management",
+            "description": "Assesses preparation for crisis communications with customers, media, regulators, and other stakeholders during cyber incidents.",
+            "remediation_tips": "Poor crisis communication can increase reputational damage costs by 300%. Develop crisis communication plan with stakeholder mapping. Prepare template messages for different scenarios. Identify spokespersons and backup communicators. Create holding statements for immediate response. Establish media relations protocols and coordinate with legal and insurance teams.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No crisis communication planning or designated spokespersons"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic communication awareness but unprepared messaging and unclear responsibilities"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive crisis communication plan with prepared messaging and trained spokespersons"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No external stakeholders requiring crisis communication"
+              }
+            ],
+            "scoring_instructions": "Ask: 'Who handles external communications during a cyber incident? Do you have pre-approved messaging? What's your media response strategy?'"
+          },
+          {
+            "title": "Legal & Regulatory Response Coordination",
+            "description": "Evaluates preparation for legal aspects of cyber incidents including regulatory response, litigation support, and evidence preservation.",
+            "remediation_tips": "Legal missteps can invalidate insurance coverage and increase regulatory penalties. Establish relationships with specialized cyber incident legal counsel. Develop privilege protocols for incident response communications. Pre-engage specialized cyber counsel and understand privilege implications of different communication channels. Create regulatory notification procedures and map regulatory requirements by jurisdiction.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No legal counsel or regulatory response preparation"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic legal awareness but no specialized cyber counsel or response procedures"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive legal and regulatory response preparation with specialized counsel and documented procedures"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No legal or regulatory exposure requiring specialized response"
+              }
+            ],
+            "scoring_instructions": "Ask: 'Do you have incident response legal counsel identified? How do you handle privilege and evidence preservation? What's your regulatory response process?'"
+          }
+        ],
+        "is_question_weight_evenly_distributed": true
+      }
+    ],
+    "is_category_weight_evenly_distributed": true
+  }
+}

@@ -1,0 +1,594 @@
+{
+  "assessment_template_create_payload": {
+    "title": "Base Policies & Procedures Assessment",
+    "description": "This 20-point assessment evaluates organizational policy maturity, security controls, and business continuity preparedness. Designed to help organizations establish foundational governance frameworks and identify critical policy gaps.",
+    "is_category_weight_evenly_distributed": true,
+    "categories": [
+      {
+        "title": "Security Policies & Controls",
+        "description": "Evaluates core security policies including acceptable use, access controls, and data protection.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Acceptable Use Policy (AUP)",
+            "description": "Assesses whether the organization has a comprehensive acceptable use policy for technology resources.",
+            "remediation_tips": "Develop a comprehensive AUP that covers all technology usage, update it regularly to address emerging threats, and ensure all staff sign and acknowledge the policy.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No AUP exists. Client has little recourse if technology is misused."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "AUP is in place and signed by all staff members."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "AUP is in place and regularly updated to keep up with changing threat landscape. The AUP and updates are shared with IT Service Provider and signed by all staff members."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Evaluate AUP completeness, currency, and enforcement. Regular updates and IT provider integration indicate mature policy management."
+          },
+          {
+            "title": "Password Policy",
+            "description": "Evaluates password policy implementation and enforcement across the organization.",
+            "remediation_tips": "Implement a comprehensive password policy with complexity requirements, regular rotation, and multi-factor authentication where possible.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Some users have passwords that are set to never expire."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Password Policy is included in another company policy such as AUP or Employee Manual."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Password Policy is in place, regularly updated and signed by employees. It is shared with IT Support Vendor."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Assess password policy comprehensiveness and enforcement. Integration with IT support indicates mature security practices."
+          },
+          {
+            "title": "Controlled Access / Least Privilege Policy",
+            "description": "Evaluates whether the organization implements least privilege access controls.",
+            "remediation_tips": "Implement a least privilege policy that limits user access to only the resources necessary for their job functions.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "The company has no policy in place to limit access rights for users to the bare minimum permissions they need to perform their work."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic access controls exist but not consistently applied."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "The company has a defined policy in place to limit access rights for users to the bare minimum permissions they need to perform their work."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Evaluate least privilege implementation. Defined policies indicate security maturity and risk reduction."
+          },
+          {
+            "title": "Data Encryption Policy",
+            "description": "Assesses data encryption policy implementation and monitoring.",
+            "remediation_tips": "Develop a comprehensive data encryption policy covering data at rest and in transit, implement encryption solutions, and monitor compliance.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No Data Encryption Policy exists."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic encryption practices exist but no formal policy."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Client has a documented Data Encryption Policy. It has been shared and is on file with the Service Provider, and has been implemented. Software is being used to monitor results in near real time."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Evaluate encryption policy comprehensiveness and monitoring. Real-time monitoring indicates mature data protection practices."
+          },
+          {
+            "title": "Network Security Policy",
+            "description": "Evaluates network security policy documentation and currency.",
+            "remediation_tips": "Develop a comprehensive network security policy that addresses current threats and is regularly updated.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "A network security policy is not documented."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic network security practices exist but no formal policy."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "A clearly defined network security policy exists and is updated regularly to include changes in the IT threat landscape."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Assess network security policy documentation and currency. Regular updates indicate proactive security management."
+          },
+          {
+            "title": "Physical Security and Access Logging Policy",
+            "description": "Evaluates physical security controls and access monitoring for sensitive systems.",
+            "remediation_tips": "Implement physical security controls including locked access to server rooms and access logging/monitoring systems.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Servers and sensitive systems are not behind a locked door with restricted access. No access logging or video monitoring is in place."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Servers and sensitive systems are behind a locked door with restricted access, but no access logging or video monitoring is in place."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Servers and sensitive systems are behind a locked door with restricted access and access logging and/or video monitoring is in place."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Evaluate physical security controls and monitoring. Access logging indicates mature security practices."
+          }
+        ]
+      },
+      {
+        "title": "Device & Media Management",
+        "description": "Covers mobile device policies, BYOD controls, and removable media security.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "BYOD Policy",
+            "description": "Evaluates bring-your-own-device policy implementation and enforcement.",
+            "remediation_tips": "Develop a comprehensive BYOD policy that addresses security requirements, data protection, and acceptable use for personal devices.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Bring your own device policy is not in place. Users can access company data from personal devices like phones and tablets."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "BYOD policy has been developed, is signed by every employee, updated regularly, and shared with the MSP."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "BYOD policy is in use and enforced with third party software."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Assess BYOD policy comprehensiveness and enforcement. Third-party software enforcement indicates mature device management."
+          },
+          {
+            "title": "Mobile Device Policy",
+            "description": "Evaluates mobile device policy implementation and safeguards.",
+            "remediation_tips": "Develop a comprehensive mobile device policy covering both personal and business-owned devices with appropriate security controls.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No Mobile Device Policy exists."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic mobile device practices exist but no formal policy."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Client has a documented Mobile Device Policy. It has been shared and is on file with the Service Provider, and has been implemented. It includes policies and safeguards for personal and business owned devices."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Evaluate mobile device policy comprehensiveness. Coverage of both personal and business devices indicates mature mobile security."
+          },
+          {
+            "title": "Removable Media Policy",
+            "description": "Evaluates removable media policy implementation and enforcement.",
+            "remediation_tips": "Develop a removable media policy that addresses USB drives and other removable storage devices, and implement software controls for enforcement.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No removable media policy exists. Data is at risk of being exposed via USB drive or other removable media."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic removable media practices exist but no formal policy."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Removable Media Policy is in place, signed by all staff members, and enforced with a software solution."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Assess removable media policy and enforcement. Software enforcement indicates mature data protection practices."
+          },
+          {
+            "title": "Equipment and Electronic Records Destruction Policy",
+            "description": "Evaluates data destruction procedures for electronic equipment and media.",
+            "remediation_tips": "Develop a comprehensive data destruction policy covering all electronic media and implement secure disposal procedures.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "We do NOT destroy or erase data when disposing of computers, disks, CDs, magnetic tapes, hard drives, laptops, PDAs, cell phones, or any other electronic media or hardware containing customer information."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic data destruction practices exist but no formal policy."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "We destroy or erase data when disposing of computers, disks, CDs, magnetic tapes, hard drives, laptops, PDAs, cell phones, or any other electronic media or hardware containing customer information."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Evaluate data destruction policy comprehensiveness. Systematic data destruction indicates mature data protection practices."
+          }
+        ]
+      },
+      {
+        "title": "Employee & Access Management",
+        "description": "Covers employee lifecycle management, access controls, and security procedures.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Employee Onboarding and Separation Procedure",
+            "description": "Evaluates formal processes for employee onboarding and separation to ensure proper access management.",
+            "remediation_tips": "Develop formal onboarding and separation procedures with checklists to ensure proper access provisioning and deprovisioning.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Organization does not have formal Onboarding/Separation processes, opening the organization to unnecessary risk of inadvertent or unintended access to sensitive data by those who should not have it."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic onboarding/separation practices exist but no formal procedures."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Organization has formal Onboarding/Separation processes, and those policies use templates or checklists to ensure that proper access to sensitive company information is granted/removed during the process."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Evaluate formalization of employee lifecycle processes. Templates and checklists indicate mature access management."
+          },
+          {
+            "title": "Employee Sanction Policy",
+            "description": "Evaluates employee sanction policy implementation and enforcement consistency.",
+            "remediation_tips": "Develop a comprehensive employee sanction policy that is consistently enforced across all violations and situations.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "An employee sanction policy does not exist, or is not enforced equally in all cases."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic sanction practices exist but no formal policy."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "An employee sanction policy exists, is signed by all staff, and is enforced equally in the case of all violations regardless of the situation or persons involved."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Assess sanction policy consistency and enforcement. Equal enforcement indicates mature policy management."
+          },
+          {
+            "title": "Temporary Access Policy",
+            "description": "Evaluates policy for providing temporary access to contractors, guests, and temporary employees.",
+            "remediation_tips": "Develop a formal temporary access policy that defines procedures for granting and revoking temporary access.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No policy exists. Temporary employees, contractors, and guests are provided access using the best judgment of all involved, leaving room for error and oversight."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic temporary access practices exist but no formal policy."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "A defined policy is in place to provide network access to temporary employees, contractors, and guests."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Evaluate temporary access policy formalization. Defined procedures reduce risk of access errors and oversight."
+          },
+          {
+            "title": "User Account & Security Permissions Audit Policy",
+            "description": "Evaluates regular auditing of user accounts and security permissions.",
+            "remediation_tips": "Implement regular security audits to identify and remove stale accounts and ensure least privilege access.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "User accounts are not being audited, leaving potential for access from former employees or those with permissions above those required to perform their job function."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Occasional account reviews but no formal audit policy."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Regular Security Audits are being performed to ensure that stale user accounts are removed/deactivated and that users have the least level of privilege to perform their job functions."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Assess regular security audit implementation. Regular audits indicate mature access management and security practices."
+          }
+        ]
+      },
+      {
+        "title": "Operational Security",
+        "description": "Covers incident response, patch management, and operational security procedures.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Incident Response Policy",
+            "description": "Evaluates incident response policy documentation and regular testing.",
+            "remediation_tips": "Develop a comprehensive incident response policy and conduct regular testing and review to ensure effectiveness.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No defined incident response policy is in place within the organization, leaving room for errors or poor judgment in incident response."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic incident response practices exist but no formal policy."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "A clearly defined incident response policy is in place and reviewed and/or practiced on a regular basis."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Evaluate incident response policy and regular testing. Regular review and practice indicate mature incident management."
+          },
+          {
+            "title": "Patch Management Policy",
+            "description": "Evaluates patch management policy implementation and monitoring.",
+            "remediation_tips": "Develop a comprehensive patch management policy with regular deployment schedules and monitoring for successful patch application.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No defined process exists for deploying Operating System and Application updates on a regular basis. These patches are installed manually and there is no method or process for checking the status of deployment."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some devices cannot be patched due to vendor requirements. Additional steps are being taken to add additional protections but full remediation is impossible due to vendor requirements."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "A defined process exists for deploying Operating System and Application updates on a regular basis. These patches are audited for successful deployment and remediated if/when failures occur."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Assess patch management process and monitoring. Regular auditing and remediation indicate mature patch management."
+          },
+          {
+            "title": "Lifecycle Management Policy",
+            "description": "Evaluates IT lifecycle management policy implementation and planning.",
+            "remediation_tips": "Implement a comprehensive lifecycle management policy with regular planning and budgeting for technology refresh cycles.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Lifecycle Management is not being performed regularly, leading to significant technology debt and increased risk for the organization."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "A significant portion of IT infrastructure has the same EoL dates due to a lease or large purchase. Client should be aware and planning for this date."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Lifecycle Management is being performed regularly, limiting technology debt and decreasing risk for the organization."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Evaluate lifecycle management implementation. Regular planning reduces technology debt and operational risk."
+          },
+          {
+            "title": "Electronic Funds Transfer Policy",
+            "description": "Evaluates EFT policy implementation and regular review.",
+            "remediation_tips": "Develop a comprehensive EFT policy and conduct regular reviews with staff to ensure understanding and compliance.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Client does not have an established EFT Policy."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic EFT practices exist but no formal policy."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Client has an established EFT Policy, updates it regularly, and reviews it with staff at least annually."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Assess EFT policy and regular review. Annual staff reviews indicate mature financial controls."
+          }
+        ]
+      },
+      {
+        "title": "Business Continuity",
+        "description": "Covers business continuity planning, cloud infrastructure, and internet redundancy.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Business Continuity Plan",
+            "description": "Evaluates business continuity planning and regular testing.",
+            "remediation_tips": "Develop comprehensive business continuity plans for different disaster scenarios and conduct regular tabletop exercises.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "The organization relies on vendors to know what to do when disaster strikes and guide them through the reactionary steps."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic continuity planning exists but is not tested or reviewed regularly."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "The organization has several continuity plans for different potential disaster scenarios. These plans are reviewed annually and updated as necessary. Tabletop exercises are performed at an acceptable frequency."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Evaluate business continuity planning and testing. Regular tabletop exercises indicate mature continuity planning."
+          },
+          {
+            "title": "Cloud File Server",
+            "description": "Evaluates cloud file server implementation and security.",
+            "remediation_tips": "Migrate to geo-redundant cloud infrastructure with proper security controls and mobile accessibility.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Business files are hosted on an internal file server, and files are being accessed by unmanaged computers, putting the entire organization's data at risk."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Business files are hosted on an internal file server, and accessibility from the outside requires either VPN or another form of remote access."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Business files are hosted on geo-redundant cloud infrastructure. Proper security is being applied while desktop and mobile accessibility are readily available for those who require it."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Assess cloud file server implementation. Geo-redundant cloud infrastructure indicates mature data management and accessibility."
+          },
+          {
+            "title": "Redundant Internet",
+            "description": "Evaluates internet redundancy implementation.",
+            "remediation_tips": "Implement redundant internet connections from different providers to ensure business continuity.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Single internet connection with no redundancy."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Client is aware that redundant solutions exist, but has identified minimal downtime as an acceptable risk that has minimal impact on the business."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Client is running 2 ISP circuits in tandem."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Evaluate internet redundancy implementation. Multiple ISP circuits indicate mature business continuity planning."
+          },
+          {
+            "title": "Internet Service Reliability",
+            "description": "Evaluates internet service reliability and adequacy for business operations.",
+            "remediation_tips": "Ensure internet service is reliable and provides adequate bandwidth for business operations.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "ISP is unreliable and/or circuit speed is inadequate for the operations of the business."
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Internet service is adequate but could be improved."
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "ISP is reliable and circuit speed is appropriate for the operations of the business."
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable to this organization."
+              }
+            ],
+            "scoring_instructions": "Assess internet service reliability and adequacy. Reliable and adequate service indicates mature infrastructure planning."
+          }
+        ]
+      }
+    ]
+  }
+}

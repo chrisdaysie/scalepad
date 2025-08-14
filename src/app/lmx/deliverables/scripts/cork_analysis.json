@@ -1,0 +1,112 @@
+{
+  "client_info": {
+    "name": "Cork",
+    "uuid": "4911c0c5-cb68-4ea3-b3e9-625ba6358478",
+    "created_at": "2023-08-03T18:54:51.07358Z",
+    "warranty_status": "active",
+    "associated_tenants": 19
+  },
+  "devices": {
+    "total_count": 2,
+    "with_endpoints": 2,
+    "without_endpoints": 0,
+    "device_types": {
+      "EDR": 1,
+      "RMM": 2
+    }
+  },
+  "domains": {
+    "total_count": 5,
+    "domain_list": [
+      "corkvilletech.com",
+      "bluth.corkvilletech.com",
+      "cork.protection",
+      "corkinc.com",
+      "okta.com"
+    ]
+  },
+  "inboxes": {
+    "total_count": 10,
+    "with_domains": 6,
+    "with_users": 10,
+    "email_providers": {
+      "com": 39
+    }
+  },
+  "compliance_events": {
+    "total_count": 17,
+    "resolved_count": 11,
+    "unresolved_count": 6,
+    "at_risk_count": 13,
+    "event_types": {
+      "insecure-email-configuration": 6,
+      "mfa": 4,
+      "esec": 2,
+      "mail-forward": 1,
+      "rmm": 2,
+      "edr": 2
+    },
+    "by_device": {
+      "ee4dc935-ff61-4cd7-8182-9d42fa6d39df": 3,
+      "a98137c5-5b96-4a85-863b-1fc3795a3d58": 1
+    },
+    "by_domain": {
+      "4fc83519-7836-4332-b861-d8c6bd64559b": 2,
+      "41d226f9-33e6-42d5-8465-4ed8720f24e2": 2,
+      "ad45d2f5-1d78-4223-b35a-942adbe8e2bf": 2
+    },
+    "by_inbox": {
+      "1573075d-dc7c-4fcf-ac5e-f4652d55ab53": 3,
+      "9545969d-e478-4849-8f09-f5f65c3365f1": 2,
+      "e51221c0-d479-4b4f-b055-c4e3acff5acf": 1,
+      "90e861bd-1b5b-43e9-8b50-fc1037c06245": 1
+    }
+  },
+  "integrations": {
+    "total_tenants": 19,
+    "vendor_types": {
+      "PSA": 2,
+      "ESEC": 4,
+      "Email": 2,
+      "MFA": 4,
+      "Multi": 2,
+      "EDR": 2,
+      "RMM": 2,
+      "SAT": 1
+    },
+    "connection_status": {
+      "ok": 19
+    },
+    "vendors": {
+      "ConnectWise Manage": 1,
+      "Microsoft Partner Center - Email Security": 1,
+      "Microsoft Partner Center - Email": 1,
+      "Microsoft Partner Center - MFA": 1,
+      "Microsoft Partner Center": 1,
+      "Microsoft Partner Center - EDR": 1,
+      "Mimecast": 1,
+      "Microsoft Single Tenant - Email": 1,
+      "Microsoft Authenticator": 1,
+      "Microsoft Single Tenant - RMM": 1,
+      "Microsoft Single Tenant - MFA": 1,
+      "Microsoft Partner Center - Intune": 1,
+      "Microsoft Single Tenant - Email Security": 1,
+      "Microsoft Single Tenant - EDR": 1,
+      "Microsoft Single Tenant": 1,
+      "Proofpoint ESEC": 1,
+      "Halo PSA": 1,
+      "Mimecast SAT": 1,
+      "Okta": 1
+    }
+  },
+  "data_insights": [
+    "Device Protection: 2/2 devices protected (100.0%)",
+    "Active Integrations: 19 connected services",
+    "Endpoint Detection & Response: Active EDR solution detected",
+    "Remote Monitoring: RMM solution active",
+    "Email Security: Email protection services active",
+    "Event Resolution: 11/17 events resolved (64.7%)",
+    "Risk Alert: 13 events marked as at-risk",
+    "Domain Management: 5 domains under management"
+  ]
+}

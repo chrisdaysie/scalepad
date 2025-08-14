@@ -1,0 +1,651 @@
+{
+  "assessment_template_create_payload": {
+    "title": "New Client Assessment (Quick)",
+    "description": "This 24-point assessment provides rapid evaluation of new client technical maturity and risk factors across 6 critical focus areas. Designed for MSPs to quickly qualify prospects and identify immediate engagement opportunities.",
+    "is_category_weight_evenly_distributed": true,
+    "categories": [
+      {
+        "title": "Critical Infrastructure",
+        "description": "Evaluates server infrastructure, hosting models, and physical environment maturity.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Infrastructure hosting model",
+            "description": "Assesses whether infrastructure is hosted in modern, scalable environments vs. legacy on-premises setups.",
+            "remediation_tips": "Cloud-first strategy reduces capital expenditure and improves scalability. Start with hybrid approach if full migration isn't feasible.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Entirely self-hosted in office/closet with no redundancy"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Mix of self-hosted and some cloud services, inconsistent approach"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Primarily cloud-hosted or professional colocation with proper redundancy"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No servers or infrastructure"
+              }
+            ],
+            "scoring_instructions": "Evaluate hosting approach - cloud/colo indicates modern thinking, self-hosted may signal budget constraints or legacy mindset."
+          },
+          {
+            "title": "Virtualization platform and architecture",
+            "description": "Evaluates whether infrastructure uses modern virtualization vs. physical servers.",
+            "remediation_tips": "Migrate to hypervisor-based virtualization (Hyper-V, VMware) or cloud-native services for better resource utilization and disaster recovery.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Primarily physical servers or aging virtualization platform"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Mix of physical and virtual, inconsistent virtualization strategy"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Modern virtualization platform (Hyper-V, VMware, or cloud-native)"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No servers or infrastructure"
+              }
+            ],
+            "scoring_instructions": "Modern virtualization indicates technical maturity and easier management. Physical-only setups suggest outdated approaches."
+          },
+          {
+            "title": "Operating system versions and support",
+            "description": "Evaluates whether server operating systems are current and supported by vendor.",
+            "remediation_tips": "Prioritize migration from unsupported OS versions (Windows Server 2012, etc.) to current supported versions.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Unsupported OS versions (Server 2012 R2 or older)"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Mix of supported and legacy OS versions"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "All servers on supported OS versions (Server 2019+)"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No servers or fully cloud-managed"
+              }
+            ],
+            "scoring_instructions": "Unsupported OS versions create security vulnerabilities and compliance issues. Indicates maintenance discipline."
+          },
+          {
+            "title": "Power protection and environmental controls",
+            "description": "Assesses UPS protection and environmental safeguards for critical infrastructure.",
+            "remediation_tips": "Implement UPS protection for all critical infrastructure. Consider professional colocation for better environmental controls.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No UPS protection or environmental controls"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic UPS but inadequate runtime or missing environmental monitoring"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Proper UPS with adequate runtime and environmental monitoring"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Professional datacenter or cloud-hosted"
+              }
+            ],
+            "scoring_instructions": "Lack of power protection indicates high risk of data loss and downtime. Shows operational maturity."
+          }
+        ]
+      },
+      {
+        "title": "Security Posture",
+        "description": "Assesses network security, endpoint protection, and access controls.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Firewall and unified threat management",
+            "description": "Evaluates perimeter security devices and advanced threat protection.",
+            "remediation_tips": "Deploy next-generation firewall with IPS, content filtering, and malware protection. Ensure current security subscriptions.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No firewall, consumer router, or expired security subscriptions"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic business firewall but limited advanced features"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "UTM/NGFW with current IPS, content filtering, and malware protection"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Cloud-only environment with cloud-native security"
+              }
+            ],
+            "scoring_instructions": "Basic firewalls provide minimal protection. UTM with current subscriptions indicates security investment."
+          },
+          {
+            "title": "Antivirus and endpoint detection/response",
+            "description": "Evaluates endpoint security solutions and threat detection capabilities.",
+            "remediation_tips": "Upgrade to EDR or MDR solution for better threat detection and response. Ensure 24/7 monitoring coverage.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No endpoint protection or outdated/expired solutions"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic antivirus but no advanced threat detection"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "EDR/MDR with 24/7 monitoring and threat response"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No endpoints to protect"
+              }
+            ],
+            "scoring_instructions": "Traditional AV provides basic protection. EDR/MDR indicates advanced security posture and threat response capability."
+          },
+          {
+            "title": "Multi-factor authentication implementation",
+            "description": "Assesses MFA deployment across critical systems and user accounts.",
+            "remediation_tips": "Deploy MFA for all administrative accounts immediately, then roll out to all users. Start with Microsoft Authenticator or similar.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No MFA implemented anywhere"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "MFA on some systems but not comprehensive"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "MFA required for all administrative and external access"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Single user environment"
+              }
+            ],
+            "scoring_instructions": "MFA significantly reduces breach risk. Lack of MFA indicates high security vulnerability."
+          },
+          {
+            "title": "Wireless network security and guest access",
+            "description": "Assesses wireless security protocols and guest network isolation.",
+            "remediation_tips": "Deploy WPA3 or WPA2-Enterprise with RADIUS authentication. Isolate guest networks from corporate resources.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "WEP, open networks, or shared corporate/guest access"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "WPA2 with PSK but no guest isolation or weak authentication"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "WPA2/3-Enterprise with isolated guest network"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No wireless networks"
+              }
+            ],
+            "scoring_instructions": "Weak wireless security creates easy attack vectors. Guest access without isolation poses internal risks."
+          }
+        ]
+      },
+      {
+        "title": "Backup & Recovery",
+        "description": "Covers backup strategy, retention, testing, and disaster recovery capabilities.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Backup strategy and data coverage",
+            "description": "Evaluates comprehensive backup coverage of critical systems and data.",
+            "remediation_tips": "Implement 3-2-1 backup strategy covering all critical systems including cloud data (M365, etc.).",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No backups or only backing up some systems"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Backing up most systems but gaps in cloud data or endpoints"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive backup strategy covering all critical systems and cloud data"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No critical data to back up"
+              }
+            ],
+            "scoring_instructions": "Incomplete backup coverage creates business continuity risks. Comprehensive strategy shows operational maturity."
+          },
+          {
+            "title": "Backup retention and offsite storage",
+            "description": "Assesses backup retention policies and protection against local disasters.",
+            "remediation_tips": "Implement automated offsite backup replication and establish retention policies based on business requirements.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Local backups only or very short retention periods"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some offsite backup but inconsistent or manual process"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Automated offsite backups with appropriate retention policies"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Cloud-native with built-in redundancy"
+              }
+            ],
+            "scoring_instructions": "Local-only backups vulnerable to site disasters. Offsite storage shows business continuity planning."
+          },
+          {
+            "title": "Backup testing and restore validation",
+            "description": "Evaluates regular testing of backup systems and restore procedures.",
+            "remediation_tips": "Implement monthly restore tests with documented procedures. Test full system recovery scenarios annually.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No backup testing or restore validation"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Occasional testing but no regular schedule or documentation"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Regular automated testing with documented restore procedures"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No backup system to test"
+              }
+            ],
+            "scoring_instructions": "Untested backups may fail when needed. Regular testing shows operational discipline and reliability."
+          },
+          {
+            "title": "Recovery time and point objectives alignment",
+            "description": "Assesses whether backup strategy aligns with business recovery requirements.",
+            "remediation_tips": "Document business requirements for recovery time and data loss tolerance. Align backup strategy accordingly.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No defined RTO/RPO or backup strategy doesn't meet requirements"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic understanding but backup strategy partially meets requirements"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Documented RTO/RPO with backup strategy designed to meet requirements"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Very simple requirements with minimal recovery needs"
+              }
+            ],
+            "scoring_instructions": "Misaligned RTO/RPO indicates backup strategy doesn't meet business needs. Proper alignment shows planning maturity."
+          }
+        ]
+      },
+      {
+        "title": "Microsoft 365 Security",
+        "description": "Assesses M365 configuration, security settings, and collaboration tool management.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Microsoft 365 security and compliance configuration",
+            "description": "Evaluates M365 security settings, conditional access, and compliance policies.",
+            "remediation_tips": "Enable Security Defaults at minimum, implement conditional access policies, and configure compliance settings.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Default settings with no security hardening"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic security enabled but limited conditional access"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Advanced security with conditional access and compliance policies"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not using Microsoft 365"
+              }
+            ],
+            "scoring_instructions": "Default M365 settings provide minimal security. Advanced configuration shows security investment and expertise."
+          },
+          {
+            "title": "Email security and advanced threat protection",
+            "description": "Assesses email security measures, anti-phishing, and attachment protection.",
+            "remediation_tips": "Deploy Defender for Office 365 or equivalent with anti-phishing, safe attachments, and safe links.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Basic Exchange protection only"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Third-party email security but limited features"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Advanced threat protection with anti-phishing and attachment scanning"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not using Exchange Online"
+              }
+            ],
+            "scoring_instructions": "Email is primary attack vector. Advanced protection shows security investment and awareness."
+          },
+          {
+            "title": "SharePoint and OneDrive governance",
+            "description": "Assesses data governance, sharing policies, and access controls for collaboration platforms.",
+            "remediation_tips": "Configure sharing policies, implement data loss prevention, and establish governance framework for team sites.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Open sharing enabled with no governance policies"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic sharing restrictions but limited governance"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive governance with DLP and controlled sharing"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not using SharePoint/OneDrive"
+              }
+            ],
+            "scoring_instructions": "Poor governance creates data leak risks. Good governance indicates understanding of collaboration security."
+          },
+          {
+            "title": "Mobile device management and application protection",
+            "description": "Evaluates MDM implementation and mobile application management policies.",
+            "remediation_tips": "Implement Intune or equivalent MDM with device compliance and application protection policies.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No mobile device management or protection"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic MDM but limited application protection"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive MDM with application protection policies"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No mobile device usage"
+              }
+            ],
+            "scoring_instructions": "Unmanaged mobile devices create data access risks. MDM shows understanding of modern security needs."
+          }
+        ]
+      },
+      {
+        "title": "Network & Connectivity",
+        "description": "Assesses network architecture, connectivity, and remote access security.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Internet connectivity and redundancy",
+            "description": "Evaluates WAN connections and failover capabilities.",
+            "remediation_tips": "Implement redundant internet connections from different providers. Consider SD-WAN for automated failover.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Single internet connection with no backup"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Primary connection with basic backup (cellular, etc.)"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Redundant connections with automatic failover"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Single location with adequate connectivity"
+              }
+            ],
+            "scoring_instructions": "Single internet connection indicates business continuity risk. Multiple connections show operational maturity."
+          },
+          {
+            "title": "Network segmentation and VLAN strategy",
+            "description": "Evaluates whether networks are properly segmented for security and performance.",
+            "remediation_tips": "Implement VLANs to separate guest, corporate, and server traffic. Add network access control where possible.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Flat network with no segmentation"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic segmentation but incomplete or inconsistent"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Proper network segmentation with VLANs and access controls"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Cloud-only or very simple network requirements"
+              }
+            ],
+            "scoring_instructions": "Flat networks indicate security risks. Proper segmentation shows advanced network planning."
+          },
+          {
+            "title": "VPN and remote access security",
+            "description": "Assesses remote access solutions and security controls.",
+            "remediation_tips": "Implement modern VPN with MFA or zero-trust remote access. Disable direct RDP exposure.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "RDP exposed to internet or no secure remote access"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic VPN but no MFA or outdated authentication"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Secure VPN with MFA or zero-trust remote access solution"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No remote access requirements"
+              }
+            ],
+            "scoring_instructions": "Outdated VPN or RDP exposure creates security vulnerabilities. Modern solutions indicate security awareness."
+          },
+          {
+            "title": "DNS security and content filtering",
+            "description": "Evaluates DNS-based security controls and malicious site blocking.",
+            "remediation_tips": "Deploy DNS security service (Umbrella, etc.) to block malicious domains and provide visibility into threats.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Using public DNS with no filtering or protection"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic DNS filtering but limited threat intelligence"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Advanced DNS security with threat intelligence and reporting"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Cloud-only with managed DNS security"
+              }
+            ],
+            "scoring_instructions": "DNS security provides first line of defense against malware and phishing. Shows proactive security posture."
+          }
+        ]
+      },
+      {
+        "title": "Business Continuity",
+        "description": "Evaluates organizational preparedness for extended outages and disaster scenarios.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Alternative work locations and remote capabilities",
+            "description": "Evaluates ability to maintain operations from alternative locations during disruptions.",
+            "remediation_tips": "Establish remote work capabilities, identify alternative work locations, and ensure secure remote access.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No remote work capability or alternative locations"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Limited remote capability or no formal alternative plans"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive remote work capability with alternative locations"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Already fully remote or cloud-based operations"
+              }
+            ],
+            "scoring_instructions": "Remote work capability reduces business continuity risks. Limited capability indicates vulnerability to site outages."
+          },
+          {
+            "title": "Emergency communication procedures and contact lists",
+            "description": "Assesses emergency communication plans and stakeholder notification procedures.",
+            "remediation_tips": "Develop emergency communication plans with current contact lists and multiple communication channels.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No emergency communication procedures or contact lists"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic procedures but outdated contacts or limited channels"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive communication plan with current contacts"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Very small team with simple communication needs"
+              }
+            ],
+            "scoring_instructions": "Poor communication during emergencies compounds problems. Good procedures show crisis management planning."
+          },
+          {
+            "title": "Vendor and supplier continuity planning",
+            "description": "Evaluates backup arrangements for critical vendors and suppliers.",
+            "remediation_tips": "Identify critical vendors, assess their continuity plans, and establish backup supplier relationships.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Single vendors for critical services with no backup plans"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some vendor redundancy but no formal continuity assessment"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Diversified vendors with documented continuity plans"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Minimal vendor dependencies"
+              }
+            ],
+            "scoring_instructions": "Single vendor dependencies create continuity risks. Backup arrangements show supply chain planning."
+          },
+          {
+            "title": "Business impact analysis and critical process identification",
+            "description": "Assesses understanding of critical business processes and impact of IT outages.",
+            "remediation_tips": "Conduct business impact analysis to identify critical processes, dependencies, and recovery time requirements.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No understanding of critical processes or outage impacts"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic understanding but no formal analysis"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Formal business impact analysis with documented priorities"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Very simple business with minimal IT dependencies"
+              }
+            ],
+            "scoring_instructions": "BIA identifies priorities for recovery planning. Lack of analysis indicates poor continuity planning."
+          }
+        ]
+      }
+    ]
+  }
+}

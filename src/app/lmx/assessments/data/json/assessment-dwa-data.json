@@ -1,0 +1,437 @@
+{
+  "assessment_template_create_payload": {
+    "title": "Digital Work Analytics Assessment",
+    "description": "This 16-point assessment helps organizations evaluate their digital work environment through the lens of visibility, focus, wellness, and adaptability. Each item is designed to surface meaningful signals about how people actually work — across tools, time, and teams — and where leadership can better support effectiveness, well-being, and impact.",
+    "categories": [
+      {
+        "title": "Work Visibility & Transparency",
+        "description": "Evaluates whether leaders and teams have clear insight into how digital work is being done across tools, time, and teams. Visibility fuels alignment, reduces friction, and reveals opportunities to support people more effectively.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Application Usage Clarity",
+            "description": "Evaluates whether the organization has visibility into what platforms, tools, and apps are being used across roles and departments.",
+            "remediation_tips": "Start with a high-level app usage report. Map to roles or departments. Use as a discovery artifact — not an audit.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Tool usage is unknown or assumed"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Some awareness, but no central view"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Clear visibility into app usage trends"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not explored"
+              }
+            ],
+            "scoring_instructions": "Ask: \"Do you know which platforms are used most in your business? Are you surprised by tool sprawl?\" Look for data, not assumptions."
+          },
+          {
+            "title": "Shadow IT Detection",
+            "description": "Assesses the ability to identify tools being used outside of IT's visibility — including browser apps, personal logins, or team-specific subscriptions.",
+            "remediation_tips": "Use usage monitoring to identify blind spots. Frame findings around duplication, cost, and risk — not policing.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No ability to see or manage shadow IT"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Occasionally uncovered, not tracked"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Shadow IT is monitored and addressed constructively"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable"
+              }
+            ],
+            "scoring_instructions": "Ask: \"Have you ever discovered tools people were using that you didn't approve or know about?\""
+          },
+          {
+            "title": "Collaboration vs. Focus Split",
+            "description": "Evaluates the balance between collaborative work and focused individual work across teams and roles.",
+            "remediation_tips": "Analyze work patterns to understand collaboration vs. focus needs. Provide appropriate tools and environments for both.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No understanding of work pattern balance"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic awareness of work patterns"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Clear understanding and support for work patterns"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How do you balance collaborative and focused work in your organization?\""
+          },
+          {
+            "title": "Cross-Team Work Visibility",
+            "description": "Assesses visibility into how work flows across different teams and departments.",
+            "remediation_tips": "Implement cross-team visibility tools and processes. Focus on workflow optimization, not surveillance.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No cross-team work visibility"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Limited cross-team visibility"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Good cross-team work visibility"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not applicable"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How well do you understand work flows across different teams?\""
+          }
+        ]
+      },
+      {
+        "title": "Focus & Productivity",
+        "description": "Evaluates the organization's ability to support focused, productive work and minimize distractions.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Meeting Effectiveness",
+            "description": "Assesses the quality and effectiveness of meetings across the organization.",
+            "remediation_tips": "Implement meeting guidelines, time limits, and effectiveness tracking. Focus on outcomes, not just attendance.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor meeting effectiveness and practices"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Mixed meeting effectiveness"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Good meeting effectiveness and practices"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How effective are meetings in your organization?\""
+          },
+          {
+            "title": "Distraction Management",
+            "description": "Evaluates how well the organization manages distractions and supports focused work.",
+            "remediation_tips": "Implement quiet hours, focus time policies, and distraction management tools.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor distraction management"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic distraction management"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Good distraction management practices"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How do you manage distractions and support focused work?\""
+          },
+          {
+            "title": "Workflow Optimization",
+            "description": "Assesses the optimization of digital workflows and processes.",
+            "remediation_tips": "Analyze and optimize digital workflows. Remove friction and automate repetitive tasks.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor workflow optimization"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic workflow optimization"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Good workflow optimization"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How optimized are your digital workflows?\""
+          },
+          {
+            "title": "Productivity Measurement",
+            "description": "Evaluates how productivity is measured and tracked across the organization.",
+            "remediation_tips": "Implement meaningful productivity metrics. Focus on outcomes, not just activity.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor productivity measurement"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic productivity measurement"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Good productivity measurement practices"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How do you measure productivity in your organization?\""
+          }
+        ]
+      },
+      {
+        "title": "Wellness & Work-Life Balance",
+        "description": "Evaluates the organization's support for employee wellness and work-life balance.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Work Hours Monitoring",
+            "description": "Assesses how work hours are monitored and managed to prevent burnout.",
+            "remediation_tips": "Implement work hours monitoring and policies to prevent burnout. Focus on wellness, not surveillance.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor work hours monitoring"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic work hours monitoring"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Good work hours monitoring practices"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How do you monitor and manage work hours?\""
+          },
+          {
+            "title": "Wellness Support",
+            "description": "Evaluates the organization's support for employee wellness and mental health.",
+            "remediation_tips": "Implement wellness programs, mental health support, and work-life balance initiatives.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor wellness support"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic wellness support"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Good wellness support programs"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How do you support employee wellness?\""
+          },
+          {
+            "title": "Boundary Setting",
+            "description": "Assesses how well the organization helps employees set and maintain work-life boundaries.",
+            "remediation_tips": "Implement boundary-setting policies and support. Encourage healthy work-life balance.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor boundary setting support"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic boundary setting support"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Good boundary setting support"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How do you help employees set work-life boundaries?\""
+          },
+          {
+            "title": "Stress Management",
+            "description": "Evaluates the organization's approach to managing workplace stress.",
+            "remediation_tips": "Implement stress management programs and support systems.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor stress management support"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic stress management support"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Good stress management support"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How do you support stress management in the workplace?\""
+          }
+        ]
+      },
+      {
+        "title": "Adaptability & Learning",
+        "description": "Evaluates the organization's ability to adapt to changing work environments and support continuous learning.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Digital Skills Development",
+            "description": "Assesses the organization's support for developing digital skills and competencies.",
+            "remediation_tips": "Implement digital skills training programs and continuous learning initiatives.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor digital skills development support"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic digital skills development support"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Good digital skills development support"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How do you support digital skills development?\""
+          },
+          {
+            "title": "Change Management",
+            "description": "Evaluates how well the organization manages digital transformation and change.",
+            "remediation_tips": "Implement effective change management processes and support systems.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor change management"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic change management"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Good change management practices"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How do you manage digital transformation and change?\""
+          },
+          {
+            "title": "Innovation Support",
+            "description": "Assesses the organization's support for innovation and experimentation.",
+            "remediation_tips": "Create environments that support innovation and experimentation. Encourage creative problem-solving.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor innovation support"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic innovation support"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Good innovation support"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How do you support innovation and experimentation?\""
+          },
+          {
+            "title": "Continuous Improvement",
+            "description": "Evaluates the organization's commitment to continuous improvement in digital work practices.",
+            "remediation_tips": "Implement continuous improvement processes and feedback loops.",
+            "criterion_label_type_enum": "MultiResponse",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Poor continuous improvement practices"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic continuous improvement practices"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Good continuous improvement practices"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Not assessed"
+              }
+            ],
+            "scoring_instructions": "Ask: \"How do you support continuous improvement in digital work?\""
+          }
+        ]
+      }
+    ],
+    "is_category_weight_evenly_distributed": true
+  }
+}

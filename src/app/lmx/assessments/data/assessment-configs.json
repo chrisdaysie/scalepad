@@ -1,0 +1,212 @@
+{
+  "assessment_types": {
+    "ai-readiness": {
+      "aliases": [
+        "ai"
+      ],
+      "json_file": "assessment-ai-readiness-data.json",
+      "recommendation_function": "generate_ai_recommendations",
+      "titles": [
+        "AI Strategy & Planning",
+        "Data Infrastructure & Governance",
+        "AI Culture & Training",
+        "AI Ethics & Governance",
+        "Technology Foundation"
+      ],
+      "keywords": [
+        "ai",
+        "artificial intelligence",
+        "machine learning"
+      ],
+      "description": "AI readiness and implementation assessment"
+    },
+    "cs-readiness": {
+      "aliases": [
+        "cs"
+      ],
+      "json_file": "assessment-cs-data.json",
+      "recommendation_function": "generate_cs_readiness_recommendations",
+      "titles": [
+        "Customer Success Strategy",
+        "Customer Journey Mapping",
+        "Customer Health & Analytics",
+        "CS Team Enablement",
+        "Customer Feedback & Insights"
+      ],
+      "keywords": [
+        "customer",
+        "success",
+        "journey",
+        "health"
+      ],
+      "description": "Customer success readiness assessment"
+    },
+    "cyber-insurance-readiness": {
+      "aliases": [
+        "cyber-insurance"
+      ],
+      "json_file": "assessment-cyber-insurance-data.json",
+      "recommendation_function": "generate_cyber_insurance_recommendations",
+      "titles": [
+        "Cyber Insurance Strategy",
+        "Insurance Coverage & Terms",
+        "Security Controls & Compliance",
+        "Incident Response & Claims",
+        "Risk Assessment & Mitigation"
+      ],
+      "keywords": [
+        "cyber insurance",
+        "insurance",
+        "coverage",
+        "liability"
+      ],
+      "description": "Cyber insurance readiness assessment"
+    },
+    "cyber-resilience": {
+      "aliases": [],
+      "json_file": "assessment-cyber-resilience-data.json",
+      "recommendation_function": "generate_cyber_resilience_recommendations",
+      "titles": [
+        "Cyber Security Strategy",
+        "Security Awareness & Training",
+        "Security Monitoring & Detection",
+        "Data Protection & Privacy",
+        "Access Controls & Identity"
+      ],
+      "keywords": [
+        "cyber resilience",
+        "resilience",
+        "security",
+        "threat"
+      ],
+      "description": "Cyber resilience assessment"
+    },
+    "digital-work-analytics": {
+      "aliases": [
+        "dwa"
+      ],
+      "json_file": "assessment-dwa-data.json",
+      "recommendation_function": "generate_dwa_recommendations",
+      "titles": [
+        "Digital Work Strategy",
+        "Data Collection & Infrastructure",
+        "Analytics & Insights",
+        "Real-time Dashboards & Reporting",
+        "Process Optimization & Automation"
+      ],
+      "keywords": [
+        "digital work",
+        "analytics",
+        "productivity",
+        "wellness"
+      ],
+      "description": "Digital work analytics assessment"
+    },
+    "technology-alignment": {
+      "aliases": [
+        "technology"
+      ],
+      "json_file": "assessment-technology-alignment-data.json",
+      "recommendation_function": "generate_technology_alignment_recommendations",
+      "titles": [
+        "Technology Strategy",
+        "Technology Architecture",
+        "Technology Governance",
+        "Technology Portfolio Management",
+        "Technology Roadmap & Planning"
+      ],
+      "keywords": [
+        "technology",
+        "alignment",
+        "architecture",
+        "governance"
+      ],
+      "description": "Technology alignment assessment"
+    },
+    "new-client-comprehensive": {
+      "aliases": [
+        "new-client-comprehensive"
+      ],
+      "json_file": "assessment-new-client-comprehensive-data.json",
+      "recommendation_function": "generate_new_client_comprehensive_recommendations",
+      "titles": [
+        "Business Strategy & Operations",
+        "Technology Strategy & Infrastructure",
+        "Security & Compliance",
+        "Process Optimization & Automation",
+        "Improvement Roadmap & Planning"
+      ],
+      "keywords": [
+        "infrastructure",
+        "hosting",
+        "server",
+        "virtualization",
+        "security",
+        "firewall",
+        "endpoint",
+        "mfa"
+      ],
+      "description": "Comprehensive new client assessment",
+      "category_count_threshold": 6
+    },
+    "new-client-quick": {
+      "aliases": [
+        "new-client-quick"
+      ],
+      "json_file": "assessment-new-client-quick-data.json",
+      "recommendation_function": "generate_new_client_quick_recommendations",
+      "titles": [
+        "Critical Infrastructure & Security",
+        "Backup & Recovery Strategy",
+        "Microsoft 365 Security",
+        "Network & Connectivity",
+        "Business Continuity Planning"
+      ],
+      "keywords": [
+        "infrastructure",
+        "hosting",
+        "server",
+        "virtualization",
+        "security",
+        "firewall",
+        "endpoint",
+        "mfa"
+      ],
+      "description": "Quick new client assessment",
+      "category_count_threshold": 6
+    },
+    "base-policies": {
+      "aliases": [
+        "base-policies"
+      ],
+      "json_file": "assessment-base-policies-data.json",
+      "recommendation_function": "generate_base_policies_recommendations",
+      "titles": [
+        "Policy Framework & Governance",
+        "Security Policy Implementation",
+        "Employee Lifecycle Management",
+        "Operational Security Policies",
+        "Business Continuity & Compliance"
+      ],
+      "keywords": [
+        "policy",
+        "policies",
+        "procedure",
+        "procedures",
+        "governance",
+        "compliance"
+      ],
+      "description": "Base policies and procedures assessment"
+    }
+  },
+  "defaults": {
+    "recommendation_function": "generate_ai_recommendations",
+    "titles": [
+      "Strategic Initiative",
+      "Operational Excellence",
+      "Performance Optimization",
+      "Capability Enhancement",
+      "Continuous Improvement"
+    ]
+  }
+}

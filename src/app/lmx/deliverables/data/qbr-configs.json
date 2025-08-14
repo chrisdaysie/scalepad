@@ -1,0 +1,58 @@
+{
+  "qbr-report-full": {
+    "id": "qbr-report-full",
+    "json_file": "qbr-report-full.json",
+    "title": "Comprehensive Business Review Report",
+    "company": "Moneta",
+    "type": "aggregate",
+    "description": "Comprehensive multi-platform business review aggregating data from all managed services"
+  },
+  "qbr-report-backup-radar": {
+    "id": "qbr-report-backup-radar",
+    "json_file": "qbr-report-backup-radar.json",
+    "title": "Backup Radar",
+    "company": "Backup Radar",
+    "type": "individual",
+    "description": "Weekly backup monitoring and data protection analysis"
+  },
+  "qbr-report-cork": {
+    "id": "qbr-report-cork",
+    "json_file": "qbr-report-cork.json",
+    "title": "Cork",
+    "company": "Cork",
+    "type": "individual",
+    "description": "AI-powered security intelligence with automated threat detection and response"
+  },
+  "qbr-report-controlmap": {
+    "id": "qbr-report-controlmap",
+    "json_file": "qbr-report-controlmap.json",
+    "title": "ControlMap",
+    "company": "ControlMap",
+    "type": "individual",
+    "description": "IT documentation and compliance management platform with automated policy tracking"
+  },
+  "qbr-report-huntress": {
+    "id": "qbr-report-huntress",
+    "json_file": "qbr-report-huntress.json",
+    "title": "Huntress",
+    "company": "Huntress",
+    "type": "individual",
+    "description": "Managed detection and response platform with threat hunting capabilities and incident response"
+  },
+  "qbr-report-produce8": {
+    "id": "qbr-report-produce8",
+    "json_file": "qbr-report-produce8.json",
+    "title": "Produce8",
+    "company": "Produce8",
+    "type": "individual",
+    "description": "Productivity analytics and time tracking platform for MSPs with performance insights"
+  },
+  "qbr-report-rewst": {
+    "id": "qbr-report-rewst",
+    "json_file": "qbr-report-rewst.json",
+    "title": "Rewst",
+    "company": "Rewst",
+    "type": "individual",
+    "description": "RPA and workflow automation platform for MSP operations and process optimization"
+  }
+}

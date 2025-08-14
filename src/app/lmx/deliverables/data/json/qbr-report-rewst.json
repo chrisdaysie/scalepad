@@ -1,0 +1,138 @@
+{
+  "id": "qbr-report-rewst",
+  "title": "Rewst",
+  "company": "Rewst",
+  "dateRange": "Q2 2025 • Workflow Automation",
+  "heroMetric": {
+    "value": "87%",
+    "label": "Automation Rate",
+    "description": "Workflows automated vs manual processes"
+  },
+  "type": "individual",
+  "description": "RPA and workflow automation platform for MSP operations and process optimization",
+  "executiveSummary": "Rewst provides comprehensive RPA and workflow automation for your organization. This quarter, we've successfully automated workflows across 25 endpoints, achieving an automation efficiency score of 81.6% and process optimization rate of 78%. Your organization demonstrates strong automation practices with effective workflow management, with opportunities for improvement in advanced automation capabilities and intelligent process optimization.",
+  "categories": [
+    {
+      "name": "Workflow Automation",
+      "score": 81.6,
+      "items": [
+        { "name": "Process Automation", "status": "satisfactory" },
+        { "name": "Task Automation", "status": "satisfactory" },
+        { "name": "Integration Automation", "status": "needs-attention" },
+        { "name": "Error Handling", "status": "satisfactory" }
+      ]
+    },
+    {
+      "name": "Process Optimization",
+      "score": 78,
+      "items": [
+        { "name": "Workflow Efficiency", "status": "satisfactory" },
+        { "name": "Process Mapping", "status": "satisfactory" },
+        { "name": "Bottleneck Identification", "status": "needs-attention" },
+        { "name": "Performance Monitoring", "status": "satisfactory" }
+      ]
+    },
+    {
+      "name": "Advanced Automation",
+      "score": 65.4,
+      "items": [
+        { "name": "AI-Powered Automation", "status": "at-risk" },
+        { "name": "Predictive Automation", "status": "at-risk" },
+        { "name": "Intelligent Routing", "status": "needs-attention" },
+        { "name": "Machine Learning", "status": "at-risk" }
+      ]
+    }
+  ],
+  "hardwareStats": {
+    "totalAssets": 156,
+    "automatedAssets": 156,
+    "manualAssets": 0,
+    "automationCoverage": "100%"
+  },
+  "softwareStats": {
+    "totalAssets": 892,
+    "integratedApps": 23,
+    "unintegratedApps": 869,
+    "integrationRate": "2.6%"
+  },
+  "contracts": {
+    "monthly": [
+      { "vendor": "Rewst", "description": "RPA and workflow automation platform", "cost": "$3,200.00", "nextDue": "2025-08-31" }
+    ],
+    "annual": [
+      { "vendor": "Automation Training", "description": "Annual automation and process optimization training", "cost": "$4,500.00", "nextDue": "2025-12-31" }
+    ]
+  },
+  "roadmap": {
+    "totalInvestment": "$15,200.00",
+    "initiatives": [
+      {
+        "priority": "open",
+        "title": "Advanced AI Automation",
+        "description": "Implement AI-powered automation and intelligent process optimization to improve efficiency and reduce manual intervention.",
+        "investment": "$10,700.00",
+        "assets": 25
+      },
+      {
+        "priority": "open",
+        "title": "Enhanced Integration",
+        "description": "Expand application integration capabilities to automate more processes and improve workflow efficiency.",
+        "investment": "$4,500.00",
+        "assets": 156
+      }
+    ]
+  },
+  "enhancedSections": {
+    "risks": [
+      {
+        "title": "Automation Dependencies",
+        "description": "Over-reliance on automation without proper monitoring and fallback procedures can create single points of failure and operational risks.",
+        "severity": "medium",
+        "impact": "Process failures, operational disruption, and potential service delivery issues."
+      },
+      {
+        "title": "Integration Complexity",
+        "description": "Complex automation workflows with multiple integrations can become difficult to maintain and troubleshoot.",
+        "severity": "medium",
+        "impact": "Increased maintenance overhead, troubleshooting complexity, and potential automation failures."
+      }
+    ],
+    "insights": [
+      {
+        "title": "Strong Automation Foundation",
+        "description": "Your organization demonstrates excellent automation practices with 81.6% automation efficiency and comprehensive process coverage.",
+        "type": "positive",
+        "recommendation": "Continue maintaining high automation standards and consider implementing AI-powered automation capabilities."
+      },
+      {
+        "title": "Integration Opportunities",
+        "description": "There are significant opportunities to expand automation through enhanced application integration and intelligent process optimization.",
+        "type": "improvement",
+        "recommendation": "Invest in advanced integration capabilities to automate more processes and improve efficiency."
+      }
+    ],
+    "recommendations": [
+      {
+        "title": "Implement AI-Powered Automation",
+        "description": "Deploy AI-powered automation capabilities to improve process efficiency and enable intelligent decision-making in workflows.",
+        "priority": "high",
+        "investment": "$10,700.00",
+        "timeline": "4-8 months"
+      },
+      {
+        "title": "Expand Application Integration",
+        "description": "Enhance application integration capabilities to automate more processes and improve workflow efficiency across the organization.",
+        "priority": "medium",
+        "investment": "$4,500.00",
+        "timeline": "3-6 months"
+      },
+      {
+        "title": "Intelligent Process Optimization",
+        "description": "Implement intelligent process optimization to identify automation opportunities and improve workflow efficiency.",
+        "priority": "medium",
+        "investment": "$3,000.00",
+        "timeline": "2-4 months"
+      }
+    ]
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "id": "qbr-report-cork",
+  "title": "Cork",
+  "company": "Cork",
+  "dateRange": "Q2 2025 • AI-Powered Security Intelligence",
+  "heroMetric": {
+    "value": "2.1 hrs",
+    "label": "Avg Resolution Time",
+    "description": "Average time to resolve support tickets"
+  },
+  "type": "individual",
+  "description": "AI-powered security intelligence with automated threat detection and response",
+  "executiveSummary": "Cork Enhanced delivers advanced AI-powered security intelligence with exceptional threat detection and automated response capabilities. Our AI algorithms analyzed 2,847 security events this quarter, achieving 94% accuracy in threat identification with only 6% false positives. The system automatically contained 89% of detected threats within 15 minutes, significantly reducing manual intervention and improving overall security posture. Your organization now benefits from predictive threat modeling and automated compliance monitoring.",
+  "categories": [
+    {
+      "name": "AI Threat Detection",
+      "score": 94,
+      "items": [
+        { "name": "Machine Learning Models", "status": "satisfactory" },
+        { "name": "Behavioral Analysis", "status": "satisfactory" },
+        { "name": "Anomaly Detection", "status": "satisfactory" },
+        { "name": "Predictive Analytics", "status": "satisfactory" }
+      ]
+    },
+    {
+      "name": "Automated Response",
+      "score": 89,
+      "items": [
+        { "name": "Threat Containment", "status": "satisfactory" },
+        { "name": "Incident Response", "status": "satisfactory" },
+        { "name": "Remediation Actions", "status": "needs-attention" },
+        { "name": "Recovery Procedures", "status": "satisfactory" }
+      ]
+    },
+    {
+      "name": "Compliance Automation",
+      "score": 91,
+      "items": [
+        { "name": "Policy Enforcement", "status": "satisfactory" },
+        { "name": "Audit Automation", "status": "satisfactory" },
+        { "name": "Reporting Generation", "status": "satisfactory" },
+        { "name": "Risk Assessment", "status": "satisfactory" }
+      ]
+    }
+  ],
+  "enhancedSections": {
+    "risks": [
+      {
+        "title": "Email Configuration Vulnerabilities",
+        "description": "6 insecure email configuration events detected, creating potential for email spoofing and phishing attacks.",
+        "severity": "high",
+        "impact": "Email deliverability issues and increased risk of business email compromise attacks."
+      },
+      {
+        "title": "Multi-Factor Authentication Gaps",
+        "description": "4 MFA-related security events identified, indicating incomplete implementation across all systems.",
+        "severity": "high",
+        "impact": "Weakened account security and increased risk of credential-based attacks."
+      },
+      {
+        "title": "Outstanding Security Events",
+        "description": "6 unresolved security events requiring immediate attention and remediation.",
+        "severity": "medium",
+        "impact": "Ongoing security risk exposure and potential compliance violations."
+      }
+    ],
+    "insights": [
+      {
+        "title": "Device Protection Coverage",
+        "description": "100% device protection coverage demonstrates strong endpoint security controls across all managed devices.",
+        "metric": "100% Coverage",
+        "trend": "positive"
+      },
+      {
+        "title": "Security Integration Stack",
+        "description": "Comprehensive security stack with 19 active integrations providing multi-layered protection.",
+        "metric": "19 Integrations",
+        "trend": "positive"
+      },
+      {
+        "title": "Event Monitoring Activity",
+        "description": "Active security monitoring with 17 events detected and 11 resolved, showing responsive security operations.",
+        "metric": "17 Events Detected",
+        "trend": "positive"
+      },
+      {
+        "title": "Multi-Domain Management",
+        "description": "Multi-domain security management with 5 domains under centralized protection and monitoring.",
+        "metric": "5 Domains Protected",
+        "trend": "positive"
+      }
+    ],
+    "recommendations": [
+      {
+        "title": "Address Email Configuration Issues",
+        "description": "Resolve 6 insecure email configuration events to improve email deliverability and prevent spoofing attacks.",
+        "priority": "high",
+        "effort": "Medium",
+        "impact": "Improve email deliverability and prevent spoofing attacks"
+      },
+      {
+        "title": "Enhance Multi-Factor Authentication",
+        "description": "Address 4 MFA-related security events to strengthen account security across all systems.",
+        "priority": "high",
+        "effort": "Medium",
+        "impact": "Strengthen account security and prevent credential-based attacks"
+      },
+      {
+        "title": "Improve Event Resolution",
+        "description": "Resolve 6 outstanding security events to reduce security risk and improve response metrics.",
+        "priority": "medium",
+        "effort": "Low",
+        "impact": "Reduce security risk and improve response metrics"
+      }
+    ]
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "id": "qbr-report-controlmap",
+  "title": "ControlMap",
+  "company": "ControlMap",
+  "dateRange": "Q2 2025 • IT Documentation & Compliance",
+  "heroMetric": {
+    "value": "91%",
+    "label": "Compliance Rate",
+    "description": "Asset documentation and policy compliance coverage"
+  },
+  "type": "individual",
+  "description": "Comprehensive Governance, Risk & Compliance (GRC) platform for MSPs with automated policy tracking, risk assessment, and compliance monitoring",
+  "executiveSummary": "ControlMap provides comprehensive IT documentation and compliance management for your organization. This quarter, we've successfully tracked 25 endpoints with automated policy compliance monitoring, achieving a compliance score of 78.2% and documentation completeness of 85%. Your organization shows strong progress in policy documentation and compliance tracking, with opportunities for improvement in automated policy enforcement and real-time compliance monitoring.",
+  "categories": [
+    {
+      "name": "Policy Compliance",
+      "score": 78.2,
+      "items": [
+        { "name": "Security Policy Coverage", "status": "satisfactory" },
+        { "name": "Compliance Monitoring", "status": "satisfactory" },
+        { "name": "Policy Enforcement", "status": "needs-attention" },
+        { "name": "Audit Readiness", "status": "satisfactory" }
+      ]
+    },
+    {
+      "name": "Documentation Quality",
+      "score": 85,
+      "items": [
+        { "name": "Policy Documentation", "status": "satisfactory" },
+        { "name": "Procedure Documentation", "status": "satisfactory" },
+        { "name": "Asset Inventory", "status": "satisfactory" },
+        { "name": "Network Documentation", "status": "needs-attention" }
+      ]
+    },
+    {
+      "name": "Automation & Integration",
+      "score": 65,
+      "items": [
+        { "name": "Automated Policy Updates", "status": "needs-attention" },
+        { "name": "Integration with Tools", "status": "satisfactory" },
+        { "name": "Real-time Monitoring", "status": "at-risk" },
+        { "name": "Automated Reporting", "status": "satisfactory" }
+      ]
+    }
+  ],
+  "hardwareStats": {
+    "totalAssets": 156,
+    "documentedAssets": 142,
+    "undocumentedAssets": 14,
+    "complianceRate": "91%"
+  },
+  "softwareStats": {
+    "totalAssets": 892,
+    "licensedSoftware": 835,
+    "unlicensedSoftware": 57,
+    "licenseCompliance": "93.6%"
+  },
+  "contracts": {
+    "monthly": [
+      { "vendor": "ControlMap", "description": "IT documentation and compliance platform", "cost": "$3,800.00", "nextDue": "2025-08-31" }
+    ],
+    "annual": [
+      { "vendor": "Compliance Training", "description": "Annual compliance training and certification", "cost": "$5,000.00", "nextDue": "2025-12-31" }
+    ]
+  },
+  "roadmap": {
+    "totalInvestment": "$12,800.00",
+    "initiatives": [
+      {
+        "priority": "open",
+        "title": "Enhanced Policy Automation",
+        "description": "Implement automated policy enforcement and real-time compliance monitoring to improve policy adherence and reduce manual oversight.",
+        "investment": "$7,800.00",
+        "assets": 25
+      },
+      {
+        "priority": "open",
+        "title": "Advanced Documentation",
+        "description": "Enhance network documentation and asset inventory with automated discovery and mapping capabilities.",
+        "investment": "$5,000.00",
+        "assets": 156
+      }
+    ]
+  },
+  "enhancedSections": {
+    "risks": [
+      {
+        "title": "Compliance Gaps",
+        "description": "Undocumented assets and unlicensed software create compliance risks that could lead to audit failures and potential fines.",
+        "severity": "medium",
+        "impact": "Audit failures, potential fines, and reputational damage."
+      },
+      {
+        "title": "Policy Enforcement",
+        "description": "Manual policy enforcement processes are time-consuming and prone to human error, leading to inconsistent compliance across the organization.",
+        "severity": "medium",
+        "impact": "Inconsistent compliance, increased audit preparation time, and potential security gaps."
+      }
+    ],
+    "insights": [
+      {
+        "title": "Documentation Excellence",
+        "description": "Your organization demonstrates strong documentation practices with 91% asset documentation coverage and comprehensive policy documentation.",
+        "type": "positive",
+        "recommendation": "Continue maintaining high documentation standards and consider implementing automated documentation updates."
+      },
+      {
+        "title": "Automation Opportunities",
+        "description": "There are significant opportunities to improve efficiency through automated policy enforcement and real-time compliance monitoring.",
+        "type": "improvement",
+        "recommendation": "Invest in automated policy enforcement tools to reduce manual oversight and improve consistency."
+      }
+    ],
+    "recommendations": [
+      {
+        "title": "Implement Automated Policy Enforcement",
+        "description": "Deploy automated policy enforcement tools to ensure consistent compliance across all endpoints and reduce manual oversight requirements.",
+        "priority": "high",
+        "investment": "$7,800.00",
+        "timeline": "3-6 months"
+      },
+      {
+        "title": "Enhance Network Documentation",
+        "description": "Implement automated network discovery and mapping tools to improve network documentation accuracy and completeness.",
+        "priority": "medium",
+        "investment": "$5,000.00",
+        "timeline": "2-4 months"
+      },
+      {
+        "title": "License Compliance Review",
+        "description": "Conduct a comprehensive software license audit to identify and resolve unlicensed software installations.",
+        "priority": "medium",
+        "investment": "$2,000.00",
+        "timeline": "1-2 months"
+      }
+    ]
+  }
+}

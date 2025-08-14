@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment JSON Template Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #e2e8f0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .documentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Enhanced header section */
+        .header-section {
+            text-align: center;
+            padding: 4rem 2rem 6rem;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+        
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #8b5cf6 100%);
+            z-index: -2;
+        }
+        
+        .header-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            z-index: -1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin: 0 0 1.5rem;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            line-height: 1.1;
+        }
+        
+        .header-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.9);
+            margin: 0 0 3rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .floating-shape {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-shape:nth-child(1) {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-shape:nth-child(2) {
+            width: 40px;
+            height: 40px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+        
+        .floating-shape:nth-child(3) {
+            width: 30px;
+            height: 30px;
+            top: 30%;
+            right: 25%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .doc-section {
+            margin-bottom: 3rem;
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .doc-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+        }
+        
+        .doc-section h2 {
+            color: #60a5fa;
+            border-bottom: 3px solid #475569;
+            padding-bottom: 0.75rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            font-size: 1.875rem;
+            letter-spacing: -0.025em;
+        }
+        
+        .doc-section h3 {
+            color: #e2e8f0;
+            margin-top: 2.5rem;
+            margin-bottom: 1.25rem;
+            font-weight: 600;
+            font-size: 1.25rem;
+            letter-spacing: -0.025em;
+        }
+
+        .doc-section h4 {
+            color: #cbd5e1;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+        
+        .doc-section p {
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .doc-section ul, .doc-section ol {
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .doc-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .code-block {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 2rem;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', 'Consolas', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            border: 1px solid #334155;
+            margin: 1.5rem 0;
+            position: relative;
+            white-space: pre;
+        }
+
+        .code-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .string { color: #10b981; }
+        .key { color: #60a5fa; font-weight: 500; }
+        .number { color: #f59e0b; }
+        .boolean { color: #8b5cf6; }
+        .null { color: #ef4444; }
+        .bracket { color: #e2e8f0; }
+        .colon { color: #94a3b8; }
+        .comma { color: #94a3b8; }
+
+        .structure-diagram {
+            background: #1e293b;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: #cbd5e1;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        .example-box {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .example-box h4 {
+            color: #60a5fa;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .field-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .field-table th {
+            background: #475569;
+            color: #f1f5f9;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 1px solid #64748b;
+        }
+
+        .field-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #334155;
+            color: #cbd5e1;
+        }
+
+        .field-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .field-table tr:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .required {
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .optional {
+            background: rgba(34, 197, 94, 0.2);
+            color: #86efac;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: #60a5fa;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: #93c5fd;
+        }
+
+        .back-link::before {
+            content: '←';
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box h4 {
+            color: #60a5fa;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .documentation-container {
+                padding: 1rem;
+            }
+            
+            .header-title {
+                font-size: 2.5rem;
+            }
+            
+            .header-subtitle {
+                font-size: 1.125rem;
+            }
+            
+            .doc-section {
+                padding: 1.5rem;
+            }
+            
+            .code-block {
+                padding: 1.5rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="documentation-container">
+        <a href="../../../index.html" class="back-link">Back to Assessments</a>
+        
+        <div class="header-section">
+            <div class="header-content">
+                <h1 class="header-title">Assessment JSON Template Documentation</h1>
+                <p class="header-subtitle">This guide explains the JSON format used for creating assessment templates in the ScalePad assessment system. Use this structure to create new assessments or modify existing ones.</p>
+            </div>
+            <div class="floating-shapes">
+                <div class="floating-shape"></div>
+                <div class="floating-shape"></div>
+                <div class="floating-shape"></div>
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2>📋 Overview</h2>
+            <p>Assessment templates are JSON files that define the structure, content, and scoring logic for interactive assessments. Each assessment consists of metadata and a collection of categories, each containing multiple questions with criteria-based responses.</p>
+            
+            <div class="structure-diagram">
+assessment-template.json
+├── assessment_template_create_payload
+│   ├── title
+│   ├── description
+│   ├── is_category_weight_evenly_distributed
+│   └── categories[]
+│       ├── title
+│       ├── description
+│       ├── is_question_weight_evenly_distributed
+│       └── questions[]
+│           ├── title
+│           ├── description
+│           ├── remediation_tips
+│           ├── criterion_label_type_enum
+│           ├── scoring_instructions
+│           └── criteria[]
+│               ├── label_enum
+│               └── description
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2>🚀 Quick Start Example</h2>
+            <p>Here's a minimal working template to get you started:</p>
+            
+            <div class="example-box">
+                <h4>Basic Assessment Template</h4>
+                <div class="code-block">
+<span class="bracket">{</span>
+  <span class="key">"assessment_template_create_payload"</span><span class="colon">:</span> <span class="bracket">{</span>
+    <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Basic Readiness Assessment"</span><span class="comma">,</span>
+    <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Evaluates client readiness for technology initiatives"</span><span class="comma">,</span>
+    <span class="key">"is_category_weight_evenly_distributed"</span><span class="colon">:</span> <span class="boolean">true</span><span class="comma">,</span>
+    <span class="key">"categories"</span><span class="colon">:</span> <span class="bracket">[</span>
+      <span class="bracket">{</span>
+        <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Technology Foundation"</span><span class="comma">,</span>
+        <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Assesses current technology infrastructure and practices"</span><span class="comma">,</span>
+        <span class="key">"is_question_weight_evenly_distributed"</span><span class="colon">:</span> <span class="boolean">true</span><span class="comma">,</span>
+        <span class="key">"questions"</span><span class="colon">:</span> <span class="bracket">[</span>
+          <span class="bracket">{</span>
+            <span class="key">"title"</span><span class="colon">:</span> <span class="string">"System documentation quality"</span><span class="comma">,</span>
+            <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Evaluates how well current systems are documented"</span><span class="comma">,</span>
+            <span class="key">"remediation_tips"</span><span class="colon">:</span> <span class="string">"Start with critical systems first"</span><span class="comma">,</span>
+            <span class="key">"criterion_label_type_enum"</span><span class="colon">:</span> <span class="string">"MultiResponse"</span><span class="comma">,</span>
+            <span class="key">"scoring_instructions"</span><span class="colon">:</span> <span class="string">"Review existing documentation coverage"</span><span class="comma">,</span>
+            <span class="key">"criteria"</span><span class="colon">:</span> <span class="bracket">[</span>
+              <span class="bracket">{</span>
+                <span class="key">"label_enum"</span><span class="colon">:</span> <span class="string">"AtRisk"</span><span class="comma">,</span>
+                <span class="key">"description"</span><span class="colon">:</span> <span class="string">"No documentation exists"</span>
+              <span class="bracket">}</span><span class="comma">,</span>
+              <span class="bracket">{</span>
+                <span class="key">"label_enum"</span><span class="colon">:</span> <span class="string">"NeedsAttention"</span><span class="comma">,</span>
+                <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Some documentation, but incomplete"</span>
+              <span class="bracket">}</span><span class="comma">,</span>
+              <span class="bracket">{</span>
+                <span class="key">"label_enum"</span><span class="colon">:</span> <span class="string">"Satisfactory"</span><span class="comma">,</span>
+                <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Well-documented systems"</span>
+              <span class="bracket">}</span><span class="comma">,</span>
+              <span class="bracket">{</span>
+                <span class="key">"label_enum"</span><span class="colon">:</span> <span class="string">"NotApplicable"</span><span class="comma">,</span>
+                <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Not relevant to this client"</span>
+              <span class="bracket">}</span>
+            <span class="bracket">]</span>
+          <span class="bracket">}</span>
+        <span class="bracket">]</span>
+      <span class="bracket">}</span>
+    <span class="bracket">]</span>
+  <span class="bracket">}</span>
+<span class="bracket">}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2>📊 Field Reference</h2>
+            <p>This section details all available fields in the assessment template structure:</p>
+            
+            <h3>Root Level</h3>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>assessment_template_create_payload</code></td>
+                        <td>Object</td>
+                        <td><span class="required">Required</span></td>
+                        <td>The main container for all assessment data</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Assessment Template Payload</h3>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>title</code></td>
+                        <td>String</td>
+                        <td><span class="required">Required</span></td>
+                        <td>The name of the assessment (e.g., "AI Readiness Assessment")</td>
+                    </tr>
+                    <tr>
+                        <td><code>description</code></td>
+                        <td>String</td>
+                        <td><span class="required">Required</span></td>
+                        <td>A brief description of what the assessment evaluates</td>
+                    </tr>
+                    <tr>
+                        <td><code>is_category_weight_evenly_distributed</code></td>
+                        <td>Boolean</td>
+                        <td><span class="required">Required</span></td>
+                        <td>Whether all categories should have equal weight in scoring</td>
+                    </tr>
+                    <tr>
+                        <td><code>categories</code></td>
+                        <td>Array</td>
+                        <td><span class="required">Required</span></td>
+                        <td>Array of category objects that group related questions</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Category Object</h3>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>title</code></td>
+                        <td>String</td>
+                        <td><span class="required">Required</span></td>
+                        <td>The name of the category (e.g., "Technology Foundation")</td>
+                    </tr>
+                    <tr>
+                        <td><code>description</code></td>
+                        <td>String</td>
+                        <td><span class="required">Required</span></td>
+                        <td>Description of what this category evaluates</td>
+                    </tr>
+                    <tr>
+                        <td><code>is_question_weight_evenly_distributed</code></td>
+                        <td>Boolean</td>
+                        <td><span class="required">Required</span></td>
+                        <td>Whether all questions in this category should have equal weight</td>
+                    </tr>
+                    <tr>
+                        <td><code>questions</code></td>
+                        <td>Array</td>
+                        <td><span class="required">Required</span></td>
+                        <td>Array of question objects</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Question Object</h3>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>title</code></td>
+                        <td>String</td>
+                        <td><span class="required">Required</span></td>
+                        <td>The question text (e.g., "System documentation quality")</td>
+                    </tr>
+                    <tr>
+                        <td><code>description</code></td>
+                        <td>String</td>
+                        <td><span class="required">Required</span></td>
+                        <td>Detailed explanation of what the question evaluates</td>
+                    </tr>
+                    <tr>
+                        <td><code>remediation_tips</code></td>
+                        <td>String</td>
+                        <td><span class="optional">Optional</span></td>
+                        <td>Guidance for improving the assessed area</td>
+                    </tr>
+                    <tr>
+                        <td><code>criterion_label_type_enum</code></td>
+                        <td>String</td>
+                        <td><span class="required">Required</span></td>
+                        <td>Type of response criteria ("MultiResponse" is standard)</td>
+                    </tr>
+                    <tr>
+                        <td><code>scoring_instructions</code></td>
+                        <td>String</td>
+                        <td><span class="required">Required</span></td>
+                        <td>Guidance for how to score this question</td>
+                    </tr>
+                    <tr>
+                        <td><code>criteria</code></td>
+                        <td>Array</td>
+                        <td><span class="required">Required</span></td>
+                        <td>Array of possible response options</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Criteria Object</h3>
+            <table class="field-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>label_enum</code></td>
+                        <td>String</td>
+                        <td><span class="required">Required</span></td>
+                        <td>Response level: "AtRisk", "NeedsAttention", "Satisfactory", or "NotApplicable"</td>
+                    </tr>
+                    <tr>
+                        <td><code>description</code></td>
+                        <td>String</td>
+                        <td><span class="required">Required</span></td>
+                        <td>Human-readable description of this response level</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="doc-section">
+            <h2>📝 Detailed Examples</h2>
+            <p>Here are more comprehensive examples to help you understand the structure:</p>
+            
+            <div class="example-box">
+                <h4>Complete Assessment Template</h4>
+                <div class="code-block">
+<span class="bracket">{</span>
+  <span class="key">"assessment_template_create_payload"</span><span class="colon">:</span> <span class="bracket">{</span>
+    <span class="key">"title"</span><span class="colon">:</span> <span class="string">"AI Readiness Assessment"</span><span class="comma">,</span>
+    <span class="key">"description"</span><span class="colon">:</span> <span class="string">"This 28-point assessment helps MSPs evaluate client readiness across four core dimensions critical to strategic engagement and account growth."</span><span class="comma">,</span>
+    <span class="key">"is_category_weight_evenly_distributed"</span><span class="colon">:</span> <span class="boolean">true</span><span class="comma">,</span>
+    <span class="key">"categories"</span><span class="colon">:</span> <span class="bracket">[</span>
+      <span class="bracket">{</span>
+        <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Strategic Alignment"</span><span class="comma">,</span>
+        <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Evaluates how AI is positioned within the organization's strategy, leadership mindset, and transformation roadmap."</span><span class="comma">,</span>
+        <span class="key">"is_question_weight_evenly_distributed"</span><span class="colon">:</span> <span class="boolean">true</span><span class="comma">,</span>
+        <span class="key">"questions"</span><span class="colon">:</span> <span class="bracket">[</span>
+          <span class="bracket">{</span>
+            <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Willingness to explore AI as part of strategic planning"</span><span class="comma">,</span>
+            <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Assesses whether the organization views AI as a strategic enabler or simply a technical experiment."</span><span class="comma">,</span>
+            <span class="key">"remediation_tips"</span><span class="colon">:</span> <span class="string">"If AI isn't part of strategic dialogue, connect it to high-priority goals."</span><span class="comma">,</span>
+            <span class="key">"criterion_label_type_enum"</span><span class="colon">:</span> <span class="string">"MultiResponse"</span><span class="comma">,</span>
+            <span class="key">"scoring_instructions"</span><span class="colon">:</span> <span class="string">"Evaluate how often AI is mentioned in leadership or planning discussions."</span><span class="comma">,</span>
+            <span class="key">"criteria"</span><span class="colon">:</span> <span class="bracket">[</span>
+              <span class="bracket">{</span>
+                <span class="key">"label_enum"</span><span class="colon">:</span> <span class="string">"AtRisk"</span><span class="comma">,</span>
+                <span class="key">"description"</span><span class="colon">:</span> <span class="string">"AI not discussed in strategic context"</span>
+              <span class="bracket">}</span><span class="comma">,</span>
+              <span class="bracket">{</span>
+                <span class="key">"label_enum"</span><span class="colon">:</span> <span class="string">"NeedsAttention"</span><span class="comma">,</span>
+                <span class="key">"description"</span><span class="colon">:</span> <span class="string">"AI mentioned but not integrated into strategy"</span>
+              <span class="bracket">}</span><span class="comma">,</span>
+              <span class="bracket">{</span>
+                <span class="key">"label_enum"</span><span class="colon">:</span> <span class="string">"Satisfactory"</span><span class="comma">,</span>
+                <span class="key">"description"</span><span class="colon">:</span> <span class="string">"AI is part of strategic planning and discussions"</span>
+              <span class="bracket">}</span><span class="comma">,</span>
+              <span class="bracket">{</span>
+                <span class="key">"label_enum"</span><span class="colon">:</span> <span class="string">"NotApplicable"</span><span class="comma">,</span>
+                <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Not relevant to this organization"</span>
+              <span class="bracket">}</span>
+            <span class="bracket">]</span>
+          <span class="bracket">}</span>
+        <span class="bracket">]</span>
+      <span class="bracket">}</span>
+    <span class="bracket">]</span>
+  <span class="bracket">}</span>
+<span class="bracket">}</span>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>Example Response Criteria</h4>
+                <div class="code-block">
+<span class="bracket">[</span>
+  <span class="bracket">{</span>
+    <span class="key">"label_enum"</span><span class="colon">:</span> <span class="string">"AtRisk"</span><span class="comma">,</span>
+    <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Significant improvement needed"</span>
+  <span class="bracket">}</span><span class="comma">,</span>
+  <span class="bracket">{</span>
+    <span class="key">"label_enum"</span><span class="colon">:</span> <span class="string">"NeedsAttention"</span><span class="comma">,</span>
+    <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Some improvement needed"</span>
+  <span class="bracket">}</span><span class="comma">,</span>
+  <span class="bracket">{</span>
+    <span class="key">"label_enum"</span><span class="colon">:</span> <span class="string">"Satisfactory"</span><span class="comma">,</span>
+    <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Meets expectations"</span>
+  <span class="bracket">}</span><span class="comma">,</span>
+  <span class="bracket">{</span>
+    <span class="key">"label_enum"</span><span class="colon">:</span> <span class="string">"NotApplicable"</span><span class="comma">,</span>
+    <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Not applicable to this organization"</span>
+  <span class="bracket">}</span>
+<span class="bracket">]</span>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>Example Category Structure</h4>
+                <div class="code-block">
+<span class="bracket">{</span>
+  <span class="key">"title"</span><span class="colon">:</span> <span class="string">"Technology Foundation"</span><span class="comma">,</span>
+  <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Assesses current technology infrastructure and practices"</span><span class="comma">,</span>
+  <span class="key">"is_question_weight_evenly_distributed"</span><span class="colon">:</span> <span class="boolean">true</span><span class="comma">,</span>
+  <span class="key">"questions"</span><span class="colon">:</span> <span class="bracket">[</span>
+    <span class="bracket">{</span>
+      <span class="key">"title"</span><span class="colon">:</span> <span class="string">"System documentation quality"</span><span class="comma">,</span>
+      <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Evaluates how well current systems are documented"</span><span class="comma">,</span>
+      <span class="key">"remediation_tips"</span><span class="colon">:</span> <span class="string">"Start with critical systems first"</span><span class="comma">,</span>
+      <span class="key">"criterion_label_type_enum"</span><span class="colon">:</span> <span class="string">"MultiResponse"</span><span class="comma">,</span>
+      <span class="key">"scoring_instructions"</span><span class="colon">:</span> <span class="string">"Review existing documentation coverage"</span><span class="comma">,</span>
+      <span class="key">"criteria"</span><span class="colon">:</span> <span class="bracket">[</span>
+        <span class="bracket">{</span>
+          <span class="key">"label_enum"</span><span class="colon">:</span> <span class="string">"AtRisk"</span><span class="comma">,</span>
+          <span class="key">"description"</span><span class="colon">:</span> <span class="string">"No documentation exists"</span>
+        <span class="bracket">}</span><span class="comma">,</span>
+        <span class="bracket">{</span>
+          <span class="key">"label_enum"</span><span class="colon">:</span> <span class="string">"NeedsAttention"</span><span class="comma">,</span>
+          <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Some documentation, but incomplete"</span>
+        <span class="bracket">}</span><span class="comma">,</span>
+        <span class="bracket">{</span>
+          <span class="key">"label_enum"</span><span class="colon">:</span> <span class="string">"Satisfactory"</span><span class="comma">,</span>
+          <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Well-documented systems"</span>
+        <span class="bracket">}</span><span class="comma">,</span>
+        <span class="bracket">{</span>
+          <span class="key">"label_enum"</span><span class="colon">:</span> <span class="string">"NotApplicable"</span><span class="comma">,</span>
+          <span class="key">"description"</span><span class="colon">:</span> <span class="string">"Not relevant to this client"</span>
+        <span class="bracket">}</span>
+      <span class="bracket">]</span>
+    <span class="bracket">}</span>
+  <span class="bracket">]</span>
+<span class="bracket">}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2>🎯 Response Levels</h2>
+            <p>The assessment system uses four standard response levels to evaluate client readiness:</p>
+            
+            <div class="highlight-box">
+                <h4>AtRisk</h4>
+                <p>Indicates significant gaps or deficiencies that require immediate attention. This represents the lowest level of readiness and typically requires urgent remediation.</p>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>NeedsAttention</h4>
+                <p>Shows moderate gaps that should be addressed in the near term. While not critical, these areas need improvement to reach optimal readiness.</p>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>Satisfactory</h4>
+                <p>Indicates good practices are in place. This represents adequate readiness and may only need minor improvements or maintenance.</p>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>NotApplicable</h4>
+                <p>Used when a question doesn't apply to the client's situation or business model. This option prevents irrelevant questions from affecting the overall score.</p>
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2>💡 Best Practices</h2>
+            
+            <h3>Question Design</h3>
+            <ul>
+                <li><strong>Be specific:</strong> Questions should evaluate concrete, measurable aspects of the client's environment</li>
+                <li><strong>Use business language:</strong> Frame questions in terms of business impact, not just technical criteria</li>
+                <li><strong>Provide clear criteria:</strong> Each response option should have distinct, unambiguous descriptions</li>
+                <li><strong>Include remediation guidance:</strong> Help clients understand how to improve in areas where they score poorly</li>
+            </ul>
+
+            <h3>Category Organization</h3>
+            <ul>
+                <li><strong>Group related topics:</strong> Questions within a category should evaluate related aspects of readiness</li>
+                <li><strong>Balance coverage:</strong> Ensure categories cover different dimensions of the assessment topic</li>
+                <li><strong>Consider weight distribution:</strong> Decide whether all categories should have equal importance</li>
+            </ul>
+
+            <h3>Scoring Instructions</h3>
+            <ul>
+                <li><strong>Be objective:</strong> Provide clear criteria for how to evaluate each question</li>
+                <li><strong>Consider context:</strong> Account for different client sizes and industries</li>
+                <li><strong>Focus on outcomes:</strong> Emphasize business results rather than just technical implementation</li>
+            </ul>
+        </div>
+
+        <div class="doc-section">
+            <h2>🔧 Advanced Features</h2>
+            
+            <h3>Weight Distribution</h3>
+            <p>The assessment system supports flexible weighting through the <code>is_category_weight_evenly_distributed</code> and <code>is_question_weight_evenly_distributed</code> fields. When set to <code>true</code>, all categories or questions within a category will have equal weight in the final score calculation.</p>
+
+            <h3>Multi-Response Criteria</h3>
+            <p>The <code>criterion_label_type_enum</code> field supports different response types. Currently, "MultiResponse" is the standard type that allows clients to select from the four standard response levels.</p>
+
+            <h3>Remediation Integration</h3>
+            <p>The <code>remediation_tips</code> field provides actionable guidance that can be integrated into recommendation engines and action planning tools.</p>
+        </div>
+
+        <div class="doc-section">
+            <h2>📝 Example Categories</h2>
+            <p>Here are some example category structures for different types of assessments:</p>
+            
+            <div class="example-box">
+                <h4>Technology Assessment Categories</h4>
+                <ul>
+                    <li><strong>Infrastructure:</strong> Network, servers, cloud services</li>
+                    <li><strong>Security:</strong> Access controls, monitoring, compliance</li>
+                    <li><strong>Operations:</strong> Backup, disaster recovery, monitoring</li>
+                    <li><strong>User Experience:</strong> Applications, devices, support</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h4>Business Process Assessment Categories</h4>
+                <ul>
+                    <li><strong>Strategy:</strong> Planning, governance, alignment</li>
+                    <li><strong>Operations:</strong> Processes, efficiency, automation</li>
+                    <li><strong>People:</strong> Skills, training, change management</li>
+                    <li><strong>Technology:</strong> Tools, systems, integration</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h4>Compliance Assessment Categories</h4>
+                <ul>
+                    <li><strong>Policy Framework:</strong> Documentation, governance, awareness</li>
+                    <li><strong>Technical Controls:</strong> Access, monitoring, protection</li>
+                    <li><strong>Process Controls:</strong> Procedures, testing, validation</li>
+                    <li><strong>Risk Management:</strong> Assessment, mitigation, monitoring</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="doc-section">
+            <h2>🚀 Getting Started</h2>
+            <p>To create your first assessment template:</p>
+            
+            <ol>
+                <li><strong>Define your assessment scope:</strong> What area of client readiness are you evaluating?</li>
+                <li><strong>Identify key categories:</strong> Break down the assessment into logical groupings</li>
+                <li><strong>Create questions:</strong> Develop specific, measurable questions for each category</li>
+                <li><strong>Define response criteria:</strong> Ensure each question has clear, distinct response options</li>
+                <li><strong>Add guidance:</strong> Include remediation tips and scoring instructions</li>
+                <li><strong>Test and refine:</strong> Validate the assessment with sample clients</li>
+            </ol>
+
+            <div class="highlight-box">
+                <h4>💡 Pro Tip</h4>
+                <p>Start with a simple assessment structure and gradually add complexity. It's easier to expand an assessment than to simplify an overly complex one.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

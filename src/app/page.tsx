@@ -44,19 +44,21 @@ export default function Home() {
 
         {/* Gradient orbs */}
         <div 
-          className="absolute w-[800px] h-[800px] bg-gradient-radial from-purple-500/10 via-transparent to-transparent rounded-full blur-3xl"
+          className="absolute w-[800px] h-[800px] rounded-full blur-3xl"
           style={{
             left: `${mousePosition.x * 0.1 - 400}px`,
             top: `${mousePosition.y * 0.1 - 400}px`,
-            transition: 'all 0.5s ease-out'
+            transition: 'all 0.5s ease-out',
+            background: 'radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%)'
           }}
         />
         <div 
-          className="absolute w-[600px] h-[600px] bg-gradient-radial from-blue-500/10 via-transparent to-transparent rounded-full blur-3xl"
+          className="absolute w-[600px] h-[600px] rounded-full blur-3xl"
           style={{
             right: `${mousePosition.x * 0.05 - 300}px`,
             bottom: `${mousePosition.y * 0.05 - 300}px`,
-            transition: 'all 0.5s ease-out'
+            transition: 'all 0.5s ease-out',
+            background: 'radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%)'
           }}
         />
       </div>

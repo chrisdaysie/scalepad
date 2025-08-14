@@ -103,16 +103,8 @@ export async function GET() {
         console.warn(`Could not read JSON file for ${id}:`, error);
       }
 
-      // Get file stats for last updated time
-      let lastUpdated = Math.floor(Date.now() / 1000);
-      try {
-        if (fs.existsSync(jsonPath)) {
-          const stats = fs.statSync(jsonPath);
-          lastUpdated = Math.floor(stats.mtime.getTime() / 1000);
-        }
-      } catch (error) {
-        console.warn(`Could not get file stats for ${id}:`, error);
-      }
+      // Use current timestamp for last updated time
+      const lastUpdated = Math.floor(Date.now() / 1000);
 
       const qbrReport: QBRReport = {
         id,

@@ -42,12 +42,6 @@ export default function Deliverables() {
         }
         const data = await response.json();
         if (Array.isArray(data)) {
-          console.log('QBR Reports data:', data.map(report => ({
-            id: report.id,
-            title: report.title,
-            lastUpdated: report.lastUpdated,
-            formatted: formatRelativeTime(report.lastUpdated)
-          })));
           setQbrReports(data);
         } else {
           throw new Error('Invalid data format');

@@ -395,6 +395,14 @@ export default function QBRReportPage() {
     fetchQBRData();
   }, []);
 
+  useEffect(() => {
+    if (report) {
+      document.title = `ScalePad - ${report.title}`;
+    } else {
+      document.title = "ScalePad - QBR Report";
+    }
+  }, [report]);
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">

@@ -82,6 +82,14 @@ export default function RunAssessment() {
     }
   }, [answers, assessment]);
 
+  useEffect(() => {
+    if (assessment) {
+      document.title = `ScalePad - ${assessment.assessment_template_create_payload.title}`;
+    } else {
+      document.title = "ScalePad - Assessment";
+    }
+  }, [assessment]);
+
   const handleAnswer = (questionId: string, answer: string) => {
     setAnswers(prev => ({
       ...prev,

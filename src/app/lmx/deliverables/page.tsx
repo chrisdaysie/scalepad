@@ -33,6 +33,10 @@ export default function Deliverables() {
   }, []);
 
   useEffect(() => {
+    document.title = "ScalePad - Deliverables";
+  }, []);
+
+  useEffect(() => {
     // Load QBR reports data
     const loadQBRReports = async () => {
       try {

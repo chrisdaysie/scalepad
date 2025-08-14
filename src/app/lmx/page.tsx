@@ -16,6 +16,10 @@ export default function LifecycleManagerX() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  useEffect(() => {
+    document.title = "ScalePad - Lifecycle Manager X";
+  }, []);
+
   const modules = [
     {
       title: "Assessments",

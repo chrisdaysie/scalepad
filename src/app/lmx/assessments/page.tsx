@@ -223,6 +223,10 @@ export default function Assessments() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    document.title = "ScalePad - Assessments";
+  }, []);
+
   const formatRelativeTime = (timestamp: number) => {
     if (currentTime === null) {
       return 'Loading...'; // Show loading state until client-side time is available

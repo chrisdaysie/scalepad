@@ -26,6 +26,28 @@ export default function AssessmentResults() {
     setLoading(false);
   }, [answersParam]);
 
+  useEffect(() => {
+    // Set page title based on assessment ID
+    const getProperTitle = (id: string): string => {
+      const titleMap: { [key: string]: string } = {
+        'ai-readiness': 'AI Readiness Assessment',
+        'cs-readiness': 'Customer Success Readiness Assessment',
+        'cyber-insurance-readiness': 'Cyber Insurance Readiness Assessment',
+        'cyber-resilience': 'Cyber Resilience Assessment',
+        'digital-work-analytics': 'Digital Work Analytics Assessment',
+        'technology-alignment': 'Technology Alignment Assessment',
+        'new-client-comprehensive': 'New Client Assessment (Comprehensive)',
+        'new-client-quick': 'New Client Assessment (Quick)',
+        'base-policies': 'Base Policies & Procedures Assessment',
+        'compliance-readiness': 'Compliance Readiness Assessment'
+      };
+      
+      return titleMap[id] || `${id.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} Assessment`;
+    };
+
+    document.title = `ScalePad - ${getProperTitle(assessmentId)} Results`;
+  }, [assessmentId]);
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex items-center justify-center">

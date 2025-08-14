@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Scalepad Dashboard",
-  description: "A proof-of-concept dashboard for Scalepad",
+  title: "ScalePad - Lifecycle Manager X",
+  description: "Enterprise platform for MSP lifecycle management, assessments, and deliverables",
   metadataBase: new URL('https://scalepad.chris.day'),
 };
 

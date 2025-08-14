@@ -47,6 +47,11 @@ export default function ViewAssessmentReport() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Set page title
+    document.title = `ScalePad - ${getProperTitle(assessmentId)} Report`;
+  }, [assessmentId]);
+
+  useEffect(() => {
     // Simulate loading sample data
     const loadSampleReport = async () => {
       setLoading(true);

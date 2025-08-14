@@ -19,10 +19,10 @@ interface AssessmentConfigs {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   try {
-    const { id } = params;
 
     // Read the assessment configs
     const configPath = path.join(process.cwd(), 'src/app/lmx/assessments/data/assessment-configs.json');

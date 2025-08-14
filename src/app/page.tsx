@@ -96,7 +96,7 @@ export default function Home() {
           
           {/* Mysterious Description */}
           <p className="text-xl md:text-2xl text-white/50 max-w-3xl mx-auto mb-12 animate-slide-up delay-200 font-mono">
-            <span className="text-purple-400">//</span> A digital laboratory where ideas converge and possibilities emerge
+            <span className="text-purple-400">{'//'}</span> A digital laboratory where ideas converge and possibilities emerge
           </p>
           
           {/* Hidden Image Reveal */}
@@ -128,7 +128,7 @@ export default function Home() {
         {/* Mysterious Footer */}
         <div className="text-center mt-20 pt-8 border-t border-white/10">
           <p className="text-white/30 text-sm font-mono">
-            <span className="text-purple-400">//</span> SCALEPAD_PLAYGROUND © 2024
+            <span className="text-purple-400">{'//'}</span> SCALEPAD_PLAYGROUND © 2024
           </p>
         </div>
 

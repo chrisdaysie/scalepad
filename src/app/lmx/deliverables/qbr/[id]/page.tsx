@@ -1734,7 +1734,6 @@ export default function QBRReportPage() {
             {report.liveData?.enabled && (
               <LiveDataControls 
                 report={report} 
-                reportId={reportId}
                 onReportUpdate={(newData) => {
                   setQbrReports(prev => ({
                     ...prev,
@@ -2115,11 +2114,9 @@ export default function QBRReportPage() {
 // Live Data Controls Component for Cork
 function LiveDataControls({ 
   report, 
-  reportId, 
   onReportUpdate 
 }: { 
   report: QBRData; 
-  reportId: string; 
   onReportUpdate: (newData: QBRData) => void;
 }) {
   const [isLoading, setIsLoading] = useState(false);

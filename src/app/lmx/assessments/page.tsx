@@ -20,148 +20,149 @@ interface Assessment {
   categoryTitles: string[];
 }
 
+// Static fallback data based on the original assessments
+const staticAssessments: Assessment[] = [
+  {
+    id: "ai-readiness",
+    title: "AI Readiness Assessment",
+    description: "This 28-point assessment helps MSPs evaluate client readiness across four core dimensions critical to strategic engagement and account growth. Each item includes tiered scoring (At Risk, Needs Attention, Satisfactory, Not Applicable) and is framed in business terms — not just technical criteria.",
+    icon: "🧠",
+    gradient: "from-blue-500 to-cyan-500",
+    status: "Active",
+    lastUpdated: Math.floor(Date.now() / 1000) - 300,
+    runAssessmentUrl: "/lmx/assessments/run/ai-readiness",
+    viewReportUrl: "/lmx/assessments/report/ai-readiness",
+    downloadJsonUrl: "/api/assessments/download/ai-readiness",
+    aliases: ["ai"],
+    keywords: ["ai", "artificial intelligence", "machine learning"],
+    categoryTitles: ["AI Strategy & Planning", "Data Infrastructure & Governance", "AI Culture & Training", "AI Ethics & Governance", "Technology Foundation"]
+  },
+  {
+    id: "base-policies",
+    title: "Base Policies & Procedures Assessment",
+    description: "This 20-point assessment evaluates organizational policy maturity, security controls, and business continuity preparedness. Designed to help MSPs understand client policy gaps and provide targeted recommendations.",
+    icon: "📋",
+    gradient: "from-purple-500 to-pink-500",
+    status: "Active",
+    lastUpdated: Math.floor(Date.now() / 1000) - 600,
+    runAssessmentUrl: "/lmx/assessments/run/base-policies",
+    viewReportUrl: "/lmx/assessments/report/base-policies",
+    downloadJsonUrl: "/api/assessments/download/base-policies",
+    aliases: ["base-policies"],
+    keywords: ["policies", "procedures", "compliance", "governance"],
+    categoryTitles: ["Policy Framework", "Security Controls", "Business Continuity", "Compliance Management"]
+  },
+  {
+    id: "cs-readiness",
+    title: "Customer Success Readiness Assessment",
+    description: "This 16-point assessment helps organizations evaluate client readiness across four core dimensions critical to long-term success: strategic alignment, operational maturity, technology foundation, and cultural readiness.",
+    icon: "📊",
+    gradient: "from-green-500 to-emerald-500",
+    status: "Active",
+    lastUpdated: Math.floor(Date.now() / 1000) - 900,
+    runAssessmentUrl: "/lmx/assessments/run/cs-readiness",
+    viewReportUrl: "/lmx/assessments/report/cs-readiness",
+    downloadJsonUrl: "/api/assessments/download/cs-readiness",
+    aliases: ["cs"],
+    keywords: ["customer", "success", "journey", "health"],
+    categoryTitles: ["Customer Success Strategy", "Customer Journey Mapping", "Customer Health & Analytics", "CS Team Enablement"]
+  },
+  {
+    id: "cyber-insurance-readiness",
+    title: "Cyber Insurance Readiness Assessment",
+    description: "The definitive 20-item assessment that combines business-focused insurance requirements with technical implementation guidance. Designed to evaluate cyber insurance readiness and identify coverage gaps.",
+    icon: "🔒",
+    gradient: "from-orange-500 to-red-500",
+    status: "Active",
+    lastUpdated: Math.floor(Date.now() / 1000) - 1200,
+    runAssessmentUrl: "/lmx/assessments/run/cyber-insurance-readiness",
+    viewReportUrl: "/lmx/assessments/report/cyber-insurance-readiness",
+    downloadJsonUrl: "/api/assessments/download/cyber-insurance-readiness",
+    aliases: ["cyber-insurance"],
+    keywords: ["cyber insurance", "insurance", "coverage", "liability"],
+    categoryTitles: ["Cyber Insurance Strategy", "Insurance Coverage & Terms", "Security Controls & Compliance", "Incident Response & Claims"]
+  },
+  {
+    id: "cyber-resilience",
+    title: "Cyber Resilience Assessment",
+    description: "This 28-point assessment helps organizations evaluate their cybersecurity maturity, resilience posture, and cultural readiness to handle risk. It provides actionable insights for improving security posture.",
+    icon: "🔒",
+    gradient: "from-indigo-500 to-purple-500",
+    status: "Active",
+    lastUpdated: Math.floor(Date.now() / 1000) - 1500,
+    runAssessmentUrl: "/lmx/assessments/run/cyber-resilience",
+    viewReportUrl: "/lmx/assessments/report/cyber-resilience",
+    downloadJsonUrl: "/api/assessments/download/cyber-resilience",
+    aliases: [],
+    keywords: ["cyber", "security", "resilience", "risk"],
+    categoryTitles: ["Security Strategy & Governance", "Technical Security Controls", "Incident Response & Recovery", "Security Culture & Training"]
+  },
+  {
+    id: "dwa",
+    title: "Digital Workplace Assessment",
+    description: "This 24-point assessment evaluates digital workplace maturity, collaboration tools, and remote work readiness. Helps organizations optimize their digital workplace strategy.",
+    icon: "💻",
+    gradient: "from-teal-500 to-cyan-500",
+    status: "Active",
+    lastUpdated: Math.floor(Date.now() / 1000) - 1800,
+    runAssessmentUrl: "/lmx/assessments/run/dwa",
+    viewReportUrl: "/lmx/assessments/report/dwa",
+    downloadJsonUrl: "/api/assessments/download/dwa",
+    aliases: ["dwa"],
+    keywords: ["digital workplace", "collaboration", "remote work", "productivity"],
+    categoryTitles: ["Digital Workplace Strategy", "Collaboration Tools & Platforms", "Remote Work Infrastructure", "User Experience & Adoption"]
+  },
+  {
+    id: "new-client-comprehensive",
+    title: "New Client Comprehensive Assessment",
+    description: "This 32-point assessment provides a comprehensive evaluation of new client environments, covering technology, security, compliance, and business processes.",
+    icon: "🏢",
+    gradient: "from-slate-500 to-gray-500",
+    status: "Active",
+    lastUpdated: Math.floor(Date.now() / 1000) - 2100,
+    runAssessmentUrl: "/lmx/assessments/run/new-client-comprehensive",
+    viewReportUrl: "/lmx/assessments/report/new-client-comprehensive",
+    downloadJsonUrl: "/api/assessments/download/new-client-comprehensive",
+    aliases: ["new-client"],
+    keywords: ["new client", "onboarding", "comprehensive", "evaluation"],
+    categoryTitles: ["Technology Infrastructure", "Security & Compliance", "Business Processes", "Strategic Alignment"]
+  },
+  {
+    id: "new-client-quick",
+    title: "New Client Quick Assessment",
+    description: "This 16-point assessment provides a rapid evaluation of new client environments, focusing on critical areas for immediate service delivery.",
+    icon: "⚡",
+    gradient: "from-yellow-500 to-orange-500",
+    status: "Active",
+    lastUpdated: Math.floor(Date.now() / 1000) - 2400,
+    runAssessmentUrl: "/lmx/assessments/run/new-client-quick",
+    viewReportUrl: "/lmx/assessments/report/new-client-quick",
+    downloadJsonUrl: "/api/assessments/download/new-client-quick",
+    aliases: ["quick"],
+    keywords: ["quick", "rapid", "new client", "assessment"],
+    categoryTitles: ["Critical Infrastructure", "Security Posture", "Service Requirements", "Quick Wins"]
+  },
+  {
+    id: "technology-alignment",
+    title: "Technology Alignment Assessment",
+    description: "This 20-point assessment evaluates technology alignment with business objectives, identifying gaps and opportunities for optimization.",
+    icon: "🎯",
+    gradient: "from-pink-500 to-rose-500",
+    status: "Active",
+    lastUpdated: Math.floor(Date.now() / 1000) - 2700,
+    runAssessmentUrl: "/lmx/assessments/run/technology-alignment",
+    viewReportUrl: "/lmx/assessments/report/technology-alignment",
+    downloadJsonUrl: "/api/assessments/download/technology-alignment",
+    aliases: ["tech-alignment"],
+    keywords: ["technology", "alignment", "strategy", "optimization"],
+    categoryTitles: ["Technology Strategy", "Business Alignment", "Infrastructure Assessment", "Optimization Opportunities"]
+  }
+];
+
 export default function Assessments() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [assessments, setAssessments] = useState<Assessment[]>([]);
-
-  // Static fallback data based on the original assessments
-  const staticAssessments: Assessment[] = [
-    {
-      id: "ai-readiness",
-      title: "AI Readiness Assessment",
-      description: "This 28-point assessment helps MSPs evaluate client readiness across four core dimensions critical to strategic engagement and account growth. Each item includes tiered scoring (At Risk, Needs Attention, Satisfactory, Not Applicable) and is framed in business terms — not just technical criteria.",
-      icon: "🧠",
-      gradient: "from-blue-500 to-cyan-500",
-      status: "Active",
-      lastUpdated: Math.floor(Date.now() / 1000) - 300,
-      runAssessmentUrl: "/lmx/assessments/run/ai-readiness",
-      viewReportUrl: "/lmx/assessments/report/ai-readiness",
-      downloadJsonUrl: "/api/assessments/download/ai-readiness",
-      aliases: ["ai"],
-      keywords: ["ai", "artificial intelligence", "machine learning"],
-      categoryTitles: ["AI Strategy & Planning", "Data Infrastructure & Governance", "AI Culture & Training", "AI Ethics & Governance", "Technology Foundation"]
-    },
-    {
-      id: "base-policies",
-      title: "Base Policies & Procedures Assessment",
-      description: "This 20-point assessment evaluates organizational policy maturity, security controls, and business continuity preparedness. Designed to help MSPs understand client policy gaps and provide targeted recommendations.",
-      icon: "📋",
-      gradient: "from-purple-500 to-pink-500",
-      status: "Active",
-      lastUpdated: Math.floor(Date.now() / 1000) - 600,
-      runAssessmentUrl: "/lmx/assessments/run/base-policies",
-      viewReportUrl: "/lmx/assessments/report/base-policies",
-      downloadJsonUrl: "/api/assessments/download/base-policies",
-      aliases: ["base-policies"],
-      keywords: ["policies", "procedures", "compliance", "governance"],
-      categoryTitles: ["Policy Framework", "Security Controls", "Business Continuity", "Compliance Management"]
-    },
-    {
-      id: "cs-readiness",
-      title: "Customer Success Readiness Assessment",
-      description: "This 16-point assessment helps organizations evaluate client readiness across four core dimensions critical to long-term success: strategic alignment, operational maturity, technology foundation, and cultural readiness.",
-      icon: "📊",
-      gradient: "from-green-500 to-emerald-500",
-      status: "Active",
-      lastUpdated: Math.floor(Date.now() / 1000) - 900,
-      runAssessmentUrl: "/lmx/assessments/run/cs-readiness",
-      viewReportUrl: "/lmx/assessments/report/cs-readiness",
-      downloadJsonUrl: "/api/assessments/download/cs-readiness",
-      aliases: ["cs"],
-      keywords: ["customer", "success", "journey", "health"],
-      categoryTitles: ["Customer Success Strategy", "Customer Journey Mapping", "Customer Health & Analytics", "CS Team Enablement"]
-    },
-    {
-      id: "cyber-insurance-readiness",
-      title: "Cyber Insurance Readiness Assessment",
-      description: "The definitive 20-item assessment that combines business-focused insurance requirements with technical implementation guidance. Designed to evaluate cyber insurance readiness and identify coverage gaps.",
-      icon: "🔒",
-      gradient: "from-orange-500 to-red-500",
-      status: "Active",
-      lastUpdated: Math.floor(Date.now() / 1000) - 1200,
-      runAssessmentUrl: "/lmx/assessments/run/cyber-insurance-readiness",
-      viewReportUrl: "/lmx/assessments/report/cyber-insurance-readiness",
-      downloadJsonUrl: "/api/assessments/download/cyber-insurance-readiness",
-      aliases: ["cyber-insurance"],
-      keywords: ["cyber insurance", "insurance", "coverage", "liability"],
-      categoryTitles: ["Cyber Insurance Strategy", "Insurance Coverage & Terms", "Security Controls & Compliance", "Incident Response & Claims"]
-    },
-    {
-      id: "cyber-resilience",
-      title: "Cyber Resilience Assessment",
-      description: "This 28-point assessment helps organizations evaluate their cybersecurity maturity, resilience posture, and cultural readiness to handle risk. It provides actionable insights for improving security posture.",
-      icon: "🔒",
-      gradient: "from-indigo-500 to-purple-500",
-      status: "Active",
-      lastUpdated: Math.floor(Date.now() / 1000) - 1500,
-      runAssessmentUrl: "/lmx/assessments/run/cyber-resilience",
-      viewReportUrl: "/lmx/assessments/report/cyber-resilience",
-      downloadJsonUrl: "/api/assessments/download/cyber-resilience",
-      aliases: [],
-      keywords: ["cyber", "security", "resilience", "risk"],
-      categoryTitles: ["Security Strategy & Governance", "Technical Security Controls", "Incident Response & Recovery", "Security Culture & Training"]
-    },
-    {
-      id: "dwa",
-      title: "Digital Workplace Assessment",
-      description: "This 24-point assessment evaluates digital workplace maturity, collaboration tools, and remote work readiness. Helps organizations optimize their digital workplace strategy.",
-      icon: "💻",
-      gradient: "from-teal-500 to-cyan-500",
-      status: "Active",
-      lastUpdated: Math.floor(Date.now() / 1000) - 1800,
-      runAssessmentUrl: "/lmx/assessments/run/dwa",
-      viewReportUrl: "/lmx/assessments/report/dwa",
-      downloadJsonUrl: "/api/assessments/download/dwa",
-      aliases: ["dwa"],
-      keywords: ["digital workplace", "collaboration", "remote work", "productivity"],
-      categoryTitles: ["Digital Workplace Strategy", "Collaboration Tools & Platforms", "Remote Work Infrastructure", "User Experience & Adoption"]
-    },
-    {
-      id: "new-client-comprehensive",
-      title: "New Client Comprehensive Assessment",
-      description: "This 32-point assessment provides a comprehensive evaluation of new client environments, covering technology, security, compliance, and business processes.",
-      icon: "🏢",
-      gradient: "from-slate-500 to-gray-500",
-      status: "Active",
-      lastUpdated: Math.floor(Date.now() / 1000) - 2100,
-      runAssessmentUrl: "/lmx/assessments/run/new-client-comprehensive",
-      viewReportUrl: "/lmx/assessments/report/new-client-comprehensive",
-      downloadJsonUrl: "/api/assessments/download/new-client-comprehensive",
-      aliases: ["new-client"],
-      keywords: ["new client", "onboarding", "comprehensive", "evaluation"],
-      categoryTitles: ["Technology Infrastructure", "Security & Compliance", "Business Processes", "Strategic Alignment"]
-    },
-    {
-      id: "new-client-quick",
-      title: "New Client Quick Assessment",
-      description: "This 16-point assessment provides a rapid evaluation of new client environments, focusing on critical areas for immediate service delivery.",
-      icon: "⚡",
-      gradient: "from-yellow-500 to-orange-500",
-      status: "Active",
-      lastUpdated: Math.floor(Date.now() / 1000) - 2400,
-      runAssessmentUrl: "/lmx/assessments/run/new-client-quick",
-      viewReportUrl: "/lmx/assessments/report/new-client-quick",
-      downloadJsonUrl: "/api/assessments/download/new-client-quick",
-      aliases: ["quick"],
-      keywords: ["quick", "rapid", "new client", "assessment"],
-      categoryTitles: ["Critical Infrastructure", "Security Posture", "Service Requirements", "Quick Wins"]
-    },
-    {
-      id: "technology-alignment",
-      title: "Technology Alignment Assessment",
-      description: "This 20-point assessment evaluates technology alignment with business objectives, identifying gaps and opportunities for optimization.",
-      icon: "🎯",
-      gradient: "from-pink-500 to-rose-500",
-      status: "Active",
-      lastUpdated: Math.floor(Date.now() / 1000) - 2700,
-      runAssessmentUrl: "/lmx/assessments/run/technology-alignment",
-      viewReportUrl: "/lmx/assessments/report/technology-alignment",
-      downloadJsonUrl: "/api/assessments/download/technology-alignment",
-      aliases: ["tech-alignment"],
-      keywords: ["technology", "alignment", "strategy", "optimization"],
-      categoryTitles: ["Technology Strategy", "Business Alignment", "Infrastructure Assessment", "Optimization Opportunities"]
-    }
-  ];
+  const [assessments, setAssessments] = useState<Assessment[]>(staticAssessments);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -173,27 +174,40 @@ export default function Assessments() {
   }, []);
 
   const loadAssessments = useCallback(async () => {
+    // Only fetch if we don't already have data or if we're refreshing
+    if (assessments.length === 0 || isLoading) return;
+    
+    setIsLoading(true);
     try {
-      const response = await fetch('/api/assessments');
+      const response = await fetch('/api/assessments', {
+        // Add cache control for production
+        headers: {
+          'Cache-Control': 'max-age=300', // 5 minutes cache
+        },
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      if (Array.isArray(data)) {
+      if (Array.isArray(data) && data.length > 0) {
         setAssessments(data);
       } else {
-        throw new Error('Invalid data format');
+        throw new Error('Invalid data format or empty response');
       }
     } catch (error) {
-      console.error('Failed to load assessments:', error);
-      // Fallback to static data
-      setAssessments(staticAssessments);
+      console.error('Failed to load assessments from API:', error);
+      // Keep existing data, don't fallback to static data since we already have it
+    } finally {
+      setIsLoading(false);
     }
-  }, [staticAssessments]);
+  }, [assessments.length, isLoading]);
 
   useEffect(() => {
-    loadAssessments();
-  }, [loadAssessments]);
+    // Only fetch on mount if we don't have data
+    if (assessments.length === 0) {
+      loadAssessments();
+    }
+  }, [loadAssessments, assessments.length]);
 
   const formatRelativeTime = (timestamp: number) => {
     const now = Math.floor(Date.now() / 1000);
@@ -297,6 +311,16 @@ export default function Assessments() {
 
         {/* Assessments Grid */}
         <div className="max-w-7xl mx-auto mb-16">
+          {/* Subtle loading indicator */}
+          {isLoading && (
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
+                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></div>
+                <span className="text-white/80 text-sm">Refreshing data...</span>
+              </div>
+            </div>
+          )}
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {assessments.map((assessment, index) => (
               <div

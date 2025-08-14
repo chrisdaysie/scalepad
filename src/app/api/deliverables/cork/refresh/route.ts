@@ -468,7 +468,7 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
   
   // Calculate warranty metrics
   const totalWarranties = warrantiesData.items?.length || 0;
-  const activeWarranties = warrantiesData.items?.filter((w: any) => w.active).length || 0;
+  const activeWarranties = warrantiesData.items?.filter((w: { active: boolean }) => w.active).length || 0;
   const warrantyCoverage = totalWarranties > 0 ? Math.round((activeWarranties / totalWarranties) * 100) : 0;
   
   // Create pie chart data for warranty coverage
@@ -581,7 +581,7 @@ async function updateCorkReport(liveData: CorkLiveData) {
   });
 }
 
-function processTemplate(template: any, liveData: CorkLiveData): any {
+function processTemplate(template: unknown, liveData: CorkLiveData): unknown {
   // Create a deep copy to avoid mutating the template
   const processed = JSON.parse(JSON.stringify(template));
   

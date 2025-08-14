@@ -524,20 +524,20 @@ export default function QBRReportPage() {
 
                                 const activeAngle = (active / total) * 360;
                                 const inactiveAngle = (inactive / total) * 360;
-                                
-                                let currentAngle = -90;
+                                const startAngle = -90;
+                                const activeEndAngle = startAngle + activeAngle;
                                 
                                 return (
                                   <>
                                     {active > 0 && (
                                       <path
-                                        d={`M 60 60 L ${60 + 50 * Math.cos(currentAngle * Math.PI / 180)} ${60 + 50 * Math.sin(currentAngle * Math.PI / 180)} A 50 50 0 ${activeAngle > 180 ? 1 : 0} 1 ${60 + 50 * Math.cos((currentAngle + activeAngle) * Math.PI / 180)} ${60 + 50 * Math.sin((currentAngle + activeAngle) * Math.PI / 180)} Z`}
+                                        d={`M 60 60 L ${60 + 50 * Math.cos(startAngle * Math.PI / 180)} ${60 + 50 * Math.sin(startAngle * Math.PI / 180)} A 50 50 0 ${activeAngle > 180 ? 1 : 0} 1 ${60 + 50 * Math.cos(activeEndAngle * Math.PI / 180)} ${60 + 50 * Math.sin(activeEndAngle * Math.PI / 180)} Z`}
                                         fill="#10B981"
                                       />
                                     )}
                                     {inactive > 0 && (
                                       <path
-                                        d={`M 60 60 L ${60 + 50 * Math.cos((currentAngle + activeAngle) * Math.PI / 180)} ${60 + 50 * Math.sin((currentAngle + activeAngle) * Math.PI / 180)} A 50 50 0 ${inactiveAngle > 180 ? 1 : 0} 1 ${60 + 50 * Math.cos((currentAngle + activeAngle + inactiveAngle) * Math.PI / 180)} ${60 + 50 * Math.sin((currentAngle + activeAngle + inactiveAngle) * Math.PI / 180)} Z`}
+                                        d={`M 60 60 L ${60 + 50 * Math.cos(activeEndAngle * Math.PI / 180)} ${60 + 50 * Math.sin(activeEndAngle * Math.PI / 180)} A 50 50 0 ${inactiveAngle > 180 ? 1 : 0} 1 ${60 + 50 * Math.cos((activeEndAngle + inactiveAngle) * Math.PI / 180)} ${60 + 50 * Math.sin((activeEndAngle + inactiveAngle) * Math.PI / 180)} Z`}
                                         fill="#EF4444"
                                       />
                                     )}

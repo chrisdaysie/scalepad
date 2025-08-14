@@ -197,6 +197,33 @@
         "compliance"
       ],
       "description": "Base policies and procedures assessment"
+    },
+    "compliance-readiness": {
+      "aliases": [
+        "compliance",
+        "compliance-readiness"
+      ],
+      "json_file": "assessment-compliance-readiness-data.json",
+      "recommendation_function": "generate_compliance_readiness_recommendations",
+      "titles": [
+        "Organizational Foundation",
+        "Security Policies and Procedures",
+        "Technical Security Controls",
+        "Risk Management and Assessment",
+        "Data Protection and Privacy",
+        "Business Continuity and Disaster Recovery",
+        "Vendor Management and Third-Party Risk"
+      ],
+      "keywords": [
+        "compliance",
+        "cybersecurity",
+        "regulatory",
+        "governance",
+        "risk",
+        "security",
+        "policies"
+      ],
+      "description": "Cybersecurity compliance readiness assessment"
     }
   },
   "defaults": {

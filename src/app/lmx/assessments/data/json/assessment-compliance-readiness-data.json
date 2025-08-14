@@ -1,0 +1,757 @@
+{
+  "assessment_template_create_payload": {
+    "title": "Compliance Readiness Assessment",
+    "description": "This comprehensive 28-point assessment evaluates organizational readiness for cybersecurity compliance across seven critical domains including organizational foundation, security policies, technical controls, risk management, data protection, business continuity, and vendor management to ensure regulatory compliance and security maturity.",
+    "categories": [
+      {
+        "title": "Organizational Foundation",
+        "description": "Evaluates the fundamental organizational structure, industry context, and leadership commitment necessary for establishing effective cybersecurity compliance programs.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Industry-specific cybersecurity requirements understanding",
+            "description": "Assesses the organization's awareness of industry-specific cybersecurity standards and regulatory requirements applicable to their business operations.",
+            "remediation_tips": "Conduct industry standards mapping, engage compliance consultants, and implement sector-specific frameworks like HIPAA for healthcare or PCI DSS for payment processing.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Evaluate knowledge of applicable industry standards such as HIPAA, PCI DSS, CMMC, SOX, or sector-specific regulations.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No awareness of industry-specific requirements or significant gaps in compliance understanding"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic awareness of industry requirements but incomplete understanding or inconsistent application"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive understanding of industry requirements with established compliance framework"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Limited industry-specific requirements or compliance managed at corporate level"
+              }
+            ]
+          },
+          {
+            "title": "Business criticality and service classification",
+            "description": "Evaluates how the organization classifies the criticality of its services and the corresponding cybersecurity maturity requirements.",
+            "remediation_tips": "Conduct business impact analysis, classify services by criticality, and align cybersecurity controls to service classification levels.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Assess service criticality classification and alignment of security controls to business impact levels.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No service criticality classification; uniform security approach regardless of business impact"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic service classification but inconsistent security control alignment"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive service criticality framework with risk-based security control implementation"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Service classification not relevant due to uniform business operations"
+              }
+            ]
+          },
+          {
+            "title": "Sensitive data handling and classification",
+            "description": "Assesses the organization's approach to identifying, classifying, and protecting sensitive data types including PII, PHI, and financial information.",
+            "remediation_tips": "Implement data classification policy, conduct data inventory, and establish handling procedures based on sensitivity levels.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Evaluate data classification schemes, handling procedures, and protection measures for sensitive information.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No data classification system; unclear handling of sensitive data types"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic data classification but inconsistent handling procedures or protection measures"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive data classification with appropriate handling and protection procedures"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Minimal sensitive data processing or handled entirely by external providers"
+              }
+            ]
+          },
+          {
+            "title": "Cybersecurity leadership and governance structure",
+            "description": "Evaluates the presence and effectiveness of cybersecurity leadership roles such as CISO or equivalent security management structure.",
+            "remediation_tips": "Establish dedicated security leadership role, define governance structure, or engage vCISO services for strategic security guidance.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Assess security leadership presence, authority level, and governance structure effectiveness.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No dedicated security leadership; ad-hoc security management approach"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic security leadership but limited authority or part-time security focus"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Dedicated security leadership with appropriate authority and governance structure"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Security leadership provided by parent organization or external vCISO service"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Security Policies and Procedures",
+        "description": "Assesses the development, implementation, and maintenance of cybersecurity policies, procedures, and security awareness programs.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Cybersecurity policy framework completeness",
+            "description": "Evaluates the comprehensiveness and currency of documented cybersecurity policies and procedures covering all essential security domains.",
+            "remediation_tips": "Develop comprehensive policy framework covering access control, incident response, asset management, and other critical security domains with regular review cycles.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Assess policy coverage, documentation quality, approval processes, and maintenance schedules.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No formal cybersecurity policies or severely outdated documentation"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic policies exist but gaps in coverage or inconsistent maintenance"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive policy framework with regular reviews and stakeholder approval"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Policies managed at corporate level or organization size doesn't require formal framework"
+              }
+            ]
+          },
+          {
+            "title": "Security awareness training program effectiveness",
+            "description": "Assesses the implementation and effectiveness of security awareness training programs for employees and contractors.",
+            "remediation_tips": "Deploy security awareness platform, conduct regular training sessions, implement phishing simulations, and track training effectiveness metrics.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Evaluate training frequency, content quality, participation rates, and effectiveness measurement.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No formal security awareness training program or very low participation"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic training program but inconsistent delivery or limited effectiveness tracking"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive training program with regular delivery, simulations, and effectiveness metrics"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Training handled entirely by external provider or minimal workforce"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Technical Security Controls",
+        "description": "Evaluates the implementation and effectiveness of technical cybersecurity controls including asset management, endpoint protection, network security, and vulnerability management.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Asset inventory and management system",
+            "description": "Assesses the organization's ability to maintain accurate inventory and lifecycle management of all IT assets including hardware, software, and virtual assets.",
+            "remediation_tips": "Implement automated asset discovery tools, deploy RMM solutions, establish asset lifecycle management processes, and maintain accurate CMDB.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Evaluate asset discovery methods, inventory accuracy, lifecycle tracking, and management tool deployment.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No systematic asset inventory; significant gaps in asset visibility and tracking"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic asset inventory but manual processes or incomplete coverage"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive automated asset management with lifecycle tracking and regular audits"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Asset management handled entirely by external MSP or minimal IT infrastructure"
+              }
+            ]
+          },
+          {
+            "title": "Secure asset disposal procedures",
+            "description": "Evaluates the organization's processes for securely disposing of IT assets and ensuring complete data destruction.",
+            "remediation_tips": "Establish asset disposal policy, implement secure data wiping procedures, use certified disposal services, and maintain disposal documentation.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Assess disposal procedures, data destruction methods, vendor certification, and documentation practices.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No formal disposal procedures; risk of data exposure through improper asset disposal"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic disposal procedures but inconsistent application or inadequate data destruction"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive secure disposal procedures with certified destruction and proper documentation"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Asset disposal handled by external provider or minimal asset turnover"
+              }
+            ]
+          },
+          {
+            "title": "Configuration management and baseline enforcement",
+            "description": "Assesses the organization's ability to maintain secure configurations and enforce baseline security settings across all devices and systems.",
+            "remediation_tips": "Deploy RMM tools for configuration management, establish security baselines, implement automated configuration enforcement, and maintain change control processes.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Evaluate configuration baseline establishment, enforcement mechanisms, change control, and compliance monitoring.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No standardized configurations; devices deployed with default or inconsistent security settings"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic configuration standards but inconsistent enforcement or limited automation"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive configuration management with automated enforcement and change control"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Configuration management handled entirely by external MSP"
+              }
+            ]
+          },
+          {
+            "title": "Endpoint protection solution deployment",
+            "description": "Evaluates the implementation and effectiveness of endpoint protection solutions across all organizational devices.",
+            "remediation_tips": "Deploy enterprise endpoint protection platform, configure advanced threat detection, implement EDR capabilities, and establish monitoring procedures.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Assess endpoint protection coverage, advanced threat detection capabilities, response features, and monitoring effectiveness.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No endpoint protection or basic antivirus only; significant gaps in endpoint security"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic endpoint protection but lacks advanced features or incomplete coverage"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive endpoint protection with advanced threat detection and response capabilities"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Endpoint protection entirely managed by external MSP"
+              }
+            ]
+          },
+          {
+            "title": "Network security and segmentation",
+            "description": "Assesses the implementation of network security controls including monitoring, logging, and network segmentation strategies.",
+            "remediation_tips": "Create network diagrams, implement network monitoring, deploy IDS/IPS systems, establish network segmentation, and enable comprehensive logging.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Evaluate network security architecture, monitoring capabilities, segmentation implementation, and security control effectiveness.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Minimal network security controls; flat network architecture with limited monitoring"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic network security but limited segmentation or monitoring capabilities"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive network security with proper segmentation, monitoring, and threat detection"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Network security entirely managed by external provider or minimal network infrastructure"
+              }
+            ]
+          },
+          {
+            "title": "Firewall implementation and rule management",
+            "description": "Evaluates the deployment and management of firewall solutions including rule configuration, monitoring, and maintenance.",
+            "remediation_tips": "Deploy enterprise firewall solution, implement deny-by-default rules, establish regular rule reviews, and enable comprehensive logging and monitoring.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Assess firewall deployment, rule configuration quality, monitoring capabilities, and maintenance procedures.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No firewall or basic consumer-grade protection; inadequate network perimeter security"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic firewall deployment but suboptimal rule configuration or limited monitoring"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Enterprise firewall with well-configured rules, monitoring, and regular maintenance"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Firewall management handled entirely by external provider"
+              }
+            ]
+          },
+          {
+            "title": "VPN solution for remote access security",
+            "description": "Assesses the implementation of VPN solutions to secure remote worker access to organizational resources.",
+            "remediation_tips": "Deploy enterprise VPN solution, implement strong authentication, configure encryption protocols, and establish remote access monitoring.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Evaluate VPN deployment, authentication methods, encryption strength, and remote access security controls.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No VPN or insecure remote access methods; significant risk from remote worker connections"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic VPN deployment but weak authentication or limited security features"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive VPN solution with strong authentication, encryption, and monitoring"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "No remote workers or VPN managed entirely by external provider"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Risk and Vulnerability Management",
+        "description": "Evaluates the organization's approach to identifying, assessing, and managing cybersecurity risks and vulnerabilities including risk assessments, vulnerability scanning, and patch management.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Periodic cybersecurity risk assessment program",
+            "description": "Assesses the organization's implementation of regular cybersecurity risk assessments and risk management processes.",
+            "remediation_tips": "Establish risk assessment policy, conduct regular risk assessments, implement risk treatment plans, and maintain risk register with regular updates.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Evaluate risk assessment frequency, methodology, documentation quality, and risk treatment effectiveness.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No formal risk assessment process; ad-hoc approach to risk management"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic risk assessments but infrequent or limited scope and follow-up"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Regular comprehensive risk assessments with documented treatment plans and monitoring"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Risk assessments conducted at corporate level or by external provider"
+              }
+            ]
+          },
+          {
+            "title": "Continuous vulnerability scanning and management",
+            "description": "Evaluates the implementation of continuous vulnerability scanning and systematic vulnerability management processes.",
+            "remediation_tips": "Deploy automated vulnerability scanning tools, establish scanning schedules, implement vulnerability classification and prioritization, and track remediation progress.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Assess vulnerability scanning coverage, frequency, prioritization methods, and remediation tracking.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No vulnerability scanning program; unknown security posture and exposure"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic vulnerability scanning but irregular frequency or poor remediation tracking"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive continuous vulnerability scanning with prioritization and remediation tracking"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Vulnerability management entirely handled by external MSP"
+              }
+            ]
+          },
+          {
+            "title": "Patch management procedures and automation",
+            "description": "Assesses the organization's systematic approach to identifying, testing, and deploying security patches across all systems.",
+            "remediation_tips": "Establish patch management policy, deploy automated patch management tools, implement testing procedures, and maintain patch deployment schedules.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Evaluate patch identification processes, testing procedures, deployment automation, and compliance tracking.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No systematic patch management; systems vulnerable due to missing security updates"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic patch management but inconsistent deployment or limited automation"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive automated patch management with testing and compliance tracking"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Patch management entirely handled by external MSP"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Data Protection and Access Control",
+        "description": "Evaluates data protection measures including email security, access control, authentication, encryption, data loss prevention, and secure data disposition.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Email security and anti-phishing protection",
+            "description": "Assesses the implementation of email security solutions to prevent malicious email threats and data loss through email channels.",
+            "remediation_tips": "Deploy comprehensive email security platform, implement anti-phishing protection, configure DLP for email, and establish email encryption capabilities.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Evaluate email security platform capabilities, threat detection effectiveness, DLP implementation, and encryption usage.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Basic email protection only; significant exposure to email-borne threats and data loss"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Moderate email security but gaps in advanced threat protection or DLP capabilities"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive email security with advanced threat protection, DLP, and encryption"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Email security entirely managed by email provider or external service"
+              }
+            ]
+          },
+          {
+            "title": "Centralized account and access management",
+            "description": "Evaluates the implementation of centralized identity and access management systems for consistent access control across the organization.",
+            "remediation_tips": "Deploy centralized identity management system, implement role-based access control, establish access provisioning and deprovisioning procedures, and enable comprehensive access logging.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Assess centralization level, access control granularity, provisioning processes, and access monitoring capabilities.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Decentralized access management; inconsistent access controls and poor visibility"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Partially centralized access management but gaps in coverage or automation"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Fully centralized access management with RBAC, automated provisioning, and comprehensive logging"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Access management handled by cloud providers or minimal access control requirements"
+              }
+            ]
+          },
+          {
+            "title": "Strong password policy and multi-factor authentication",
+            "description": "Assesses the implementation of robust password policies and multi-factor authentication across organizational systems.",
+            "remediation_tips": "Establish comprehensive password policy, deploy password management solution, implement MFA for all users, and enforce strong authentication for privileged accounts.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Evaluate password policy strength, MFA deployment coverage, password manager usage, and authentication enforcement.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Weak password policies; no MFA implementation; significant authentication vulnerabilities"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic password policies and limited MFA deployment"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Strong password policies with comprehensive MFA deployment and password management"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Authentication entirely managed by cloud providers or SSO solutions"
+              }
+            ]
+          },
+          {
+            "title": "Centralized logging and security monitoring",
+            "description": "Evaluates the implementation of centralized logging and real-time security monitoring capabilities across all systems.",
+            "remediation_tips": "Deploy SIEM solution, configure comprehensive log collection, establish monitoring rules and alerting, and implement automated incident detection.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Assess logging coverage, centralization level, monitoring capabilities, and incident detection effectiveness.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Minimal logging; no centralized monitoring; poor security visibility"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic logging and monitoring but limited coverage or alerting capabilities"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive centralized logging with real-time monitoring and automated alerting"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Logging and monitoring entirely handled by external SOC or MSP"
+              }
+            ]
+          },
+          {
+            "title": "Data encryption implementation",
+            "description": "Assesses the deployment of encryption technologies to protect data at rest, in transit, and during processing.",
+            "remediation_tips": "Implement encryption policy, deploy encryption for data at rest and in transit, enable device encryption, and establish key management procedures.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Evaluate encryption coverage, implementation quality, key management practices, and compliance with encryption standards.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Minimal encryption deployment; significant data exposure risk"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic encryption but gaps in coverage or weak key management"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive encryption deployment with proper key management and standards compliance"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Encryption handled by cloud providers or minimal sensitive data processing"
+              }
+            ]
+          },
+          {
+            "title": "Data disposition and secure deletion procedures",
+            "description": "Evaluates the organization's processes for securely disposing of data and ensuring complete data destruction when no longer needed.",
+            "remediation_tips": "Establish data disposition policy, implement secure data wiping tools, define retention schedules, and maintain destruction documentation.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Assess disposition procedures, secure deletion methods, retention compliance, and documentation practices.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No formal data disposition procedures; risk of data exposure through improper deletion"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic disposition procedures but inconsistent application or inadequate secure deletion"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive data disposition procedures with secure deletion and proper documentation"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Data disposition handled by external providers or minimal data retention requirements"
+              }
+            ]
+          },
+          {
+            "title": "Data Loss Prevention (DLP) measures",
+            "description": "Assesses the implementation of Data Loss Prevention technologies and procedures to prevent unauthorized data disclosure and leakage.",
+            "remediation_tips": "Deploy DLP solution, configure data classification and detection rules, implement monitoring across endpoints and networks, and establish incident response for DLP events.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Evaluate DLP solution deployment, rule configuration, monitoring coverage, and incident response integration.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No DLP implementation; significant risk of data leakage and unauthorized disclosure"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic DLP deployment but limited coverage or rule configuration"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive DLP implementation with advanced detection and incident response integration"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "DLP handled by cloud providers or minimal sensitive data processing"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Business Continuity and Incident Response",
+        "description": "Evaluates the organization's preparedness for business continuity, disaster recovery, and cybersecurity incident response including backup procedures and recovery capabilities.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Backup and recovery procedures",
+            "description": "Assesses the implementation of comprehensive backup and data recovery procedures to ensure business continuity and data protection.",
+            "remediation_tips": "Establish backup policy with RTO/RPO objectives, deploy automated backup solutions, implement 3-2-1 backup strategy, and conduct regular recovery testing.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Evaluate backup coverage, automation level, testing frequency, and recovery capability validation.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "Inadequate backup procedures; significant risk of data loss or extended recovery times"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic backup procedures but gaps in coverage, automation, or testing"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive backup strategy with automated procedures, offsite storage, and regular testing"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Backup and recovery entirely handled by cloud providers or external services"
+              }
+            ]
+          },
+          {
+            "title": "Business continuity planning and procedures",
+            "description": "Evaluates the organization's business continuity planning capabilities and preparedness for operational disruptions.",
+            "remediation_tips": "Develop comprehensive BCP documentation, conduct business impact analysis, establish recovery procedures, and perform regular continuity testing.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Assess BCP documentation completeness, testing frequency, stakeholder training, and plan maintenance.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No formal business continuity planning; significant operational risk during disruptions"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic continuity planning but limited testing or incomplete coverage"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive business continuity plan with regular testing and stakeholder training"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Business continuity managed at corporate level or minimal operational complexity"
+              }
+            ]
+          },
+          {
+            "title": "Disaster recovery and failover capabilities",
+            "description": "Assesses the organization's technical disaster recovery capabilities and ability to failover critical systems during emergencies.",
+            "remediation_tips": "Implement disaster recovery plan, establish alternative processing sites, configure automated failover mechanisms, and conduct DR testing exercises.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Evaluate DR plan completeness, failover automation, testing procedures, and recovery time objectives.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No disaster recovery capabilities; extended downtime risk during major incidents"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic DR planning but limited automation or testing"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive disaster recovery with automated failover and regular testing"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Disaster recovery handled by cloud providers or external services"
+              }
+            ]
+          },
+          {
+            "title": "Incident response and recovery playbook",
+            "description": "Evaluates the organization's cybersecurity incident response capabilities including documented procedures and response team readiness.",
+            "remediation_tips": "Develop incident response plan, establish response team roles, create incident playbooks, and conduct tabletop exercises for incident response testing.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Assess incident response plan quality, team preparedness, playbook completeness, and exercise frequency.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No formal incident response plan; reactive approach to security incidents"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic incident response plan but limited testing or unclear procedures"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive incident response program with tested procedures and trained team"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Incident response entirely handled by external SOC or MSP"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Vendor Risk Management",
+        "description": "Evaluates the organization's approach to managing cybersecurity risks from third-party vendors, suppliers, and business partners.",
+        "is_question_weight_evenly_distributed": true,
+        "questions": [
+          {
+            "title": "Vendor risk assessment and management program",
+            "description": "Assesses the organization's systematic approach to evaluating and managing cybersecurity risks from third-party vendors and service providers.",
+            "remediation_tips": "Establish vendor risk management policy, implement vendor assessment procedures, maintain vendor inventory, and conduct regular risk reviews.",
+            "criterion_label_type_enum": "MultiResponse",
+            "scoring_instructions": "Evaluate vendor assessment processes, risk classification methods, ongoing monitoring, and contract security requirements.",
+            "criteria": [
+              {
+                "label_enum": "AtRisk",
+                "description": "No vendor risk management program; significant third-party security exposure"
+              },
+              {
+                "label_enum": "NeedsAttention",
+                "description": "Basic vendor assessments but inconsistent application or limited ongoing monitoring"
+              },
+              {
+                "label_enum": "Satisfactory",
+                "description": "Comprehensive vendor risk management with regular assessments and contract requirements"
+              },
+              {
+                "label_enum": "NotApplicable",
+                "description": "Minimal third-party relationships or vendor risk managed at corporate level"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

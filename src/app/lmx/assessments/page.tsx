@@ -163,6 +163,7 @@ export default function Assessments() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [assessments, setAssessments] = useState<Assessment[]>(staticAssessments);
   const [isLoading, setIsLoading] = useState(false);
+  const [hasLoadedFromAPI, setHasLoadedFromAPI] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -173,9 +174,9 @@ export default function Assessments() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const loadAssessments = useCallback(async () => {
-    // Only fetch if we don't already have data or if we're refreshing
-    if (assessments.length === 0 || isLoading) return;
+  const loadAssessments = async () => {
+    // Don't fetch if already loading or already loaded
+    if (isLoading || hasLoadedFromAPI) return;
     
     setIsLoading(true);
     try {
@@ -191,6 +192,7 @@ export default function Assessments() {
       const data = await response.json();
       if (Array.isArray(data) && data.length > 0) {
         setAssessments(data);
+        setHasLoadedFromAPI(true);
       } else {
         throw new Error('Invalid data format or empty response');
       }
@@ -200,18 +202,33 @@ export default function Assessments() {
     } finally {
       setIsLoading(false);
     }
-  }, [assessments.length, isLoading]);
+  };
 
   useEffect(() => {
-    // Only fetch on mount if we don't have data
-    if (assessments.length === 0) {
+    // Only fetch once on mount if we haven't loaded from API yet
+    if (!hasLoadedFromAPI) {
       loadAssessments();
     }
-  }, [loadAssessments, assessments.length]);
+  }, [loadAssessments, hasLoadedFromAPI]);
+
+  const [currentTime, setCurrentTime] = useState<number | null>(null);
+
+  // Update current time on client side only
+  useEffect(() => {
+    setCurrentTime(Math.floor(Date.now() / 1000));
+    const interval = setInterval(() => {
+      setCurrentTime(Math.floor(Date.now() / 1000));
+    }, 60000); // Update every minute
+    
+    return () => clearInterval(interval);
+  }, []);
 
   const formatRelativeTime = (timestamp: number) => {
-    const now = Math.floor(Date.now() / 1000);
-    const diff = now - timestamp;
+    if (currentTime === null) {
+      return 'Loading...'; // Show loading state until client-side time is available
+    }
+    
+    const diff = currentTime - timestamp;
     
     if (diff < 60) {
       return 'Just Now';

@@ -119,7 +119,8 @@ export async function GET() {
           'technology-alignment': 'Technology Alignment Assessment',
           'new-client-comprehensive': 'New Client Assessment (Comprehensive)',
           'new-client-quick': 'New Client Assessment (Quick)',
-          'base-policies': 'Base Policies & Procedures Assessment'
+          'base-policies': 'Base Policies & Procedures Assessment',
+          'compliance-readiness': 'Compliance Readiness Assessment'
         };
         
         return titleMap[id] || description.split(' ').slice(0, 3).join(' ') + ' Assessment';

@@ -4,9 +4,9 @@
   "company": "Cork",
   "dateRange": "August 1-7, 2025 • Weekly Summary",
   "heroMetric": {
-    "value": "100%",
+    "value": "0%",
     "label": "Device Protection Coverage",
-    "description": "All endpoints protected with comprehensive security stack"
+    "description": "2 endpoints protected with comprehensive security stack"
   },
   "type": "individual",
   "description": "Comprehensive security analytics and threat intelligence platform",
@@ -14,41 +14,83 @@
   "liveData": {
     "enabled": true,
     "refreshInterval": 3600,
-    "lastRefresh": null,
-    "selectedClientUuid": null,
+    "lastRefresh": "2025-08-14T03:22:07.550Z",
+    "selectedClientUuid": "4911c0c5-cb68-4ea3-b3e9-625ba6358478",
     "availableClients": []
   },
   "categories": [
     {
       "name": "Device Protection",
-      "score": 100,
+      "score": 0,
       "items": [
-        { "name": "Endpoint Detection", "status": "satisfactory" },
-        { "name": "Threat Prevention", "status": "satisfactory" },
-        { "name": "Machine Learning Models", "status": "satisfactory" },
-        { "name": "Behavioral Analysis", "status": "satisfactory" },
-        { "name": "Anomaly Detection", "status": "satisfactory" },
-        { "name": "Predictive Analytics", "status": "satisfactory" }
+        {
+          "name": "Endpoint Detection",
+          "status": "satisfactory"
+        },
+        {
+          "name": "Threat Prevention",
+          "status": "satisfactory"
+        },
+        {
+          "name": "Machine Learning Models",
+          "status": "satisfactory"
+        },
+        {
+          "name": "Behavioral Analysis",
+          "status": "satisfactory"
+        },
+        {
+          "name": "Anomaly Detection",
+          "status": "satisfactory"
+        },
+        {
+          "name": "Predictive Analytics",
+          "status": "satisfactory"
+        }
       ]
     },
     {
       "name": "Automated Response",
       "score": 89,
       "items": [
-        { "name": "Threat Containment", "status": "satisfactory" },
-        { "name": "Incident Response", "status": "satisfactory" },
-        { "name": "Remediation Actions", "status": "needs-attention" },
-        { "name": "Recovery Procedures", "status": "satisfactory" }
+        {
+          "name": "Threat Containment",
+          "status": "satisfactory"
+        },
+        {
+          "name": "Incident Response",
+          "status": "satisfactory"
+        },
+        {
+          "name": "Remediation Actions",
+          "status": "needs-attention"
+        },
+        {
+          "name": "Recovery Procedures",
+          "status": "satisfactory"
+        }
       ]
     },
     {
       "name": "Compliance Automation",
       "score": 91,
       "items": [
-        { "name": "Policy Enforcement", "status": "satisfactory" },
-        { "name": "Audit Automation", "status": "satisfactory" },
-        { "name": "Reporting Generation", "status": "satisfactory" },
-        { "name": "Risk Assessment", "status": "satisfactory" }
+        {
+          "name": "Policy Enforcement",
+          "status": "satisfactory"
+        },
+        {
+          "name": "Audit Automation",
+          "status": "satisfactory"
+        },
+        {
+          "name": "Reporting Generation",
+          "status": "satisfactory"
+        },
+        {
+          "name": "Risk Assessment",
+          "status": "satisfactory"
+        }
       ]
     }
   ],
@@ -74,18 +116,6 @@
   "enhancedSections": {
     "risks": [
       {
-        "title": "Email Configuration Vulnerabilities",
-        "description": "6 insecure email configuration events detected, creating potential for email spoofing and phishing attacks.",
-        "severity": "high",
-        "impact": "Email deliverability issues and increased risk of business email compromise attacks."
-      },
-      {
-        "title": "Multi-Factor Authentication Gaps",
-        "description": "4 MFA-related security events identified, indicating incomplete implementation across all systems.",
-        "severity": "high",
-        "impact": "Weakened account security and increased risk of credential-based attacks."
-      },
-      {
         "title": "Outstanding Security Events",
         "description": "6 unresolved security events requiring immediate attention and remediation.",
         "severity": "medium",
@@ -95,20 +125,20 @@
     "insights": [
       {
         "title": "Device Protection Coverage",
-        "description": "100% device protection coverage demonstrates strong endpoint security controls across all managed devices.",
-        "metric": "100% Coverage",
+        "description": "0% device protection coverage demonstrates strong endpoint security controls across all managed devices.",
+        "metric": "0% Coverage",
         "trend": "positive"
       },
       {
         "title": "Security Integration Stack",
-        "description": "Comprehensive security stack with 19 active integrations providing multi-layered protection.",
-        "metric": "19 Integrations",
+        "description": "Comprehensive security stack with 0 active integrations providing multi-layered protection.",
+        "metric": "0 Integrations",
         "trend": "positive"
       },
       {
         "title": "Event Monitoring Activity",
-        "description": "Active security monitoring with 17 events detected and 11 resolved, showing responsive security operations.",
-        "metric": "17 Events Detected",
+        "description": "Active security monitoring with 6 events detected and 0 resolved, showing responsive security operations.",
+        "metric": "6 Events Detected",
         "trend": "positive"
       },
       {

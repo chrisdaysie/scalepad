@@ -52,21 +52,36 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    console.log('Starting refresh for client:', clientUuid);
+
     const apiKey = process.env.CORK_API_KEY;
     const baseUrl = process.env.CORK_BASE_URL || 'https://api.cork.dev';
 
     if (!apiKey) {
+      console.error('Cork API key not configured');
       return NextResponse.json(
         { error: 'Cork API key not configured' },
         { status: 500 }
       );
     }
 
+    console.log('Fetching live data from Cork API...');
+    
     // Fetch live data from Cork API
     const liveData = await fetchCorkLiveData(apiKey, baseUrl, clientUuid);
+    
+    console.log('Live data fetched successfully:', {
+      securityMetrics: liveData.securityMetrics,
+      endpointData: liveData.endpointData,
+      emailData: liveData.emailData
+    });
 
+    console.log('Updating Cork JSON file...');
+    
     // Update the Cork JSON file with live data
     await updateCorkReport(liveData);
+    
+    console.log('Cork JSON file updated successfully');
 
     return NextResponse.json({
       success: true,
@@ -76,8 +91,12 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     console.error('Error refreshing Cork data:', error);
+    console.error('Error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined
+    });
     return NextResponse.json(
-      { error: 'Failed to refresh Cork data' },
+      { error: `Failed to refresh Cork data: ${error instanceof Error ? error.message : 'Unknown error'}` },
       { status: 500 }
     );
   }
@@ -88,6 +107,8 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
     'Authorization': `Bearer ${apiKey}`,
     'Content-Type': 'application/json',
   };
+
+  console.log('Fetching security metrics...');
 
   // Calculate date range (last 30 days)
   const endDate = new Date();
@@ -100,8 +121,23 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
     { headers }
   );
 
-  const securityData = await securityResponse.json();
+  if (!securityResponse.ok) {
+    throw new Error(`Security metrics API error: ${securityResponse.status} - ${securityResponse.statusText}`);
+  }
+
+  let securityData;
+  try {
+    securityData = await securityResponse.json();
+  } catch (error) {
+    console.error('Failed to parse security metrics JSON:', error);
+    const responseText = await securityResponse.text();
+    console.error('Response text:', responseText);
+    throw new Error(`Invalid JSON response from security metrics API: ${error instanceof Error ? error.message : 'Unknown error'}`);
+  }
+  
   const events = securityData.items || [];
+  
+  console.log(`Found ${events.length} security events`);
 
   const securityMetrics: CorkSecurityMetrics = {
     total_events: events.length,
@@ -114,14 +150,31 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
     last_updated: new Date().toISOString(),
   };
 
+  console.log('Fetching endpoint data...');
+  
   // Fetch endpoint data
   const devicesResponse = await fetch(
     `${baseUrl}/api/v1/clients/${clientUuid}/devices`,
     { headers }
   );
 
-  const devicesData = await devicesResponse.json();
+  if (!devicesResponse.ok) {
+    throw new Error(`Devices API error: ${devicesResponse.status} - ${devicesResponse.statusText}`);
+  }
+
+  let devicesData;
+  try {
+    devicesData = await devicesResponse.json();
+  } catch (error) {
+    console.error('Failed to parse devices JSON:', error);
+    const responseText = await devicesResponse.text();
+    console.error('Response text:', responseText);
+    throw new Error(`Invalid JSON response from devices API: ${error instanceof Error ? error.message : 'Unknown error'}`);
+  }
+  
   const devices = devicesData.items || [];
+  
+  console.log(`Found ${devices.length} devices`);
 
   const endpointData: CorkEndpointData = {
     total_devices: devices.length,
@@ -146,8 +199,24 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
     { headers }
   );
 
-  const domainsData = await domainsResponse.json();
-  const inboxesData = await inboxesResponse.json();
+  let domainsData, inboxesData;
+  try {
+    domainsData = await domainsResponse.json();
+  } catch (error) {
+    console.error('Failed to parse domains JSON:', error);
+    const responseText = await domainsResponse.text();
+    console.error('Response text:', responseText);
+    throw new Error(`Invalid JSON response from domains API: ${error instanceof Error ? error.message : 'Unknown error'}`);
+  }
+  
+  try {
+    inboxesData = await inboxesResponse.json();
+  } catch (error) {
+    console.error('Failed to parse inboxes JSON:', error);
+    const responseText = await inboxesResponse.text();
+    console.error('Response text:', responseText);
+    throw new Error(`Invalid JSON response from inboxes API: ${error instanceof Error ? error.message : 'Unknown error'}`);
+  }
 
   const emailData: CorkEmailData = {
     total_domains: domainsData.items?.length || 0,
@@ -158,9 +227,29 @@ async function fetchCorkLiveData(apiKey: string, baseUrl: string, clientUuid: st
       '0%',
   };
 
-  // Get client name
-  const clientResponse = await fetch(`${baseUrl}/api/v1/clients/${clientUuid}`, { headers });
-  const clientData = await clientResponse.json();
+  console.log('Getting client name from clients list...');
+  
+  // Get client name from the clients list instead of individual endpoint
+  const clientsResponse = await fetch(`${baseUrl}/api/v1/clients`, { headers });
+  
+  if (!clientsResponse.ok) {
+    throw new Error(`Clients API error: ${clientsResponse.status} - ${clientsResponse.statusText}`);
+  }
+  
+  let clientsData;
+  try {
+    clientsData = await clientsResponse.json();
+  } catch (error) {
+    console.error('Failed to parse clients JSON:', error);
+    const responseText = await clientsResponse.text();
+    console.error('Response text:', responseText);
+    throw new Error(`Invalid JSON response from clients API: ${error instanceof Error ? error.message : 'Unknown error'}`);
+  }
+  
+  const clientData = clientsData.items?.find((client: any) => client.uuid === clientUuid);
+  if (!clientData) {
+    throw new Error(`Client with UUID ${clientUuid} not found in clients list`);
+  }
 
   return {
     securityMetrics,

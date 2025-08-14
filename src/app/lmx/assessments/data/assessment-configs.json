@@ -233,7 +233,7 @@
         "security",
         "policies"
       ],
-      "description": "Cybersecurity compliance readiness assessment"
+      "description": "Cybersecurity compliance readiness assessment for vCISO and Compliance-as-a-Service providers"
     }
   },
   "defaults": {

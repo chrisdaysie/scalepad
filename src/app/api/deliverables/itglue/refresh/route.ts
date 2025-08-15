@@ -956,7 +956,7 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
         } else {
           expirationStatus = 'Active';
         }
-      } catch (_error) {
+      } catch (_error) { // eslint-disable-line @typescript-eslint/no-unused-vars
         // If date parsing fails, treat as no expiration date
         expirationStatus = 'No Expiration Date';
       }

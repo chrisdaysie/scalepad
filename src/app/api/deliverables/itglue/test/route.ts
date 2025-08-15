@@ -121,7 +121,7 @@ async function updateITGlueReport(liveData: Record<string, unknown>) {
   };
 }
 
-function processTemplate(template: unknown, liveData: Record<string, unknown>): unknown {
+function processTemplate(template: unknown, liveData: any): unknown {
   // Create a deep copy to avoid mutating the template
   const processed = JSON.parse(JSON.stringify(template));
   
@@ -234,7 +234,7 @@ function processTemplate(template: unknown, liveData: Record<string, unknown>): 
   return processedData;
 }
 
-function calculateDerivedValues(liveData: Record<string, unknown>) {
+function calculateDerivedValues(liveData: any) {
   const documentationCoverage = liveData.assetData.total_assets > 0 
     ? Math.round((liveData.assetData.documented_assets / liveData.assetData.total_assets) * 100) 
     : 0;

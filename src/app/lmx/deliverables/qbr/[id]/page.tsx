@@ -2283,7 +2283,7 @@ export default function QBRReportPage() {
                                 if (typeof configurationsByType === 'string') {
                                   try {
                                     parsedConfigTypes = JSON.parse(configurationsByType);
-                                  } catch (_e) {
+                                  } catch (_e) { // eslint-disable-line @typescript-eslint/no-unused-vars
                                     // Ignore parsing errors
                                   }
                                 }
@@ -2459,7 +2459,7 @@ export default function QBRReportPage() {
                                 if (typeof flexibleAssetsByType === 'string') {
                                   try {
                                     parsedFlexibleAssetsByType = JSON.parse(flexibleAssetsByType);
-                                  } catch (_e) {
+                                  } catch (_e) { // eslint-disable-line @typescript-eslint/no-unused-vars
                                     // Silently handle parsing errors
                                   }
                                 }
@@ -2482,7 +2482,7 @@ export default function QBRReportPage() {
                               if (typeof flexibleAssetsByType === 'string') {
                                 try {
                                   parsedFlexibleAssetsByType = JSON.parse(flexibleAssetsByType);
-                                } catch (_e) {
+                                } catch (_e) { // eslint-disable-line @typescript-eslint/no-unused-vars
                                   // Silently handle parsing errors
                                 }
                               }
@@ -2505,7 +2505,7 @@ export default function QBRReportPage() {
                                 if (typeof flexibleAssetsDetailed === 'string') {
                                   try {
                                     parsedFlexibleAssetsDetailed = JSON.parse(flexibleAssetsDetailed);
-                                  } catch (_e) {
+                                  } catch (_e) { // eslint-disable-line @typescript-eslint/no-unused-vars
                                     // Silently handle parsing errors
                                   }
                                 }
@@ -2673,7 +2673,7 @@ export default function QBRReportPage() {
                         if (typeof flexibleAssetsByType === 'string') {
                           try {
                             parsedFlexibleAssetsByType = JSON.parse(flexibleAssetsByType);
-                          } catch (_e) {
+                          } catch (_e) { // eslint-disable-line @typescript-eslint/no-unused-vars
                             // Silently handle parsing errors
                           }
                         }

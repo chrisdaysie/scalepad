@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import ScalepadLogo from '@/components/ScalepadLogo';
 
@@ -179,42 +179,42 @@ export default function Assessments() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const loadAssessments = async () => {
-    // Don't fetch if already loading or already loaded
-    if (isLoading || hasLoadedFromAPI) return;
-    
-    setIsLoading(true);
-    try {
-      const response = await fetch('/api/assessments', {
-        // Add cache control for production
-        headers: {
-          'Cache-Control': 'max-age=300', // 5 minutes cache
-        },
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      if (Array.isArray(data) && data.length > 0) {
-        setAssessments(data);
-        setHasLoadedFromAPI(true);
-      } else {
-        throw new Error('Invalid data format or empty response');
-      }
-    } catch (error) {
-      console.error('Failed to load assessments from API:', error);
-      // Keep existing data, don't fallback to static data since we already have it
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
     // Only fetch once on mount if we haven't loaded from API yet
     if (!hasLoadedFromAPI) {
+      const loadAssessments = async () => {
+        // Don't fetch if already loading or already loaded
+        if (isLoading || hasLoadedFromAPI) return;
+        
+        setIsLoading(true);
+        try {
+          const response = await fetch('/api/assessments', {
+            // Add cache control for production
+            headers: {
+              'Cache-Control': 'max-age=300', // 5 minutes cache
+            },
+          });
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.json();
+          if (Array.isArray(data) && data.length > 0) {
+            setAssessments(data);
+            setHasLoadedFromAPI(true);
+          } else {
+            throw new Error('Invalid data format or empty response');
+          }
+        } catch (error) {
+          console.error('Failed to load assessments from API:', error);
+          // Keep existing data, don't fallback to static data since we already have it
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      
       loadAssessments();
     }
-  }, [loadAssessments, hasLoadedFromAPI]);
+  }, [hasLoadedFromAPI, isLoading]);
 
   const [currentTime, setCurrentTime] = useState<number | null>(null);
 

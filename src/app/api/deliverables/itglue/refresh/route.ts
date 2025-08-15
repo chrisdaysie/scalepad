@@ -908,12 +908,13 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
   allAssets.forEach((asset: ITGlueAsset, index: number) => {
     // Try multiple places/field styles for the configuration type information
     const attrs = asset.attributes as unknown as Record<string, unknown>;
-    const relationshipTypeId = (asset as any).relationships?.['configuration-type']?.data?.id;
+    const assetAny = asset as unknown as { relationships?: { [key: string]: { data?: { id?: string } } } };
+    const relationshipTypeId = assetAny.relationships?.['configuration-type']?.data?.id;
     const attributeTypeId = (attrs && (
       (attrs['configuration-type-id'] as string | number | undefined) ||
       (attrs['asset-type-id'] as string | number | undefined) ||
-      (attrs as any).configuration_type_id ||
-      (attrs as any).asset_type_id
+      (attrs.configuration_type_id as string | number | undefined) ||
+      (attrs.asset_type_id as string | number | undefined)
     )) as string | number | undefined;
 
     // Prefer explicit attribute type-id, then relationship id
@@ -930,13 +931,13 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
       (attrs['expires-on'] as string | undefined) ||
       (attrs['valid-until'] as string | undefined) ||
       (attrs['end-of-life-date'] as string | undefined) ||
-      (attrs as any).warranty_expires_at ||
-      (attrs as any).mitp_device_expiration_date ||
-      (attrs as any).mitp_end_of_life_date ||
-      (attrs as any).expiration_date ||
-      (attrs as any).expires_on ||
-      (attrs as any).valid_until ||
-      (attrs as any).end_of_life_date
+      (attrs.warranty_expires_at as string | undefined) ||
+      (attrs.mitp_device_expiration_date as string | undefined) ||
+      (attrs.mitp_end_of_life_date as string | undefined) ||
+      (attrs.expiration_date as string | undefined) ||
+      (attrs.expires_on as string | undefined) ||
+      (attrs.valid_until as string | undefined) ||
+      (attrs.end_of_life_date as string | undefined)
     )) as string | undefined;
     
     // Determine expiration status
@@ -955,7 +956,7 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
         } else {
           expirationStatus = 'Active';
         }
-      } catch (error) {
+      } catch (_error) {
         // If date parsing fails, treat as no expiration date
         expirationStatus = 'No Expiration Date';
       }

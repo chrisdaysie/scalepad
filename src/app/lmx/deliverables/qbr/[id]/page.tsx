@@ -2289,9 +2289,6 @@ export default function QBRReportPage() {
                                 }
                                 
                                 if (parsedConfigTypes && typeof parsedConfigTypes === 'object' && Object.keys(parsedConfigTypes).length > 0) {
-                                  // Get expiration data
-                                  const configurationsByExpiration = report.documentationSummary.configurations.byExpiration;
-                                  
                                   return (
                                     <div className="space-y-1">
                                       <div className="flex flex-wrap gap-1">

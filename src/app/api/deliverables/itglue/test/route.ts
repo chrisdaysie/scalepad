@@ -121,7 +121,7 @@ async function updateITGlueReport(liveData: Record<string, unknown>) {
   };
 }
 
-function processTemplate(template: unknown, liveData: any): unknown {
+function processTemplate(template: unknown, liveData: any): unknown { // eslint-disable-line @typescript-eslint/no-explicit-any
   // Create a deep copy to avoid mutating the template
   const processed = JSON.parse(JSON.stringify(template));
   
@@ -234,7 +234,7 @@ function processTemplate(template: unknown, liveData: any): unknown {
   return processedData;
 }
 
-function calculateDerivedValues(liveData: any) {
+function calculateDerivedValues(liveData: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
   const documentationCoverage = liveData.assetData.total_assets > 0 
     ? Math.round((liveData.assetData.documented_assets / liveData.assetData.total_assets) * 100) 
     : 0;

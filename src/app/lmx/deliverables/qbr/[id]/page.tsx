@@ -82,6 +82,10 @@ interface QBRData {
     integrationHealth: string;
     warrantyCoverage: string;
     emailSecurity: string;
+    documentationSummary: string;
+    coreAssetInventory: string;
+    securityCompliance: string;
+    operationalReadiness: string;
   };
   tabNavigation?: Array<{
     id: string;
@@ -304,6 +308,7 @@ interface QBRData {
       description: string;
       severity: 'high' | 'medium' | 'low';
       impact: string;
+      condition?: string;
     }>;
     insights: Array<{
       title: string;
@@ -362,6 +367,56 @@ interface QBRData {
     domains: string[];
     securityFeatures: string[];
   };
+  documentationSummary?: {
+    configurations: {
+      total: number;
+      byType: { [key: string]: number };
+      description: string;
+    };
+    domains: {
+      total: number;
+      list: Array<{
+        name: string;
+        expiryDate: string;
+        registrar: string;
+        displayText: string;
+      }>;
+      description: string;
+    };
+    documents: {
+      total: number;
+      fresh: number;
+      stale: number;
+      description: string;
+    };
+    passwords: {
+      total: number;
+      fresh: number;
+      stale: number;
+      description: string;
+    };
+    checklists: {
+      total: number;
+      completed: number;
+      incomplete: number;
+      description: string;
+    };
+    sslCertificates: {
+      total: number;
+      expiringSoon: number;
+      list: Array<{
+        name: string;
+        issuer: string;
+        expiryDate: string;
+        algorithm: string;
+        displayText: string;
+      }>;
+    };
+    flexibleAssets: {
+      byType: { [key: string]: number };
+      description: string;
+    };
+  };
 }
 
 export default function QBRReportPage() {
@@ -379,12 +434,29 @@ export default function QBRReportPage() {
   useEffect(() => {
     const fetchQBRData = async () => {
       try {
-        const response = await fetch('/api/deliverables/qbr');
-        if (!response.ok) {
-          throw new Error('Failed to fetch QBR data');
+        // For IT Glue reports, call the refresh API to get live data
+        if (reportId === 'qbr-report-itglue') {
+          const response = await fetch('/api/deliverables/itglue/refresh', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ clientUuid: '4842637' }), // Birdbrain Worldwide
+          });
+          if (!response.ok) {
+            throw new Error('Failed to fetch IT Glue data');
+          }
+          const data = await response.json();
+          setQbrReports({ [reportId]: data.data });
+        } else {
+          // For other reports, use the static JSON files
+          const response = await fetch('/api/deliverables/qbr');
+          if (!response.ok) {
+            throw new Error('Failed to fetch QBR data');
+          }
+          const data = await response.json();
+          setQbrReports(data);
         }
-        const data = await response.json();
-        setQbrReports(data);
         setIsLoading(false);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load QBR data');
@@ -393,7 +465,7 @@ export default function QBRReportPage() {
     };
 
     fetchQBRData();
-  }, []);
+  }, [reportId]);
 
   useEffect(() => {
     if (report) {
@@ -2100,36 +2172,385 @@ export default function QBRReportPage() {
             
             
 
-            {/* Key Results */}
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">{report.sectionHeaders?.keyResults}</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {report.categories?.map((category) => (
-                  <div key={category.name} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">{category.name}</h3>
-                    <div className={`text-3xl font-bold mb-3 ${getScoreColor(category.score)}`}>
-                      {category.score}%
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
-                      <div 
-                        className={`h-2 rounded-full transition-all duration-300 ${getScoreBarColor(category.score)}`}
-                        style={{ width: `${category.score}%` }}
-                      ></div>
-                    </div>
-                    <ul className="space-y-2">
-                      {category.items.map((item) => (
-                        <li key={item.name} className="flex justify-between items-center text-sm">
-                          <span className="text-gray-700">{item.name}</span>
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(item.status)}`}>
-                            {item.status.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
+
+
+
+            {/* Documentation Summary (replacing Key Results) */}
+            {report.documentationSummary && (
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">{report.sectionHeaders?.keyResults}</h2>
+                
+                <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                  <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
+                    <h3 className="text-lg font-semibold text-gray-900">Documentation Inventory</h3>
+                    <p className="text-sm text-gray-600 mt-1">Complete overview of all documentation types and their current status</p>
                   </div>
-                ))}
+                  
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead className="bg-gray-50">
+                        <tr>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Documentation Type</th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Details</th>
+                        </tr>
+                      </thead>
+                      <tbody className="bg-white divide-y divide-gray-200">
+                        {/* Assets */}
+                        <tr>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="flex items-center">
+                              <div className="flex-shrink-0 h-8 w-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <span className="text-blue-600 text-sm">💻</span>
+                              </div>
+                              <div className="ml-4">
+                                <div className="text-sm font-medium text-gray-900">Assets</div>
+                                <div className="text-sm text-gray-500">Devices, servers, network equipment</div>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm font-semibold text-gray-900">{Number(report.documentationSummary.configurations.total) || 0}</div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            {(() => {
+                              const configurationsByExpiration = (report.documentationSummary.configurations as any).byExpiration;
+                              const expired = configurationsByExpiration?.['Expired'] || 0;
+                              const expiringSoon = configurationsByExpiration?.['Expiring Soon (30 days)'] || 0;
+                              const active = configurationsByExpiration?.['Active'] || 0;
+                              const noExpiration = configurationsByExpiration?.['No Expiration Date'] || 0;
+                              
+                              if (expired > 0) {
+                                return <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">{expired} Expired</span>;
+                              } else if (expiringSoon > 0) {
+                                return <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">{expiringSoon} expiring</span>;
+                              } else if (active > 0) {
+                                return <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">{active} current</span>;
+                              } else if (noExpiration > 0) {
+                                return <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">{noExpiration} no expiration</span>;
+                              } else {
+                                return <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">No data</span>;
+                              }
+                            })()}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <div className="flex flex-wrap gap-1">
+                              {(() => {
+                                const configurationsByType = (report.documentationSummary.configurations as any).byType;
+                                
+                                // Try to parse if it's a string
+                                let parsedConfigTypes = configurationsByType;
+                                if (typeof configurationsByType === 'string') {
+                                  try {
+                                    parsedConfigTypes = JSON.parse(configurationsByType);
+                                  } catch (e) {
+                                    // Ignore parsing errors
+                                  }
+                                }
+                                
+                                if (parsedConfigTypes && typeof parsedConfigTypes === 'object' && Object.keys(parsedConfigTypes).length > 0) {
+                                  // Get expiration data
+                                  const configurationsByExpiration = (report.documentationSummary.configurations as any).byExpiration;
+                                  
+                                  return (
+                                    <div className="space-y-1">
+                                      <div className="flex flex-wrap gap-1">
+                                        {Object.entries(parsedConfigTypes).map(([type, count]: [string, any], index: number) => (
+                                          <span key={index} className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                            {count} {type}
+                                          </span>
+                                        ))}
+                                      </div>
+
+                                    </div>
+                                  );
+                                } else {
+                                  return <span className="text-gray-400">No configuration types</span>;
+                                }
+                              })()}
+                            </div>
+                          </td>
+                        </tr>
+
+                        {/* Passwords */}
+                        <tr>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="flex items-center">
+                              <div className="flex-shrink-0 h-8 w-8 bg-green-100 rounded-lg flex items-center justify-center">
+                                <span className="text-green-600 text-sm">🔐</span>
+                              </div>
+                              <div className="ml-4">
+                                <div className="text-sm font-medium text-gray-900">Passwords</div>
+                                <div className="text-sm text-gray-500">Credential management and security</div>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm font-semibold text-gray-900">{Number(report.documentationSummary.passwords.total) || 0}</div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            {(() => {
+                              const fresh = Number(report.documentationSummary.passwords.fresh) || 0;
+                              const stale = Number(report.documentationSummary.passwords.stale) || 0;
+                              
+                              if (stale > 0) {
+                                return <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">{stale} stale</span>;
+                              } else if (fresh > 0) {
+                                return <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Current</span>;
+                              } else {
+                                return <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">No data</span>;
+                              }
+                            })()}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <div className="flex flex-wrap gap-1">
+                              {(() => {
+                                const fresh = Number(report.documentationSummary.passwords.fresh) || 0;
+                                const stale = Number(report.documentationSummary.passwords.stale) || 0;
+                                
+                                if (fresh > 0 || stale > 0) {
+                                  return (
+                                    <div className="space-y-1">
+                                      <div className="flex flex-wrap gap-1">
+                                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                          {fresh + stale} Total
+                                        </span>
+                                        {stale > 0 && (
+                                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+                                            {Math.round((stale / (fresh + stale)) * 100)}% Stale
+                                          </span>
+                                        )}
+                                      </div>
+
+                                    </div>
+                                  );
+                                } else {
+                                  return <span className="text-gray-400">No password data</span>;
+                                }
+                              })()}
+                            </div>
+                          </td>
+                        </tr>
+
+                        {/* SSL Certificates */}
+                        <tr>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="flex items-center">
+                              <div className="flex-shrink-0 h-8 w-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                                <span className="text-purple-600 text-sm">🔒</span>
+                              </div>
+                              <div className="ml-4">
+                                <div className="text-sm font-medium text-gray-900">SSL Certificates</div>
+                                <div className="text-sm text-gray-500">Security certificates and expiration</div>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm font-semibold text-gray-900">{Number(report.documentationSummary.sslCertificates.total) || 0}</div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            {(() => {
+                              const expiringSoon = Number(report.documentationSummary.sslCertificates.expiringSoon) || 0;
+                              const total = Number(report.documentationSummary.sslCertificates.total) || 0;
+                              
+                              if (expiringSoon > 0) {
+                                return <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">{expiringSoon} expiring</span>;
+                              } else if (total > 0) {
+                                return <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Active</span>;
+                              } else {
+                                return <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">No data</span>;
+                              }
+                            })()}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <div className="flex flex-wrap gap-1">
+                              {(() => {
+                                const sslList = (report.documentationSummary.sslCertificates as any).list;
+                                const expiringSoon = Number(report.documentationSummary.sslCertificates.expiringSoon) || 0;
+                                
+                                if (sslList && Array.isArray(sslList) && sslList.length > 0) {
+                                  return (
+                                    <div className="space-y-1">
+                                      <div className="flex flex-wrap gap-1">
+                                        {sslList.slice(0, 3).map((cert: any, index: number) => (
+                                          <span key={index} className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                                            {cert.name} ({cert.expiryDate})
+                                          </span>
+                                        ))}
+                                        {sslList.length > 3 && (
+                                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                            +{sslList.length - 3} more
+                                          </span>
+                                        )}
+                                      </div>
+                                      {expiringSoon > 0 && (
+                                        <div className="text-xs text-gray-400">
+                                          {expiringSoon} expiring within 30 days
+                                        </div>
+                                      )}
+                                    </div>
+                                  );
+                                } else {
+                                  return <span className="text-gray-400">No SSL certificates</span>;
+                                }
+                              })()}
+                            </div>
+                          </td>
+                        </tr>
+
+                        {/* Flexible Assets */}
+                        <tr>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="flex items-center">
+                              <div className="flex-shrink-0 h-8 w-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                                <span className="text-orange-600 text-sm">📋</span>
+                              </div>
+                              <div className="ml-4">
+                                <div className="text-sm font-medium text-gray-900">Flexible Assets</div>
+                                <div className="text-sm text-gray-500">Processes, procedures, documentation</div>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm font-semibold text-gray-900">
+                              {(() => {
+                                // Try to get data from liveData first, then fall back to documentationSummary
+                                const flexibleAssetsByType = (report.liveData?.documentationSummary?.flexibleAssets as any)?.byType || (report.documentationSummary.flexibleAssets as any).byType;
+                                
+                                // Try to parse if it's a string
+                                let parsedFlexibleAssetsByType = flexibleAssetsByType;
+                                if (typeof flexibleAssetsByType === 'string') {
+                                  try {
+                                    parsedFlexibleAssetsByType = JSON.parse(flexibleAssetsByType);
+                                  } catch (e) {
+                                    // Silently handle parsing errors
+                                  }
+                                }
+                                
+                                if (parsedFlexibleAssetsByType && typeof parsedFlexibleAssetsByType === 'object') {
+                                  const total = Object.values(parsedFlexibleAssetsByType).reduce((sum: number, count: any) => sum + (Number(count) || 0), 0);
+                                  return total;
+                                }
+                                return 0;
+                              })()}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            {(() => {
+                              // Try to get data from liveData first, then fall back to documentationSummary
+                              const flexibleAssetsByType = (report.liveData?.documentationSummary?.flexibleAssets as any)?.byType || (report.documentationSummary.flexibleAssets as any).byType;
+                              
+                              // Try to parse if it's a string
+                              let parsedFlexibleAssetsByType = flexibleAssetsByType;
+                              if (typeof flexibleAssetsByType === 'string') {
+                                try {
+                                  parsedFlexibleAssetsByType = JSON.parse(flexibleAssetsByType);
+                                } catch (e) {
+                                  // Silently handle parsing errors
+                                }
+                              }
+                              
+                              if (parsedFlexibleAssetsByType && typeof parsedFlexibleAssetsByType === 'object' && Object.keys(parsedFlexibleAssetsByType).length > 0) {
+                                return <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Active</span>;
+                              } else {
+                                return <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">None</span>;
+                              }
+                            })()}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <div className="flex flex-wrap gap-1">
+                              {(() => {
+                                // Try to get data from liveData first, then fall back to documentationSummary
+                                const flexibleAssetsDetailed = (report.liveData?.documentationSummary?.flexibleAssets as any)?.detailed || (report.documentationSummary.flexibleAssets as any).detailed;
+                                
+                                // Try to parse if it's a string
+                                let parsedFlexibleAssetsDetailed = flexibleAssetsDetailed;
+                                if (typeof flexibleAssetsDetailed === 'string') {
+                                  try {
+                                    parsedFlexibleAssetsDetailed = JSON.parse(flexibleAssetsDetailed);
+                                  } catch (e) {
+                                    // Silently handle parsing errors
+                                  }
+                                }
+                                
+                                if (parsedFlexibleAssetsDetailed && typeof parsedFlexibleAssetsDetailed === 'object' && Object.keys(parsedFlexibleAssetsDetailed).length > 0) {
+                                  return Object.entries(parsedFlexibleAssetsDetailed).map(([typeName, data]: [string, any], index: number) => (
+                                    <span key={index} className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                                      {data.count} {typeName}
+                                    </span>
+                                  ));
+                                } else {
+                                  return <span className="text-gray-400">No flexible assets</span>;
+                                }
+                              })()}
+                            </div>
+                          </td>
+                        </tr>
+
+                        {/* Domains */}
+                        <tr>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="flex items-center">
+                              <div className="flex-shrink-0 h-8 w-8 bg-indigo-100 rounded-lg flex items-center justify-center">
+                                <span className="text-indigo-600 text-sm">🌐</span>
+                              </div>
+                              <div className="ml-4">
+                                <div className="text-sm font-medium text-gray-900">Domains</div>
+                                <div className="text-sm text-gray-500">Domain registration and management</div>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="text-sm font-semibold text-gray-900">{Number(report.documentationSummary.domains.total) || 0}</div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            {(() => {
+                              const total = Number(report.documentationSummary.domains.total) || 0;
+                              
+                              if (total > 0) {
+                                return <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Active</span>;
+                              } else {
+                                return <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">None</span>;
+                              }
+                            })()}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <div className="flex flex-wrap gap-1">
+                              {(() => {
+                                const domainList = (report.documentationSummary.domains as any).list;
+                                
+                                if (domainList && Array.isArray(domainList) && domainList.length > 0) {
+                                  return (
+                                    <div className="space-y-1">
+                                      <div className="flex flex-wrap gap-1">
+                                        {domainList.slice(0, 3).map((domain: any, index: number) => (
+                                          <span key={index} className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+                                            {domain.name} ({domain.expiryDate})
+                                          </span>
+                                        ))}
+                                        {domainList.length > 3 && (
+                                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                            +{domainList.length - 3} more
+                                          </span>
+                                        )}
+                                      </div>
+
+                                    </div>
+                                  );
+                                } else {
+                                  return <span className="text-gray-400">No domains</span>;
+                                }
+                              })()}
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Enhanced Analysis Sections */}
             <div className="space-y-8">
@@ -2141,22 +2562,52 @@ export default function QBRReportPage() {
                   {report.sectionHeaders?.risks}
                 </h3>
                 <div className="space-y-4">
-                  {report.enhancedSections.risks.map((risk, index) => (
-                    <div key={index} className="border-l-4 border-red-500 pl-4 py-3">
-                      <div className="flex items-start justify-between mb-2">
-                        <h4 className="font-semibold text-gray-900">{risk.title}</h4>
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          risk.severity === 'high' ? 'bg-red-100 text-red-800' :
-                          risk.severity === 'medium' ? 'bg-yellow-100 text-yellow-800' :
-                          'bg-green-100 text-green-800'
-                        }`}>
-                          {risk.severity.toUpperCase()}
-                        </span>
+                  {report.enhancedSections.risks
+                    .filter((risk) => {
+                      // Evaluate the condition if it exists
+                      if (!risk.condition) return true;
+                      
+                      // Parse the condition and evaluate it
+                      const condition = risk.condition;
+                      
+                      // Handle specific conditions for IT Glue data
+                      if (condition === 'configurationsExpired > 0') {
+                        const expired = Number(report.documentationSummary?.configurations?.total) || 0;
+                        const configurationsByExpiration = (report.documentationSummary?.configurations as any)?.byExpiration;
+                        const expiredCount = configurationsByExpiration?.['Expired'] || 0;
+                        return expiredCount > 0;
+                      }
+                      
+                      if (condition === 'configurationsExpiringSoon > 0') {
+                        const configurationsByExpiration = (report.documentationSummary?.configurations as any)?.byExpiration;
+                        const expiringSoon = configurationsByExpiration?.['Expiring Soon (30 days)'] || 0;
+                        return expiringSoon > 0;
+                      }
+                      
+                      if (condition === 'sslCertificatesExpiringSoon > 0') {
+                        const expiringSoon = Number(report.documentationSummary?.sslCertificates?.expiringSoon) || 0;
+                        return expiringSoon > 0;
+                      }
+                      
+                      // Default to showing if condition can't be evaluated
+                      return true;
+                    })
+                    .map((risk, index) => (
+                      <div key={index} className="border-l-4 border-red-500 pl-4 py-3">
+                        <div className="flex items-start justify-between mb-2">
+                          <h4 className="font-semibold text-gray-900">{risk.title}</h4>
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                            risk.severity === 'high' ? 'bg-red-100 text-red-800' :
+                            risk.severity === 'medium' ? 'bg-yellow-100 text-yellow-800' :
+                            'bg-green-100 text-green-800'
+                          }`}>
+                            {risk.severity.toUpperCase()}
+                          </span>
+                        </div>
+                        <p className="text-gray-600 mb-2">{risk.description}</p>
+                        <p className="text-sm text-gray-500"><strong>Impact:</strong> {risk.impact}</p>
                       </div>
-                      <p className="text-gray-600 mb-2">{risk.description}</p>
-                      <p className="text-sm text-gray-500"><strong>Impact:</strong> {risk.impact}</p>
-                    </div>
-                  ))}
+                    ))}
                 </div>
               </div>
 
@@ -2166,7 +2617,39 @@ export default function QBRReportPage() {
                   {report.sectionHeaders?.insights}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {report.enhancedSections.insights.map((insight, index) => (
+                  {report.enhancedSections.insights
+                    .filter((insight) => {
+                      // Evaluate the condition if it exists
+                      if (!insight.condition) return true;
+                      
+                      const condition = insight.condition;
+                      
+                      if (condition === 'configurationsTotal > 0') {
+                        const total = Number(report.documentationSummary?.configurations?.total) || 0;
+                        return total > 0;
+                      }
+                      
+                      if (condition === 'flexibleAssetTypesCount > 0') {
+                        const flexibleAssetsByType = (report.documentationSummary?.flexibleAssets as any)?.byType;
+                        let parsedFlexibleAssetsByType = flexibleAssetsByType;
+                        if (typeof flexibleAssetsByType === 'string') {
+                          try {
+                            parsedFlexibleAssetsByType = JSON.parse(flexibleAssetsByType);
+                          } catch (e) {
+                            // Silently handle parsing errors
+                          }
+                        }
+                        return parsedFlexibleAssetsByType && typeof parsedFlexibleAssetsByType === 'object' && Object.keys(parsedFlexibleAssetsByType).length > 0;
+                      }
+                      
+                      if (condition === 'sslCertificatesExpiringSoon > 0') {
+                        const expiringSoon = Number(report.documentationSummary?.sslCertificates?.expiringSoon) || 0;
+                        return expiringSoon > 0;
+                      }
+                      
+                      return true;
+                    })
+                    .map((insight, index) => (
                     <div key={index} className="bg-white rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow">
                       <div className="flex items-start space-x-3">
                         <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
@@ -2466,7 +2949,7 @@ export default function QBRReportPage() {
   );
 }
 
-// Live Data Controls Component for Cork
+// Live Data Controls Component for Cork and IT Glue
 function LiveDataControls({ 
   report, 
   onReportUpdate 
@@ -2481,7 +2964,7 @@ function LiveDataControls({
     name: string;
     status: string;
     created_at: string;
-    deviceCount: number;
+    deviceCount?: number;
   }>>([]);
   const [selectedClientUuid, setSelectedClientUuid] = useState<string>(
     report.liveData?.selectedClientUuid || ''
@@ -2497,7 +2980,12 @@ function LiveDataControls({
   const fetchAvailableClients = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('/api/deliverables/cork/clients');
+      // Determine the API endpoint based on report type
+      const apiEndpoint = report.id === 'qbr-report-itglue' 
+        ? '/api/deliverables/itglue/clients'
+        : '/api/deliverables/cork/clients';
+      
+      const response = await fetch(apiEndpoint);
       if (response.ok) {
         const data = await response.json();
         setAvailableClients(data.clients || []);
@@ -2517,7 +3005,12 @@ function LiveDataControls({
 
     setIsRefreshing(true);
     try {
-      const response = await fetch('/api/deliverables/cork/refresh', {
+      // Determine the API endpoint based on report type
+      const apiEndpoint = report.id === 'qbr-report-itglue' 
+        ? '/api/deliverables/itglue/refresh'
+        : '/api/deliverables/cork/refresh';
+      
+      const response = await fetch(apiEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -2564,7 +3057,9 @@ function LiveDataControls({
       <div className="flex items-center justify-between mb-4">
         <div>
           <h3 className="text-lg font-semibold text-gray-900">🔄 Live Data Controls</h3>
-          <p className="text-sm text-gray-600">Refresh data from Cork API</p>
+          <p className="text-sm text-gray-600">
+            Refresh data from {report.id === 'qbr-report-itglue' ? 'IT Glue' : 'Cork'} API
+          </p>
         </div>
         <div className="flex items-center space-x-2">
           <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
@@ -2593,7 +3088,7 @@ function LiveDataControls({
             <option value="">Choose a client...</option>
             {availableClients.map((client) => (
               <option key={client.uuid} value={client.uuid}>
-                {client.name} ({client.status}) - {client.deviceCount} devices
+                {client.name} {client.status ? `(${client.status})` : ''} - {report.id === 'qbr-report-itglue' ? 'organization' : `${client.deviceCount} devices`}
               </option>
             ))}
           </select>
@@ -2629,7 +3124,7 @@ function LiveDataControls({
             {selectedClientUuid && (
               <p className="text-sm text-gray-600">
                 Selected: {availableClients.find(c => c.uuid === selectedClientUuid)?.name} 
-                ({availableClients.find(c => c.uuid === selectedClientUuid)?.deviceCount} devices)
+                ({report.id === 'qbr-report-itglue' ? 'organization' : `${availableClients.find(c => c.uuid === selectedClientUuid)?.deviceCount} devices`})
               </p>
             )}
           </div>
@@ -2639,7 +3134,7 @@ function LiveDataControls({
       {/* Info */}
       <div className="mt-4 p-3 bg-blue-50 rounded-md">
         <p className="text-sm text-blue-800">
-          <strong>Note:</strong> This will fetch the latest security metrics, device data, and compliance events from the Cork API for the selected client.
+          <strong>Note:</strong> This will fetch the latest {report.id === 'qbr-report-itglue' ? 'documentation, configurations, and flexible assets' : 'security metrics, device data, and compliance events'} from the {report.id === 'qbr-report-itglue' ? 'IT Glue' : 'Cork'} API for the selected {report.id === 'qbr-report-itglue' ? 'organization' : 'client'}.
         </p>
       </div>
     </div>

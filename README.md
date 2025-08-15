@@ -44,6 +44,10 @@ Create a `.env.local` file with:
 CORK_API_KEY=your_cork_api_key_here
 CORK_BASE_URL=https://api.cork.dev
 
+# IT Glue API Integration
+ITGLUE_API_KEY=your_itglue_api_key_here
+ITGLUE_BASE_URL=https://api.itglue.com
+
 # Add other API keys as needed
 ```
 
@@ -103,6 +107,7 @@ scalepad/
 
 #### 3. API Integration Layer
 - **Cork Integration**: Real-time security metrics and device data
+- **IT Glue Integration**: Documentation quality and asset management data
 - **Assessment APIs**: Dynamic content and AI recommendations
 - **Data Processing**: Template-based approach for vendor collaboration
 
@@ -167,6 +172,8 @@ npm run start
 Ensure these are set in your deployment environment:
 - `CORK_API_KEY`: Cork API authentication
 - `CORK_BASE_URL`: Cork API base URL
+- `ITGLUE_API_KEY`: IT Glue API authentication
+- `ITGLUE_BASE_URL`: IT Glue API base URL
 - Any other API keys for integrations
 
 ## 📚 Documentation

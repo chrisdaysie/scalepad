@@ -1,0 +1,201 @@
+{
+  "apiName": "IT Glue API",
+  "version": "1.0",
+  "description": "IT Glue API integration for documentation-focused QBR reports",
+  "baseUrl": "https://api.itglue.com",
+  "authentication": {
+    "method": "API Key",
+    "header": "x-api-key",
+    "description": "IT Glue API key required for all requests"
+  },
+  "endpoints": {
+    "organizations": {
+      "url": "/organizations",
+      "method": "GET",
+      "description": "Fetch all organizations (clients)",
+      "parameters": {
+        "page[size]": "Number of results per page (max 100)"
+      },
+      "response": {
+        "data": [
+          {
+            "id": "string",
+            "type": "organizations",
+            "attributes": {
+              "name": "string",
+              "organization_id": "number"
+            }
+          }
+        ],
+        "meta": {
+          "current_page": "number",
+          "total_pages": "number",
+          "total_count": "number"
+        }
+      }
+    },
+    "assets": {
+      "url": "/assets",
+      "method": "GET",
+      "description": "Fetch assets for a specific organization",
+      "parameters": {
+        "filter[organization_id]": "Organization ID to filter by",
+        "page[size]": "Number of results per page (max 100)"
+      },
+      "response": {
+        "data": [
+          {
+            "id": "string",
+            "type": "assets",
+            "attributes": {
+              "name": "string",
+              "asset_type_id": "number",
+              "organization_id": "number",
+              "created_at": "string",
+              "updated_at": "string"
+            }
+          }
+        ]
+      }
+    },
+    "flexible_assets": {
+      "url": "/flexible_assets",
+      "method": "GET",
+      "description": "Fetch flexible assets (processes, configurations) for a specific organization",
+      "parameters": {
+        "filter[organization_id]": "Organization ID to filter by",
+        "page[size]": "Number of results per page (max 100)"
+      },
+      "response": {
+        "data": [
+          {
+            "id": "string",
+            "type": "flexible_assets",
+            "attributes": {
+              "name": "string",
+              "flexible_asset_type_id": "number",
+              "organization_id": "number",
+              "created_at": "string",
+              "updated_at": "string",
+              "fields": "object"
+            }
+          }
+        ]
+      }
+    },
+    "users": {
+      "url": "/users",
+      "method": "GET",
+      "description": "Fetch all users in the IT Glue instance",
+      "parameters": {
+        "page[size]": "Number of results per page (max 100)"
+      },
+      "response": {
+        "data": [
+          {
+            "id": "string",
+            "type": "users",
+            "attributes": {
+              "name": "string",
+              "email": "string",
+              "last_sign_in_at": "string",
+              "created_at": "string"
+            }
+          }
+        ]
+      }
+    },
+    "activities": {
+      "url": "/activities",
+      "method": "GET",
+      "description": "Fetch recent activities for a specific organization",
+      "parameters": {
+        "filter[organization_id]": "Organization ID to filter by",
+        "page[size]": "Number of results per page (max 100)"
+      },
+      "response": {
+        "data": [
+          {
+            "id": "string",
+            "type": "activities",
+            "attributes": {
+              "action": "string",
+              "resource_type": "string",
+              "resource_id": "string",
+              "user_id": "string",
+              "created_at": "string"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "dataMapping": {
+    "documentationMetrics": {
+      "totalAssets": "Count of all assets in organization",
+      "documentedAssets": "Assets with non-empty names",
+      "undocumentedAssets": "Assets without names",
+      "managedAssets": "Assets with asset_type_id",
+      "assetTypes": {
+        "hardware": "Assets containing server, workstation, laptop, desktop",
+        "software": "Assets containing software, application, license",
+        "network": "Assets containing switch, router, firewall, network",
+        "cloud": "Assets containing cloud, aws, azure, gcp"
+      }
+    },
+    "processManagement": {
+      "totalProcesses": "Count of all flexible assets",
+      "documentedProcesses": "Flexible assets with non-empty names",
+      "outdatedProcesses": "Processes not updated in last 90 days",
+      "complianceScore": "Percentage of documented processes",
+      "processTypes": "Array of process names",
+      "recentUpdates": "Processes updated in last 30 days"
+    },
+    "userEngagement": {
+      "totalUsers": "Count of all users",
+      "activeUsers": "Users with sign-in activity in last 30 days",
+      "activeUserPercentage": "Percentage of active users",
+      "topContributors": "Top 3 users by name"
+    },
+    "activityData": {
+      "recentUpdates": "Activities created in last 30 days",
+      "avgDocumentationAge": "Average age of asset updates in days",
+      "updateFrequency": "Average days between updates"
+    },
+    "complianceData": {
+      "complianceScore": "Overall documentation compliance percentage",
+      "complianceItems": "Total assets + processes",
+      "compliantItems": "Documented assets + documented processes",
+      "nonCompliantItems": "Undocumented assets + undocumented processes",
+      "categories": "Compliance categories",
+      "lastAudit": "Date of last audit"
+    }
+  },
+  "calculations": {
+    "documentationCompleteness": "(documentedAssets + documentedProcesses) / (totalAssets + totalProcesses) * 100",
+    "assetManagement": "managedAssets / totalAssets * 100",
+    "processCompliance": "documentedProcesses / totalProcesses * 100",
+    "userEngagement": "activeUsers / totalUsers * 100"
+  },
+  "environmentVariables": {
+    "ITGLUE_API_KEY": "Your IT Glue API key",
+    "ITGLUE_BASE_URL": "IT Glue API base URL (default: https://api.itglue.com)"
+  },
+  "rateLimits": {
+    "requests_per_minute": 60,
+    "requests_per_hour": 1000
+  },
+  "errorHandling": {
+    "401": "Unauthorized - Invalid API key",
+    "403": "Forbidden - Insufficient permissions",
+    "404": "Not Found - Resource doesn't exist",
+    "429": "Too Many Requests - Rate limit exceeded",
+    "500": "Internal Server Error - IT Glue server error"
+  },
+  "bestPractices": {
+    "pagination": "Use page[size] parameter to limit results",
+    "filtering": "Use organization_id filter to scope data",
+    "caching": "Cache responses to avoid rate limits",
+    "errorRetry": "Implement exponential backoff for retries"
+  }
+}

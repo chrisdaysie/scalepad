@@ -1,0 +1,415 @@
+{
+  "id": "qbr-report-itglue",
+  "title": "IT Glue",
+  "company": "IT Glue",
+  "lastUpdated": 1755105701,
+  "dateRange": "August 1-7, 2025 • Documentation Review",
+  "heroMetric": {
+    "value": "{configurationsTotal}",
+    "label": "Total Configurations",
+    "description": "{configurationsExpired} expired, {configurationsExpiringSoon} expiring soon",
+    "calculation": "sum of all configuration types",
+    "trend": "{configurationsExpiredTrend}"
+  },
+  "type": "individual",
+  "description": "IT documentation and knowledge management platform with automated compliance tracking",
+  "executiveSummary": "Your IT Glue documentation platform manages {configurationsTotal} configuration items with comprehensive asset tracking across {flexibleAssetTypesCount} flexible asset types. The platform shows {configurationsExpired} expired configurations requiring attention, while maintaining {domainsTotal} domains and {sslCertificatesTotal} SSL certificates. With {passwordsTotal} managed passwords and {flexibleAssetsTotal} flexible assets, your documentation foundation is comprehensive but requires maintenance focus on expired configurations.",
+  "liveData": {
+    "enabled": true,
+    "refreshInterval": 3600,
+    "lastRefresh": "2025-08-14T03:59:44.594Z",
+    "selectedClientUuid": "0c72184a-2201-4353-a5b7-2f9f371239db",
+    "availableClients": []
+  },
+  "categories": [
+    {
+              "name": "Documentation Coverage",
+        "score": 80,
+        "calculation": "based on documented assets vs total assets",
+      "items": [
+                  {
+            "name": "Asset Documentation",
+            "status": "satisfactory",
+            "condition": "documentedAssets > 0"
+          },
+                  {
+            "name": "Process Documentation",
+            "status": "satisfactory",
+            "condition": "documentedProcesses > 0"
+          },
+          {
+            "name": "Configuration Management",
+            "status": "satisfactory",
+            "condition": "documentedConfigs > 0"
+          },
+          {
+            "name": "Password Management",
+            "status": "satisfactory",
+            "condition": "managedPasswords > 0"
+          },
+          {
+            "name": "Vendor Documentation",
+            "status": "satisfactory",
+            "condition": "documentedVendors > 0"
+          },
+        {
+          "name": "Compliance Tracking",
+          "status": "satisfactory",
+          "condition": "complianceItems > 0"
+        }
+      ]
+    },
+    {
+              "name": "Asset Management",
+        "score": 90,
+        "calculation": "(managedAssets / totalAssets) * 100",
+      "items": [
+                  {
+            "name": "Hardware Assets",
+            "status": "satisfactory",
+            "condition": "hardwareAssets > 0"
+          },
+          {
+            "name": "Software Assets",
+            "status": "satisfactory",
+            "condition": "softwareAssets > 0"
+          },
+          {
+            "name": "Network Assets",
+            "status": "satisfactory",
+            "condition": "networkAssets > 0"
+          },
+          {
+            "name": "Cloud Assets",
+            "status": "satisfactory",
+            "condition": "cloudAssets > 0"
+          }
+      ]
+    },
+    {
+              "name": "Process Compliance",
+        "score": 85,
+        "calculation": "complianceScore(25%) + processAdoption(25%) + userEngagement(25%) + updateFrequency(25%)",
+      "items": [
+                  {
+            "name": "Documentation Standards",
+            "status": "satisfactory",
+            "condition": "complianceScore > 70"
+          },
+          {
+            "name": "Process Adoption",
+            "status": "satisfactory",
+            "condition": "activeUsers > 0"
+          },
+          {
+            "name": "User Engagement",
+            "status": "satisfactory",
+            "condition": "recentUpdates > 0"
+          },
+          {
+            "name": "Update Frequency",
+            "status": "satisfactory",
+            "condition": "avgUpdateFrequency < 30"
+          }
+      ]
+    }
+  ],
+  "sectionHeaders": {
+    "clientGoals": "🎯 Documentation Goals Overview",
+    "technologyRoadmap": "🗺️ Documentation Roadmap",
+    "upcomingInitiatives": "Upcoming Documentation Initiatives",
+    "totalInvestment": "Total Documentation Investment",
+    "assetLifecycle": "💻 Asset Lifecycle Documentation",
+    "processSummary": "📋 Process Documentation Summary",
+    "complianceForecast": "📊 Compliance Forecast & Analysis",
+    "vendorDocumentation": "📄 Vendor Documentation",
+    "assessmentSummary": "📋 Documentation Assessment Summary",
+    "serviceAnalytics": "📈 Documentation Analytics",
+    "assetsOverview": "💻 Assets Overview",
+    "optimizationOpportunities": "💡 Documentation Optimization Opportunities",
+    "keyResults": "📊 Documentation Summary",
+    "enhancedAnalysis": "🤖 Enhanced Documentation Analysis",
+    "risks": "⚠️ Documentation Risks",
+    "insights": "🤖 Documentation Insights",
+    "recommendations": "🎯 Documentation Recommendations",
+    "documentationMetrics": "📚 Documentation Metrics",
+    "assetManagement": "🛡️ Asset Management",
+    "processHealth": "🔗 Process Health",
+    "complianceCoverage": "📋 Compliance Coverage",
+    "documentationSummary": "📊 Documentation Summary",
+    "coreAssetInventory": "💻 Core Asset Inventory",
+    "securityCompliance": "🔒 Security & Compliance",
+    "operationalReadiness": "⚡ Operational Readiness"
+  },
+  "enhancedSections": {
+    "risks": [
+      {
+        "title": "Expired Configuration Risk",
+        "description": "{configurationsExpired} configuration items are expired, representing {configurationsExpiredPercentage}% of total configurations.",
+        "severity": "high",
+        "impact": "Potential service disruptions, compliance violations, and increased operational risk due to outdated configurations.",
+        "condition": "configurationsExpired > 0"
+      },
+      {
+        "title": "Configuration Expiration Cascade",
+        "description": "{configurationsExpiringSoon} configurations expiring within 30 days could lead to a cascade of expiration issues if not addressed promptly.",
+        "severity": "medium",
+        "impact": "Increased maintenance burden and potential service interruptions if multiple configurations expire simultaneously.",
+        "condition": "configurationsExpiringSoon > 0"
+      },
+      {
+        "title": "SSL Certificate Expiration Risk",
+        "description": "{sslCertificatesExpiringSoon} SSL certificates expiring soon could cause service disruptions and security vulnerabilities.",
+        "severity": "medium",
+        "impact": "Potential website downtime, security warnings, and loss of customer trust due to expired certificates.",
+        "condition": "sslCertificatesExpiringSoon > 0"
+      }
+    ],
+    "insights": [
+      {
+        "title": "Configuration Health",
+        "description": "{configurationsTotal} configurations tracked with {configurationsExpired} expired and {configurationsExpiringSoon} expiring soon.",
+        "metric": "{configurationsExpiredPercentage}% Expired",
+        "trend": "{configurationsExpiredTrend}",
+        "condition": "configurationsTotal > 0"
+      },
+      {
+        "title": "Documentation Coverage",
+        "description": "Comprehensive tracking across {flexibleAssetTypesCount} asset types with {flexibleAssetsTotal} total items documented.",
+        "metric": "{flexibleAssetTypesCount} Categories",
+        "trend": "positive",
+        "condition": "flexibleAssetTypesCount > 0"
+      },
+      {
+        "title": "Security Posture",
+        "description": "{domainsTotal} domains with {sslCertificatesTotal} SSL certificates, {sslCertificatesExpiringSoon} expiring within 30 days.",
+        "metric": "{sslCertificatesExpiringSoon} Expiring",
+        "trend": "{sslCertificatesExpiringSoonTrend}",
+        "condition": "sslCertificatesExpiringSoon > 0"
+      }
+    ],
+    "recommendations": [
+      {
+        "title": "Address Expired Configurations",
+        "description": "Review and update {configurationsExpired} expired configuration items to prevent operational issues.",
+        "priority": "high",
+        "effort": "Medium",
+        "impact": "Reduced downtime risk and improved system health",
+        "condition": "configurationsExpired > 0"
+      },
+      {
+        "title": "Implement Lifecycle Management",
+        "description": "Establish automated monitoring for {configurationsTotal} configuration items to prevent future expiration issues.",
+        "priority": "high",
+        "effort": "High",
+        "impact": "Automated maintenance and reduced manual intervention",
+        "condition": "configurationsTotal > 0"
+      },
+      {
+        "title": "Monitor SSL Certificates",
+        "description": "Implement proactive monitoring for {sslCertificatesTotal} SSL certificates to prevent service disruptions.",
+        "priority": "medium",
+        "effort": "Medium",
+        "impact": "Improved security posture and service continuity",
+        "condition": "sslCertificatesExpiringSoon > 0"
+      }
+    ]
+  },
+  "dataMapping": {
+    "placeholders": {
+      "documentationCompleteness": "documentationMetrics.completenessRate",
+      "totalAssets": "documentationMetrics.totalAssets",
+      "documentedAssets": "documentationMetrics.documentedAssets",
+      "managedAssets": "documentationMetrics.managedAssets",
+      "activeUsers": "userEngagement.activeUsers",
+      "recentUpdates": "userEngagement.recentUpdates",
+      "documentedProcesses": "processManagement.documentedProcesses",
+      "complianceScore": "processManagement.complianceScore",
+      "undocumentedAssets": "documentationMetrics.undocumentedAssets",
+      "outdatedProcesses": "processManagement.outdatedProcesses",
+      "activeUserPercentage": "userEngagement.activeUserPercentage",
+      "avgDocumentationAge": "userEngagement.avgDocumentationAge",
+      "complianceItems": "complianceCoverage.totalItems",
+      "documentedConfigs": "documentationSummary.configurations.total",
+      "managedPasswords": "documentationSummary.passwords.total",
+      "configurationsHealth": "documentationSummary.configurations.health",
+      "configurationsDetails": "documentationSummary.configurations.details",
+      "documentedVendors": "0",
+      "hardwareAssets": "documentationMetrics.assetTypes.hardware",
+      "softwareAssets": "documentationMetrics.assetTypes.software",
+      "networkAssets": "documentationMetrics.assetTypes.network",
+      "cloudAssets": "documentationMetrics.assetTypes.cloud",
+      "lastRefresh": "lastRefresh",
+      "selectedClientUuid": "selectedClientUuid",
+      "configurationsTotal": "documentationSummary.configurations.total",
+      "configurationsByType": "documentationSummary.configurations.byType",
+      "domainsTotal": "documentationSummary.domains.total",
+      "domainsList": "documentationSummary.domains.list",
+      "documentsTotal": "documentationSummary.documents.total",
+      "documentsFresh": "documentationSummary.documents.fresh",
+      "documentsStale": "documentationSummary.documents.stale",
+      "passwordsTotal": "documentationSummary.passwords.total",
+      "passwordsFresh": "documentationSummary.passwords.fresh",
+      "passwordsStale": "documentationSummary.passwords.stale",
+      "checklistsTotal": "documentationSummary.checklists.total",
+      "checklistsCompleted": "documentationSummary.checklists.completed",
+      "checklistsIncomplete": "documentationSummary.checklists.incomplete",
+      "sslCertificatesTotal": "documentationSummary.sslCertificates.total",
+      "sslCertificatesExpiringSoon": "documentationSummary.sslCertificates.expiringSoon",
+      "flexibleAssetsByType": "documentationSummary.flexibleAssets.byType",
+      "configurationsExpired": "documentationSummary.configurations.byExpiration.Expired",
+      "configurationsExpiringSoon": "documentationSummary.configurations.byExpiration['Expiring Soon (30 days)']",
+      "configurationsExpiredPercentage": "Math.round((documentationSummary.configurations.byExpiration.Expired / documentationSummary.configurations.total) * 100)",
+      "configurationsTypeCount": "Object.keys(JSON.parse(documentationSummary.configurations.byType)).length",
+      "flexibleAssetsTotal": "Object.values(JSON.parse(documentationSummary.flexibleAssets.byType)).reduce((sum, count) => sum + Number(count), 0)",
+      "flexibleAssetTypesCount": "Object.keys(JSON.parse(documentationSummary.flexibleAssets.byType)).length"
+    },
+    "calculations": {
+      "documentationCoverage": "(documentedAssets / totalAssets) * 100",
+      "assetManagement": "(managedAssets / totalAssets) * 100",
+      "processCompliance": "complianceScore",
+      "documentationAdjective": "documentationCompleteness > 80 ? 'excellent' : documentationCompleteness > 60 ? 'good' : 'fair'",
+      "engagementAdjective": "activeUserPercentage > 80 ? 'strong' : activeUserPercentage > 50 ? 'moderate' : 'limited'",
+      "documentationTrend": "documentationCompleteness > 80 ? 'positive' : documentationCompleteness > 60 ? 'neutral' : 'negative'",
+      "assetManagementTrend": "assetManagement > 80 ? 'positive' : assetManagement > 60 ? 'neutral' : 'negative'",
+      "complianceTrend": "complianceScore > 80 ? 'positive' : complianceScore > 60 ? 'neutral' : 'negative'",
+      "engagementTrend": "activeUserPercentage > 80 ? 'positive' : activeUserPercentage > 50 ? 'neutral' : 'negative'",
+      "freshnessTrend": "avgDocumentationAge < 30 ? 'positive' : avgDocumentationAge < 90 ? 'neutral' : 'negative'",
+      "undocumentedAssetSeverity": "undocumentedAssets > 10 ? 'high' : undocumentedAssets > 5 ? 'medium' : 'low'",
+      "outdatedProcessSeverity": "outdatedProcesses > 5 ? 'high' : outdatedProcesses > 2 ? 'medium' : 'low'",
+      "userEngagementSeverity": "activeUserPercentage < 30 ? 'high' : activeUserPercentage < 50 ? 'medium' : 'low'"
+    },
+    "statusMappings": {
+      "assetDocumentationStatus": "documentedAssets > 0 ? 'satisfactory' : 'needs_attention'",
+      "processDocumentationStatus": "documentedProcesses > 0 ? 'satisfactory' : 'needs_attention'",
+      "configManagementStatus": "documentedConfigs > 0 ? 'satisfactory' : 'needs_attention'",
+      "passwordManagementStatus": "managedPasswords > 0 ? 'satisfactory' : 'needs_attention'",
+      "vendorDocumentationStatus": "documentedVendors > 0 ? 'satisfactory' : 'needs_attention'",
+      "hardwareAssetStatus": "hardwareAssets > 0 ? 'satisfactory' : 'needs_attention'",
+      "softwareAssetStatus": "softwareAssets > 0 ? 'satisfactory' : 'needs_attention'",
+      "networkAssetStatus": "networkAssets > 0 ? 'satisfactory' : 'needs_attention'",
+      "cloudAssetStatus": "cloudAssets > 0 ? 'satisfactory' : 'needs_attention'",
+      "docStandardsStatus": "complianceScore > 70 ? 'satisfactory' : 'needs_attention'",
+      "processAdoptionStatus": "activeUsers > 0 ? 'satisfactory' : 'needs_attention'",
+      "userEngagementStatus": "recentUpdates > 0 ? 'satisfactory' : 'needs_attention'",
+      "updateFrequencyStatus": "avgDocumentationAge < 30 ? 'satisfactory' : 'needs_attention'"
+    }
+  },
+  "templateVersion": "1.0",
+  "vendorCollaboration": {
+    "editableSections": [
+      "executiveSummary",
+      "enhancedSections.insights",
+      "enhancedSections.recommendations",
+      "enhancedSections.risks",
+      "sectionHeaders"
+    ],
+    "placeholders": "Use {placeholderName} syntax for dynamic data",
+    "calculations": "Reference dataMapping.calculations for computed values",
+    "statusMappings": "Reference dataMapping.statusMappings for conditional statuses"
+  },
+  "documentationMetrics": {
+    "totalAssets": 150,
+    "documentedAssets": 120,
+    "undocumentedAssets": 30,
+    "completenessRate": "80%",
+    "assetTypes": {
+      "hardware": 45,
+      "software": 60,
+      "network": 25,
+      "cloud": 20
+    },
+    "managedAssets": 135,
+    "managementRate": "90%"
+  },
+  "processManagement": {
+    "totalProcesses": 25,
+    "documentedProcesses": 20,
+    "outdatedProcesses": 5,
+    "complianceScore": 85,
+    "processTypes": [
+      "Incident Response",
+      "Change Management",
+      "Backup Procedures",
+      "Security Protocols",
+      "User Onboarding"
+    ],
+    "recentUpdates": 12
+  },
+  "userEngagement": {
+    "totalUsers": 15,
+    "activeUsers": 10,
+    "activeUserPercentage": "67%",
+    "recentUpdates": 45,
+    "avgDocumentationAge": 45,
+    "topContributors": [
+      "John Smith",
+      "Sarah Johnson",
+      "Mike Davis"
+    ]
+  },
+  "complianceCoverage": {
+    "totalItems": 50,
+    "compliantItems": 42,
+    "nonCompliantItems": 8,
+    "complianceRate": "84%",
+    "categories": [
+      "Security Policies",
+      "Data Protection",
+      "Access Controls",
+      "Audit Procedures"
+    ],
+    "lastAudit": "2025-07-15"
+  },
+  "documentationSummary": {
+    "configurations": {
+      "total": "{configurationsTotal}",
+      "byType": "{configurationsByType}",
+      "byExpiration": "{configurationsByExpiration}",
+      "health": "{configurationsHealth}",
+      "details": "{configurationsDetails}",
+      "description": "Configuration items with health status and type breakdown",
+      "debug": "{debugConfigs}"
+    },
+    "domains": {
+      "total": "{domainsTotal}",
+      "list": "{domainsList}",
+      "description": "List of domains managed"
+    },
+    "documents": {
+      "total": "{documentsTotal}",
+      "fresh": "{documentsFresh}",
+      "stale": "{documentsStale}",
+      "description": "Document freshness (updated in last 90 days)"
+    },
+    "passwords": {
+      "total": "{passwordsTotal}",
+      "fresh": "{passwordsFresh}",
+      "stale": "{passwordsStale}",
+      "description": "Password freshness (updated in last 90 days)"
+    },
+    "checklists": {
+      "total": "{checklistsTotal}",
+      "completed": "{checklistsCompleted}",
+      "incomplete": "{checklistsIncomplete}",
+      "description": "Checklist completion status"
+    },
+    "sslCertificates": {
+      "total": "{sslCertificatesTotal}",
+      "expiringSoon": "{sslCertificatesExpiringSoon}",
+      "description": "SSL certificate status and expiration tracking"
+    },
+    "flexibleAssets": {
+      "byType": "{flexibleAssetsByType}",
+      "detailed": "{flexibleAssetsDetailed}",
+      "description": "Flexible assets summarized by type"
+    },
+    "configurationHealth": {
+      "active": "{configurationsHealth.active}",
+      "needsAttention": "{configurationsHealth.needsAttention}",
+      "unknown": "{configurationsHealth.unknown}",
+      "healthScore": "{Math.round((configurationsHealth.active / configurationsTotal) * 100)}",
+      "description": "Configuration items health status and maintenance tracking"
+    }
+  }
+}

@@ -59,6 +59,35 @@ src/app/lmx/deliverables/
 
 The Cork QBR report uses a **JSON-first approach** that separates content (JSON template) from data (live API data). This enables better collaboration with Cork on report design while maintaining real-time data integration.
 
+### IT Glue QBR Report - Documentation-First Approach
+
+The IT Glue QBR report focuses on **documentation quality and completeness** by integrating with the IT Glue API to fetch real-time documentation metrics, asset management data, and process compliance information.
+
+**Key Features:**
+- **Documentation Coverage**: Track completeness of asset and process documentation
+- **Asset Management**: Monitor hardware, software, network, and cloud assets
+- **Process Compliance**: Ensure procedures and workflows are documented
+- **User Engagement**: Measure team participation in documentation
+- **Compliance Tracking**: Monitor documentation standards and audit readiness
+
+**Setup:**
+1. **Configure API Key**: Add to `.env.local`:
+   ```env
+   ITGLUE_API_KEY=your_itglue_api_key_here
+   ITGLUE_BASE_URL=https://api.itglue.com
+   ```
+
+2. **Access Report**: Navigate to `/lmx/deliverables/qbr/qbr-report-itglue`
+
+3. **Use Live Controls**: Select client organization and click "Refresh Data"
+
+**API Endpoints:**
+- `/api/deliverables/itglue/clients` - Fetches available organizations
+- `/api/deliverables/itglue/refresh` - Refreshes live documentation data
+
+**Documentation:**
+- [IT Glue Integration Documentation](./documentation/itglue-integration.md) - Detailed guide for documentation-focused reporting
+
 **Key Features:**
 - **Template-Based**: JSON contains placeholders for dynamic data
 - **Vendor Collaboration**: Cork can edit content without touching code

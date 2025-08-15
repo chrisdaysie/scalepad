@@ -54,5 +54,13 @@
     "company": "Rewst",
     "type": "individual",
     "description": "RPA and workflow automation platform for MSP operations and process optimization"
+  },
+  "qbr-report-itglue": {
+    "id": "qbr-report-itglue",
+    "json_file": "qbr-report-itglue.json",
+    "title": "It Glue Business Review Report",
+    "company": "IT GLUE",
+    "type": "individual",
+    "description": "It Glue business review and analysis report"
   }
 }

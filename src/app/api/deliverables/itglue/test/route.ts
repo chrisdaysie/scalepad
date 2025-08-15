@@ -73,7 +73,7 @@ const mockITGlueData = {
   selectedClientName: "Test Organization"
 };
 
-export async function POST(_request: NextRequest) {
+export async function POST() {
   try {
     console.log('Testing IT Glue template processing with mock data...');
     
@@ -234,7 +234,7 @@ function processTemplate(template: unknown, liveData: Record<string, unknown>): 
   return processedData;
 }
 
-function calculateDerivedValues(liveData: any) {
+function calculateDerivedValues(liveData: Record<string, unknown>) {
   const documentationCoverage = liveData.assetData.total_assets > 0 
     ? Math.round((liveData.assetData.documented_assets / liveData.assetData.total_assets) * 100) 
     : 0;

@@ -51,27 +51,7 @@ interface ITGlueSSLCertificate {
   };
 }
 
-interface ITGlueDocument {
-  id: string;
-  type: string;
-  attributes: {
-    name?: string;
-    created_at?: string;
-    updated_at?: string;
-    [key: string]: unknown;
-  };
-}
 
-interface ITGlueChecklist {
-  id: string;
-  type: string;
-  attributes: {
-    name?: string;
-    created_at?: string;
-    updated_at?: string;
-    [key: string]: unknown;
-  };
-}
 
 interface ITGlueConfigurationType {
   id: string;
@@ -681,9 +661,9 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
   console.log(`🔍 Processing ${allFlexibleAssets.length} flexible assets...`);
   
   allFlexibleAssets.forEach((asset: ITGlueFlexibleAsset, index: number) => {
-    const attrs = asset.attributes as any;
-    const typeId = attrs['flexible-asset-type-id'];
-    const typeName = attrs['flexible-asset-type-name'];
+    const attrs = asset.attributes as Record<string, unknown>;
+    const typeId = attrs['flexible-asset-type-id'] as string | undefined;
+    const typeName = attrs['flexible-asset-type-name'] as string | undefined;
     const assetName = asset.attributes.name || 'Unnamed Asset';
     
     // Log all assets for debugging
@@ -1009,9 +989,10 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
         
         // Check the full asset object structure
         console.log('🔍 DEBUG: Full asset object keys:', Object.keys(asset));
-        if ((asset as any).relationships) {
-          console.log('🔍 DEBUG: Asset relationships:', Object.keys((asset as any).relationships));
-          console.log('🔍 DEBUG: Configuration type relationship:', JSON.stringify((asset as any).relationships['configuration-type'], null, 2));
+        const assetAny = asset as unknown as { relationships?: { [key: string]: unknown } };
+        if (assetAny.relationships) {
+          console.log('🔍 DEBUG: Asset relationships:', Object.keys(assetAny.relationships));
+          console.log('🔍 DEBUG: Configuration type relationship:', JSON.stringify(assetAny.relationships['configuration-type'], null, 2));
         }
       }
     }
@@ -1040,8 +1021,14 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
   console.log('\n🔍 ANALYSIS:');
   console.log(`✅ Configuration types available: ${configurationTypes.length}`);
   console.log(`✅ Assets found: ${allAssets.length}`);
-  console.log(`❌ Assets with type assignments: ${allAssets.filter(asset => (asset as any).relationships?.['configuration-type']?.data?.id).length}`);
-  console.log(`❌ Assets without type assignments: ${allAssets.filter(asset => !(asset as any).relationships?.['configuration-type']?.data?.id).length}`);
+  console.log(`❌ Assets with type assignments: ${allAssets.filter(asset => {
+    const assetAny = asset as unknown as { relationships?: { [key: string]: { data?: { id?: string } } } };
+    return assetAny.relationships?.['configuration-type']?.data?.id;
+  }).length}`);
+  console.log(`❌ Assets without type assignments: ${allAssets.filter(asset => {
+    const assetAny = asset as unknown as { relationships?: { [key: string]: { data?: { id?: string } } } };
+    return !assetAny.relationships?.['configuration-type']?.data?.id;
+  }).length}`);
   
   // Show expiration analysis
   const expiredCount = configurationsByExpiration['Expired'];
@@ -1065,24 +1052,27 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
   console.log(`Total assets: ${allAssets.length}`);
   console.log(`Configuration types found: ${configurationTypes.length}`);
   console.log(`Assets with type IDs: ${allAssets.filter(asset => {
-    const attrs = asset.attributes as any;
+    const attrs = asset.attributes as Record<string, unknown>;
     const attributeTypeId = attrs?.['configuration-type-id'] || attrs?.['asset-type-id'] || attrs?.configuration_type_id || attrs?.asset_type_id;
-    const relationshipTypeId = (asset as any).relationships?.['configuration-type']?.data?.id;
+    const assetAny = asset as unknown as { relationships?: { [key: string]: { data?: { id?: string } } } };
+    const relationshipTypeId = assetAny?.relationships?.['configuration-type']?.data?.id;
     return Boolean(attributeTypeId ?? relationshipTypeId);
   }).length}`);
   console.log(`Assets without type IDs: ${allAssets.filter(asset => {
-    const attrs = asset.attributes as any;
+    const attrs = asset.attributes as Record<string, unknown>;
     const attributeTypeId = attrs?.['configuration-type-id'] || attrs?.['asset-type-id'] || attrs?.configuration_type_id || attrs?.asset_type_id;
-    const relationshipTypeId = (asset as any).relationships?.['configuration-type']?.data?.id;
+    const assetAny = asset as unknown as { relationships?: { [key: string]: { data?: { id?: string } } } };
+    const relationshipTypeId = assetAny?.relationships?.['configuration-type']?.data?.id;
     return !Boolean(attributeTypeId ?? relationshipTypeId);
   }).length}`);
   
   // Add a simple test to see what's in the first few assets
   console.log('🔍 QUICK TEST - First 3 assets:');
   allAssets.slice(0, 3).forEach((asset, index) => {
-    const attrs = asset.attributes as any;
+    const attrs = asset.attributes as Record<string, unknown>;
     const attributeTypeId = attrs?.['configuration-type-id'] || attrs?.['asset-type-id'] || attrs?.configuration_type_id || attrs?.asset_type_id;
-    const relationshipTypeId = (asset as any).relationships?.['configuration-type']?.data?.id;
+    const assetAny = asset as unknown as { relationships?: { [key: string]: { data?: { id?: string } } } };
+    const relationshipTypeId = assetAny?.relationships?.['configuration-type']?.data?.id;
     const typeId = attributeTypeId ?? relationshipTypeId;
     console.log(`Asset ${index + 1}: "${asset.attributes.name}" - Type ID: ${typeId || 'NOT FOUND'}`);
   });
@@ -1220,12 +1210,13 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
         configurationsByType: configurationsByType,
         configTypeMap: Object.fromEntries(configTypeMap),
       sampleAssets: allAssets.slice(0, 3).map((asset: ITGlueAsset) => {
-        const attrs = asset.attributes as any;
+        const attrs = asset.attributes as Record<string, unknown>;
         const attributeTypeId = attrs?.['configuration-type-id'] || attrs?.['asset-type-id'] || attrs?.configuration_type_id || attrs?.asset_type_id;
-        const relationshipTypeId = (asset as any).relationships?.['configuration-type']?.data?.id;
+        const assetAny = asset as unknown as { relationships?: { [key: string]: { data?: { id?: string } } } };
+        const relationshipTypeId = assetAny?.relationships?.['configuration-type']?.data?.id;
         return {
           name: asset.attributes.name,
-          typeId: attributeTypeId ?? relationshipTypeId,
+          typeId: (attributeTypeId ?? relationshipTypeId) as string | number | undefined,
           allAttributes: Object.keys(asset.attributes)
         };
       })

@@ -2671,12 +2671,12 @@ export default function QBRReportPage() {
                       }
                       
                       if (condition === 'flexibleAssetTypesCount > 0') {
-                        const flexibleAssetsByType = (report.documentationSummary?.flexibleAssets as any)?.byType;
+                        const flexibleAssetsByType = report.documentationSummary?.flexibleAssets?.byType;
                         let parsedFlexibleAssetsByType = flexibleAssetsByType;
                         if (typeof flexibleAssetsByType === 'string') {
                           try {
                             parsedFlexibleAssetsByType = JSON.parse(flexibleAssetsByType);
-                          } catch (e) {
+                          } catch (_e) {
                             // Silently handle parsing errors
                           }
                         }

@@ -2,6 +2,62 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+// Define the IT Glue data structure
+interface ITGlueData {
+  assetData: {
+    total_assets: number;
+    documented_assets: number;
+    undocumented_assets: number;
+    managed_assets: number;
+    hardware_assets: number;
+    software_assets: number;
+    network_assets: number;
+    cloud_assets: number;
+    asset_types: {
+      hardware: number;
+      software: number;
+      network: number;
+      cloud: number;
+    };
+  };
+  processData: {
+    total_processes: number;
+    documented_processes: number;
+    outdated_processes: number;
+    compliance_score: number;
+    process_types: string[];
+    recent_updates: number;
+  };
+  userData: {
+    total_users: number;
+    active_users: number;
+    active_user_percentage: number;
+    top_contributors: string[];
+  };
+  activityData: {
+    recent_updates: number;
+    avg_documentation_age: number;
+    update_frequency: number;
+  };
+  complianceData: {
+    compliance_score: number;
+    compliance_items: number;
+    compliant_items: number;
+    non_compliant_items: number;
+    categories: string[];
+    last_audit: string;
+  };
+  overallMetrics: {
+    documentation_completeness: number;
+    asset_management_score: number;
+    process_compliance_score: number;
+    user_engagement_score: number;
+  };
+  lastRefresh: string;
+  selectedClientUuid: string;
+  selectedClientName: string;
+}
+
 // Mock IT Glue data for testing
 const mockITGlueData = {
   assetData: {
@@ -98,7 +154,7 @@ export async function POST() {
   }
 }
 
-async function updateITGlueReport(liveData: Record<string, unknown>) {
+async function updateITGlueReport(liveData: ITGlueData) {
   const jsonPath = path.join(process.cwd(), 'src/app/lmx/deliverables/data/json/qbr-report-itglue.json');
   
   // Read current JSON template
@@ -113,10 +169,10 @@ async function updateITGlueReport(liveData: Record<string, unknown>) {
     message: 'IT Glue QBR data processed successfully',
     data: processedData,
     debug: {
-      assetCount: liveData.assetData.total_assets,
-      documentedAssets: liveData.assetData.documented_assets,
-      activeUsers: liveData.userData.active_users,
-      sampleProcesses: liveData.processData.process_types.slice(0, 3)
+      assetCount: (liveData as any).assetData.total_assets,
+      documentedAssets: (liveData as any).assetData.documented_assets,
+      activeUsers: (liveData as any).userData.active_users,
+      sampleProcesses: (liveData as any).processData.process_types.slice(0, 3)
     }
   };
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 // import ScalepadLogo from '@/components/ScalepadLogo';
@@ -108,6 +108,42 @@ interface QBRData {
       status: string;
       created_at: string;
     }>;
+    documentationSummary?: {
+      configurations: {
+        total: number;
+        byType: { [key: string]: number };
+        byExpiration: { [key: string]: number };
+      };
+      domains: {
+        total: number;
+        list: Array<{
+          name: string;
+          expiryDate: string;
+          registrar: string;
+          displayText: string;
+        }>;
+      };
+      passwords: {
+        total: number;
+        fresh: number;
+        stale: number;
+      };
+      sslCertificates: {
+        total: number;
+        expiringSoon: number;
+        list: Array<{
+          name: string;
+          issuer: string;
+          expiryDate: string;
+          algorithm: string;
+          displayText: string;
+        }>;
+      };
+      flexibleAssets: {
+        byType: { [key: string]: number };
+        detailed: { [key: string]: { count: number; examples: string[] } };
+      };
+    };
   };
   goals?: Array<{
     title: string;
@@ -315,6 +351,7 @@ interface QBRData {
       description: string;
       metric: string;
       trend: 'positive' | 'negative' | 'neutral';
+      condition?: string;
     }>;
     recommendations: Array<{
       title: string;
@@ -371,6 +408,7 @@ interface QBRData {
     configurations: {
       total: number;
       byType: { [key: string]: number };
+      byExpiration: { [key: string]: number };
       description: string;
     };
     domains: {
@@ -414,6 +452,7 @@ interface QBRData {
     };
     flexibleAssets: {
       byType: { [key: string]: number };
+      detailed: { [key: string]: { count: number; examples: string[] } };
       description: string;
     };
   };
@@ -441,7 +480,7 @@ export default function QBRReportPage() {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ clientUuid: '4842637' }), // Birdbrain Worldwide
+            body: JSON.stringify({ clientUuid: '4842637' }), // Birdbrain Worldwide - default client with most data
           });
           if (!response.ok) {
             throw new Error('Failed to fetch IT Glue data');
@@ -526,26 +565,26 @@ export default function QBRReportPage() {
     );
   }
 
-  const getScoreColor = (score: number) => {
-    if (score >= 70) return 'text-green-600';
-    if (score >= 40) return 'text-yellow-600';
-    return 'text-red-600';
-  };
+  // const getScoreColor = (score: number) => {
+  //   if (score >= 70) return 'text-green-600';
+  //   if (score >= 40) return 'text-yellow-600';
+  //   return 'text-red-600';
+  // };
 
-  const getScoreBarColor = (score: number) => {
-    if (score >= 70) return 'bg-green-500';
-    if (score >= 40) return 'bg-yellow-500';
-    return 'bg-red-500';
-  };
+  // const getScoreBarColor = (score: number) => {
+  //   if (score >= 70) return 'bg-green-500';
+  //   if (score >= 40) return 'bg-yellow-500';
+  //   return 'bg-red-500';
+  // };
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'satisfactory': return 'bg-green-100 text-green-800';
-      case 'needs_attention': return 'bg-yellow-100 text-yellow-800';
-      case 'at-risk': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
-    }
-  };
+  // const getStatusColor = (status: string) => {
+  //   switch (status) {
+  //     case 'satisfactory': return 'bg-green-100 text-green-800';
+  //     case 'needs_attention': return 'bg-yellow-100 text-yellow-800';
+  //     case 'at-risk': return 'bg-red-100 text-red-800';
+  //     default: return 'bg-gray-100 text-gray-800';
+  //   }
+  // };
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
@@ -2215,7 +2254,7 @@ export default function QBRReportPage() {
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             {(() => {
-                              const configurationsByExpiration = (report.documentationSummary.configurations as any).byExpiration;
+                              const configurationsByExpiration = report.documentationSummary.configurations.byExpiration;
                               const expired = configurationsByExpiration?.['Expired'] || 0;
                               const expiringSoon = configurationsByExpiration?.['Expiring Soon (30 days)'] || 0;
                               const active = configurationsByExpiration?.['Active'] || 0;
@@ -2237,28 +2276,28 @@ export default function QBRReportPage() {
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             <div className="flex flex-wrap gap-1">
                               {(() => {
-                                const configurationsByType = (report.documentationSummary.configurations as any).byType;
+                                const configurationsByType = report.documentationSummary.configurations.byType;
                                 
                                 // Try to parse if it's a string
                                 let parsedConfigTypes = configurationsByType;
                                 if (typeof configurationsByType === 'string') {
                                   try {
                                     parsedConfigTypes = JSON.parse(configurationsByType);
-                                  } catch (e) {
+                                  } catch (_e) {
                                     // Ignore parsing errors
                                   }
                                 }
                                 
                                 if (parsedConfigTypes && typeof parsedConfigTypes === 'object' && Object.keys(parsedConfigTypes).length > 0) {
                                   // Get expiration data
-                                  const configurationsByExpiration = (report.documentationSummary.configurations as any).byExpiration;
+                                  const configurationsByExpiration = report.documentationSummary.configurations.byExpiration;
                                   
                                   return (
                                     <div className="space-y-1">
                                       <div className="flex flex-wrap gap-1">
-                                        {Object.entries(parsedConfigTypes).map(([type, count]: [string, any], index: number) => (
+                                        {Object.entries(parsedConfigTypes).map(([type, count]: [string, unknown], index: number) => (
                                           <span key={index} className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                            {count} {type}
+                                            {String(count)} {type}
                                           </span>
                                         ))}
                                       </div>
@@ -2366,14 +2405,14 @@ export default function QBRReportPage() {
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             <div className="flex flex-wrap gap-1">
                               {(() => {
-                                const sslList = (report.documentationSummary.sslCertificates as any).list;
+                                const sslList = report.documentationSummary.sslCertificates.list;
                                 const expiringSoon = Number(report.documentationSummary.sslCertificates.expiringSoon) || 0;
                                 
                                 if (sslList && Array.isArray(sslList) && sslList.length > 0) {
                                   return (
                                     <div className="space-y-1">
                                       <div className="flex flex-wrap gap-1">
-                                        {sslList.slice(0, 3).map((cert: any, index: number) => (
+                                        {sslList.slice(0, 3).map((cert, index: number) => (
                                           <span key={index} className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
                                             {cert.name} ({cert.expiryDate})
                                           </span>
@@ -2416,20 +2455,20 @@ export default function QBRReportPage() {
                             <div className="text-sm font-semibold text-gray-900">
                               {(() => {
                                 // Try to get data from liveData first, then fall back to documentationSummary
-                                const flexibleAssetsByType = (report.liveData?.documentationSummary?.flexibleAssets as any)?.byType || (report.documentationSummary.flexibleAssets as any).byType;
+                                const flexibleAssetsByType = report.liveData?.documentationSummary?.flexibleAssets?.byType || report.documentationSummary.flexibleAssets.byType;
                                 
                                 // Try to parse if it's a string
                                 let parsedFlexibleAssetsByType = flexibleAssetsByType;
                                 if (typeof flexibleAssetsByType === 'string') {
                                   try {
                                     parsedFlexibleAssetsByType = JSON.parse(flexibleAssetsByType);
-                                  } catch (e) {
+                                  } catch (_e) {
                                     // Silently handle parsing errors
                                   }
                                 }
                                 
                                 if (parsedFlexibleAssetsByType && typeof parsedFlexibleAssetsByType === 'object') {
-                                  const total = Object.values(parsedFlexibleAssetsByType).reduce((sum: number, count: any) => sum + (Number(count) || 0), 0);
+                                  const total = Object.values(parsedFlexibleAssetsByType).reduce((sum: number, count: unknown) => sum + (Number(count) || 0), 0);
                                   return total;
                                 }
                                 return 0;
@@ -2439,14 +2478,14 @@ export default function QBRReportPage() {
                           <td className="px-6 py-4 whitespace-nowrap">
                             {(() => {
                               // Try to get data from liveData first, then fall back to documentationSummary
-                              const flexibleAssetsByType = (report.liveData?.documentationSummary?.flexibleAssets as any)?.byType || (report.documentationSummary.flexibleAssets as any).byType;
+                              const flexibleAssetsByType = report.liveData?.documentationSummary?.flexibleAssets?.byType || report.documentationSummary.flexibleAssets.byType;
                               
                               // Try to parse if it's a string
                               let parsedFlexibleAssetsByType = flexibleAssetsByType;
                               if (typeof flexibleAssetsByType === 'string') {
                                 try {
                                   parsedFlexibleAssetsByType = JSON.parse(flexibleAssetsByType);
-                                } catch (e) {
+                                } catch (_e) {
                                   // Silently handle parsing errors
                                 }
                               }
@@ -2462,24 +2501,27 @@ export default function QBRReportPage() {
                             <div className="flex flex-wrap gap-1">
                               {(() => {
                                 // Try to get data from liveData first, then fall back to documentationSummary
-                                const flexibleAssetsDetailed = (report.liveData?.documentationSummary?.flexibleAssets as any)?.detailed || (report.documentationSummary.flexibleAssets as any).detailed;
+                                const flexibleAssetsDetailed = report.liveData?.documentationSummary?.flexibleAssets?.detailed || report.documentationSummary.flexibleAssets.detailed;
                                 
                                 // Try to parse if it's a string
                                 let parsedFlexibleAssetsDetailed = flexibleAssetsDetailed;
                                 if (typeof flexibleAssetsDetailed === 'string') {
                                   try {
                                     parsedFlexibleAssetsDetailed = JSON.parse(flexibleAssetsDetailed);
-                                  } catch (e) {
+                                  } catch (_e) {
                                     // Silently handle parsing errors
                                   }
                                 }
                                 
                                 if (parsedFlexibleAssetsDetailed && typeof parsedFlexibleAssetsDetailed === 'object' && Object.keys(parsedFlexibleAssetsDetailed).length > 0) {
-                                  return Object.entries(parsedFlexibleAssetsDetailed).map(([typeName, data]: [string, any], index: number) => (
-                                    <span key={index} className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
-                                      {data.count} {typeName}
-                                    </span>
-                                  ));
+                                  return Object.entries(parsedFlexibleAssetsDetailed).map(([typeName, data]: [string, unknown], index: number) => {
+                                    const typedData = data as { count: number };
+                                    return (
+                                      <span key={index} className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                                        {typedData.count} {typeName}
+                                      </span>
+                                    );
+                                  });
                                 } else {
                                   return <span className="text-gray-400">No flexible assets</span>;
                                 }
@@ -2518,13 +2560,13 @@ export default function QBRReportPage() {
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             <div className="flex flex-wrap gap-1">
                               {(() => {
-                                const domainList = (report.documentationSummary.domains as any).list;
+                                const domainList = report.documentationSummary.domains.list;
                                 
                                 if (domainList && Array.isArray(domainList) && domainList.length > 0) {
                                   return (
                                     <div className="space-y-1">
                                       <div className="flex flex-wrap gap-1">
-                                        {domainList.slice(0, 3).map((domain: any, index: number) => (
+                                        {domainList.slice(0, 3).map((domain, index: number) => (
                                           <span key={index} className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
                                             {domain.name} ({domain.expiryDate})
                                           </span>
@@ -2572,14 +2614,13 @@ export default function QBRReportPage() {
                       
                       // Handle specific conditions for IT Glue data
                       if (condition === 'configurationsExpired > 0') {
-                        const expired = Number(report.documentationSummary?.configurations?.total) || 0;
-                        const configurationsByExpiration = (report.documentationSummary?.configurations as any)?.byExpiration;
+                        const configurationsByExpiration = report.documentationSummary?.configurations?.byExpiration;
                         const expiredCount = configurationsByExpiration?.['Expired'] || 0;
                         return expiredCount > 0;
                       }
                       
                       if (condition === 'configurationsExpiringSoon > 0') {
-                        const configurationsByExpiration = (report.documentationSummary?.configurations as any)?.byExpiration;
+                        const configurationsByExpiration = report.documentationSummary?.configurations?.byExpiration;
                         const expiringSoon = configurationsByExpiration?.['Expiring Soon (30 days)'] || 0;
                         return expiringSoon > 0;
                       }
@@ -2967,17 +3008,10 @@ function LiveDataControls({
     deviceCount?: number;
   }>>([]);
   const [selectedClientUuid, setSelectedClientUuid] = useState<string>(
-    report.liveData?.selectedClientUuid || ''
+    report.liveData?.selectedClientUuid || (report.id === 'qbr-report-itglue' ? '4842637' : (report.id === 'qbr-report-cork' ? '0c72184a-2201-4353-a5b7-2f9f371239db' : '')) // Default to Birdbrain Worldwide for IT Glue, Stark Industries for Cork
   );
 
-  // Fetch available clients on component mount
-  useEffect(() => {
-    if (report.liveData?.enabled) {
-      fetchAvailableClients();
-    }
-  }, [report.liveData?.enabled]);
-
-  const fetchAvailableClients = async () => {
+  const fetchAvailableClients = useCallback(async () => {
     setIsLoading(true);
     try {
       // Determine the API endpoint based on report type
@@ -2995,7 +3029,14 @@ function LiveDataControls({
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [report.id]);
+
+  // Fetch available clients on component mount
+  useEffect(() => {
+    if (report.liveData?.enabled) {
+      fetchAvailableClients();
+    }
+  }, [report.liveData?.enabled, fetchAvailableClients]);
 
   const handleRefreshData = async () => {
     if (!selectedClientUuid) {
@@ -3082,15 +3123,19 @@ function LiveDataControls({
           <select
             value={selectedClientUuid}
             onChange={(e) => setSelectedClientUuid(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
             disabled={isLoading}
           >
             <option value="">Choose a client...</option>
-            {availableClients.map((client) => (
-              <option key={client.uuid} value={client.uuid}>
-                {client.name} {client.status ? `(${client.status})` : ''} - {report.id === 'qbr-report-itglue' ? 'organization' : `${client.deviceCount} devices`}
-              </option>
-            ))}
+            {availableClients
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .map((client) => (
+                <option key={client.uuid} value={client.uuid}>
+                  {client.name} {client.status ? `(${client.status})` : ''} {report.id === 'qbr-report-itglue' ? '' : `- ${client.deviceCount} devices`}
+                  {report.id === 'qbr-report-itglue' && client.uuid === '4842637' ? ' ⭐ (Recommended - most data)' : ''}
+                  {report.id === 'qbr-report-cork' && client.uuid === '0c72184a-2201-4353-a5b7-2f9f371239db' ? ' ⭐ (Recommended - most data)' : ''}
+                </option>
+              ))}
           </select>
           {isLoading && (
             <p className="text-xs text-gray-500 mt-1">Loading clients...</p>

@@ -58,9 +58,9 @@
   "qbr-report-itglue": {
     "id": "qbr-report-itglue",
     "json_file": "qbr-report-itglue.json",
-    "title": "It Glue Business Review Report",
-    "company": "IT GLUE",
+    "title": "IT Glue",
+    "company": "IT Glue",
     "type": "individual",
-    "description": "It Glue business review and analysis report"
+    "description": "IT Glue business review and analysis report"
   }
 }

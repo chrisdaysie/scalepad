@@ -16,6 +16,81 @@ interface ITGlueAsset {
   };
 }
 
+interface ITGlueDomain {
+  id: string;
+  type: string;
+  attributes: {
+    name?: string;
+    expires_at?: string;
+    created_at?: string;
+    updated_at?: string;
+    [key: string]: unknown;
+  };
+}
+
+interface ITGluePassword {
+  id: string;
+  type: string;
+  attributes: {
+    name?: string;
+    created_at?: string;
+    updated_at?: string;
+    [key: string]: unknown;
+  };
+}
+
+interface ITGlueSSLCertificate {
+  id: string;
+  type: string;
+  attributes: {
+    name?: string;
+    expires_at?: string;
+    created_at?: string;
+    updated_at?: string;
+    [key: string]: unknown;
+  };
+}
+
+interface ITGlueDocument {
+  id: string;
+  type: string;
+  attributes: {
+    name?: string;
+    created_at?: string;
+    updated_at?: string;
+    [key: string]: unknown;
+  };
+}
+
+interface ITGlueChecklist {
+  id: string;
+  type: string;
+  attributes: {
+    name?: string;
+    created_at?: string;
+    updated_at?: string;
+    [key: string]: unknown;
+  };
+}
+
+interface ITGlueConfigurationType {
+  id: string;
+  type: string;
+  attributes: {
+    name?: string;
+    [key: string]: unknown;
+  };
+}
+
+interface ITGlueFlexibleAssetType {
+  id: string;
+  type: string;
+  attributes: {
+    name?: string;
+    [key: string]: unknown;
+  };
+}
+
 interface ITGlueFlexibleAsset {
   id: string;
   type: string;
@@ -348,7 +423,7 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
     { headers }
   );
 
-  let domains: any[] = [];
+  let domains: ITGlueDomain[] = [];
   if (domainsResponse.ok) {
     try {
       const domainsData = await domainsResponse.json();
@@ -377,7 +452,7 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
   // Note: Documents endpoint not available in this IT Glue instance
   // All document endpoints return 404 Not Found
   console.log('Skipping documents - endpoint not available in this IT Glue instance');
-  const documents: any[] = [];
+  // const documents: ITGlueDocument[] = []; // Unused variable
 
   console.log('Fetching passwords...');
   
@@ -387,7 +462,7 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
     { headers }
   );
 
-  let passwords: any[] = [];
+  let passwords: ITGluePassword[] = [];
   if (passwordsResponse.ok) {
     try {
       const passwordsData = await passwordsResponse.json();
@@ -415,7 +490,7 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
   // Note: Checklists endpoint not available in this IT Glue instance
   // API returns 401 Unauthorized and 404 Not Found for checklists endpoints
   console.log('Skipping checklists - endpoint not available in this IT Glue instance');
-  const checklists: any[] = [];
+  // const checklists: ITGlueChecklist[] = []; // Unused variable
 
   console.log('Fetching SSL certificates...');
   
@@ -425,7 +500,7 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
     { headers }
   );
 
-  let sslCertificates: any[] = [];
+  let sslCertificates: ITGlueSSLCertificate[] = [];
   if (sslResponse.ok) {
     try {
       const sslData = await sslResponse.json();
@@ -459,7 +534,7 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
   console.log('Fetching configuration types...');
   
   // Try multiple endpoints to get configuration/asset types
-  let allConfigurationTypes: any[] = [];
+  let allConfigurationTypes: ITGlueConfigurationType[] = [];
   
   // First try configuration_types endpoint
   console.log('Trying /configuration_types endpoint...');
@@ -532,7 +607,7 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
     { headers }
   );
 
-  let flexibleAssetTypes: any[] = [];
+  let flexibleAssetTypes: ITGlueFlexibleAssetType[] = [];
   if (flexibleAssetTypesResponse.ok) {
     try {
       const flexibleAssetTypesData = await flexibleAssetTypesResponse.json();
@@ -548,8 +623,10 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
     // Step 1: Create flexible asset type lookup map
   const flexibleAssetTypeMap = new Map<string, string>();
   if (flexibleAssetTypes.length > 0) {
-    flexibleAssetTypes.forEach((type: any) => {
-      flexibleAssetTypeMap.set(type.id, type.attributes.name);
+    flexibleAssetTypes.forEach((type: ITGlueFlexibleAssetType) => {
+      if (type.attributes.name) {
+        flexibleAssetTypeMap.set(type.id, type.attributes.name);
+      }
     });
     console.log(`Created flexible asset type lookup map with ${flexibleAssetTypeMap.size} types`);
   }
@@ -831,8 +908,10 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
   
   // Step 2: Create a simple lookup map
   const configTypeMap = new Map();
-  configurationTypes.forEach((configType: any) => {
-    configTypeMap.set(configType.id, configType.attributes.name);
+  configurationTypes.forEach((configType: ITGlueConfigurationType) => {
+    if (configType.attributes.name) {
+      configTypeMap.set(configType.id, configType.attributes.name);
+    }
   });
   
   // Step 3: Process configurations and create a simple breakdown with expiration tracking
@@ -1009,15 +1088,15 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
   });
   
   // Process documents metadata (not available in this IT Glue instance)
-  const totalDocuments = 0;
-  const freshDocuments = 0;
-  const staleDocuments = 0;
+  // const totalDocuments = 0; // Unused variable
+  // const freshDocuments = 0; // Unused variable
+  // const staleDocuments = 0; // Unused variable
   
   // Process passwords metadata (no actual passwords stored)
   const totalPasswords = passwords.length;
-  const freshPasswords = passwords.filter((pwd: any) => {
+  const freshPasswords = passwords.filter((pwd: ITGluePassword) => {
     // Use password-updated-at for password freshness
-    const passwordUpdatedAt = pwd.attributes['password-updated-at'];
+    const passwordUpdatedAt = pwd.attributes['password-updated-at'] as string | undefined;
     if (!passwordUpdatedAt) return false;
     const passwordDate = new Date(passwordUpdatedAt);
     return passwordDate >= docSummaryNinetyDaysAgo;
@@ -1026,8 +1105,8 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
   
   // Process SSL certificates metadata with more details
   const totalSSLCertificates = sslCertificates.length;
-  const expiringSoonSSLCertificates = sslCertificates.filter((ssl: any) => {
-    const expiryDate = ssl.attributes['valid-until'];
+  const expiringSoonSSLCertificates = sslCertificates.filter((ssl: ITGlueSSLCertificate) => {
+    const expiryDate = ssl.attributes['valid-until'] as string | undefined;
     if (!expiryDate) return false;
     const certExpiry = new Date(expiryDate);
     const thirtyDaysFromNow = new Date();
@@ -1036,19 +1115,19 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
   }).length;
   
   // Create detailed SSL certificate list with more information
-  const sslCertificateList = sslCertificates.map((ssl: any) => {
-    const name = ssl.attributes.name || ssl.attributes.host || 'Unknown';
-    const issuer = ssl.attributes['issued-by'] || ssl.attributes['issuer-organization'] || 'Unknown';
+  const sslCertificateList = sslCertificates.map((ssl: ITGlueSSLCertificate) => {
+    const name = (ssl.attributes.name as string) || (ssl.attributes.host as string) || 'Unknown';
+    const issuer = (ssl.attributes['issued-by'] as string) || (ssl.attributes['issuer-organization'] as string) || 'Unknown';
     
     // Handle expiry date with proper timezone conversion
     let expiryDate = 'Unknown';
     if (ssl.attributes['valid-until']) {
-      const expiryDateObj = new Date(ssl.attributes['valid-until']);
+      const expiryDateObj = new Date(ssl.attributes['valid-until'] as string);
       // Format as YYYY-MM-DD in local timezone
       expiryDate = expiryDateObj.toLocaleDateString('en-CA'); // en-CA format is YYYY-MM-DD
     }
     
-    const algorithm = ssl.attributes['signature-algorithm'] || 'Unknown';
+    const algorithm = (ssl.attributes['signature-algorithm'] as string) || 'Unknown';
     
     return {
       name,
@@ -1060,16 +1139,16 @@ async function fetchITGlueLiveData(apiKey: string, baseUrl: string, clientUuid: 
   }).filter(Boolean);
   
   // Process checklists metadata (not available in this IT Glue instance)
-  const totalChecklists = 0;
-  const completedChecklists = 0;
-  const incompleteChecklists = 0;
+  // const totalChecklists = 0; // Unused variable
+  // const completedChecklists = 0; // Unused variable
+  // const incompleteChecklists = 0; // Unused variable
   
   // Process domains metadata with more details
   const totalDomains = domains.length;
-  const domainList = domains.map((domain: any) => {
-    const name = domain.attributes.name || 'Unknown';
-    const expiryDate = domain.attributes['expires-on'] ? new Date(domain.attributes['expires-on']).toISOString().split('T')[0] : 'Unknown';
-    const registrar = domain.attributes['registrar-name'] || 'Unknown';
+  const domainList = domains.map((domain: ITGlueDomain) => {
+    const name = (domain.attributes.name as string) || 'Unknown';
+    const expiryDate = domain.attributes['expires-on'] ? new Date(domain.attributes['expires-on'] as string).toISOString().split('T')[0] : 'Unknown';
+    const registrar = (domain.attributes['registrar-name'] as string) || 'Unknown';
     
     return {
       name,
@@ -1277,7 +1356,7 @@ function processTemplate(template: unknown, liveData: ITGlueLiveData): unknown {
     configurationsExpiringSoon: liveData.documentationSummary.configurations.byExpiration['Expiring Soon (30 days)'] || 0,
     configurationsExpiredPercentage: Math.round(((liveData.documentationSummary.configurations.byExpiration.Expired || 0) / liveData.documentationSummary.configurations.total) * 100),
     configurationsTypeCount: Object.keys(liveData.documentationSummary.configurations.byType).length,
-    flexibleAssetsTotal: Object.values(liveData.documentationSummary.flexibleAssets.byType).reduce((sum: number, count: any) => sum + Number(count), 0),
+    flexibleAssetsTotal: Object.values(liveData.documentationSummary.flexibleAssets.byType).reduce((sum: number, count: unknown) => sum + Number(count), 0),
     flexibleAssetTypesCount: Object.keys(liveData.documentationSummary.flexibleAssets.byType).length,
     
     // Add trend calculations

@@ -73,7 +73,7 @@ const mockITGlueData = {
   selectedClientName: "Test Organization"
 };
 
-export async function POST(request: NextRequest) {
+export async function POST(_request: NextRequest) {
   try {
     console.log('Testing IT Glue template processing with mock data...');
     
@@ -98,7 +98,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function updateITGlueReport(liveData: any) {
+async function updateITGlueReport(liveData: Record<string, unknown>) {
   const jsonPath = path.join(process.cwd(), 'src/app/lmx/deliverables/data/json/qbr-report-itglue.json');
   
   // Read current JSON template
@@ -121,7 +121,7 @@ async function updateITGlueReport(liveData: any) {
   };
 }
 
-function processTemplate(template: unknown, liveData: any): unknown {
+function processTemplate(template: unknown, liveData: Record<string, unknown>): unknown {
   // Create a deep copy to avoid mutating the template
   const processed = JSON.parse(JSON.stringify(template));
   

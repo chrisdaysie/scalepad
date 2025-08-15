@@ -475,18 +475,33 @@ export default function QBRReportPage() {
       try {
         // For IT Glue reports, call the refresh API to get live data
         if (reportId === 'qbr-report-itglue') {
-          const response = await fetch('/api/deliverables/itglue/refresh', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ clientUuid: '4842637' }), // Birdbrain Worldwide - default client with most data
-          });
-          if (!response.ok) {
-            throw new Error('Failed to fetch IT Glue data');
+          try {
+            const response = await fetch('/api/deliverables/itglue/refresh', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ clientUuid: '4842637' }), // Birdbrain Worldwide - default client with most data
+            });
+            
+            if (!response.ok) {
+              const errorData = await response.json().catch(() => ({}));
+              console.error('IT Glue API error:', errorData);
+              throw new Error(`Failed to fetch IT Glue data: ${errorData.error || response.statusText}`);
+            }
+            
+            const data = await response.json();
+            setQbrReports({ [reportId]: data.data });
+          } catch (error) {
+            console.error('IT Glue fetch error:', error);
+            // Fallback to static data if live data fails
+            const response = await fetch('/api/deliverables/qbr');
+            if (!response.ok) {
+              throw new Error('Failed to fetch QBR data');
+            }
+            const data = await response.json();
+            setQbrReports(data);
           }
-          const data = await response.json();
-          setQbrReports({ [reportId]: data.data });
         } else {
           // For other reports, use the static JSON files
           const response = await fetch('/api/deliverables/qbr');
